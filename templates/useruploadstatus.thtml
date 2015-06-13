@@ -1,0 +1,4 @@
+<div style="width:80%;margin:0 auto;">
+  <div style="text-align:center;margin:10px 0;">{status_message}</div>
+  <div style="text-align:center;margin:10px 0;">{redirect}</div>
+</div>

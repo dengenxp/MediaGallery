@@ -1,0 +1,6 @@
+
+<div class="mgFrame_new_shadow">
+  {media_link_start}
+    <img src="{media_thumbnail}" alt="{media_tag}" title="{media_tag}" class="image" style="max-width: {media_width}px; max-height: {media_height}px; width:100%; height:100%;"{xhtml}>
+  {media_link_end}
+</div>

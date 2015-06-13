@@ -1,0 +1,1359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>Geeklog Media Gallery Plugin Documentation</title>
+  <link rel="stylesheet" type="text/css" href="./../../../docs/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<h1>Geeklog Media Gallery Plugin Documentation</h1>
+
+<p>The following information explains the configuration options, autotags and templates of the Geeklog Media Gallery Plugin. For install or upgrade instructions please read the readme.html file found in the 
+/path/to/geeklog/plugins/mediagallery/ directory.</p>
+
+<h2><a name="config.php">Configuration</a></h2>
+
+<p>The configuration of the Media Gallery Plugin can be changed from the Configuration admin panel:</p>
+
+<h3><a name="config_main">System Settings</a></h3>
+
+
+
+
+<h3><a name="config_main">General Options</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+
+<tr>
+  <td><a name="desc_gallery_only">gallery_only</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_loginrequired">loginrequired</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_htmlallowed">htmlallowed</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_usage_tracking">usage_tracking</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_whatsnew">whatsnew</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_title_length">title_length</a></td>
+  <td>28</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_whatsnew_time">whatsnew_time</a></td>
+  <td>7</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_preserve_filename">preserve_filename</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_discard_original">discard_original</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_verbose">verbose</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_disable_whatsnew_comments">disable_whatsnew_comments</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_profile_hook">profile_hook</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_postcard_retention">postcard_retention</a></td>
+  <td>7</td>
+  <td>Description</td>
+</tr>
+
+</table>
+
+
+
+
+<h3><a name="config_autotag">Autotag Defaults</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_at_border">at_border</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_align">at_align</a></td>
+  <td>auto</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_width">at_width</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_height">at_height</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_src">at_src</a></td>
+  <td>tn</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_autoplay">at_autoplay</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_enable_link">at_enable_link</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_delay">at_delay</a></td>
+  <td>5</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_at_showtitle">at_showtitle</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+
+</table>
+
+
+
+
+<h3><a name="config_rssfeed">RSS Options</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_rss_full_enabled">rss_full_enabled</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_rss_feed_type">rss_feed_type</a></td>
+  <td>RSS2.0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_rss_ignore_empty">rss_ignore_empty</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_rss_anonymous_only">rss_anonymous_only</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_hide_author_email">hide_author_email</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_rss_feed_name">rss_feed_name</a></td>
+  <td>mgmedia</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_display">Display Options</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_dfid">dfid</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_displayblocks">displayblocks</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_album_display_columns">album_display_columns</a></td>
+  <td>3</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_album_display_rows">album_display_rows</a></td>
+  <td>4</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_subalbum_select">subalbum_select</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_indextheme">indextheme</a></td>
+  <td>default</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_indexskin">indexskin</a></td>
+  <td>mgAlbum</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_jpg_orig_quality">jpg_orig_quality</a></td>
+  <td>85</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_jpg_quality">jpg_quality</a></td>
+  <td>85</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_tn_jpg_quality">tn_jpg_quality</a></td>
+  <td>85</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_gallery_tn_size">gallery_tn_size</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_gallery_tn_height">gallery_tn_height</a></td>
+  <td>200</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_gallery_tn_width">gallery_tn_width</a></td>
+  <td>200</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_enable_media_id">enable_media_id</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_full_in_popup">full_in_popup</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_commentbar">commentbar</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_seperator">seperator</a></td>
+  <td>::</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_use_flowplayer">use_flowplayer</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_custom_image_height">custom_image_height</a></td>
+  <td>412</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_custom_image_width">custom_image_width</a></td>
+  <td>550</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_popup_from_album">popup_from_album</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_autotag_caption">autotag_caption</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_random_width">random_width</a></td>
+  <td>120</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_random_skin">random_skin</a></td>
+  <td>mgShadow</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_truncate_breadcrumb">truncate_breadcrumb</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_searchresults">Search Results Options</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_search_columns">search_columns</a></td>
+  <td>3</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_search_rows">search_rows</a></td>
+  <td>4</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_search_playback_type">search_playback_type</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_search_enable_views">search_enable_views</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_search_enable_rating">search_enable_rating</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_batch">Batch Options</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_def_refresh_rate">def_refresh_rate</a></td>
+  <td>30</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_def_item_limit">def_item_limit</a></td>
+  <td>10</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_def_time_limit">def_time_limit</a></td>
+  <td>90</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_userprefs">User Prefs</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_up_display_rows_enabled">up_display_rows_enabled</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_up_display_columns_enabled">up_display_columns_enabled</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_up_av_playback_enabled">up_av_playback_enabled</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_up_thumbnail_size_enabled">up_thumbnail_size_enabled</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_graphics">Graphics Package</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_jhead_enabled">jhead_enabled</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_jhead_path">jhead_path</a></td>
+  <td></td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_jpegtran_enabled">jpegtran_enabled</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_jpegtran_path">jpegtran_path</a></td>
+  <td></td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ffmpeg_enabled">ffmpeg_enabled</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ffmpeg_path">ffmpeg_path</a></td>
+  <td></td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_zip_enabled">zip_enabled</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_zip_path">zip_path</a></td>
+  <td></td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_tmp_path">tmp_path</a></td>
+  <td>plugins/mediagallery/tmp/</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ftp_path">ftp_path</a></td>
+  <td>plugins/mediagallery/uploads/</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_album">Album Attributes</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_ad_skin">ad_skin</a></td>
+  <td>default</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_comments">ad_enable_comments</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_exif_display">ad_exif_display</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_rating">ad_enable_rating</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_album_views">ad_enable_album_views</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_views">ad_enable_views</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_keywords">ad_enable_keywords</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_display_album_desc">ad_display_album_desc</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_filename_title">ad_filename_title</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_rss">ad_enable_rss</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_rsschildren">ad_rsschildren</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_podcast">ad_podcast</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_mp3ribbon">ad_mp3ribbon</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_postcard">ad_enable_postcard</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_sort">ad_enable_sort</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_album_sort_order">ad_album_sort_order</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_playback_type">ad_playback_type</a></td>
+  <td>2</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_slideshow">ad_enable_slideshow</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_random">ad_enable_random</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_albums_first">ad_albums_first</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_enable_shutterfly">ad_enable_shutterfly</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_allow_download">ad_allow_download</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_full_display">ad_full_display</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_tn_size">ad_tn_size</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_tn_width">ad_tn_width</a></td>
+  <td>200</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_tn_height">ad_tn_height</a></td>
+  <td>200</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_max_image_width">ad_max_image_width</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_max_image_height">ad_max_image_height</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_max_filesize">ad_max_filesize</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_display_image_size">ad_display_image_size</a></td>
+  <td>2</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_display_rows">ad_display_rows</a></td>
+  <td>4</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_display_columns">ad_display_columns</a></td>
+  <td>3</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_image_skin">ad_image_skin</a></td>
+  <td>mgShadow</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_display_skin">ad_display_skin</a></td>
+  <td>mgShadow</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_album_skin">ad_album_skin</a></td>
+  <td>mgAlbum</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_watermark">Watermark</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_ad_wm_auto">ad_wm_auto</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_wm_opacity">ad_wm_opacity</a></td>
+  <td>10</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_wm_location">ad_wm_location</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_wm_id">ad_wm_id</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_allowedmediatypes">Allowed Media Types</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_jpg">ad_valid_format_jpg</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_png">ad_valid_format_png</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_tif">ad_valid_format_tif</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_gif">ad_valid_format_gif</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_bmp">ad_valid_format_bmp</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_tga">ad_valid_format_tga</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_psd">ad_valid_format_psd</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_mp3">ad_valid_format_mp3</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_ogg">ad_valid_format_ogg</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_asf">ad_valid_format_asf</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_swf">ad_valid_format_swf</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_mov">ad_valid_format_mov</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_mp4">ad_valid_format_mp4</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_mpg">ad_valid_format_mpg</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_flv">ad_valid_format_flv</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_rflv">ad_valid_format_rflv</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_emb">ad_valid_format_emb</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_zip">ad_valid_format_zip</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_valid_format_other">ad_valid_format_other</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_useruploads">User Uploads</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_ad_member_uploads">ad_member_uploads</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_moderate">ad_moderate</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_mod_group_id">ad_mod_group_id</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_ad_email_mod">ad_email_mod</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_accessrights">Access Rights</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_ad_group_id">ad_group_id</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_permissions">Album Permissions</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_ad_permissions">ad_permissions</a></td>
+  <td>Array</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_wmedia">Windows Media</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_asf_autostart">asf_autostart</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_enablecontextmenu">asf_enablecontextmenu</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_stretchtofit">asf_stretchtofit</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_showstatusbar">asf_showstatusbar</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_uimode">asf_uimode</a></td>
+  <td>full</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_playcount">asf_playcount</a></td>
+  <td>9999</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_bgcolor">asf_bgcolor</a></td>
+  <td>#FFFFFF</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_width">asf_width</a></td>
+  <td>640</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_asf_height">asf_height</a></td>
+  <td>480</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_quicktime">QuickTime</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_mov_autoref">mov_autoref</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_autoplay">mov_autoplay</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_controller">mov_controller</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_kioskmode">mov_kioskmode</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_scale">mov_scale</a></td>
+  <td>tofit</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_loop">mov_loop</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_bgcolor">mov_bgcolor</a></td>
+  <td>#FFFFFF</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_width">mov_width</a></td>
+  <td>640</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mov_height">mov_height</a></td>
+  <td>480</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_mp3">MP3</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_mp3_autostart">mp3_autostart</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mp3_enablecontextmenu">mp3_enablecontextmenu</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mp3_showstatusbar">mp3_showstatusbar</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mp3_loop">mp3_loop</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_mp3_uimode">mp3_uimode</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_flashmedia">Flash Media</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_swf_play">swf_play</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_menu">swf_menu</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_scale">swf_scale</a></td>
+  <td>showall</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_wmode">swf_wmode</a></td>
+  <td>transparent</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_allowscriptaccess">swf_allowscriptaccess</a></td>
+  <td>sameDomain</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_quality">swf_quality</a></td>
+  <td>high</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_loop">swf_loop</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_bgcolor">swf_bgcolor</a></td>
+  <td>#FFFFFF</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_width">swf_width</a></td>
+  <td>640</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_height">swf_height</a></td>
+  <td>480</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_flashvars">swf_flashvars</a></td>
+  <td></td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_swf_version">swf_version</a></td>
+  <td>6</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_member_albums">Member Albums</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_member_albums">member_albums</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_allow_remote">allow_remote</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_use_fullname">member_use_fullname</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_feature_member_album">feature_member_album</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_quota">member_quota</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_auto_create">member_auto_create</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_create_new">member_create_new</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_album_root">member_album_root</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_album_archive">member_album_archive</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_member_allowedmediatypes">Allowed Media Types</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_jpg">member_valid_format_jpg</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_png">member_valid_format_png</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_tif">member_valid_format_tif</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_gif">member_valid_format_gif</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_bmp">member_valid_format_bmp</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_tga">member_valid_format_tga</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_psd">member_valid_format_psd</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_mp3">member_valid_format_mp3</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_ogg">member_valid_format_ogg</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_asf">member_valid_format_asf</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_swf">member_valid_format_swf</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_mov">member_valid_format_mov</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_mp4">member_valid_format_mp4</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_mpg">member_valid_format_mpg</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_flv">member_valid_format_flv</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_rflv">member_valid_format_rflv</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_emb">member_valid_format_emb</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_zip">member_valid_format_zip</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_valid_format_other">member_valid_format_other</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_member_album_attributes">Album Attributes</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_member_enable_random">member_enable_random</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_max_width">member_max_width</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_max_height">member_max_height</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_max_filesize">member_max_filesize</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_member_useruploads">User Uploads</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_member_uploads">member_uploads</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_moderate">member_moderate</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_mod_group_id">member_mod_group_id</a></td>
+  <td>1</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><a name="desc_member_email_mod">member_email_mod</a></td>
+  <td>0</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+
+<h3><a name="config_member_permissions">Member Album Permissions</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_member_permissions">member_permissions</a></td>
+  <td>Array</td>
+  <td>Description</td>
+</tr>
+</table>
+
+
+
+
+</body>
+</html>

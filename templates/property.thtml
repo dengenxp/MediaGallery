@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset={charset}">
+<title>{media_title}</title>
+<style type="text/css">
+body {
+  background:#eee;
+  color:#000000;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  font-family: Verdana, sans-serif;
+  text-decoration: none;
+  padding: 2px
+}
+td {
+  color:#000000;
+  font:100% Tahoma,verdana,helvetica,arial,sans-serif
+}
+div.mg-block-exif {
+  margin: 0px;
+}
+
+.mg_mediaitems_table {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 1px;
+  border: none;
+}
+
+.mg_mediaitems_table th,
+.mg_mediaitems_table td {
+  vertical-align: middle;
+  padding: 5px;
+}
+
+.mg_mediaitems_table th {
+  background-color: #DAE0ED;
+}
+
+.mg_mediaitems_table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.mg_mediaitems_table tr:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+.mg_exif_table {
+  margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+  border: 0;
+}
+.mg_exif_table th,
+.mg_exif_table td {
+  vertical-align: middle;
+  padding: 4px 2px;
+}
+.mg_exif_table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.mg_exif_table tr:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+</style>
+</head>
+<body>
+<table class="mg_mediaitems_table">
+ <tr>
+   <td style="text-align:center;width:100%;">
+     {media_thumbnail}
+   </td>
+ </tr>
+ <tr>
+   <td>{exif_info}</td>
+ </tr>
+</table>
+<br>
+<form action="PHP_SELF" class="uk-form">
+ <div style="text-align:center;">
+ <input type="button" value="{lang_close}" onclick="javascript:window.close();">
+ </div>
+</form>
+</body>
+</html>

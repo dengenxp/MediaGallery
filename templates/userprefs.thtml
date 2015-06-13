@@ -1,0 +1,17 @@
+{start_block}
+<form action="{s_form_action}" method="post" id="mg-userprefs" class="compact uk-form">
+  <div class="admin_basic">
+    <dl class="form_block">
+      <!-- BEGIN prefRow -->
+      <dt>{lang_prompt}</dt>
+      <dd>{input_field}</dd>
+      <dd class="description">{lang_help}</dd>
+      <!-- END prefRow -->
+    </dl>
+    <div class="mg_submit">
+      <input type="submit" name="mode" value="{lang_submit}" class="submit"{xhtml}>
+      <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
+    </div>
+  </div>
+</form>
+{end_block}

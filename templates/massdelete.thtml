@@ -1,0 +1,9 @@
+<form name="galselect" method="post" action="{s_form_action}" class="uk-form">
+<div class="pluginRow1" style="padding:10px;line-height:2em">
+{album_list}
+</div>
+<div class="mg_submit">
+  <input type="submit" name="mode" value="{lang_delete}" onclick="return confirm('{lang_delete_confirm}');"{xhtml}>
+  <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+</div>
+</form>

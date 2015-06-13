@@ -1,0 +1,17 @@
+<form action="{s_form_action}" method="post" class="compact uk-form">
+  <div class="admin_basic" id="admin-editor">
+<!-- BEGIN CheckRow1 -->
+    <h3>{config_title}</h3>
+    <dl class="form_block">
+<!-- BEGIN CheckRow2 -->
+      <dt>{config_item}</dt>
+      <dd>{status}</dd>
+<!-- END CheckRow2 -->
+    </dl>
+<!-- END CheckRow1 -->
+    <div class="mg_submit">
+      <input type="submit" name="mode" value="{lang_recheck}"{xhtml}>&nbsp;&nbsp;
+      <input type="submit" name="mode" value="{lang_continue}"{xhtml}>
+    </div>
+  </div>
+</form>

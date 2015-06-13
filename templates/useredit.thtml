@@ -1,0 +1,27 @@
+<form method="post" action="{s_form_action}" name="mg_useredit_form" enctype="multipart/form-data" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th colspan="2" width="100%">
+        {lang_user_edit} - {username}
+      </th>
+    </tr>
+    <tr>
+      <td class="mg_alignright" width="40%">{lang_active}</td>
+      <td>
+        {active}
+      </td>
+    </tr>
+    <tr>
+      <td class="mg_alignright" width="40%">{lang_quota}</td>
+      <td>
+        <input type="text" maxlength="4" size="4" name="quota" value="{quota}" align="right"{xhtml}>&nbsp;Mb&nbsp;&nbsp;{lang_unlimited}
+      </td>
+    </tr>
+  </table>
+<div class="mg_submit_center">
+  <input type="submit" value="{lang_save}"   name="mode"{xhtml}>
+  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+  <input type="reset"  value="{lang_reset}"  name="mode"{xhtml}>
+  <input type="hidden" value="{uid}"         name="uid"{xhtml}>
+</div>
+</form>

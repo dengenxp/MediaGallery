@@ -1,0 +1,27 @@
+<div>{lang_parent_album}: {parent_album}</div>
+<form name="sortalbum" method="post" action="{s_form_action}" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th style="width:50px">{lang_order}</th>
+      <th>{lang_album_name_desc}</th>
+      <th style="width:50px">{lang_count}</th>
+    </tr>
+    <!-- BEGIN AlbumRow -->
+    <tr>
+      <td>
+        <input type="text" name="seq[]" value="{album_order}" size="4"{xhtml}>
+        <input type="hidden" name="aid[]" value="{album_id}"{xhtml}>
+      </td>
+      <td style="height:25px;">{album_title}</td>
+      <td>{media_count}</td>
+    </tr>
+    <!-- END AlbumRow -->
+  </table>
+  <div class="mg_submit_center">
+    <input type="hidden" name="parent_id" value="{parent_id}"{xhtml}>
+    <input type="hidden" name="action" value="albumsort"{xhtml}>
+    <input type="hidden" name="album_id" value="0"{xhtml}>
+    <input type="submit" name="mode" value="{lang_save}"{xhtml}>
+    <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+  </div>
+</form>

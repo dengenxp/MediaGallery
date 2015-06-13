@@ -1,0 +1,16 @@
+.mgFrame_new_border {
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  padding: 4px;
+  display:inline-block;
+  box-shadow: 0 0 3px rgba(153, 153, 153, 0.25);
+}
+
+.mgFrame_new_border img {
+  vertical-align: bottom;
+}
+
+.mgFrame_new_border:hover {
+/*  border-color: #004E98;*/
+  border-color: #AAA;
+}

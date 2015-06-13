@@ -1,0 +1,17 @@
+.mgFrame_mgShadow {
+
+  border: 1px solid #555;
+
+  background-color: #FFF;
+  padding: 4px;
+  display:inline-block;
+
+  /* box-shadow */
+  box-shadow:rgba(0, 0, 0, 0.15) 6px 6px 1px -1px;
+  -webkit-box-shadow:rgba(0, 0, 0, 0.15) 6px 6px 1px -1px;
+  -moz-box-shadow:rgba(0, 0, 0, 0.15) 6px 6px 1px -1px;
+}
+
+.mgFrame_mgShadow:hover {
+  border-color: #004E98;
+}

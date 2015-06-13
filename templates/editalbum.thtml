@@ -1,0 +1,320 @@
+{start_block}
+<script type="text/javascript">
+<!--
+function change(what) {
+    value = '{path_mg}/watermarks/' + what.options[what.selectedIndex].value;
+    if (value != '')
+        if (document.images)
+            document.images['myImage'].src = value;
+}
+//-->
+</script>
+
+<form enctype="multipart/form-data" method="post" action="{s_form_action}" class="MG_editform compact uk-form">
+  <div class="admin_basic">
+    <dl class="form_block">
+      <dt><label>{lang_title}</label></dt>
+      <dd><input type="text" name="album_name" value="{album_title}" class="size6"{xhtml}></dd>
+
+      <dt><label>{lang_description}</label></dt>
+      <dd><textarea name="album_desc" cols="50" rows="3" class="wide">{album_desc}</textarea></dd>
+
+      <dt><label>{lang_parent_album}</label></dt>
+      <dd>{parent_select}</dd>
+    </dl>
+
+    <fieldset>
+      <legend>{lang_album_attributes}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_theme_select}</label></dt>
+        <dd>{album_theme_select}</dd>
+
+        <dt><label>{lang_comments}</label></dt>
+        <dd>{comment_select}</dd>
+
+        <dt><label>{lang_enable_exif}</label></dt>
+        <dd>{exif_select}</dd>
+
+        <dt><label>{lang_enable_ratings}</label></dt>
+        <dd>{ranking_select}</dd>
+
+        <dt><label>{lang_enable_rss}</label></dt>
+        <dd>{rss_select}</dd>
+
+        <dt><label>{lang_rsschildren}</label></dt>
+        <dd>{rsschildren_select}</dd>
+        <dt><label>{lang_podcast}</label></dt>
+        <dd>{podcast_select}</dd>
+
+        <dt><label>{lang_mp3ribbon}</label></dt>
+        <dd>{mp3ribbon_select}</dd>
+
+        <dt><label>{lang_enable_sort}</label></dt>
+        <dd>{sort_select}</dd>
+
+        <dt><label>{lang_album_sort}</label></dt>
+        <dd>{album_sort_select}</dd>
+
+<!--
+        <dt><label>{lang_enable_postcard}</label></dt>
+        <dd>{postcard_select}</dd>
+-->
+
+        <dt><label>{lang_display_album_desc}</label></dt>
+        <dd>{display_album_desc_select}</dd>
+
+        <dt><label>{lang_enable_album_views}</label></dt>
+        <dd>{album_views_select}</dd>
+
+        <dt><label>{lang_enable_views}</label></dt>
+        <dd>{views_select}</dd>
+
+        <dt><label>{lang_enable_keywords}</label></dt>
+        <dd>{keywords_select}</dd>
+
+        <dt><label>{lang_image_skin}</label></dt>
+        <dd>{skin_select}</dd>
+
+        <dt><label>{lang_display_skin}</label></dt>
+        <dd>{dskin_select}</dd>
+
+        <dt><label>{lang_album_skin}</label></dt>
+        <dd>{askin_select}</dd>
+
+        <dt><label>{lang_albums_first}</label></dt>
+        <dd>{afirst_select}</dd>
+
+        <dt><label>{lang_tn_size}</label></dt>
+        <dd>{tn_size_select}</dd>
+
+        <dt><label>{lang_tnwidth}</label></dt>
+        <dd>{tnwidth_input}</dd>
+
+        <dt><label>{lang_tnheight}</label></dt>
+        <dd>{tnheight_input}</dd>
+
+        <dt><label>{lang_av_play_options}</label></dt>
+        <dd>{playback_type}</dd>
+
+        <dt><label>{lang_ss_enable}</label></dt>
+        <dd>{ss_select}</dd>
+
+        <dt><label>{lang_rows}</label></dt>
+        <dd>{rows_input}</dd>
+
+        <dt><label>{lang_columns}</label></dt>
+        <dd>{columns_input}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_album_cover}</legend>
+      <dl class="form_block">
+{!if thumbnail}
+        <dt><label>{lang_thumbnail}</label></dt>
+        <dd>{thumbnail}</dd>
+{!endif}
+        <dt><label>{lang_attached_thumbnail}</label></dt>
+        <dd>{attach_select}</dd>
+
+        <dt><label>{lang_thumbnail}</label></dt>
+        <dd><input type="file" dir="ltr" name="thumbnail"{xhtml}></dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_featured_album}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_set_featured}</label></dt>
+        <dd>{featured_select}</dd>
+        <dd class="description">{lang_featured_help}</dd>
+
+        <dt><label>{lang_position}</label></dt>
+        <dd>{feature_position}</dd>
+
+        <dt><label>{lang_topic}</label></dt>
+        <dd>{feature_page_select}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_media_attributes}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_filename_title}</label></dt>
+        <dd>{filename_title_select}</dd>
+
+        <dt><label>{lang_allow_download}</label></dt>
+        <dd>{allow_download_select}</dd>
+
+        <dt><label>{lang_full_display}</label></dt>
+        <dd>{full_select}</dd>
+
+        <dt><label>{lang_ri_enable}</label></dt>
+        <dd>{ri_select}</dd>
+
+        <dt><label>{lang_max_image_width}</label></dt>
+        <dd>{width_input}</dd>
+
+        <dt><label>{lang_max_image_height}</label></dt>
+        <dd>{height_input}</dd>
+
+        <dt><label>{lang_max_filesize}</label></dt>
+        <dd>{max_size_input}&nbsp;Kb {lang_unlimited}</dd>
+
+        <dt><label>{lang_display_image_size}</label></dt>
+        <dd>{display_image_size}</dd>
+
+        <dt><label>{lang_usealternate}</label></dt>
+        <dd>{usealternate_select}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_watermark}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_wm_auto}</label></dt>
+        <dd>{wm_auto_select}</dd>
+
+        <dt><label>{lang_wm_opacity}</label></dt>
+        <dd>{wm_opacity_select}</dd>
+
+        <dt><label>{lang_wm_location}</label></dt>
+        <dd>{wm_location_select}</dd>
+
+        <dt><label>{lang_wm_id}</label></dt>
+        <dd>{wm_select}</dd>
+        <dd class="description">{wm_current}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_allowed_formats}</legend>
+      <table class="mg_mediatype_table">
+        <tr>
+          <th style="text-align:center">{lang_image}</th>
+          <th style="text-align:center">{lang_audio} / {lang_video}</th>
+          <th style="text-align:center">{lang_other}</th>
+        </tr>
+        <tr>
+          <td valign="top" align="center">
+            <table>
+              <tr>
+                <td align="left">
+                  <input type="checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span>{lang_jpg}</span><br{xhtml}>
+                  <input type="checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span>{lang_png}</span><br{xhtml}>
+                  <input type="checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span>{lang_tif}</span><br{xhtml}>
+                  <input type="checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span>{lang_gif}</span><br{xhtml}>
+                  <input type="checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span>{lang_bmp}</span><br{xhtml}>
+                  <input type="checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span>{lang_tga}</span><br{xhtml}>
+                  <input type="checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span>{lang_psd}</span><br{xhtml}>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" align="center">
+            <table>
+              <tr>
+                <td align="left">
+                  <input type="checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span>{lang_mp3}</span><br{xhtml}>
+                  <input type="checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span>{lang_ogg}</span><br{xhtml}>
+                  <input type="checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span>{lang_asf}</span><br{xhtml}>
+                  <input type="checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span>{lang_swf}</span><br{xhtml}>
+                  <input type="checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span>{lang_mov}</span><br{xhtml}>
+                  <input type="checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span>{lang_mp4}</span><br{xhtml}>
+                  <input type="checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span>{lang_mpg}</span><br{xhtml}>
+                  <input type="checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span>{lang_flv}</span><br{xhtml}>
+                  <input type="checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span>{lang_rflv}</span><br{xhtml}>
+                  <input type="checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span>{lang_emb}</span><br{xhtml}>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" align="center">
+            <table>
+              <tr>
+                <td align="left">
+                  <input type="checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span>{lang_zip}</span><br{xhtml}>
+                  <input type="checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span>{lang_other}</span><br{xhtml}>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+{!if perms_editor_admin}
+    <fieldset>
+      <legend>{lang_uploads}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_member_upload}</label></dt>
+        <dd>{uploads}</dd>
+
+        <dt><label>{lang_moderate_album}</label></dt>
+        <dd>{moderate}</dd>
+
+        <dt><label>{lang_mod_group}</label></dt>
+        <dd>{mod_dropdown}</dd>
+
+        <dt><label>{lang_email_mods_on_submission}</label></dt>
+        <dd>{email_mod_select}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_accessrights}</legend>
+
+      <dl class="form_block">
+        <dt><label>{lang_owner}</label></dt>
+        <dd>{owner_select}</dd>
+
+        <dt><label>{lang_group}</label></dt>
+        <dd>{group_dropdown}</dd>
+
+        <dt><label>{lang_permissions}</label></dt>
+        <dd>{permissions_editor}</dd>
+        <dd class="description">{lang_perm_key}</dd>
+
+        <dt><label>{lang_hidden}</label></dt>
+        <dd>{hidden}</dd>
+
+        <dt><label>{lang_force_child_update}</label></dt>
+        <dd>{force_child_update}</dd>
+      </dl>
+    </fieldset>
+{!endif}
+
+{!if perms_editor_member}
+    <fieldset>
+      <legend>{lang_accessrights}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_owner}</label></dt>
+        <dd>{owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
+
+        <dt><label>{lang_permissions}</label></dt>
+        <dd>{permissions_editor}</dd>
+        <dd class="description">{lang_perm_key}</dd>
+
+        <dt><label>{lang_force_child_update}</label></dt>
+        <dd>{force_child_update}</dd>
+      </dl>
+    </fieldset>
+{!endif}
+
+    <div class="mg_submit">
+      <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
+      <input type="submit" value="{lang_delete}" name="mode" class="submit"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+      <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
+      <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
+      <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
+      <input type="hidden" name="order" value="{album_order}"{xhtml}>
+      <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
+      <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
+      <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
+      <input type="hidden" name="action" value="{action}"{xhtml}>
+      <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
+    </div>
+  </div>
+</form>
+{end_block}

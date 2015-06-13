@@ -1,0 +1,62 @@
+<script type="text/javascript">
+function doCheckAll_cat()
+{
+  with (document.category) {
+    for (var i=0; i < elements.length; i++) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = true;
+    }
+  }
+}
+function doUnCheckAll_cat()
+{
+  with (document.category) {
+    for (var i=0; i < elements.length; i++) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = false;
+    }
+  }
+}
+</script>
+<form name="category" method="post" action="{s_form_action}" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th style="width:50px;">{lang_select}</th>
+      <th style="width:80px;">{lang_catid}</th>
+      <th>{lang_cat_name}</th>
+      <th>{lang_cat_description}</th>
+    </tr>
+{!if noitems}
+    <tr>
+      <td colspan="4" align="center">
+        <p>{lang_no_cat}</p>
+      </td>
+    </tr>
+  </table>
+{!else}
+    <!-- BEGIN catRow -->
+    <tr>
+      <td>
+        <input type="checkbox" name="sel[]" value="{cat_id}"{xhtml}>
+        <input type="hidden" name="cat_id[]" value="{cat_id}"{xhtml}>
+      </td>
+      <td>{edit_cat_id}</td>
+      <td>{cat_name}</td>
+      <td>{cat_description}</td>
+    </tr>
+    <!-- END catRow -->
+  </table>
+  <div style="margin-top:5px;">
+    <input onclick="javascript:doCheckAll_cat()" type="button" value="{lang_checkall}"{xhtml}>
+    <input onclick="javascript:doUnCheckAll_cat()" type="button" value="{lang_uncheckall}"{xhtml}>
+  </div>
+{!endif}
+  <div class="mg_submit_center">
+    <input type="submit" name="mode"   value="{lang_create}"{xhtml}>
+{!if noitems}{!else}
+    <input type="submit" name="mode"   value="{lang_delete}" onclick="javascript:return confirm('{lang_delete_confirm}');"{xhtml}>
+{!endif}
+    <input type="submit" name="mode"   value="{lang_cancel}"{xhtml}>
+    <input type="hidden" name="action" value="category"{xhtml}>
+  </div>
+</form>

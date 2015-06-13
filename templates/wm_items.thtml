@@ -1,0 +1,29 @@
+<table class="mg_admin_table">
+  <tr>
+    <th>{lang_select}</th>
+    <th>{lang_item}</th>
+    <th>{lang_owner}</th>
+    <th>{lang_description}</th>
+  </tr>
+<!-- BEGIN ImageRow -->
+<!-- BEGIN ImageColumn -->
+  <tr>
+    <td style="text-align:center;">
+        <input type="checkbox" name="sel[]" value="{wm_id}"{xhtml}>
+        <input type="hidden" name="wid[]" value="{wm_id}"{xhtml}>
+    </td>
+    <td style="text-align:center;">
+        {media_zoom}{lang_preview}</a>
+    </td>
+    <td style="text-align:center;">
+        {owner}
+    </td>
+    <td><textarea name="wmtitle[]" cols="40" rows="2">{wm_desc}</textarea></td>
+   </tr>
+<!-- END ImageColumn -->
+<!-- END ImageRow -->
+   <tr><td colspan="5" align="left">
+   <input onclick="javascript:doCheckAll_watermark()" type="button" value="{lang_checkall}"{xhtml}>
+   <input onclick="javascript:doUnCheckAll_watermark()" type="button" value="{lang_uncheckall}"{xhtml}>
+   </td></tr>
+ </table>

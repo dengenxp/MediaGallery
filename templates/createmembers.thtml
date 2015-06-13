@@ -1,0 +1,48 @@
+<script type="text/javascript">
+//<![CDATA[
+function doCheckAll_members()
+{
+  with (document.members) {
+    for (var i=0; i < elements.length; i++) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = true;
+    }
+  }
+}
+function doUnCheckAll_members()
+{
+  with (document.members) {
+    for (var i=0; i < elements.length; i++) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = false;
+    }
+  }
+}
+//]]>
+</script>
+<form name="members" method="post" action="{s_form_action}" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th style="width:50px;">{lang_select}</th>
+      <th>{lang_username}</th>
+    </tr>
+    <!-- BEGIN UserRow -->
+    <tr class="{rowclass}">
+      <td>{select}</td>
+      <td>{username}</td>
+    </tr>
+    <!-- END UserRow -->
+  </table>
+  <div style="margin-top:5px;">
+    <input onclick="javascript:doCheckAll_members()" type="button" value="{lang_checkall}"{xhtml}>
+    <input onclick="javascript:doUnCheckAll_members()" type="button" value="{lang_uncheckall}"{xhtml}>
+  </div>
+  <div style="text-align:center;">
+    {pagenav}
+  </div>
+  <div class="mg_submit_center">
+    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="reset" value="{lang_reset}" name="mode"{xhtml}>
+  </div>
+</form>

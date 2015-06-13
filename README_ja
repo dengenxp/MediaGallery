@@ -1,0 +1,173 @@
+-----------------------------------------------------------------------
+- Media Gallery Plugin for Geeklog
+- version: 1.7.0
+- author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
+- date:    2015-xx-xx
+- license: GPLv2
+-----------------------------------------------------------------------
+
+※インストール方法及びアップグレード方法については、docs/INSTALL_jaを参照して
+  ください。
+
+※このドキュメントに加え、旧ドキュメントdocs/older/README.jpも参照してください。
+
+概要
+----
+Media Gallery WKZ (With KZ_Template) プラグインは、maruyoさんにより公開されている
+Media Gallery v1.6.1日本語版に、glFusion CMSに含まれているMedia Gallery v1.6.8を
+統合したものです。
+
+Media Gallery v1.6.1日本語版を動作させるにはCaching Template Libraryのインストール
+が必要ですが、Media Gallery WKZにはMystral-kkさんにより公開されているKZ_Template
+クラスが含まれているため、Caching Template Libraryのインストールは不要です。
+このため、インストールがより簡単です。
+
+アップグレード時の注意
+----------------------
+Media Gallery WKZは、Media Gallery v1.6.1日本語版からのアップグレードが可能です。
+ただし、Media Gallery WKZは、Media Gallery v1.6.1日本語版に対してファイルの配置が
+大きく変更されました。これはglFusion版のMedia Galleryに合わせたためです。
+したがって、アップグレードの際は十分にご注意ください。
+
+アップグレードの前に、旧バージョンのファイル及びデータベースのバックアップを必ず
+確保してください。
+
+次の4つのディレクトリの配下には運用時に登録されたメディアファイル等が格納されて
+います。これらのディレクトリ及びその配下のファイルは必ず残しておきます。
+
+public_html/mediagallery/mediaobjects/covers
+public_html/mediagallery/mediaobjects/disp
+public_html/mediagallery/mediaobjects/orig
+public_html/mediagallery/mediaobjects/tn
+
+その他のファイルは全て、Media Gallery WKZのアーカイブ内のファイルと置き換えて
+ください。
+その後、管理者専用メニューのプラグイン管理で更新処理を行ってください。
+
+パーミッションの設定
+--------------------
+次のディレクトリのパーミッションを757（あるいは777）に設定する必要があります。
+
+private/plugins/mediagallery/tmp
+private/plugins/mediagallery/uploads
+public_html/mediagallery/mediaobjects/covers 及び配下のディレクトリ
+public_html/mediagallery/mediaobjects/disp 及び配下のディレクトリ
+public_html/mediagallery/mediaobjects/orig 及び配下のディレクトリ
+public_html/mediagallery/mediaobjects/tn 及び配下のディレクトリ
+
+Version1.6.10について
+---------------------
+Version1.6.10から本格的にglFusion版に対する機能拡張を行っています。
+
+(1) glFusionの最新版1.6.10を取り込んだ。
+
+    まだ説明できるほど把握できておりません^^;
+    いくつかAutotagが追加されているようです。
+
+(2) JavaScriptライブラリjQueryをサポートした。
+
+    MooToolsの代わりにjQueryでmediagalleryが動作します。
+    config.php の $_MG_CONF['js_lib'] で切り替えます。
+
+(3) 自家製のテンプレート（テーマ）を追加した。
+
+    次の３つのテンプレートを追加しています。
+    * css_layout :        名前の通り、テーブルレイアウトを避けて、CSSレイアウト
+                          としたものです。私好みに味付けしています。
+    * jquery_ad-gallery : jQueryの著名なギャラリーソフトであるAD-Galleryを組み込
+                          んだテンプレートです。
+    * jquery_colorbox :   jQueryの著名なLightboxソフトであるColorboxを組み込んだ
+                          テンプレートです。
+    注意: jquery_ad-gallery と jquery_colorbox はjQueryモードでのみ動作します
+
+(4) 新しい手法の自家製のフレーム用テンプレートを追加した。
+
+    * new_border
+    * new_shadow
+    これらのフレームは、テーブル使いまくりの標準のものとは異なり、ごく普通の
+    thtmlファイルとcssファイルによるものです。
+    多分、万人に扱いやすくなっていると思います。
+    public_html/framesフォルダ内のnew_borderフォルダとnew_shadowフォルダを
+    どうぞご参照ください。
+
+(5) 正方形(150x150)にトリミングしたサムネイルを同時に生成するようにした。
+
+    既存の画像のサムネイルを更新するために、メディアギャラリー管理 の サムネイル
+    再作成を実行してください。
+
+(6) 画像をクリックした際、次の画像に遷移するモードを追加した。
+
+    これまでは、画像をクリックした際、画像サイズが切り替わっていました。
+    config.php の $_MG_CONF['click_image_and_go_next'] で有効にできます。
+
+(7) PHPブロック関数 phpblock_mg_randommedia の改良
+
+    PHPブロック関数 phpblock_mg_randommedia に引数を指定して表示画像を調整できる
+    ようになりました。書式は次のとおりです。
+
+    phpblock_mg_randommedia(画像の形, 最大幅)
+
+    画像の形は、0または1を指定します。（デフォルト値:0）
+        0のとき、画像の縦横比（アスペクト比）は元画像と同じになります。
+        1のとき、画像の縦横比（アスペクト比）は1となり、正方形になります。
+    最大幅は、10から200の範囲で指定します。単位はピクセルです。
+        デフォルト値は、「メディアギャラリー管理 -> システム -> ブロックに表示
+        されるランダム画像の横幅」の設定値です。
+        最大幅は、最大高としても評価されます。
+    例）
+        phpblock_mg_randommedia(1,150)
+        画像は150x150ピクセルの正方形となります。
+
+(8) config.phpに設定項目を追加した。
+
+    詳細は、config.phpのコメントを参照してください。
+
+(9) いろいろな最適化やバグをつぶした。
+
+Version1.6.11について
+---------------------
+* メディアギャラリー管理の「システム標準値の設定 -> アルバム -> アクセス権」に
+  「グループ」を追加しました。
+* メディアギャラリー管理の「システム標準値の設定 -> アルバム -> ユーザーアップロード」
+  の「アップロードの管理者グループ」の標準値がアルバム作成時に反映されない問題を
+  修正しました。
+* 次の必要なテンプレートが欠落していたこため、自動タグで埋め込んだjQuery版の
+  Slideshowでエラーが発生していた問題を修正しました。
+  /plugins/mediagallery/templates/autotag_ss_jquery.thtml
+* 改行コードの混在を解消しました。(CR+LFからLFへ)
+
+Version1.6.12について
+---------------------
+* Geeklog1.8.0で動作しない問題を修正しました。
+* MySQL 5.3.3の環境でインストールできない問題を修正しました。
+
+Version1.6.13について
+---------------------
+* Geeklog2.0.0b1でインストールできない問題を修正しました。
+
+Version1.6.14について
+---------------------
+* Geeklog2.0.0のCOM_createHTMLDocument関数に対応しました。
+* Slimbox, AD Gallery, Colorboxを更新しました。
+* Geeklog1.8以降でSlideshow(Slimbox)が動作しない問題を修正しました。
+* Internet Explorer 10 でSlideshowが動作しない問題を修正しました。
+* 検索フォームでエラーが発生する問題を修正しました。
+
+Version1.6.15について
+---------------------
+* jQuery Cycle Lite Pluginを更新しました。
+* SWFObjectを更新しました。
+
+Version1.6.16について
+---------------------
+* Slideshow Autotagが正しく動作しない問題を修正しました。
+
+Version1.6.17について
+---------------------
+* Geeklog2.1.0で正しく動作しない問題を修正しました。
+
+注意
+----
+* public_html/mediagallery/docs内のusage.html及びupgrade.htmlは、Media Gallery v1.6
+  の公開時点のものであることから、現バージョンの内容と異なる部分があります。
+

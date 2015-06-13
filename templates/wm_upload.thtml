@@ -1,0 +1,24 @@
+{start_block}
+<form action="{s_form_action}" method="post" enctype="multipart/form-data" id="watermarkupload" class="compact uk-form">
+  <div class="admin_basic">
+    <dl class="form_block">
+      <dt>{lang_file}</dt>
+      <dd><input type="file" dir="ltr" name="newmedia[]"{xhtml}></dd>
+      <dd class="description">{lang_wmupload_help}</dd>
+      <dt>{lang_description}</dt>
+      <dd><textarea name="description[]" cols="45" rows="2" class="size6"></textarea></dd>
+<!-- BEGIN public-access -->
+      <dt><label for="wm_public">{lang_public_access}</label></dt>
+      <dd>{public_access}</dd>
+<!-- END public-access -->
+    </dl>
+    <div class="mg_submit">
+      <input type="submit" name="mode" value="{lang_save}" class="submit"{xhtml}>
+      <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
+      <input type="hidden" name="album_id" value="0"{xhtml}>
+      <input type="hidden" name="action" value="{action}"{xhtml}>
+      {max_file_size}
+    </div>
+  </div>
+</form>
+{end_block}

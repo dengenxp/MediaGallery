@@ -1,0 +1,50 @@
+<script type="text/javascript">
+//<![CDATA[
+function doCheckAll_exif()
+{
+  with (document.exif) {
+    for (var i=0; i < elements.length; i++ ) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = true;
+    }
+  }
+}
+
+function doUnCheckAll_exif()
+{
+  with (document.exif) {
+    for (var i=0; i < elements.length; i++ ) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = false;
+    }
+  }
+}
+//]]>
+</script>
+<form name="exif" method="post" action="{s_form_action}" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th style="width:50px;">{lang_select}</th>
+      <th>{lang_exiftag}</th>
+    </tr>
+    <!-- BEGIN exifRow -->
+    <tr>
+      <td>
+        <input type="checkbox" name="sel[]" value="{tag}" {selected}{xhtml}>
+        <input type="hidden"   name="tag[]" value="{tag}"{xhtml}>
+      </td>
+      <td>
+        {exif_tag}
+      </td>
+    </tr>
+    <!-- END exifRow -->
+  </table>
+  <div style="margin-top:5px;">
+    <input onclick="javascript:doCheckAll_exif()" type="button" value="{lang_check_all}"{xhtml}>
+    <input onclick="javascript:doUnCheckAll_exif()" type="button" value="{lang_uncheck_all}"{xhtml}>
+  </div>
+  <div class="mg_submit_center">
+    <input type="submit" name="mode" value="{lang_save}"{xhtml}>
+    <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+  </div>
+</form>

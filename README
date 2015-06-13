@@ -1,0 +1,174 @@
+-----------------------------------------------------------------------
+- Media Gallery Plugin for Geeklog
+- version: 1.7.0
+- author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
+- date:    2015-xx-xx
+- license: GPLv2
+-----------------------------------------------------------------------
+
+* See the docs/INSTALL file for installing instructions and upgrading
+  instructions.
+
+* In addition to this document, see the older document docs/older/README.jp.
+  (Sorry, it is written in Japanese only.)
+
+Overview
+--------
+Media Gallery WKZ (With KZ_Template) is the one to have integrated Media Gallery
+v1.6.1 Japanese version which is released by maruyo and Media Gallery v1.6.8
+which is included with glFusion CMS.
+
+To execute Media Gallery v1.6.1 Japanese version, it is necessary to install
+Caching Template Library, but is not necessary to execute Media Gallery WKZ.
+Because the KZ_Template Class which is released by Mystral-kk is included with
+Media Gallery WKZ. Therefore, the installation is easier.
+
+Note in case of upgrade
+-----------------------
+Media Gallery WKZ can upgrade from Media Gallery v1.6.1 Japanese version.
+But, in Media Gallery WKZ, the layout of files was mainly changed compared with
+Media Gallery v1.6.1 Japanese version.
+It is because I adjusted to Media Gallery is included in glFusion.
+Therefore, in case of upgrade, be careful sufficiently.
+
+Before upgrade, Please make sure to back up previous versions of files and
+databases.
+
+Media files are stored during operation was registered under the following four
+directories. Keep these directories and files under the following directories
+left.
+
+public_html/mediagallery/mediaobjects/covers
+public_html/mediagallery/mediaobjects/disp
+public_html/mediagallery/mediaobjects/orig
+public_html/mediagallery/mediaobjects/tn
+
+All other files, please replace the files in the archive of Media Gallery WKZ.
+Then please update Mediagallery plugin in the plugin administration page.
+
+Setting Permissions
+-------------------
+The following directory permissions must be set 757 (or 777).
+
+private/plugins/mediagallery/tmp
+private/plugins/mediagallery/uploads
+public_html/mediagallery/mediaobjects/covers and the following directories
+public_html/mediagallery/mediaobjects/disp   and the following directories
+public_html/mediagallery/mediaobjects/orig   and the following directories
+public_html/mediagallery/mediaobjects/tn     and the following directories
+
+Feature of Version1.6.10
+------------------------
+From Version1.6.10 I extend the functionality of glFusion version in earnest.
+
+(1) Imported some of the version 1.6.10 of glFusion.
+
+    It seems that some Autotag been added.
+
+(2) JQuery JavaScript library support.
+
+    Use jQuery in place of MooTools, Media Gallery works.
+    It changes by $_MG_CONF['js_lib'] which is defined in config.php.
+
+(3) New template (theme) were added.
+
+    Added the following three templates.
+    * css_layout :        As its name suggests,avoid table layout,this is the CSS
+                          layout. Finished my taste.
+    * jquery_ad-gallery : This template is built in AD-Gallery. AD-Gallery is a 
+                          well-known software created by jQuery.
+    * jquery_colorbox :   This template is built in Colorbox. Colorbox is a 
+                          well-known software created by jQuery.
+    NOTE: jquery_ad-gallery and jquery_colorbox works on jQuery mode only.
+
+(4) New frame template were added by new method.
+
+    * new_border
+    * new_shadow
+    These frame templates, abolishing the table layout, and using the normal 
+    thtml and CSS files. Probably everyone has more easy to handle.
+    In a 'public_html/frames' folder, Please check the 'new_border' folder
+    and the 'new_shadow' folder.
+
+(5) Support square (150x150) cropped thumbnails.
+
+    It generates with the normal thumbnails simultaneously.
+    To create the square thumbnail of existing images, run 'Rebuild Thumb'.
+
+(6) Added the mode go to the next image, when you click the image.
+
+    Previously, when you click the image was switched image size (full or normal).
+    In order to enable it change $_MG_CONF['click_image_and_go_next']
+    which is defined in config.php.
+
+(7) Improved PHP block function phpblock_mg_randommedia.
+
+    Added arguments to phpblock_mg_randommedia. By them You can adjust the
+    display image. The format is as follows.
+
+    phpblock_mg_randommedia(geometry, maximum_width)
+
+    'geometry' is set to 0 or 1. (default:0)
+        0: The image aspect ratio is the same as the original image.
+        1: Image aspect ratio is 1, it is a square.
+    'maximum_width' is set to ranges of 10-200 in pixels.
+        The default value is the setting value of
+        'Media Gallery Administration'->'System Options'->'Random Image Block Width'.
+        The maximum width is evaluated as the maximum height.
+    Ex.
+        phpblock_mg_randommedia(1,150)
+        The image will be 150x150 pixels square.
+
+(8) Added settings to config.php.
+
+    For more information, please see the comments in config.php.
+
+(9) Several bug fixes and optimizations.
+
+Feature of Version1.6.11
+------------------------
+* Added one setting 'Media Gallery Administration'->'System Defaults Editor'->
+  'Album Defaults'->'Access Rights'->'Group'.
+* Fixed problem when creating the album does not reflect the setting value of
+  'Media Gallery Administration'->'System Defaults Editor'->'Album Defaults'->
+  'User Uploads'->'Moderator Group'.
+* Fixed problem causing an error when embedding a jQuery slideshow auto-tag,
+  because lacked a necessary template for the following.
+  /plugins/mediagallery/templates/autotag_ss_jquery.thtml
+* Fixed Line feed codes had been mixed. (CR+LF to LF)
+
+Feature of Version1.6.12
+------------------------
+* Fixed issue not work with Geeklog 1.8.0 or later.
+* Fixed issue can not be installed with MySQL 5.3.3 or later.
+
+Feature of Version1.6.13
+------------------------
+* Fixed issue can not be installed with Geeklog 2.0.0b1 or later.
+
+Feature of Version1.6.14
+------------------------
+* Supported COM_createHTMLDocument function with Geeklog2.0.0.
+* Updated Slimbox, AD Gallery and Colorbox.
+* Fixed Slideshow (Slimbox) does not work with Geeklog1.8.0 or later.
+* Fixed issue Slideshow does not work with Internet Explorer 10.
+* Fixed issue error occurs in the search form.
+
+Feature of Version1.6.15
+------------------------
+* Updated jQuery Cycle Lite Plugin.
+* Updated SWFObject.
+
+Feature of Version1.6.16
+------------------------
+* Fixed Slideshow Autotag does not work correctly.
+
+Feature of Version1.6.17
+------------------------
+* Fixed issue not work with Geeklog 2.1.0.
+
+Caution
+-------
+* usage.html and upgrade.html under public_html/mediagallery/docs have the
+  different parts of the contents of the current version because they were
+  described at the time of the exhibition of Media Gallery v1.6.

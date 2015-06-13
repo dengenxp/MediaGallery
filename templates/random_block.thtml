@@ -1,0 +1,9 @@
+<div class="mg_random_block">
+  {media_thumbnail}
+{!if media_title}
+  <div class="pluginSmallText" style="margin-top:4px">{media_title}</div>
+{!endif}
+  <div style="margin-top:4px">
+    <a href="{url_album}">{lang_browse_album}</a>
+  </div>
+</div>

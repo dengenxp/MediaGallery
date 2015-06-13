@@ -1,0 +1,123 @@
+{start_block}
+{navbar}
+<p>{lang_upload_help}</p>
+<p>{lang_upload_size}</p>
+<form method="post" enctype="multipart/form-data" name="mediaupload" action="{s_form_action}" class="compact uk-form">
+<div>
+  <p>
+    {max_file_size}
+    <input type="hidden" name="action" value="{action}"{xhtml}>
+    <span style="font-weight:bold;">{lang_destination_album}</span>&nbsp;{album_select}
+  </p>
+
+  <fieldset>
+    <legend>{lang_file_number}1</legend>
+    <dl class="form_block">
+      <dt><label>{lang_file}</label></dt>
+      <dd><input type="file" name="newmedia[]"{xhtml}></dd>
+
+      <dt><label>{lang_do_not_convert_orig}</label></dt>
+      <dd><input type="checkbox" name="dnc[]" value="1"{xhtml}></dd>
+
+      <dt><label>{lang_attached_tn}</label></dt>
+      <dd><input type="checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
+
+      <dt><label>{lang_caption}</label></dt>
+      <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_description}</label></dt>
+      <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+      <dt><label>{lang_keywords}</label></dt>
+      <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_category}</label></dt>
+      <dd>{cat_select}</dd>
+    </dl>
+  </fieldset>
+
+  <fieldset>
+    <legend>{lang_file_number}2</legend>
+    <dl class="form_block">
+      <dt><label>{lang_file}</label></dt>
+      <dd><input type="file" name="newmedia[]"{xhtml}></dd>
+
+      <dt><label>{lang_do_not_convert_orig}</label></dt>
+      <dd><input type="checkbox" name="dnc[]" value="1"{xhtml}></dd>
+
+      <dt><label>{lang_attached_tn}</label></dt>
+      <dd><input type="checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
+
+      <dt><label>{lang_caption}</label></dt>
+      <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_description}</label></dt>
+      <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+      <dt><label>{lang_keywords}</label></dt>
+      <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_category}</label></dt>
+      <dd>{cat_select}</dd>
+    </dl>
+  </fieldset>
+
+  <fieldset>
+    <legend>{lang_file_number}3</legend>
+    <dl class="form_block">
+      <dt><label>{lang_file}</label></dt>
+      <dd><input type="file" name="newmedia[]"{xhtml}></dd>
+
+      <dt><label>{lang_do_not_convert_orig}</label></dt>
+      <dd><input type="checkbox" name="dnc[]" value="1"{xhtml}></dd>
+
+      <dt><label>{lang_attached_tn}</label></dt>
+      <dd><input type="checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
+
+      <dt><label>{lang_caption}</label></dt>
+      <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_description}</label></dt>
+      <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+      <dt><label>{lang_keywords}</label></dt>
+      <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_category}</label></dt>
+      <dd>{cat_select}</dd>
+    </dl>
+  </fieldset>
+
+  <fieldset>
+    <legend>{lang_file_number}4</legend>
+    <dl class="form_block">
+      <dt><label>{lang_file}</label></dt>
+      <dd><input type="file" name="newmedia[]"{xhtml}></dd>
+
+      <dt><label>{lang_do_not_convert_orig}</label></dt>
+      <dd><input type="checkbox" name="dnc[]" value="1"{xhtml}></dd>
+
+      <dt><label>{lang_attached_tn}</label></dt>
+      <dd><input type="checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
+
+      <dt><label>{lang_caption}</label></dt>
+      <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_description}</label></dt>
+      <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+      <dt><label>{lang_keywords}</label></dt>
+      <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+      <dt><label>{lang_category}</label></dt>
+      <dd>{cat_select}</dd>
+    </dl>
+  </fieldset>
+
+  <div class="mg_submit">
+    <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+  </div>
+</div>
+</form>
+{end_block}

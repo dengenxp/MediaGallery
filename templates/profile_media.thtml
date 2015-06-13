@@ -1,0 +1,18 @@
+{start_block_last10mediaitems}
+  <table class="mg_mediaitems_table">
+    <tr>
+      <th style="width:55px;">{lang_thumbnail}</th>
+      <th style="width:35%;">{lang_title}</th>
+      <th style="width:35%;">{lang_album}</th>
+      <th style="width:20%;">{lang_upload_date}</th>
+    </tr>
+    <!-- BEGIN itemRow -->
+    <tr>
+      <td style="vertical-align:middle;text-align:center;">{mediaitem_begin_href}{mediaitem_image}{mediaitem_end_href}</td>
+      <td style="vertical-align:middle;text-align:left;">{mediaitem_title}</td>
+      <td style="vertical-align:middle;text-align:left;">{mediaitem_album_begin_href}<span style="font-weight:bold;">{mediaitem_album_title}</span>{mediaitem_end_href}</td>
+      <td style="vertical-align:middle;text-align:center;">{mediaitem_date}</td>
+    </tr>
+    <!-- END itemRow -->
+  </table>
+{end_block}

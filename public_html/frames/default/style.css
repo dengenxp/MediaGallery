@@ -1,0 +1,14 @@
+.mgFrame_default {
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  padding: 4px;
+  display: inline-block;
+}
+
+.mgFrame_default img {
+  vertical-align: bottom;
+}
+
+.mgFrame_default:hover {
+  border-color: #004E98;
+}

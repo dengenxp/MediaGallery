@@ -1,0 +1,4 @@
+<div class="MG_autotag_{align}" style="width:{framewidth}px;">
+  {autotag}
+  <span class="MG_autotag_caption" style="width:{width}px;">{caption}</span>
+</div>

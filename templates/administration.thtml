@@ -1,0 +1,5 @@
+<h3>{title}</h3>
+<div style="padding:5px 5px 0 0">
+{status_msg}
+{admin_body}
+</div>

@@ -1,0 +1,45 @@
+{lbslideshow}
+<script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
+
+<div class="bc_navigation">
+{birdseed}
+</div>
+
+<div class="mg_album_header">
+<div class="mg_album_title"><strong>{album_title}</strong>{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}</div>
+<div class="mg_search">
+<form name="mgsearch" method="post" action="{site_url}/search.php" class="uk-form">
+<div>
+  <input type="text" name="keywords" value="{keywords}"{xhtml}>
+  <input type="hidden" name="mode" value="search"{xhtml}>
+  <input type="hidden" name="swhere" value="0"{xhtml}>
+  <input type="submit" value="{lang_search}"{xhtml}>
+</div>
+</form>
+</div>
+{!if select_adminbox}
+<div class="mg_adminbox">
+{select_adminbox}
+</div>
+{!endif}
+</div>
+
+
+<table style="width:100%;border:none;margin:0px auto;">
+<!-- BEGIN ImageRow -->
+<!-- BEGIN ImageColumn -->
+<tr>
+<td style="width:{table_column_width};vertical-align:top;">
+{CELL_DISPLAY_IMAGE}
+</td>
+</tr>
+<!-- END ImageColumn -->
+<!-- END ImageRow -->
+</table>
+
+<div class="mg_navbar">
+  <span>{album_id_display}</span><span class="mg_separator" style="">|</span><span>{page_number}</span>
+  <div class="mg_pagination">{bottom_pagination}</div>
+</div>
+<div class="mg_jumpbox">{jumpbox}</div>
+<div class="mg_sortbox">{select_sortbox}</div>

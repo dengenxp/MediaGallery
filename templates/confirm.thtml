@@ -1,0 +1,12 @@
+<h2>{lang_title}</h2>
+<form name="confirm" method="post" action="{s_form_action}" class="uk-form">
+<div>
+{message}
+</div>
+<div class="mg_submit">
+<input type="hidden" name="aid" value="{aid}"{xhtml}>
+<input type="hidden" name="action" value="{action}"{xhtml}>
+<input type="submit" name="mode" value="{lang_next}"{xhtml}>
+<input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+</div>
+</form>

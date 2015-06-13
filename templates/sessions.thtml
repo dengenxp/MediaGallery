@@ -1,0 +1,77 @@
+{!if noitems}
+{!else}
+<script type="text/javascript">
+//<![CDATA[
+function doCheckAll_sessions()
+{
+  with (document.sessions) {
+    for (var i=0; i < elements.length; i++) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = true;
+    }
+  }
+}
+
+function doUnCheckAll_sessions()
+{
+  with (document.sessions) {
+    for (var i=0; i < elements.length; i++) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = false;
+    }
+  }
+}
+//]]>
+</script>
+{!endif}
+<form name="sessions" method="post" action="{s_form_action}" class="uk-form">
+{!if noitems}
+<table class="mg_admin_table">
+  <tr>
+    <th style="width:50px">{lang_select}</th>
+    <th>{lang_session_description}</th>
+    <th>{lang_session_owner}</th>
+    <th>{lang_session_count}</th>
+    <th>{lang_action}</th>
+  </tr>
+  <tr>
+    <td align="center" colspan="5">
+      <p>{lang_no_sessions}</p>
+    </td>
+  </tr>
+</table>
+{!endif}
+<!-- BEGIN sessItems -->
+<table class="mg_admin_table">
+  <tr>
+    <th style="width:50px">{lang_select}</th>
+    <th>{lang_session_description}</th>
+    <th>{lang_session_owner}</th>
+    <th>{lang_session_count}</th>
+    <th>{lang_action}</th>
+  </tr>
+<!-- BEGIN sessRow -->
+  <tr>
+    <td>
+      <input type="checkbox" name="sel[]" value="{session_id}"{xhtml}>
+      <input type="hidden" name="session_id[]" value="{session_id}"{xhtml}>
+    </td>
+    <td>{session_description}</td>
+    <td>{session_owner}</td>
+    <td>{count}</td>
+    <td><a href="{session_continue}">Continue</a></td>
+  </tr>
+<!-- END sessRow -->
+</table>
+<div>
+  <input onclick="javascript:doCheckAll_sessions()" type="button" value="{lang_checkall}"{xhtml}>
+  <input onclick="javascript:doUnCheckAll_sessions()" type="button" value="{lang_uncheckall}"{xhtml}>
+</div>
+<!-- END sessItems -->
+<div class="mg_submit_center">
+  <input type="hidden" name="action" value="sessions"{xhtml}>
+  <input type="submit" name="mode"   value="{lang_save}"{xhtml}>
+  <input type="submit" name="mode"   value="{lang_cancel}"{xhtml}>
+  <input type="submit" name="mode"   value="{lang_delete}"{xhtml}>
+</div>
+</form>

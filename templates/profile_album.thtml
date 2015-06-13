@@ -1,0 +1,16 @@
+{start_block_useralbums}
+  <table class="mg_mediaitems_table">
+    <tr>
+      <th style="width:55px;">{lang_thumbnail}</th>
+      <th style="width:35%;">{lang_album}</th>
+      <th style="width:55%;">{lang_album_description}</th>
+    </tr>
+    <!-- BEGIN itemRow -->
+    <tr>
+      <td style="vertical-align:middle;text-align:center;">{album_begin_href}{album_cover}{album_end_href}</td>
+      <td style="vertical-align:middle;text-align:left;">{album_title}</td>
+      <td style="vertical-align:middle;text-align:left;">{album_desc}</td>
+    </tr>
+    <!-- END itemRow -->
+  </table>
+{end_block}

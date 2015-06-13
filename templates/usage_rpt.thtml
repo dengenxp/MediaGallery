@@ -1,0 +1,30 @@
+<form method="post" action="{s_form_action}" class="uk-form">
+<div>
+  <div style="height:20px;">{report_date}</div>
+</div>
+<table class="mg_admin_table">
+  <tr>
+      <th>{lang_time}</th>
+      <th>{lang_user_id}</th>
+      <th>{lang_application}</th>
+      <th>{lang_album_title}</th>
+      <th>{lang_media_title}</th>
+  </tr>
+  <!-- BEGIN usagerow -->
+  <tr>
+      <td>{usage_time}</td>
+      <td>{user_id}</td>
+      <td>{application}</td>
+      <td>{album_title}</td>
+      <td>
+        <a href="{media_link}">
+          {media_title}
+        </a>
+      </td>
+  </tr>
+  <!-- END usagerow -->
+</table>
+<div class="mg_submit_center">
+  <input type="submit" name="return" value="{lang_new_report}"{xhtml}>
+</div>
+</form>

@@ -1,0 +1,31 @@
+<form name="quotareport" action="{site_admin_url}/quotareport.php" method="post" class="uk-form">
+  <div style="margin-bottom:10px">
+    {lang_quota} &gt;=&nbsp;<input type="text" name="quota" value="{quota}" size="3"{xhtml}>&nbsp;Mb&nbsp;
+    <input type="submit" value="{lang_go}" name="go"{xhtml}>
+  </div>
+</form>
+<form name="quotaedit" action="{site_admin_url}/quotareport.php" method="post" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th style="width:50px;">{lang_select}</th>
+      <th>{lang_username}</th>
+      <th>{lang_active}</th>
+      <th>{lang_quota}</th>
+      <th>{lang_used}</th>
+    </tr>
+    <!-- BEGIN UserRow -->
+    <tr>
+      <td style="text-align:left"><input type="checkbox" value="{uid}" name="uid[]"{xhtml}></td>
+      <td style="text-align:left">{username}</td>
+      <td style="text-align:center">{active}</td>
+      <td style="text-align:right">{quota}</td>
+      <td style="text-align:right">{used}</td>
+    </tr>
+    <!-- END UserRow -->
+  </table>
+  <div class="mg_submit">
+    {lang_batch_update} <input type="text" size="3" name="bquota" value=""{xhtml}>&nbsp;Mb&nbsp;
+    <input type="submit" value="{lang_update}" name="mode"{xhtml}>
+  </div>
+</form>
+<div style="text-align:center">{pagenav}</div>

@@ -1,0 +1,22 @@
+<form method="post" action="{s_form_action}" class="uk-form">
+<table cellspacing="0" cellpadding="2" style="width:100%;">
+  <tr>
+    <td class="alignright" style="white-space:nowrap; width:100px;">{lang_select_date}:</td>
+    <td>
+      {month_select}&nbsp;/
+      {day_select}&nbsp;/
+      {year_select}&nbsp;&nbsp;
+      <input type="checkbox" name="alldates"{xhtml}>{lang_all_dates}
+    </td>
+  </tr>
+  <tr>
+    <td align="right">{lang_select_user}:</td>
+    <td>
+      {user_select}
+    </td>
+  </tr>
+</table>
+<div class="mg_submit">
+  <input type="submit" name="mode" value="{lang_submit}"{xhtml}>
+</div>
+</form>

@@ -1,0 +1,19 @@
+<div class="mg_thumbnail" style="height:{row_height}px">
+  <div class="mg_thumbnail_wrapper">{media_item_thumbnail}</div>
+</div>
+
+<div><span class="mg_strong">{lang_album} {album_title}</span> ({subalbum_media_count})</div>
+
+<div class="pluginSmallText">{album_desc}</div>
+
+{!if updated}
+<div class="pluginSmallText"><span class="mg_strong">{updated}</span> {album_last_update}</div>
+{!endif}
+
+{!if lang_views}
+<div class="pluginSmallText"><span class="mg_strong">{lang_views}</span> {views}</div>
+{!endif}
+
+{!if lang_subalbums}
+<div class="pluginSmallText"><span class="mg_strong">{lang_subalbums}</span> {subalbumcount}</div>
+{!endif}

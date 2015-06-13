@@ -1,0 +1,49 @@
+<script type="text/javascript">
+//<![CDATA[
+function doCheckAll_purgealbums()
+{
+  with (document.purgealbums) {
+    for (var i=0; i < elements.length; i++ ) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = true;
+    }
+  }
+}
+function doUnCheckAll_purgealbums()
+{
+  with (document.purgealbums) {
+    for (var i=0; i < elements.length; i++ ) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = false;
+    }
+  }
+}
+//]]>
+</script>
+<form name="purgealbums" method="post" action="{s_form_action}" class="uk-form">
+  <table class="mg_admin_table">
+    <tr>
+      <th style="width:50px;">{lang_select}</th>
+      <th>{lang_album_title}</th>
+      <th>{lang_username}</th>
+      <th>{lang_last_login}</th>
+    </tr>
+    <!-- BEGIN UserRow -->
+    <tr>
+      <td>{select}</td>
+      <td>{title}</td>
+      <td>{owner}</td>
+      <td>{lastlogin}</td>
+    </tr>
+    <!-- END UserRow -->
+  </table>
+  <div>
+    <input onclick="javascript:doCheckAll_purgealbums()" type="button" value="{lang_checkall}"{xhtml}>
+    <input onclick="javascript:doUnCheckAll_purgealbums()" type="button" value="{lang_uncheckall}"{xhtml}>
+  </div>
+  <div class="mg_submit_center">
+    <input type="submit" value="{lang_delete}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="reset"  value="{lang_reset}" name="mode"{xhtml}>
+  </div>
+</form>

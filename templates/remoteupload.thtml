@@ -1,0 +1,209 @@
+{start_block}
+{navbar}
+<script type="text/javascript">
+function formControl(){
+    var remoteType = '';
+    var width      = '';
+    var height     = '';
+
+    for (i=0; i < document.remoteupload.elements['type[]'].length; i++) {
+        if ( document.remoteupload.elements['type[]'][i].value == "-1" ||  document.remoteupload.elements['type[]'][i].value == "5") {
+            document.remoteupload.elements['height[]'][i].disabled = true;
+            document.remoteupload.elements['width[]'][i].disabled = true;
+        } else {
+            document.remoteupload.elements['height[]'][i].disabled = false;
+            document.remoteupload.elements['width[]'][i].disabled = false;
+        }
+    }
+}
+</script>
+
+<p>{lang_remote_help}</p>
+<form method="post" enctype="multipart/form-data" name="remoteupload" action="{s_form_action}" class="compact uk-form">
+  <div>
+    <p><span style="font-weight:bold;">{lang_destination_album}</span>&nbsp;{album_select}</p>
+
+    <fieldset>
+      <legend>{lang_file_number}1</legend>
+      <dl class="form_block">
+        <dt><label>{lang_remote_media_type}</label></dt>
+        <dd><select name="type[]" onchange="formControl()">
+              <option value="-1">------</option>
+              <option value="0">{lang_flv_stream}</option>
+              {!if enable_remote_images}
+              <option value="4">{lang_jpg}</option>
+              <option value="6">{lang_gif}</option>
+              <option value="7">{lang_png}</option>
+              <option value="8">{lang_bmp}</option>
+              {!endif}
+              <option value="5">{lang_embed}</option>
+            </select>
+        </dd>
+
+        <dt><label>{lang_thumbnail}</label></dt>
+        <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
+
+        <dt><label>{lang_remote_url}</label></dt>
+        <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_width}</label></dt>
+        <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_height}</label></dt>
+        <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_caption}</label></dt>
+        <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_description}</label></dt>
+        <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_keywords}</label></dt>
+        <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_category}</label></dt>
+        <dd>{cat_select}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_file_number}2</legend>
+      <dl class="form_block">
+        <dt><label>{lang_remote_media_type}</label></dt>
+        <dd><select name="type[]" onchange="formControl()">
+              <option value="-1">------</option>
+              <option value="0">{lang_flv_stream}</option>
+              {!if enable_remote_images}
+              <option value="4">{lang_jpg}</option>
+              <option value="6">{lang_gif}</option>
+              <option value="7">{lang_png}</option>
+              <option value="8">{lang_bmp}</option>
+              {!endif}
+              <option value="5">{lang_embed}</option>
+            </select>
+        </dd>
+
+        <dt><label>{lang_thumbnail}</label></dt>
+        <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
+
+        <dt><label>{lang_remote_url}</label></dt>
+        <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_width}</label></dt>
+        <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_height}</label></dt>
+        <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_caption}</label></dt>
+        <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_description}</label></dt>
+        <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_keywords}</label></dt>
+        <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_category}</label></dt>
+        <dd>{cat_select}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_file_number}3</legend>
+      <dl class="form_block">
+        <dt><label>{lang_remote_media_type}</label></dt>
+        <dd><select name="type[]" onchange="formControl()">
+              <option value="-1">------</option>
+              <option value="0">{lang_flv_stream}</option>
+              {!if enable_remote_images}
+              <option value="4">{lang_jpg}</option>
+              <option value="6">{lang_gif}</option>
+              <option value="7">{lang_png}</option>
+              <option value="8">{lang_bmp}</option>
+              {!endif}
+              <option value="5">{lang_embed}</option>
+            </select>
+        </dd>
+
+        <dt><label>{lang_thumbnail}</label></dt>
+        <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
+
+        <dt><label>{lang_remote_url}</label></dt>
+        <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_width}</label></dt>
+        <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_height}</label></dt>
+        <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_caption}</label></dt>
+        <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_description}</label></dt>
+        <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_keywords}</label></dt>
+        <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_category}</label></dt>
+        <dd>{cat_select}</dd>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>{lang_file_number}4</legend>
+      <dl class="form_block">
+        <dt><label>{lang_remote_media_type}</label></dt>
+        <dd><select name="type[]" onchange="formControl()">
+              <option value="-1">------</option>
+              <option value="0">{lang_flv_stream}</option>
+              {!if enable_remote_images}
+              <option value="4">{lang_jpg}</option>
+              <option value="6">{lang_gif}</option>
+              <option value="7">{lang_png}</option>
+              <option value="8">{lang_bmp}</option>
+              {!endif}
+              <option value="5">{lang_embed}</option>
+            </select>
+        </dd>
+
+        <dt><label>{lang_thumbnail}</label></dt>
+        <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
+
+        <dt><label>{lang_remote_url}</label></dt>
+        <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_width}</label></dt>
+        <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_height}</label></dt>
+        <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
+
+        <dt><label>{lang_caption}</label></dt>
+        <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_description}</label></dt>
+        <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+
+        <dt><label>{lang_keywords}</label></dt>
+        <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
+
+        <dt><label>{lang_category}</label></dt>
+        <dd>{cat_select}</dd>
+      </dl>
+    </fieldset>
+
+    <div class="mg_submit">
+      <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+      <input type="hidden" name="action" value="{action}"{xhtml}>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+formControl();
+</script>
+{end_block}

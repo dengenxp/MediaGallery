@@ -1,0 +1,276 @@
+Media Gallery WKZ インストール - v1.6.10
+
+HTMLドキュメントはこちらをご覧ください:
+
+admin/install_doc_ja.html
+public_html/docs/usage.html
+
+注意: usage.htmlはMedia Gallery v1.6用に記述されているので、正確では
+ない部分があります。（ごめんなさい）
+
+メディアギャラリーは(詳しくドキュメント化されていませんが)Geeklogの
+一般的なプラグインのインストール方法と同様です。以下にFTPとShell
+アクセスによる２通りでのインストール方法を紹介します。
+
+■必須条件
+
+メディアギャラリーで必要になるもの:
+
+    - Geeklog v1.4.0 以上
+    - PHP v4.3.0 以上
+    - MySQL v3.23 以上または Microsoft SQL Server 2000 以上
+
+■FTPでのインストール
+
+サーバーにShellアクセスできずFTPクライアントでのアクセスしか出来ない
+場合はこちらの手順でインストールしてください。
+
+メディアギャラリーやGeeklogのプラグインをインストールするにはまず圧縮
+ファイルを解凍してください。解凍すると自動的に適切なディレクトリに
+振り分けられファイルが作成されます。
+
+.gzファイルの解凍にはWinZIPやWinRARが利用できます。
+
+   1. 一時的なディレクトリを作成しメディアギャラリーのファイルを選択
+      します。(例: C:\tmp など)
+   2. WinRARで mediagallery-wkz_1.6.10_1.4.0.tar.gz を開きます。
+   3. 解凍を選択し解凍先を C:\tmp にします。
+
+これでメディアギャラリーのファイルが C:\tmp に解凍されます。
+
+フォルダの中は以下のようになっているはずです:
+
++tmp\
+    + mediagallery\
+                  + admin\
+                  + docs\
+                  + include\
+                  + language\
+                  + lib\
+                  + public_html\
+                  + sql\
+                  + templates\
+                  + tmp\
+                  + uploads\
+                  + functions.inc
+                  +
+
+これでハードディスク上にファイルの複製ができました。あとはアップロー
+ドです。
+
+FTPクライアントを起動します。おすすめはFileZillaですがインストール持
+ち合わせていなければ普段使っているものを使用してください。FileZillaは
+フリーかつ多くのOSをサポートしています(Windows, Linux, など)。
+
+FTPでウェブサーバーに接続します。
+
+まずメディアギャラリーのファイルを漏れのないようにアップロードします。
+以下の図に従って c:\tmp\mediagallery\ のファイルを path-to-geeklog/plugins/
+の適切なディレクトリに配置します。
+
+path-to-geeklogディレクトリはGeeklogのdb-configphpが存在するディレクトリ
+です。(Geeklog1.4の場合、config.phpが存在するディレクトリです。)
+
+注意: これは初期設定でのメディアギャラリーのアップロードの話です。実際
+にはあなたの使用するサーバーでのプラグインディレクトリにmediagallery
+フォルダごとアップロードしてください。残りのファイルについても以下の
+通りアップロードしてください。
+
+tmp\                path-to-geeklog/
+   |                               |
+   + mediagallery\--+              + backups/
+                    |              + data/
+                    |              + include/
+                    |              + language/
+                    |              + logs/
+                    |              + pdfs/
+                    +------------->+ plugins/
+                                   + public_html/
+                                   + sql/
+                                   + system/
+                                   + config.php
+
+次にpublic_htmlディレクトリにmediagalleryというサブディレクトリを作
+成します。ほとんどのFTPクライアントでは親ディレクトリから作成できる
+ようになっているのでpublic_htmlに作成する場合、マウスを右クリックし
+て「新しいフォルダ」から作成し名前をmediagalleryとしてください。
+この手順とは少し異なる場合はお使いのFTPクライアントのドキュメントを
+確認してください。
+
+  path-to-geeklog/
+                 |
+                 + backups/
+                 + data/
+                 + include/
+                 + language/
+                 + logs/
+                 + pdfs/
+                 + plugins/
+                 + public_html/
+                              |
+                              + mediagallery <--- このディレクトリを作成します
+                 + sql/
+                 + system/
+                 + config.php
+
+次に c:\tmp\mediagallery\public_html\ フォルダにあるすべてのファイルを
+サーバーにアップロードします。public_html\フォルダにあるファイルとフォ
+ルダをすべて選択し以下のようにアップロードしてください。public_html
+フォルダではなくその中のファイルとフォルダですので間違わないようにし
+てください。
+
+tmp\                 path-to-geeklog/
+   |                                |
+   + mediagallery\                  + backups/
+                 |                  + data/
+                 + public_html/*-+  + include/
+                                 |  + language/
+                                 |  + logs/
+                                 |  + pdfs/
+                                 |  + plugins/
+                                 |  + public_html/
+                                 |               |
+                                 +-------------->+ mediagallery/
+                                    + sql/
+                                    + system/
+                                    + config.php
+
+次に admin/plugins/ に mediagallery というディレクトリを作成します。
+
+path-to-geeklog/
+               |
+               + backups/
+               + data/
+               + include/
+               + language/
+               + logs/
+               + pdfs/
+               + plugins/
+               + public_html/
+               |       |
+               |       + admin\
+               |           |
+               |           + plugins\
+               |                  + mediagallery <--- このディレクトリを作成します
+               + sql/
+               + system/
+               + config.php
+
+次に c:\tmp\mediagallery\admin\ フォルダのファイルをアップロードします。
+このadminフォルダの中のすべてのファイルとディレクトリを選択しアップ
+ロードしてください。ここでもadminフォルダをそのままアップロードしな
+いよう注意してください。
+
+tmp\            path-to-geeklog/
+   |                           |
+   + mediagallery\             + backups/
+                 |             + data/
+                 + admin/---+  + include/
+                            |  + language/
+                            |  + logs/
+                            |  + pdfs/
+                            |  + plugins/
+                            |  + public_html/
+                            |            + admin/
+                            |                 + plugins/
+                            +-----------------------> + mediagallery/
+                               + sql/
+                               + system/
+                               + config.php
+
+おめでとうございます！ これですべてのファイルがサーバーにアップロード
+できました。これ以降は「■オンラインでのインストール」を参照してく
+ださい。
+
+■一般的なShellアクセスによるインストール
+
+   1. メディアギャラリーではデータベースにテーブルを追加するのでデータ
+      ベースをバックアップしてください。Geeklogに組み込まれている管
+      理者メニューにあるデータベースバックアップを利用するのが便利で
+      す。
+
+   2. メディアギャラリーの圧縮ファイルを解凍し path-to-geeklog/plugins
+      ディレクトリにコピーしてください。解凍したときに mediagallery
+      ディレクトリは既に作成されています。
+
+   3. public_htmlディレクトリに mediagallery ディレクトリを作成します。
+
+   4. public_html/admin/plugins/ にも mediagallery ディレクトリを作成します。
+
+   5. カレントディレクトリを path-to-geeklog/plugins/mediagallery ディ
+      レクトリに移動します。
+
+   6. admin ディレクトリにあるファイルをすべてステップ４で作成した
+      admin/plugins/mediagallery へコピーします。
+
+   7. public_html ディレクトリにあるファイルをすべてステップ３で作成
+      した public_html/mediagallery へコピーします。
+
+■オンラインでのインストール
+
+これですべてのメディアギャラリーのファイルをサーバーにあるGeeklogの適
+切な場所にアップロードできていることでしょう。
+
+   1. 管理者ページのプラグインの項目を開いてください。ここにメディア
+      ギャラリをインストールするためのリンクが表示されているはずです
+      のでこのリンクをクリックしてください。インストールのページでは
+      メディアギャラリーをインストールできたかどうかを教えてくれます。
+      もし失敗となっている場合はGeeklogのpath-to-geeklog/logs/にある
+      error.logを調べて問題点を解消または再アップロードしてください。
+
+   2. このインストールのページではメディアギャラリーのシステム設定の
+      ページを案内されます。そのリンクからメディアギャラリーでの必須
+      となる環境設定を利用状況に応じて変更してください。
+
+■パーミッションの設定
+
+   次のディレクトリのパーミッションを757（あるいは777）に設定する必要があります。
+
+      private/plugins/mediagallery/tmp
+      private/plugins/mediagallery/uploads
+      public_html/mediagallery/mediaobjects/covers 及び配下のディレクトリ
+      public_html/mediagallery/mediaobjects/disp 及び配下のディレクトリ
+      public_html/mediagallery/mediaobjects/orig 及び配下のディレクトリ
+      public_html/mediagallery/mediaobjects/tn 及び配下のディレクトリ
+
+■一般的なアップグレード方法
+
+   1. 既存の環境設定をバックアップしてください！
+
+   2. あなたがテンプレートに加えた変更箇所がある場合そちらについても
+      バックアップしてください！アップグレード後にそれらのカスタマイ
+      ズを再度反映させる必要があります。
+
+   3. インストールのための手順は新しいバージョンのメディアギャラリーの
+      新規インストール手順の詳細を確認しながらサーバーにアップロード
+      してください。
+
+      既存のファイルを上書きするよう促された場合は「はい」を選択して
+      ください。
+
+   4. Geeklogのプラグインメニューを開きます(Geeklogの管理者メニュー
+      から)。
+
+   5. メディアギャラリープラグインを開きます。
+
+   6. アップデートボタンが表示されているのでそちらをクリックします。
+
+   7. ここまでの作業が問題なく完了するとアップグレードは完了です。
+      もし問題があった場合は logs/error.log を確認し、もう一度アップ
+      グレードを行ってください。
+
+■アップグレード後のチェック
+
+    * メディアギャラリーの設定をチェックしておきましょう。新機能につい
+      てはオンラインで確認してください。以前のconfig.phpはそのまま使用
+      することはできません。メディアギャラリーの管理画面からシステム設
+      定を必要に応じて変更してください。
+
+    * auto tagsの記述をチェックしておきましょう。以前のメディアギャ
+      ラリで使用されていたauto tagsの使用方法に変更があります。
+
+    * メディアギャラリーのv0.8xまたはv0.9xからアップグレードする場合は
+      サムネイルを再作成する必要があります。メディアギャラリーでは大き
+      な(200x200 ピクセル)サムネイルを備えています。v0.8xやv0.9xでは
+      150x150ピクセルでのサムネイルしかサポートされていませんでした。
+      メディアギャラリーの管理画面からサムネイル再作成を実行してください。

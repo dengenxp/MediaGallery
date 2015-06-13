@@ -1,0 +1,30 @@
+{lbslideshow}
+<script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
+
+<div class="bc_navigation">
+{birdseed}
+</div>
+
+<h2 style="float:left;font-weight:bold;font-size:2em;line-height:2em;padding-left:5px;">{album_title}</h2>
+<div class="" style="float:right;text-align:right;vertical-align:middle;white-space:nowrap;padding-right:5px;line-height:2em;">
+  {!if rsslink}
+    &nbsp;{rsslink}
+  {!endif}
+  {select_adminbox}
+</div>
+<div style="clear:both;"></div>
+
+{!if album_description}
+<div style="text-align:left;line-height:1.5em;font-size:1.2em;text-indent:0;padding:1em 50px;">
+   {album_description}
+</div>
+{!endif}
+
+<script type="text/javascript">
+var surl = "{site_url}/album_items.php?aid={album_id}";
+</script>
+<div id="mg_colorbox">
+<div class="header"></div>
+<div class="contents"></div>
+<div class="footer"></div>
+</div>

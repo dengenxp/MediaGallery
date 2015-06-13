@@ -1,0 +1,13 @@
+<fieldset style="margin-bottom:6px">
+  <legend>{exif_title}</legend>
+  <table class="mg_exif_table">
+  <!-- BEGIN exifRow -->
+    <tr>
+    <!-- BEGIN exifColumn -->
+      <td style="font-weight:bold;width:25%;text-align:right;">{label}:</td>
+      <td style="width:25%;">{value}</td>
+    <!-- END exifColumn -->
+    </tr>
+  <!-- END exifRow -->
+  </table>
+</fieldset>

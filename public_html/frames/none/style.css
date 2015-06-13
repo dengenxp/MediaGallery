@@ -1,0 +1,13 @@
+.mgframe_none {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  display:inline-block;
+}
+
+.mgframe_none img {
+  vertical-align: bottom;
+}
+
+.mgframe_none:hover {
+}

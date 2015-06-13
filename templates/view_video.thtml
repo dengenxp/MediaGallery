@@ -1,0 +1,59 @@
+<!-- start view_video.thtml -->
+{lbslideshow}
+<div class="bc_navigation">{birdseed}</div>
+<div class="mg_album_header">
+  <div class="mg_album_title"><strong>{album_title}</strong>{!if rsslink}&nbsp;{rsslink}{!endif}</div>
+  <div class="mg_search">
+    <form name="mgsearch" method="post" action="{site_url}/search.php" class="uk-form"><div>
+      <input type="text" name="keywords" value="{keywords}"{xhtml}>
+      <input type="hidden" name="mode" value="search"{xhtml}>
+      <input type="hidden" name="swhere" value="0"{xhtml}>
+      <input type="submit" value="{lang_search}"{xhtml}>
+    </div></form>
+  </div>
+</div>
+<div class="mg_navbar">
+{!if prev_link}<a class="button left" href="{prev_link}">{lang_prev}</a>{!endif}
+{!if next_link}<a class="button right" href="{next_link}">{lang_next}</a>{!endif}
+{!if url_slideshow}<a class="button" href="{url_slideshow}">{lang_slideshow}</a>{!endif}
+{!if download_link}<a class="button" href="{download_link}">{lang_download}</a>{!endif}
+{!if property}<a class="button" href="#" onclick="return popitup('{property}')">{lang_property}</a>{!endif}
+{!if switch_size}<a class="button" href="{switch_size}">{lang_switch_size}</a>{!endif}
+{!if edit_item_link}<a class="button" href="{edit_item_link}">{lang_edit}</a>{!endif}
+&nbsp;
+{!if pagination}<div class="mg_right_nav">{item_number}&nbsp;{lang_of}&nbsp;{total_items}</div>{!endif}
+</div>
+<div class="mg_media_title">{!if media_title}{media_title}{!else}&nbsp;{!endif}</div>
+<div class="mg_media_detail">{image_detail}</div>
+<div class="mg_media_desc">{!if media_desc}{media_desc}{!else}&nbsp;{!endif}</div>
+<div class="mg_info">
+  <div class="mg_info_left">
+    <p><strong>ID:</strong>&nbsp;{media_id}</p>
+    {!if media_properties}<p>{getid3}{media_properties}{getid3end}</p>{!endif}
+  </div>
+  <div class="mg_info_right">
+    <p><strong>{lang_uploaded_by}:</strong>&nbsp;{owner_username}</p>
+  </div>
+  <div class="mg_info_center">
+    <p>{media_time}</p>
+    <p>{lang_views} {media_views}</p>
+    <div>{rating_box}</div>
+    {!if media_keywords}<p><strong>{lang_keywords}</strong> {media_keywords}</p>{!endif}
+  </div>
+  {!if exif_info}
+  <div class="mg_exif_info" style="clear:both;margin:0 5px">
+  {exif_info}
+  </div>
+  {!endif}
+</div>
+{!if jumpbox}<div class="mg_jumpbox">{jumpbox}</div>{!endif}
+<script type="text/javascript">
+//<![CDATA[
+function popitup(url)
+{
+    newwindow=window.open(url,'name','height=600,width=450,resizable=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes');
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+//]]>
+</script>

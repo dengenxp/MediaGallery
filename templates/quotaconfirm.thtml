@@ -1,0 +1,15 @@
+<form method="post" action="{s_form_action}" class="uk-form">
+<table class="mg_admin_table">
+<tr>
+  <td align="left">
+    {lang_details}
+  </td>
+</tr>
+<tr>
+  <td align="left">
+    <input type="submit" name="mode" value="{lang_save}"{xhtml}>&nbsp;
+    <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+  </td>
+</tr>
+</table>
+</form>

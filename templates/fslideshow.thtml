@@ -1,0 +1,29 @@
+<div class="mg_album_header">
+  <div class="mg_album_title"><strong>{album_title}</strong></div>
+  <div class="mg_search">{pagination}</div>
+</div>
+<!-- BEGIN noItems -->
+<div style="text-align:center">
+  {no_images}
+</div>
+<!-- END noItems -->
+<!-- BEGIN slideItems -->
+<script type="text/javascript">
+    var flashvars = {};
+    var params = {
+    wmode: "transparent"
+    };
+    var attributes = {};
+    params.allowfullscreen="true";
+    flashvars.action="{autoplay}";
+    flashvars.xmlUrl="{site_url}/xml.php?aid={aid}%26src={src}%26type=full&amp;noLink=true&amp;showControls=always&amp;transInType=Fade&amp;transOutType=Fade";
+    swfobject.embedSWF("{site_url}/players/minislideshow.swf", "fslideshow", "{width}", "{height}", "9.0.0", "expressInstall.swf", flashvars, params, attributes);
+</script>
+<div style="text-align:center; background-color: white; width: 100%; height: 100%; padding: 2em 0;">
+<div id="fslideshow">
+    <a href="http://www.adobe.com/go/getflashplayer">
+        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"{xhtml}>
+    </a>
+</div>
+</div>
+<!-- END slideItems -->

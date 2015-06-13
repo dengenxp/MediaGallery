@@ -1,0 +1,15 @@
+.mgFrame_mgAlbum {
+/*  border: 1px solid #DDD;*/
+  background-color: #FFF;
+  padding: 4px;
+  display:inline-block;
+
+  /* box-shadow */
+  box-shadow: rgba(0, 0, 0, 0.65) 0px 0px 3px 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.65) 0px 0px 3px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.65) 0px 0px 3px 3px;
+}
+
+.mgFrame_mgAlbum:hover {
+/*  border-color: #004E98;*/
+}
