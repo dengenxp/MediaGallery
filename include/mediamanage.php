@@ -143,7 +143,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
         'val_reset_cover'         => (($album_cover == '-1') ? ' checked="checked"' : ''),
     ));
 
-    $tn_size = 1; // include:100x100
+    $tn_size = 1; // include:150x150
     $rowclass = 0;
     $counter = 0;
     if ($nrows == 0) {
@@ -194,10 +194,12 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $media_time = MG_getUserDateTimeFormat($row['media_time']);
 
                 if ($img_size != false) {
-                    list($width, $height) = Media::getImageWH($img_size[0], $img_size[1], 100, 100);
+                    list($width, $height) = Media::getImageWH($img_size[0], $img_size[1], 150, 150);
                 } else {
-                    $width = 100;
-                    $height = 75;
+                    //$width = 100;
+                    //$height = 75;
+                    $width = 150;
+                    $height = 112;
                     $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.png';
                 }
 
