@@ -6,10 +6,14 @@
 // |                                                                          |
 // | Displays the contents of a MG album                                      |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2002-2015 by the following authors:                        |
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
+// | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
-// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |

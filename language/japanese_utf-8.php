@@ -4,11 +4,16 @@
 // +---------------------------------------------------------------------------+
 // | This is the Japanese language page for the Media Gallery Plugin           |
 // +---------------------------------------------------------------------------|
-// | Copyright (C) 2002-2015 by the following authors:                         |
+// | Copyright (C) 2015 by the following authors:                              |
+// |                                                                           |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                          |
+// |                                                                           |
+// | Based on the Media Gallery Plugin for glFusion CMS                        |
+// | Copyright (C) 2002-2006 by the following authors:                         |
 // |                                                                           |
 // | Author:                                                                   |
 // | Mark R. Eavns               -    mark@gllabs.org                          |
-// | Yoshinori Tahara            -    taharaxp AT gmail DOT com                |
+// |                                                                           |
 // | Translator:                                                               |
 // | mystral_kk                  -    mystral_kk AT ddlinks DOT net            |
 // | maruyo                      -    Geeklog Japan member                     |

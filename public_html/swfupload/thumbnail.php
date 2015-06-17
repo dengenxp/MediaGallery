@@ -6,6 +6,11 @@
 // |                                                                          |
 // | AJAX component to retrieve image thumbnail                               |
 // +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2009 by the following authors:                             |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |

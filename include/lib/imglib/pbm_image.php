@@ -6,6 +6,7 @@
 // |                                                                          |
 // | NetPBM Graphic Library interface                                         |
 // +--------------------------------------------------------------------------+
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |

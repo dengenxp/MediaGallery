@@ -3,13 +3,16 @@
 // | Media Gallery Plugin - Geeklog                                            |
 // +---------------------------------------------------------------------------+
 // | This is the English language page for the Media Gallery Plugin            |
-// +---------------------------------------------------------------------------|
-// | Copyright (C) 2005-2015 by the following authors:                         |
+// +---------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                              |
 // |                                                                           |
-// | Author:                                                                   |
-// | Mark R. Eavns               -    mark AT glfusion DOT org                 |
-// | Yoshinori Tahara            -    taharaxp AT gmail DOT com                |
-// +---------------------------------------------------------------------------|
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                          |
+// |                                                                           |
+// | Based on the Media Gallery Plugin for glFusion CMS                        |
+// | Copyright (C) 2005-2009 by the following authors:                         |
+// |                                                                           |
+// | Mark R. Evans          mark AT glfusion DOT org                           |
+// +---------------------------------------------------------------------------+
 // | This program is free software; you can redistribute it and/or             |
 // | modify it under the terms of the GNU General Public License               |
 // | as published by the Free Software Foundation; either version 2            |

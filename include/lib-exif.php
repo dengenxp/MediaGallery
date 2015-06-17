@@ -6,10 +6,14 @@
 // |                                                                          |
 // | EXIF/IPTC Reading routines                                               |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2002-2015 by the following authors:                        |
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
+// | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
-// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
 // |                                                                          |
 // | Based on previous work by                                                |
 // | Copyright (C) 2004-2008 by the following authors:                        |
