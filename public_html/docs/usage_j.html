@@ -1,0 +1,4587 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Media Gallery Users Guide</title>
+  <style type="text/css">
+  <!--
+  body {
+    margin: 1em 5%;
+    background: white;
+    color: black;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: smaller;
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 1.4em;
+    color: green;
+  }
+  h2 {
+    font-size: 1.2em;
+    color: brown;
+  }
+  h3 {
+    font-size: 1.0em;
+    color: blue;
+  }
+  p, ul, ol, li {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+  }
+  ul, ol {
+   margin-left: 0.9em;
+   padding-left: 0.9em;
+  }
+  p {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+    line-height: 1.4em;
+  }
+  pre, code, kbd, var {
+    font-family: Courier, "Courier New", monospace;
+  }
+
+  td, th {
+    vertical-align: top;
+      padding: 5px;
+    line-height: 140%;
+  }
+
+  .mg_admin_table {
+    width: 100%;
+    margin: 1em;
+    background: #F9F9F9;
+    border: 1px #AAA solid;
+    border-collapse: collapse;
+    font-size: 1.0em;
+  }
+
+  .mg_admin_table th,
+  .mg_admin_table td {
+    border: 1px #AAA solid;
+    padding: 5px;
+    vertical-align: top;
+    line-height: 140%;
+    font-size: 1.0em;
+  }
+
+  .mg_admin_table th {
+    background: silver;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .mg_admin_table tr:nth-child(even) {
+    background-color: #f7f7f7;
+    background-color: #F9F9F9;
+  }
+
+  .mg_admin_table tr:nth-child(odd) {
+    background-color: #e7e7e7;
+    background-color: #e7e7e7;
+  }
+
+  .mg_admin_table p {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    line-height: 1.4em;
+  }
+
+  .r2 {
+    background: rgb(240,240,240);
+  }
+  dt {
+    font-weight: bold;
+  }
+  .usual {
+    font-size: 100%;
+  }
+  .menu {
+    font-size: 90%;
+    background: #dddddd;
+    color: black;
+  }
+  .footer {
+    font-size: 90%;
+    background: #dddddd;
+    color: black;
+  }
+  .comment {
+    font-size: 80%;
+  }
+  .codeheader {
+    font-family: Courier, "Courier New", monospace;
+  }
+  a:link {
+    color: #2222FF;
+    background: transparent;
+  }
+  a:visited {
+    color: #2222FF;
+    background: transparent;
+  }
+  a:hover {
+    color: #5252FF;
+    background: transparent;
+  }
+  a:active {
+    color: #2222FF;
+    background: transparent;
+  }
+  /* this is to prevent Mozilla from applying :hover on <a name="..."> */
+  a[name] {
+    color: black;
+    background: transparent;
+  }
+  .noteclassic,.noteimportant,
+  .notewarning,
+  .notetip {
+    margin:2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:70% !important;
+    min-height:40px;
+    clear:both;
+    text-align:justify;
+    vertical-align:middle;
+    border-collapse:collapse;
+    padding:15px 20px 15px 80px;
+    background-position:20px 50%;
+    background-repeat:no-repeat;
+    -moz-border-radius:20px;
+    -khtml-border-radius:20px;
+    border-radius:20px;
+  }
+  .noteclassic{
+    background-color:#eef;
+    background-image:url(images/note.png);
+  }
+  .noteimportant{
+    background-color:#ffc;
+    background-image:url(images/important.png);
+  }
+  .notewarning{
+    background-color:#fdd;
+    background-image:url(images/warning.png);
+  }
+  .notetip{
+    background-color:#dfd;
+    background-image:url(images/tip.png);
+  }
+  .notetranslator{
+    color:red;
+  }
+  .doctitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .version {
+    text-align: center;
+    font-size: 18px;
+  }
+  .indexofcontents {
+    text-align: center;
+    font-size: 18pt;
+    font-family: "Times New Roman";
+    font-weight: bold;
+  }
+  -->
+  </style>
+</head>
+<body>
+<div class="Section2">
+
+<div class="doctitle">メディアギャラリー ユーザーガイド</div>
+<p class="version">v1.6</p>
+<div class="indexofcontents">目次</div>
+
+<table class="mg_frame_table" style="text-align: left; margin-left: auto; margin-right: auto;">
+  <tbody>
+    <tr>
+      <td>
+      <ul>
+        <li><a href="#mozTocId490119">概要</a></li>
+        <li><a href="#mozTocId42517">ライセンス</a></li>
+        <li><a href="#mozTocId788061">権利関係</a></li>
+        <li><a href="#mozTocId27867">動作環境</a>
+          <ul>
+            <li><a href="#mozTocId190332">Geeklogのバージョン</a></li>
+            <li><a href="#mozTocId101151">キャッシングテンプレートライブラリ v2.0</a></li>
+            <li><a href="#mozTocId592268">PHPバージョンとコンフィギュレーション</a></li>
+            <li><a href="#mozTocId518716">グラフィックパッケージ</a></li>
+            <li><a href="#mozTocId92633">データベース</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId32420">v1.6.0での変更点</a></li>
+        <li><a href="#mozTocId623782">インストール</a>
+          <ul>
+            <li><a href="#mozTocId473182">Geeklogの自動インストール</a></li>
+            <li><a href="#mozTocId312812">FTPインストール</a></li>
+            <li><a href="#mozTocId773303">標準シェルアクセスインストール</a></li>
+            <li><a href="#mozTocId586179">オンラインインストール</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId617560">アップグレード</a>
+          <ul>
+            <li><a href="#mozTocId960221">ディレクトリのパーミッション</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId197289">使ってみる - クィックスタートガイド</a>
+          <ul>
+            <li><a href="#mozTocId639286">メディアギャラリーのコンフィギュレーション</a></li>
+            <li><a href="#mozTocId449279">最初のアルバムを作る</a></li>
+            <li><a href="#mozTocId497890">アルバムにメディアを追加</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId585727">コンフィギュレーション</a>
+          <ul>
+            <li><a href="#mozTocId537717">メディアギャラリーの環境</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId220901">アルバム</a>
+          <ul>
+            <li><a href="#mozTocId454806">アルバムの設定・オプション</a></li>
+            <li><a href="#mozTocId794718">アルバムの作成</a></li>
+            <li><a href="#mozTocId526936">アルバムを編集する</a></li>
+            <li><a href="#mozTocId512933">アルバムを削除する</a></li>
+            <li><a href="#mozTocId195956">アルバムをソートする</a></li>
+            <li><a href="#mozTocId67034">グルーバルアルバム属性エディタ</a></li>
+            <li><a href="#mozTocId69877">グローバルアルバムパーミッションエディタ</a></li>
+            <li><a href="#mozTocId214085">アルバム作成時のデフォルト値を設定する</a></li>
+            <li><a href="#mozTocId632238">特別な種類のアルバム</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId979363">メディアアイテム</a>
+          <ul>
+            <li><a href="#mozTocId171925">メディアギャラリーがメディアをどのように保存するか</a></li>
+            <li><a href="#mozTocId563326">サポートするメディアの種類</a></li>
+            <li><a href="#mozTocId738453">メディア処理の概略</a></li>
+            <li><a href="#mozTocId837834">メディアのアップロード</a></li>
+            <li><a href="#mozTocId781301">アプロード後の処理</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId768958">メディアアイテムの管理</a>
+          <ul>
+            <li><a href="#mozTocId716339">メディア編集</a></li>
+            <li><a href="#mozTocId83636">バッチキャプション・エディタ</a></li>
+            <li><a href="#mozTocId747225">メディアアイテムをソートする</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId32228">メディアギャラリーの一般アイテム</a>
+          <ul>
+            <li><a href="#mozTocId885785">RSSフィード</a></li>
+            <li><a href="#mozTocId331186">電子ハガキ</a></li>
+            <li><a href="#mozTocId880455">モデレーション</a></li>
+            <li><a href="#mozTocId696648">オンライン印刷</a></li>
+            <li><a href="#mozTocId9477">バッチ処理システム</a></li>
+            <li><a href="#mozTocId478715">ユーザー設定</a></li>
+            <li><a href="#mozTocId199546">ウォーターマーク</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      </td>
+
+      <td>
+
+      <ul>
+        <li><a href="#mozTocId580924">Geeklogとの統合</a>
+          <ul>
+            <li><a href="#mozTocId34513">コメント</a></li>
+            <li><a href="#mozTocId54737">自動タグ</a></li>
+            <li><a href="#mozTocId160636">自動リンク</a></li>
+            <li><a href="#mozTocId741121">サイト統計</a></li>
+            <li><a href="#mozTocId169118">検索</a></li>
+            <li><a href="#mozTocId593778">更新リスト</a></li>
+            <li><a href="#mozTocId519863">注目のアルバム</a></li>
+            <li><a href="#mozTocId56915">ランダムイメージブロック</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId803390">ユーザープロフィール</a></li>
+        <li><a href="#mozTocId370857">メディアギャラリーのルック＆フィール</a></li>
+        <li><a href="#mozTocId809667">メディアギャラリーのアルバムテーマ</a>
+          <ul>
+            <li><a href="#mozTocId285200">テーマ作成の方法</a></li>
+            <li><a href="#mozTocId467866">テーマのスタイル</a></li>
+            <li><a href="#mozTocId633773">テーマのJavaScript</a></li>
+            <li><a href="#mozTocId740990">テーマの画像</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId164653">メディアギャラリー管理</a>
+          <ul>
+            <li><a href="#mozTocId555458">コンフィギュレーション</a></li>
+            <li><a href="#mozTocId30100">EXIF/IPTC 管理</a></li>
+            <li><a href="#mozTocId266603">カテゴリのメンテナンス</a></li>
+            <li><a href="#mozTocId87981">システムのオプションをリセットする</a></li>
+            <li><a href="#mozTocId755594">メディアギャラリー設定ファイルについて</a></li>
+            <li><a href="#mozTocId424871">システムデフォルト・エディタ</a></li>
+            <li><a href="#mozTocId675193">メンバーアルバム</a></li>
+            <li><a href="#mozTocId979613">RSSフィード</a></li>
+            <li><a href="#mozTocId304644">レポート</a></li>
+            <li><a href="#mozTocId288811">バッチセッション</a></li>
+            <li><a href="#mozTocId735663">ユーティリティー</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId662715">サポート</a></li>
+        <li><a href="#mozTocId899144">一般的な問題とトラブルシューティング</a>
+          <ul>
+            <li><a href="#mozTocId773690">トラブルの際に試していただきたいこと</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId920237">既知の問題</a></li>
+        <li><a href="#mozTocId130520">どうすれば貢献できるか</a></li>
+        <li><a href="#mozTocId179642">謝辞</a></li>
+        <li><a href="#mozTocId259021">付記A - データのインポート</a>
+          <ul>
+            <li><a href="#mozTocId603399">Inmemoriamからのインポート</a></li>
+            <li><a href="#mozTocId117698">Geekaryからのインポート</a></li>
+            <li><a href="#mozTocId847246">Gallery v1からのインポート</a></li>
+            <li><a href="#mozTocId708323">Gallery v2からのインポート</a></li>
+            <li><a href="#mozTocId112793">4imagesからのインポート</a></li>
+            <li><a href="#mozTocId580820">Geeklog記事からのインポート</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div><!-- end of Section2 -->
+
+<div class="Section3">
+<h1><a name="mozTocId490119"></a>Overview</h1>
+
+<p>メディアギャラリーは写真、その他（動画・音声）のメディアを管理する<a href="http://www.geeklog.net/" title="http://www.geeklog.net">Geeklog</a>専用のプラグインです。
+Geeklogで構築されたサイトで使います。
+使い易いインターフェースで、写真・動画・音声のアルバムを管理出来ます。
+統合検索・注目のアルバム・ランダムイメージブロック、そしてGeeklogのセキュリティー構造に沿ったパワフルな機能を持っています。
+何年にも亘って多くのユーザーに支持されてきた信頼性の高い製品です。</p>
+
+<p>メディアギャラリーはGeeklogサイトに数々の先進的で使い易い機能と強力なマルチメディアギャラリーを提供します。
+メディアギャラリーを楽しくお使いください。
+フィードバックと提案はいつでも歓迎です。</p>
+
+<h1><a name="mozTocId42517"></a>ライセンス</h1>
+
+<p>Media Gallery is Copyright 2004-2008 &copy; Mark R. Evans mark [at] gllabs [dot] org. </p>
+
+<p>The Media Gallery Plugin is licensed under <a href="http://www.gnu.org/copyleft/gpl.html" title="http://www.gnu.org/copyleft/gpl.html">GNU General Public License Version 2</a>. </p>
+
+<p>メディアギャラリーの強化や改造を行った場合、その変更内容をメディアギャラリーのコミュニティーとシェアいただけると嬉しいです。</p>
+
+<h1><a name="mozTocId788061"></a>権利関係</h1>
+
+<p>メディアギャラリーは<a href="http://gallery.menalto.com/" title="http://gallery.menalto.com">Gallery Project</a>に触発され作成されました。
+Galleryはおそらく最高の現在手に入るオープンソースの写真・メディア管理システムであると思います。
+Galleryは多くの他のオープンソースパッケージと統合されましたが、私が望む形ではありませんでした。
+少々機能を減らし、祖父母の世代でも使えるが充分な機能があり、管理しやすいものにしたかったのです。
+メディアギャラリーはこうした私の望みの産物です。</p>
+
+<p>この望みを叶えるために、他の人がどのように多様な問題を解決したのかを調べました。
+多くのデザイン機能、またいくつかのコードをGallery projectから拝借しました。
+また、いくつのかの機能を実現するために<a href="http://coppermine.sf.net/" title="http://coppermine.sf.net/">Coppermine Gallery</a>からアイデアとノウハウを提供してもらいました。
+いくつかのGeeklogプラグインからは機能の統合をどのように実現するかを参考にさせていただきました。
+これらの作者の努力のおかげで私の作業は大きく軽減されることになりました。
+このように中を見せていただき、拝借もさせていただいたことに心より感謝します。</p>
+
+<p>メディアギャラリーは下記のオープンソースパッケージを使っています。</p>
+
+<ul>
+
+  <li>Exifer 1.5
+  - Copyright &copy; 2005 Jake Olefsky
+  - <a href="http://www.offsky.com/software/exif/index.php" title="http://www.offsky.com/software/exif/index.php">http://www.offsky.com/software/exif/index.php</a></li>
+
+  <li>getID3
+  - Copyright &copy; James Heinrich, Allan Hansen
+  - <a href="http://getid3.sourceforge.net/" title="http://getid3.sourceforge.net/">http://getid3.sourceforge.net/</a></li>
+
+  <li>PHPMailer v1.73
+  - Copyright &copy; Brent R. Matzelle
+  - <a href="http://phpmailer.sourceforge.net/" title="http://phpmailer.sourceforge.net">http://phpmailer.sourceforge.net</a></li>
+
+  <li>FeedCreator class v1.7.2
+  - Copyright &copy; Kai Blankenhorn</li>
+
+  <li>XP Publishing Wizard
+  - Based on and inspired by the Gallery Project (<a href="http://gallery.menalto.com/" title="http://gallery.menalto.com">http://gallery.menalto.com</a>)<br>
+  Written by: Demian Johnston and Bharat Mediratta <br> Portable version developed by: Tim Strehle and Andre Basse</li>
+
+  <li>Slideshow
+  - Based on the Javascript slideshow from the Gallery Project (<a href="http://gallery.menalto.com/" title="http://gallery.menalto.com">http://gallery.menalto.com</a>)</li>
+
+  <li>SWFObject v2.0rc1
+  - Copyright &copy; Geoff Stearns, Bobby Vandersluis
+  - <a href="http://code.google.com/p/swfobject/" title="http://code.google.com/p/swfobject/">http://code.google.com/p/swfobject/</a></li>
+
+  <li>QTObject embed v1.0.2
+  - Copyright &copy; Geoff Stearns
+  - <a href="http://blog.deconcept.com/" title="http://blog.deconcept.com">http://blog.deconcept.com</a></li>
+
+  <li>Flash Video Player, Flash <abbr>MP3</abbr> Player and Flash mini-slideshow
+  - Copyright &copy; Wayne Patterson
+  - <a href="http://www.flashyourweb.com/" title="http://www.flashyourweb.com">http://www.flashyourweb.com</a></li>
+
+  <li>FlowPlayer v1.21.1
+  - Copyright &copy; Anssi Piirainen
+  - <a href="http://flowplayer.org" title="http://flowplayer.org">http://flowplayer.org</a></li>
+
+  <li>Audio Player by 1 Pixel Out</li>
+
+  <li>FMP3 Players
+  - <a href="http://www.enricolai.com/" title="http://www.enricolai.com/">http://www.enricolai.com/</a></li>
+
+  <li>JUPLOAD Java Upload Applet
+  - http://jupload.sourceforge.net</li>
+
+  <li>MooTools v1.11
+  - http://www.mootools.net
+  - Open Source MIT License</li>
+
+  <li>Slimbox v1.41 by Christopher Beyls (http://www.digitalia.be) Inspired by the oriiginal LightBox v2 by Lokesh Dhakar.
+  Modified by Mohamed Aly to add timed transitions. 
+  Open Source MIT License</li>
+
+  <li>Simple Slide Show v1.3
+  - Samuel Birch
+  - Open Source MIT License</li>
+
+  <li>SimpleViewer
+  - http://www.airtightinteractive.com/simpleviewer/</li>
+
+  <li>Several Open Source JavaScript Routines</li>
+
+</ul>
+
+<h1><a name="mozTocId27867"></a>動作環境</h1>
+
+<p>メディアギャラリーはGeeklogとサーバー環境に大きく依存しています。
+メディアギャラリーが充分に動作するには次の条件を満たしている必要があります。</p>
+
+<h2><a name="mozTocId190332"></a>Geeklogのバージョン</h2>
+
+<p>メディアギャラリーにはGeeklogの最新版がインストールされ動作している必要があります。
+現在最新版のGeeklogは<a href="http://www.geeklog.net/article.php/geeklog-1.4.1" title="http://www.geeklog.net/filemgmt/index.php?id=747">Geeklog v1.4.1</a>です。
+メディアギャラリーはGeeklog v1.4.0かそれ以降のバージョンで動作しますが、常にGeeklog最新版を使われることとを推奨します。</p>
+
+<h2><a name="mozTocId101151"></a>キャッシングテンプレートライブラリ v2.0</h2>
+
+<p class="notetranslator">(補足: Geeklog用バージョン1.6.8には、<a href="http://mystral-kk.net/filemgmt/index.php/31">KZ Template クラス</a>;
+<a href="http://mystral-kk.net/users.php?mode=profile&amp;uid=3">mystral-kk</a>氏作が組み込まれているため、Caching Template Libraryをインストールする必要はありません。
+この項の情報は無視してください。)</p>
+
+<p>メディアギャラリー v1.6の動作には、<a href="http://www.gllabs.org/wiki/doku.php?id=people#joe_mucchiello">Joe
+Mucchiello</a>氏作の<a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">Caching Template Library</a>がGeeklogにインストールされている必要があります。</p>
+
+<P>キャッシングテンプレートライブラリはGeeklogのテンプレートディレクトリを実行可能なPHPコードにプリコンパイルし、これによりサイトでの表示を高速化します。
+また、テンプレートファイル内部での論理処理も行い、メディアギャラリーの動作を助けます。</p>
+
+<p>インストールは非常に簡単にすぐに終わります。
+詳細はこちらの<a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">wiki page</a>を御覧下さい。</p>
+
+<h2><a name="mozTocId592268"></a>PHPバージョンとコンフィギュレーション</h2>
+
+<p>PHP v4.3.0以降が必要です。</p>
+
+<p>メディアギャラリーはある程度のメモリーを消費します。
+大きな画像ファイルと外部グラフィックパッケージを呼び出すと大きなメモリーを必要とします。
+PHPのコンフィギュレーションで、最低でも48M/プロセスのメモリ使用を許可する設定にしてください。
+php.iniの<strong>memory_limit</strong>を確認して、48M以上の設定にしてください。</p>
+
+<p><strong>register_globals=off</strong>としてください。</p>
+
+<p><strong>safe_mode=on</strong>でも動作しますが、この状態はサポート外です。
+私の知る限り一人のユーザーのみがこの設定でメディアギャラリーを動作させています。</p>
+
+<h2><a name="mozTocId518716"></a>グラフィックパッケージ</h2>
+
+<p>以下のうち、どれか一つのグラフィックパッケージがサーバーにインストールされている必要があります。</p>
+
+<ul type="disc">
+
+  <li>GD Libraries v2 linked into <abbr>PHP</abbr></li>
+
+  <li>ImageMagick</li>
+
+  <li>NetPBM</li>
+
+</ul>
+
+<p>どの画像フォーマットをメディアギャラリーがサポートするかは、どのグラフィックパッケージがインストールされているかで決まります。
+メディアギャラリーがサポートする3つの画像処理パッケージの概略とサポートされているフォーマットをまとめます</p>
+
+<table class="mg_admin_table" style="text-align: center;">
+  <tbody>
+    <tr>
+      <th style="width:20%;">Package</th>
+      <th style="width:10%;"><abbr title="Joint Photographics Experts Group">JPG</abbr></th>
+      <th style="width:10%;"><abbr title="Portable Network Graphics">PNG</abbr></th>
+      <th style="width:10%;"><abbr title="Graphics Interchange Format">GIF</abbr></th>
+      <th style="width:10%;">Animated<br><abbr title="Graphics Interchange Format">GIF</abbr></th>
+      <th style="width:10%;">BMP</th>
+      <th style="width:10%;"><abbr title="Tagged Image File Format">TIFF</abbr></th>
+      <th style="width:10%;">TGA</th>
+      <th style="width:10%;">PSD</th>
+    </tr>
+    <tr>
+      <td>ImageMagick</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X<sup>1</sup></td>
+      <td>X<sup>1</sup></td>
+      <td>X<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td>GD Libs v2+</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>NetPBM</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>&nbsp;</td>
+      <td>X</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p> <strong><sup>1</sup></strong><abbr title="Tagged Image File Format">TIFF</abbr>, TGA,
+PSD 画像はサムネイルと画像表示のために <abbr title="Joint Photographics Experts Group">JPG</abbr>に変換されます。
+ブラウザではこれらのフォーマットは表示出来ないので、オリジナル画像は元のフォーマットで保存され、このオリジナル画像はダウンロードの際にユーザーが望めば元のフォーマットで提供されます。</p>
+
+<h2><a name="mozTocId92633"></a>データベース</h2>
+
+<p>データベースに関してはGeeklogと同じ条件が必要です。
+現在は、MySQL v3.23以上（最新のv5.1ベータを含む）が必要です。</p>
+
+<p>また、Micrsosoft SQLServer2000とSQLServer2005を完全にサポートします。
+SQLServerのサポートはGeeklog v1.4.1での新機能です。</p>
+
+<h1><a name="mozTocId32420"></a>v1.6.0での新機能</h1>
+
+<p>メディアギャラリーはv1.6においていくつかの新機能を持つようになりました。
+以下がその概略です。</p>
+
+<h3><a class="mozTocH3" name="mozTocId559914"></a>メディアギャラリーにはGeeklog v1.4.0以上が必要です</h3>
+
+<p>メディアギャラリー1.6.0はGeeklog v1.3.11以前はサポートしていません。</p>
+
+<h3><a class="mozTocH3" name="mozTocId517439"></a>メディアギャラリーを動作させるにはキャッシングテンプレートライブラリがインストールされている必要があります</h3>
+
+<p class="notetranslator">(補足: Geeklog用バージョン1.6.8には、KZ Template クラスが組み込まれているため、キャッシングテンプレートライブラリをインストールする必要はありません。)</p>
+
+<p>メディアギャラリーは今後、<a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache" class="wikilink1" title="geeklog:templatecache">キャッシングテンプレートライブラリ</a>がインストールされていることが必要です。
+キャッシングテンプレートライブラリはテンプレートの論理処理能力が優れています。
+つまり、テンプレートの内部で、ある変数に特定の値が設定されているかをチェックすることが出来るので、テンプレートの特定の部分だけを使います。
+例えば、メディア表示の評価オプションを表示するか否かを選択することが可能になっています。
+以前のバージョンのメディアギャラリーではPHPコードが評価機能を表示するか否かを決定し、加えて適切なテンプレート変数を設定していました。
+テンプレートの内部では常に変数{rating}が呼び出されており、評価非表示を選択した場合は空白行が発生していました。
+これからのメディアギャラリーでは、論理処理によりテンプレートで以下を行います。</p>
+
+<h3><a class="mozTocH3" name="mozTocId859771"></a>AJAXスターレーティングシステム</h3>
+
+<p>メディアの評価システムはメディアギャラリー1.6.0で完全に一新されました。
+AJAXによるビジュアルな星表示型の評価システムで、ページをリフレッシュすることなくメディアを評価することが出来るようになりました。
+JavaScript無効の場合にはページリフレッシュが必要になります。</p>
+
+<p>全ての評価情報はデータベースに格納され、別のレポートに活用されたり、ユーザーが何回も評価するなどの事故を防止します。</p>
+
+<p>評価の動作について新しい制限が出来ました。</p>
+
+<ul>
+
+  <li>自分が所有者の（自分がアップロードした）メディアは評価出来ない</li>
+
+  <li>評価は一回しか出来ない。
+  メディアギャラリーはユーザーIDとIPアドレスを保存します。
+  どちらかがマッチした場合評価は出来ません。</li>
+
+  <li>メディア編集画面で評価をリセットする場合、評価履歴も同時に削除されるのでユーザーはそれ以降再度評価することが出来るようになります。</li>
+
+</ul>
+
+<h3><a class="mozTocH3" name="mozTocId179926"></a>メディアギャラリーのスタイリング （スタイルシート） </h3>
+
+<p>Geeklog v1.4以降で使われる.pluginスタイルが使えるようにメディアギャラリーは修正されました。
+メディアギャラリーの過去のバージョンでは別のスタイルシートを使っていました。
+これにより、今後はGeeklogのテーマに合ったスタイルにすることが可能になりました。</p>
+
+<p>過去にメディアギャラリーのスタイルシートをカスタマイズしていた場合、Geeklogのスタイルシートにこれを適用する必要があります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId130805"></a>ポッドキャストの処理</h3>
+
+<p>メディアギャラリーの過去のバージョンでは、アルバム編集画面でポッドキャスト属性を選択してポッドキャストアルバムを作成しましたが、この機能は変更されました。
+今後は、ポッドキャスト属性選択は単にRSSをどのように生成するかを変更するだけです。
+アルバムの見た目には影響を与えません。
+今までの機能との操作性保持のために、アルバム毎のテーマを使い、ポッドキャストアルバムを選択することになります。</p>
+
+<p>メディアギャラリーの過去のバージョンでは、ポッドキャストアルバムのMP3ファイルのサムネイルの下に小さいスライド型MP3プレイヤーが表示されていました。
+このプレイヤーをメディアギャラリーv1.6でも使えるように、MP3リボンプレイヤーという新しいアルバムコンフィギュレーション属性を作りました。
+この属性をONにするとプレイヤーが表示されるようになります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId903135"></a>メディアの処理</h3>
+
+<p>メディアギャラリーの過去のバージョンでは、全ての画像メディアはJPGフォーマットに変換されていました。
+今後、メディアギャラリーはこの変換を行わず、もとのフォーマットで画像メディアを保存します。
+NPG，PNG, GIF, BMPについてはこのようになります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId849016"></a>検索機能の強化</h3>
+
+<p>メディアギャラリーは内部検索をサポートするようになり、標準アルバム表示形式で検索結果を返します。
+システムオプション-表示オプションにある新しい設定オプションを変更することによりアルバムの見栄えをコントロールします。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th>設定オプション</th>
+      <th>値</th>
+    </tr>
+    <tr>
+      <td>検索結果の行数</td>
+      <td>検索結果に表示する行数</td>
+    </tr>
+    <tr>
+      <td>検索結果の行数</td>
+      <td>検索結果に表示する列数</td>
+    </tr>
+    <tr>
+      <td>検索結果での音楽/ビデオの再生方法</td>
+      <td>音楽とビデオメディアの再生方法を選択。
+      選択肢は:<br>
+      - ポップアップウィンドウで再生<br>
+      - ローカルへダウロード<br>
+      - インラインで再生<br>
+      - mmsを使用：Microsoftがサポートしているメディアへのリンク</td>
+    </tr>
+    <tr>
+      <td>検索結果に閲覧数を表示する</td>
+      <td>閲覧数の表示・非表示の選択</td>
+    </tr>
+    <tr>
+      <td>検索結果に評価を表示する</td>
+      <td>検索結果に評価を表示するか否か</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId131065"></a>キーワード機能の強化</h3>
+
+<p>メディアギャラリーは過去においても各メディアへのキーワードをサポートしてきましたが、本当の意味では機能してきませんでした。
+メディアギャラリーv1.6.0のキーワードはホットリンクであり、あるキーワードを選択すると、そのキーワードを持つ全てのメディアが表示されます。
+これによりメディアギャラリーの内部検索機能が更にパワフルなものになっています。</p>
+
+<h3><a class="mozTocH3" name="mozTocId729457"></a>Flashビデオ再生の強化</h3>
+
+<p>V1.6.0では新たにお好きなFLVプレイヤーを選択することが出来るようになりました。
+デフォルトのMGflvプレイヤーはWayne Pattersonが開発したもので、素晴らしいユーザーインターフェースと豊富な機能を提供します。
+FlowPlayerFLVプレイヤーはスキンのカスタマイズにより、サイトにマッチするデザインへの柔軟な変更が可能になっています。</p>
+
+<p>プレイヤーの選択のために「<span style="font-weight: bold;">システムオプション-表示オプション</span>」に新たな設定オプションが追加されました。</p>
+
+<h3>Flashビデオプレイヤー</h3>
+
+<p>デフォルトのFlashビデオプレイヤーとしてMFflvかFlowPlayerを選びます。</p>
+
+<p>全てのFLV再生用のテンプレートは2つのテンプレートに集約されました。</p>
+
+<ul>
+
+  <li>flvfp.thtml - The FlowPlayer template</li>
+
+  <li>flvmg.thtml - The MGflv template</li>
+
+</ul>
+
+<p>この2つのテンプレートをカスタマイズすれば全てのFLV再生領域に反映されます。
+インライン、ポップアップ、ローカルFLV、ストリーミングFLVのいずれにも対応します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId675309"></a>FlowPlayerのカスタマイズ</h3>
+
+<p>メディアギャラリーはFlowPlayerをデフォルトのFLVプレイヤーとしてサポートしています。
+FlowPlayerの大きな特徴の一つは見た目をカスタマイズ出来ることです。
+FlowPlayer v1.19以降ではスキンを活用出来るようになりました。</p>
+
+<p>FlowPlayerの作者が「FlowPlayer Skinning Kit」というスキン活用のツールを発表しており、以下で入手可能です。<br>
+<a href="http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349">http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349</a></p>
+
+<p>このツールはWindowsマシン用に設計されており、SunJava runtimeとApacheがインストールされている必要があります。
+それぞれは以下で入手可能です。<br>
+<a href="http://code.google.com/p/winant/">http://code.google.com/p/winant/</a></p>
+
+<p>このツールはコマンドラインで操作します。
+ディストリビューションパッケージを解凍した場所にCDしてantを実行してください。
+生成されたプレイヤーがbuild/FlowerPlayer.swfに置かれます。
+デフォルトでグレーのスキンのデフォルトプレイヤーが生成されます。</p>
+
+<p>ご自分のスキンを作るためにはimagesディレクトリの画像ファイルを置き換えてください。
+「名は体を表す」ファイル名にほぼなっています。
+xml/Skin．xml．tmplファイルにサポート用のコメントがあります。</p>
+
+<p>LinuxやMacで使うためにはswfmillバイナリをこれらのシステムのバージョンに合うものに置き換えます。
+swfmillはサイトからダウンロードします。</p>
+
+<p>パッケージに同梱されているREADMEファイルに更に詳細な説明があります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId746489"></a>メディア表示の強化</h3>
+
+<p>メディアギャラリーは今後、3つのメインテンプレートで、メディア表示のルック＆フィールのコントロールを行います。
+メディアが動画ならview_video.thtmlテンプレートが使われ、音声にはview_audio.thtml、他の全てのメディアにはview_image.thtmlが使われます。</p>
+
+<p>これにより映像・音声ファイルのルック＆フィールのカスタマイズが出来るようになります。
+例えば、動画ファイルのみのアルバムがあるとして、view_video.thtmlテンプレートを編集すれば動画ファイルの属性や色を変えることが出来ます。
+この変更は動画のみに適用され、他のメディアタイプには影響を与えません。
+このアイデアを出してくれたRechard Towlerに感謝します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId273334"></a>メディアギャラリーのテンプレート</h3>
+
+<p>テーマディレクトリ: /layout/themeにテンプレートを移動出来るオプションを追加しました。
+これによりテーマごとにメディアギャラリーのデザインの切り替えが出来るようになりました。</p>
+
+<p>テーマディレクトリにテンプレートを移動する場合、次の4つのステップを踏んでください。</p>
+
+<ol>
+
+  <li>plugins/mediagallery/templates/ の中身をlayout/themename/mediagallery/にコピーする</li>
+
+  <li>public_html/mediagallery/images/ の中身をlayout/themename/mediagallery/images/にコピーする</li>
+
+  <li>public_html/mediagallery/style.css の中身をlayout/themename/mediagallery/にコピーする</li>
+
+  <li>メディアギャラリーのconfig.phpを編集する<br>
+  <br>
+  次の行をコメントアウト:<br>
+  $_MG_CONF['template_path'] = $_CONF['path'] . 'plugins/mediagallery/templates';<br>
+  <br>
+  次の行をアンコメント:<br>
+  $_MG_CONF['template_path'] = $_CONF['path_layout'] . 'mediagallery/';</li>
+
+</ol>
+
+<p>上記のファイルの全てを、<b>全てのテーマディレクトリに</b>コピーしてください。
+これで全てのテーマに対してstyle.cssが存在することになります。
+テーマごとにメディアギャラリーで使われる画像をカスタマイズするなどが出来るようになります。
+例えば、メディアギャラリーのポストカードに使われる小さな封筒の画像をテーマごとに変えることなども出来るようになります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId82940"></a>メディアギャラリーのセキュリティと安全機能</h3>
+
+<p>メディアギャラリーのユーティリティーによるファイルチェック機能を強化しましたので、
+配布物に含まれる全てのファイルを照合します。
+メディアギャラリーのディレクトリ構造に不明のディレクトリやファイルが見つかった場合にはレポートします。</p>
+
+<p>この機能の主な目的は古いメディアギャラリーのファイルをクリーンアップが出来るようにすることです。
+メディアギャラリーの発達に伴いいくつかのファイルはリネーム・移動・削除されました。
+ファイルチェック機能はこのような整理に役立つのです。</p>
+
+<p>また、メディアギャラリーのディレクトリツリーにファイルが追加されいればそれを検知する方法も提供します。
+単純なセキュリティチェックになります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId665988"></a>アルバムテーマ</h3>
+
+<p>アルバムテーマのサポートも追加しました。
+アルバム毎に別々のテンプレートとスタイルシートを追加出来るようになりました。
+現在の開発段階ではデフォルトテーマひとつだけですが、最終発表の時にはいくつか別のテーマを開発します。</p>
+
+<h3>アルバムテーマのアップデート</h3>
+
+<p>テーマ用テンプレートのカスタムセットを作りたい場合、変更したいテンプレートを上書きするだけでOKです。
+skin/ ディレクトリの全てのテンプレートを上書きする必要はありません。</p>
+
+<p>この機能はメディアギャラリーテンプレートファイルをローカルに変更したい場合にも使えます。
+アップグレードの際にこれらのファイルが上書きされる心配はありません。</p>
+
+<h3><a class="mozTocH3" name="mozTocId537925"></a>まだまだあります！</h3>
+
+<p>以上述べてきたのは主な改善点だけです。
+他にもマイナーな機能強化と機能追加も行われているので、詳しくは配布ファイルに含まれるChangeLogファイルをご覧ください。</p>
+
+<h1><a name="mozTocId623782"></a>インストール</h1>
+
+<p>Geeklogプラグインの標準的なインストール手順に従います。
+以下に2つのメディアギャラリーファイルのインストール方法、一つはFTP経由、もう一つはサーバーへの標準シェルアクセスによるものを説明します。</p>
+
+<div class="noteimportant">Fantastic, cPanel, Pleskなどの自動インストーラーを使っている場合、パスが以下のマニュアルとは少々違っているかもしれません。
+Geeklogのconfig.phpを見てファイルをどこにコピーすべきかを確認してください。
+以下の<span style="font-weight: bold;">「Geeklog自動インストール」</span>をご覧下さい。</div>
+
+<h2><a class="mozTocH3" name="mozTocId473182"></a>Geeklogの自動インストール</h2>
+
+<p>GeeklogのインストールにFantastico, cPanel, or Pleskなどの自動インストーラを使う場合、または、レンタルサーバーがrootにファイルを置くことを許可していない場合、下記のマニュアルの内容を調整して正しい位置にファイルを置くようにしてください。
+手動でGeeklogをインストールする場合は、この項目をスキップしてください。</p>
+
+<p>大抵の場合、自動インストーラはGeeklog標準のインストール手順に従わず、Geeklogファイルを全てサイトのrootに置いてしまいます。
+もしこのようなことが起こってしまった場合は、Geeklog.netのセキュリティTIPSのこの問題に関するFAQを参照してください。</p>
+
+<p>ウェブサーバー上の正しいインストール場所を知るためにはGeeklogのcofig.phpファイルを開いてみます。
+$_CONF設定が幾つかあり、そこでGeeklogパスが分かるはずです。</p>
+
+<p>例えば、一般的に自動インストーラが使われる場合、またはサーバーがwebのrootの外側にファイルを置くことを許可していない場合、$_CONF['path'] と $_CONF['path_html'] は同じ値になります。
+つまり、このマニュアルを読む場合、以下のようになります。</p>
+
+<p><span style="font-weight: bold;">mediagallery</span>というディレクトリを<span style="font-weight: bold;">public_html</span>ディレクトリの下に作成します。
+たぶん<span style="font-style: italic;">public_html</span>というディレクトリはないと思います。
+その場合、以下の場所にディレクトリを作ります。</p>
+
+<p>$_CONF['path_html'] /mediagallery</p>
+
+<p>$_CONF['path_html']を実際のディレクトリの値に置き換えます。
+例えば、$_CONF['path_html']が'/home/www/mysitename'に設定されているなら、mediagalleryディレクトリを以下に作成します。</p>
+
+<p>/home/www/mysitename/mediagallery</p>
+
+<p><span style="font-weight: bold;">geeklogパス(非公開領域)</span></p>
+
+<p>$_CONF['path']がどこを示すのか？ これはGeeklogのメイン（ルート）ディレクトリになります。
+このマニュアルのどこにおいても非公開領域（geeklogパス）とあれば、$_CONF['path']で定義されたパスを指します。</p>
+
+<p><span style="font-weight: bold;">公開領域 public_html</span></p>
+
+<p>$_CONF['path_html']の値はGeeklogのconfig.phpにあります。
+このディレクトリはwebサーバーが実際にHTMLページとPHPファイルを見に行く場所です。
+このマニュアルのどこにおいても公開領域（public_html）とあれば$_CONF['path_html']で定義された場所と考えてください。</p>
+
+<h2><a class="mozTocH3" name="mozTocId312812"></a>FTPインストール</h2>
+
+<p>サーバーへのシェルアクセスの方法がなく、FPTクライアントを使う場合は以下の指示に従ってください。</p>
+
+<p>メディアギャラリーのようなGeeklogプラグインをインストールするには、まずプラグインをあなたのコンピュータ上に解凍します。
+メディアギャラリーの配布物を解凍すると自動的に全てのディレクトリが作成されます。</p>
+
+<p>.gzファイルの解凍にはWinZIPや<a href="http://www.rarlab.com/" title="http://www.rarlab.com/">WinRAR</a>、MacOSXをお使いなら<i>StuffIt</i>の最新バージョンを使ってください。 </p>
+
+<ol start="1" type="1">
+
+  <li>あなたのコンピュータのローカルドライブに一時ディレクトリを作り、そこにメディアギャラリーのファイルを一時的に保存します。(例えばC\tempを使います。)</li>
+
+  <li><b>mediagallery-1.6.0-1.4.0.tar.gz</b>をWinRARで解凍します。</li>
+
+  <li>「すべてのファイルを解凍する」オプションを選び、C:\tmpを解凍先に指定します。</li>
+
+</ol>
+
+<p>これでメディアギャラリープラグインのローカルコピーがC:\tmpに出来上がりました。</p>
+
+<p>ローカルのハードディスクにファイルの準備が出来ましたのでFTPでサーバーにアップロードしましょう。</p>
+
+<p>FTPプログラムをお持ちでないなら<a href="http://filezilla.sourceforge.net/">FileZilla</a>をお勧めします。
+FileZillaは多くのOSをサポートしている無料のプログラムです。</p>
+
+<p>FTPプログラムでwebサーバーに接続します。</p>
+
+<p>最初に、すべてのメディアギャラリーのファイルをアップロードします。
+下記の図を参考に、サーバー上の正しい場所を確認し、<b>c:\tmp\mediagallery\</b>ディレクトリのファイルを<b>path-to-geeklog/plugins/</b>ディレクトリにアップロードします。</p>
+
+<p><b>path-to-geeklog</b>の場所はGeeklogのconfig.phpファイルを開いて確認します。
+<b>$_CONF[&lsquo;path&rsquo;]</b>の行に定義されているディレクトリです。</p>
+
+<div class="notetip">FTPでの最初の作業として、ローカルの<b>mediagallery</b>フォルダをドラッグし、サーバーの<b>plugins</b>ディレクトリにドロップします。
+次の作業ではディレクトリでなくファイルをドラッグします。</div>
+
+<pre><code>        tmp\                path-to-geeklog/
+           |                               |
+           + mediagallery\--+              + backups/
+                            |              + data/
+                            |              + language/
+                            |              + logs/
+                            +-------------&gt;+ plugins/
+                                           + public_html/
+                                           + sql/
+                                           + system/
+                                           + db-config.php</code></pre>
+
+<p>次にサーバーの<b>public_html</b>の下に<b>mediagallery</b>というディレクトリを作成します。
+たいていのFTPプログラムでは親ディレクトリをハイライト（選択）することによりディレクトリ作成が出来るようになります。
+このマニュアルでは<b>public_html</b>としますが、このディレクトリをマウスで右クリックし｢新規フォルダ作成｣を選び<b>mediagallery</b>と名前をつけます。
+このあたりの手順はお使いのFTPプログラムによって少々違うかもしれません。
+そのプログラムのマニュアルやヘルプを確認ください。</p>
+
+<pre><code>
+        path-to-geeklog/
+                       |
+                       + backups/
+                       + data/
+                       + language/
+                       + logs/
+                       + plugins/
+                       + public_html/
+                                    |
+                                    + mediagallery &lt;--- Make this subdirectory
+                       + sql/
+                       + system/
+                       + db-config.php</code></pre>
+
+<p>次に、ローカルのc:\tmp\mediagallery\public_html\*にあるファイルをすべてサーバーにアップロードします。
+public_html\直下にあるファイルだけでなく、サブフォルダーとその中にあるファイルすべてが対象です。
+下図を参考にしてください。</p>
+
+<pre><code>        tmp\                 path-to-geeklog/
+           |                                |
+           + mediagallery\                  + backups/
+                         |                  + data/
+                         + public_html\*-+  + language/
+                                         |  + logs/
+                                         |  + plugins/
+                                         |  + public_html/
+                                         |               |
+                                         +--------------&gt;+ mediagallery/
+                                            + sql/
+                                            + system/
+                                            + db-config.php</code></pre>
+
+<p>次に、<b>admin/plugins/</b>の下に<b>mediagallery</b>というサブディレクトリを作ります。</p>
+
+<pre><code>        path-to-geeklog/
+                       |
+                       + backups/
+                       + data/
+                       + language/
+                       + logs/
+                       + plugins/
+                       + public_html/
+                       |    |
+                       |    + admin/
+                       |           |
+                       |           + plugins/
+                       |                    |
+                       |                    + mediagallery &lt;--- Make this subdirectory
+                       + sql/
+                       + system/
+                       + db-config.php</code></pre>
+
+<p>次に、c:\tmp\mediagallery\admin\*にあるすべてのファイルをサーバーにアップロードします。
+admin\ディレクトリ直下のファイルだけでなく、admin\ディレクトリ下にあるすべてのサブディレクトリとその下にあるファイルが対象です。
+下図をご覧ください。</P>
+
+<pre><code>        tmp\            path-to-geeklog/
+           |                           |
+           + mediagallery\             + backups/
+                         |             + data/
+                         + admin\---+  + language/
+                                    |  + logs/
+                                    |  + plugins/
+                                    |  + public_html/
+                                    |         |
+                                    |         + admin/
+                                    |                |
+                                    |                + plugins/
+                                    |                         |
+                                    +-----------------------&gt; + mediagallery/
+                                       + sql/
+                                       + system/
+                                       + db-config.php</code></pre>
+
+<p>おめでとうございます！
+これですべて必要なファイルのアップロードが終わりました。
+次のオンラインインストールに行きましょう。</p>
+
+<h2><a class="mozTocH3" name="mozTocId773303"></a>標準シェルアクセスインストール</h2>
+
+<ol start="1" type="1">
+
+  <li>メディアギャラリープラグインはデータベースにtableを追加しますので、Geeklogデータベースをバックアップしてください。
+  管理メニューのデータベースバックアップユーティリティーを使います。</li>
+
+  <li>メディアギャラリープラグインのアーカイブファイルを解凍しpath-to-geeklog/pluginsに配置します。
+  アーカイブファイルがmediagalleryというディレクトリを作成します。</li>
+
+  <li>public_htmlディレクトリ下にmediagalleryというディレクトリを作成します。</li>
+
+  <li>public_html/admin/plugins/ディレクトリ下にmediagalleryというディレクトリを作成します。</li>
+
+  <li>path-to-geeklog/plugins/mediagalleryに移動します。</li>
+
+  <li>adminディレクトリにあるファイルをstep4で作ったadmin/plugins/mediagalleryにコピーします。</li>
+
+  <li>public_htmlディレクトリのファイルをstep3で作ったpublic_html/mediagalleryにコピーします。</li>
+
+</ol>
+
+<h2><a name="mozTocId586179"></a>オンラインインストール</h2>
+
+<p>これでサーバーへのファイルの準備が終わりました。
+Geeklogへのメディアギャラリーのインストールをしましょう。</p>
+
+<div class="notewarning">メディアギャラリーはサーバーにGeeklogがインストールされているかチェックをします。
+コンフィギュレーションエラーや不足のコンポーネントがある場合、メディアギャラリーのインストールボタンは表示されません。</div>
+
+<ol start="1" type="1">
+
+  <li>プラグイン管理画面に行きます。メディアギャラリープラグインが「インストール」リンクとともに表示されています。
+  このリンクをクリックします。
+  次にインストールページが現れてインストールが成功したか否かを教えてくれます。
+  不成功の場合、<b>path-to-geeklog/logs/</b>でerror.logを確認し、何が問題だったのかを確認してください。
+  問題を解決してから再度インストールをしてみてください。</li>
+
+  <li>インストールページでメディアギャラリーの設定ページへの案内が出てきます。
+  このリンクを選択し、あなたの環境に合わせた設定を行ってください。</li>
+
+</ol>
+
+<h1><a name="mozTocId617560"></a>アップグレード</h1>
+
+<h3><a class="mozTocH3" name="mozTocId918417"></a>標準アップグレード手順</h3>
+
+<p>メディアギャラリーのアップグレード手順は非常にシンプルです。
+新しいメディアギャラリーのファイルを新規インストールのときのようにWebサーバーにコピーするだけです。
+インストールプログラムの代わりにGeeklogのプラグインアップデートを実行します。</p>
+
+<p>データベース構造が変更になることがあるので、Geeklogプラグインアップデートの実行中は、ランダムイメージブロック・What'sNewList・自動タグが無効になります。
+これにより、アップデートの間のサイト訪問者にSQLエラーを見せるリスクを回避します。</p>
+
+<div class="noteimportant">アップグレードの前に<a href="#mozTocId27867">メディアギャラリー動作環境</a>を参考にPHP設定が適当か、必要なソフトがすべてインストール済みか確認してください。</div>
+
+<p>アップグレードは以下のステップで行います。</p>
+
+<ul type="disc">
+
+  <li><b>今の環境をバックしてください！</b></li>
+
+  <li><b>あなたが変更したテンプレートを保存してください。</b>
+  カスタマイズしたテンプレートをアップグレード後にも使いますよね？</li>
+
+  <li>このマニュアルの新規インストールの部分をよく参照して、サーバーの正しい場所にメディアギャラリーの新バージョンのファイルをアップロードします。
+  ファイルの上書きをサーバーが確認してきたときは「はい」を選択します。</li>
+
+  <li>Geeklogのプラグインメニュー（Geeklogの管理メニュー）に行きます。</li>
+
+  <li>リストからメディアギャラリーを選びます。</li>
+
+  <li>アップグレードボタン（またはリンク）があるはずです。
+  それをクリックします。</li>
+
+</ul>
+
+<p>問題なければ、アップグレードはこれで完了です。
+エラーが出た場合は、logs/error.logを見て問題を解決し、再度アップデートを行います。</p>
+
+<p>アップグレード成功のページが表示されると、<a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">キャッシングテンプレートライブラリ</a>がインストールされ有効になっており、php.iniのmemory_limit設定が適当であることになります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId259069"></a>アップグレード後のチェック</h3>
+
+<ul type="disc">
+
+  <li>メディアギャラリー設定のすべての項目をチェックします。
+  「メディアギャラリー管理」画面の「システムオプション」を選び、すべての項目があなたの必要と合っているかを確認してください。</li>
+
+  <li>自動タグがすべて正しく設定されているか確認します。
+  メディアギャラリーの前のバージョンとは、タグの使い方が変わっているものがあります。
+  「自動タグ」の項を見て自動タグの使い方が代わったものをチェックしてください。</li>
+
+  <li>許可されたメディアの種類があなたのアルバムと適合しているか確認してください。
+  メディアギャラリーv1.5.0では3種類のメディアタイプが追加されています。</li>
+
+  <li>v0.8xとv0.9xからのアップグレードの場合、サムネイルをすべてリビルドする必要があります。
+  v0.8xとv0.9xではサムネールのサイズが150x150でしたが、今は200x200とより大きなサムネールを表示できるようになっています。
+  メディアギャラリー管理画面の「サムネールをすべてリビルドする」をご覧ください。</li>
+
+</ul>
+
+<h2><a name="mozTocId960221"></a>ディレクトリのパーミッション</h2>
+
+<p>メディアギャラリーが特定のディレクトリに書き込みが出来るようにすることを忘れてはいけません。
+一般的にWebサーバーがメディアギャラリープログラムを実行していますが、Webサーバーが以下のディレクトリに書き込み出来るように設定されていなければいけません。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:50%;">ディレクトリ</th>
+      <th style="width:50%;">説明</th>
+    </tr>
+    <tr>
+      <td>public_html/mediagallery/mediaobjects/*</td>
+      <td>これ以下のすべてのディレクトリ</td>
+    </tr>
+    <tr>
+      <td>public_html/mediagallery/rss</td>
+      <td>RSSフィードはここにあります。</td>
+    </tr>
+    <tr>
+      <td>plugins/mediagallery/tmp</td>
+      <td>メディアギャラリーの一時作業領域</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId568335"></a>パーミッション設定の方法</h3>
+
+<p>パーミッション設定の仕方はサーバーごとに違いますし、サーバーへの接続方法によっても違ってきます。
+シェルアクセス権限をお持ちの場合、パーミッション変更はmediagallery/mediaobjects/ディレクトリで以下のコマンドを実行するだけで完了します。</P>
+
+<pre> chmod -R 777 *</pre>
+
+<p>サーバーにFTPでファイルをアップロードしている場合は、お使いのFTPプログラムでパーミッションの変更をします。
+FileZillaの場合のパーミッション設定の例を以下に示します。
+
+<ul>
+
+  <li>マウスでパーミション変更をしたいディレクトリを選択します。</li>
+
+  <li>右クリックで「ファイル属性」を選びます。</li>
+
+  <li>ウィンドウが開きます。
+  読み・書きのオーナー・グループ・公開パーミッションを選択します。</li>
+
+</ul>
+
+<p>上記した全てのディレクトリに対して、この手順を行います。</p>
+
+<h3><a class="mozTocH3" name="mozTocId897529"></a>援助</h3>
+
+<p>正しいパーミッション設定についての援助が必要な場合は、レンタルサーバー会社のテクニカルサポートに連絡をとるか、<a href="http://www.gllabs.org/">glLabs website</a>にサポートメッセージを投稿して下さい。</p>
+
+<h1><a name="mozTocId197289"></a>使ってみる - クィックスタートガイド</h1>
+
+<p>日常的に必要なメディアギャラリーの機能はメイン画面とアルバム画面のドロップダウンメニューにあります。
+一般ユーザーが使う場合には、このドロップダウンメニューは検索などの機能しかありませんが、メディアギャラリー管理者とアルバムの所有者には、必要なすべての機能がメニューで提供されています。</p>
+
+<ul type="disc">
+
+  <li>アルバムを作成</li>
+
+  <li>アルバムの設定</li>
+
+  <li>メディアを追加</li>
+
+  <li>メディア管理</li>
+
+</ul>
+
+<p>これ以外に、より細かい管理機能がメディアギャラリーの管理画面にあります。
+こちらで、全体的な設定やアルバム作成時のデフォルト値の設定、などが出来ます。</p>
+
+<h2><a name="mozTocId639286"></a>メディアギャラリーのコンフィギュレーション</h2>
+
+<p>インストール後に最初に行うべきことは、メディアギャラリー全体のオプション設定です。
+特に、グラフィックパッケージの選択とその設置場所については忘れずに確認してください。
+他のオプションはこのドキュメントの後の部分で説明しますし、一般的にそのままでも大丈夫です。
+管理者メニューのメディアギャラリーのリンクから管理画面に入ってください。</p>
+
+<p>メディアギャラリー管理画面からコンフィギュレーションの下の「<span style="font-weight: bold;">システム</span>」リンクを選択します。</p>
+
+<p>画面の一番下までスクロールし、あなたの環境に適当なグラフィックパッケージが選択されているか、必要なら(ImageMagick and NetPBMの場合)、実行可能なプログラムがどこに設置されているかを設定します。
+これらがわからない場合はレンタルサーバー会社に確認してください。
+設定を保存するとメディアギャラリーはセルフチェックを実行し、グラフィックパッケージが存在したか、すべてのディレクトリのパーミッションが正しく設定されているかを確認してくれます。
+エラー表示された場合は、次の手順に進む前にこれを解決してください。</p>
+
+<h2><a name="mozTocId449279"></a>最初のアルバムを作成する</h2>
+
+<p>メディアギャラリーのメイン画面のドロップダウンメニューから「<span style="font-weight: bold;">アルバムを作成</span>」を選択します。
+新しいアルバムのタイトルと説明を入力します。デフォルト値を確認して自分の好みの設定になっていることを確認してください。
+これで最初のアルバムの出来上がりです。</p>
+
+<h2><a name="mozTocId497890"></a>アルバムにメディアを追加する</h2>
+
+<p>新しいアルバムができたので、そこにメディアを追加してみましょう。
+ギャラリーのメイン画面のサムネイルをクリックすると新しいアルバムに行けます。
+オプションのドロップダウンメニューから「<span style="font-weight: bold;">メディアを追加</span>」を選ぶと、Webベースのアップロードフォームになります。
+「参照」ボタンでアップロードしたいファイルをローカルコンピュータから選択し、タイトルと説明を入力します。
+「保存」ボタンを押すとアップロードが始まります。
+アップロードが終わるとファイルが問題なくアップロードされた旨のメッセージが表示されます。
+エラーが出た場合はもう一度設定を見直してください。</p>
+
+<p>クイックスタートはこれで終わりです。
+メディアギャラリーには他にも多くの機能とメディアアップロードの方法があります。
+このドキュメントのreminderを読みメディアギャラリーが提供しているすべての機能をよく理解するようにしてください。</p>
+
+<h1><a name="mozTocId585727"></a>コンフィギュレーション</h1>
+
+<p>メディアギャラリーには使い勝手を向上しGeeklogと統合する多くのオプションがあります。
+ほとんどの設定オプションはメディアギャラリー管理画面から直接可能です。
+いくつかのオプションはメディアギャラリーのコンフィギュレーションファイル、config.phpで行います。</p>
+
+<p>最低限必要な設定はここまでです。
+これ以外のすべての設定オプションは各項目で説明します。</p>
+
+<h2><a name="mozTocId537717"></a>メディアギャラリーの環境</h2>
+
+<p>メディアギャラリーの動作には、どのグラフィックパッケージを使っているか、その実行プログラムがどこに置かれているかの設定が必須です。
+また、画像のアップロードと複製に使う一時ファイルの生成をどこで行うかを必ず設定してあげる必要があります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId785612"></a>グラフィックパッケージ</h3>
+
+<p>メディアギャラリーは3つのグラフィックパッケージをサポートしています。</p>
+
+<ul>
+
+  <li>GD Libraries</li>
+
+  <li>ImageMagick</li>
+
+  <li>NetPBM</li>
+
+</ul>
+
+<p>どのパッケージを使うのがよいかは、あなたのサーバー環境と、あなたがどのメディアを使うつもりなのかに依ります。
+大抵のレンタルサーバーではこれら3つのうちどれか一つはサポートしているはずです。
+サーバー会社のテクニカルサポートに確認してみてください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId614660"></a>GD Libraries</h4>
+
+<p>GD LibrariesはPHPに適合しており追加のパス設定の必要がありません。
+性能もよく画像品質もよい製品です。GD Librariesが使えれば対応画像の種類も多く総合的によい選択だと思います。</p>
+
+<h4><a class="mozTocH4" name="mozTocId823344"></a>ImageMagick</h4>
+
+<p>ImageMagickはプログラムの外部セットです。これを使うためには実行ファイルがどこに置いてあるかをあなたが把握している必要があります。
+一般的にUnix/Linuxベースのサーバーの場合、/usr/bin または /usr/local/bin にあります。
+これらの場所になかった場合、サーバー会社のテクニカルサポートに訊いてみてください。</p>
+
+<p>ImageMagickは性能がよく数多くの種類の画像を扱える製品です。
+PSDファイル(PhotoShop)やTGA(Targa)を使うことを考えているなら、ImageMagickが必要になるでしょう、</p>
+
+<h4><a class="mozTocH4" name="mozTocId59122"></a>NetPBM</h4>
+
+<p>NetPBMもプログラムの外部セットです。
+NetPBMを使うための実行ファイルがどこにあるかを把握しておく必要があります。
+NetPBMは画像品質のよい製品ですが、一般的には他の製品と比べてメモリー消費が多く処理速度が遅いです。</p>
+
+<h3><a class="mozTocH3" name="mozTocId732829"></a>パス</h3>
+
+<p>あるものがどこに保管されたか、どこに一時ファイルを生成出来るかをメディアギャラリーに知らせる必要があります。
+最も大切なのは「<b>グラフィックパッケージのパス</b>」と「<b>Temporaryディレクトリのパス</b>」です。</p>
+
+<p>ImageMagickかNetPBMを使っている場合、「グラフィックパッケージのパス」が必要です。
+この場所がわからない場合はサーバー会社のテクニカルサポートに連絡を取ってください。</p>
+
+<p>「Temporaryディレクトリのパス」はメディアギャラリーがアップロードを処理する時と、他のメンテナンスを行うときに使う一時ファイルを生成する場所です。
+このディレクトリは必ずWebサーバーから書き込み可能な状態で存在していなければなりません。
+デフォルトでは、メディアギャラリーがインストールされたディレクトリに一時ファイルを作ろうとします。
+この設定を変える必要はありません。</p>
+
+<h1><a name="mozTocId220901"></a>アルバム</h1>
+
+<p>アルバムはあなたのメディアアイテムを保管する場所です。
+アルバムの下にアルバムを作ることも出来ます。
+これをサブアルバムと呼びます。
+一つ一つのアルバムに、どのように見せるか、各種のメディアをどう処理するかを制御する固有のプロパティを持たせることが出来ます。</p>
+
+<p>アルバムの設定によりメディアギャラリーがどのように動作するかを制御することが出来ます。
+アルバムの設定で、誰に見せるか、どの種類のメディアを保存するか、誰がアップロードできるか、メディアをどのように提供するか、そして提供したメディアに対してどの機能を提供するか、を制御することが出来ます。
+メディアプレゼンテーションにおいてすべての設定を理解することは非常に大切です。</p>
+
+<h2><a name="mozTocId454806"></a>アルバムの設定・オプション</h2>
+
+<h3><a class="mozTocH3" name="mozTocId581405"></a>アルバム属性</h3>
+
+<p>アルバム属性のオプションでは、そのアルバムでどの機能をONにするか、アルバムをどのように見せるかを制御します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId682412"></a>アルバムテーマ</h4>
+
+<p>そのアルバムにどのテーマを使うかを選びます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId253576"></a>コメント許可</h4>
+
+<p>この機能がONの時、アルバムのメディアアイテムにユーザーがコメントすることが出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId190939"></a>EXIFを有効にする</h4>
+
+<p>この機能が許可されているとき、そのJPGイメージに埋め込まれたEXIF/IPTCデータをユーザーが参照出来るようになります。
+これを不許可にも出来ますし、EXIF/IPTCデータをメディアの下に表示、またポップアップウィンドウで表示させる選択も出来ます。
+また、メディアギャラリー管理画面のEXIFオプションでEXIF/IPTC metaデータの表示・非表示の制御が可能です。</p>
+
+<h4><a class="mozTocH4" name="mozTocId813717"></a>評価を有効にする</h4>
+
+<p>評価システムの許可・不許可と誰が点数をつけられるかを決定します。
+可能な選択肢は以下のとおりです。</p>
+
+<ul>
+
+  <li>無効</li>
+
+  <li>メンバーのみ</li>
+
+  <li>ゲストにも</li>
+
+</ul>
+
+<p>評価出来るのは一人一回のみです。
+ユーザーIDとIPアドレスが記録されます。</p>
+
+<div class="notetip">ユーザーが自分自身のメディアを評価することは出来ません。
+評価ブロックは表示されますがアクティブにはなりません。</div>
+
+<h4><a class="mozTocH4" name="mozTocId874911"></a>アルバムのRSSフィードを有効にする</h4>
+
+<p>この機能を有効にすると、そのアルバムのRSSフィードが生成・アップデートされます。
+アップデートされるのはメディアを追加・削除した時です。
+RSSアイコンがアルバム名の右側に現れます。
+これによってサイトユーザーがRSSフィードの購読が出来るようになり、アルバムの変更を監視出来るようになります。</p>
+
+<div class="notewarning">ユーザーがRSSフィードを見るときパーミッションのチェックは行われません。
+アルバムを保護していてもRSSフィードを許可していると、誰でもフィードの名前がわかればフィードを見ることができてしまいます。</div>
+
+<h4><a class="mozTocH4" name="mozTocId563776"></a>RSSフィードにサブアルバムも引き込む</h4>
+
+<p>このオプションが選択（チェック）されていると、すべてのサブアルバムもRSSフィードに含まれるようになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId778985"></a>ポッドキャストRSSフィード</h4>
+
+<p>このオプションが選択（チェック）されていると、RSSフィードは適当なコンテナとともに生成され、iTunesのポッドキャストや他のポッドキャストリーダーで見ることが出来るようになります。</p>
+
+<div class="notewarning">このオプションはアルバムの見た目を制御することはしません。
+これが前のバージョンのメディアギャラリーとは異なる点です。</div>
+
+<h4><a class="mozTocH4" name="mozTocId398921"></a>MP3にRibbonプレイヤーを使う</h4>
+
+<p>このオプションが選択されていると、すべてのMP3メディアの下に小さなMP3リボンプレイヤーが表示されるようになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId354853"></a>クライアントによるソートを許可</h4>
+
+<p>この機能が許可されていると、右端下のほうにソート用のドロップダウンメニューが現れます。
+これによりユーザーは個々のメディアを自分の好みにソートすることが出来ます。<br>
+注：ユーザーの便宜のためにサムネイルをソートするだけで、管理者が設定したソートのオプションを変更するわけではありません。</p>
+
+<h4><a class="mozTocH4" name="mozTocId672564"></a>アップロード時のデフォルトのアルバムのソート</h4>
+
+<p>アルバムに保存されているすべてのメディアアイテムはデフォルト値ではアップロードの日時でソートされており、一番新しいものが最初に表示されます。
+ソートのルールを選択することによりメディアがアップロードされる毎にアルバムのコンテンツは設定されたルールに従って再ソートされます。
+このルールがそのアルバムに適用されるソートのデフォルト値になります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId240866"></a>PostCardsを有効にする</h4>
+
+<p>ポストカードでサイトユーザーが自分の家族や友人にショートメッセージとともにメディアを送信することが出来るようになります。
+この機能により、サイトユーザーがあなたのサイトを大いに宣伝してくれることになります。
+ポストカードを完全に不許可にしたり、ログインユーザーのみの限定機能にしたりすべてのユーザーに許可したりも出来ます。</p>
+
+<p>ポストカードをだれでも使えるようにした場合、これがspamに使われる危険がありますから注意書きを使うようにしてください。
+誤用を防ぐために、ポストカード作成の際にCAPTCHA文字列をサポートしています。
+CAPTCHA v3以降がインストールされている必要があります。</p>
+
+<p>この機能の詳細はポストカードの項を御覧下さい。</P>
+
+<h4><a class="mozTocH4" name="mozTocId579329"></a>アルバムを開いたときにも説明を表示する</h4>
+
+<p>このオプションが有効になっていると、サムネイルの最初の行の上にアルバムの説明が表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId569893"></a>アルバム閲覧数を表示</h4>
+
+<p>このオプションが有効になっていると、そのアルバムが閲覧された回数がメディアギャラリーのメインページとそのアルバムのサブアルバムに表示されます。</p>
+
+<div class="notetip">あなたがアルバムの所有者か、mediagallery管理者の場合には、あなたが見た回数はこのカウンターの閲覧回数に算入されません。</div>
+
+<h4><a class="mozTocH4" name="mozTocId196584"></a>メディアの閲覧数を表示</h4>
+
+<p>このオプションが有効になっている場合、そのメディアが閲覧された回数がそれぞれのサムネイルに表示されます。</p>
+
+<div class="notetip">あなたがメディアの所有者、またはmediagallary管理者の場合、あなたが閲覧した回数はこのカウンターの閲覧回数には算入されません。</div>
+
+<h4><a class="mozTocH4" name="mozTocId69096"></a>キーワードを有効にする</h4>
+
+<p>個々のメディアに、それに関連のあるキーワードを設定することが出来ます。
+メディアが検索されやすいようにすることが主な用途です。
+このオプションが有効なときにはサムネイル画像の下にキーワードが表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId495252"></a>アルバムの外枠</h4>
+
+<p>アルバムの中の個々の画像とサムネイルの周りのフレームをここで指定します。
+数種類のフレームをサポートしています。</p>
+
+<ul>
+
+  <li>画像フレームをサムネイルとともに表示する</li>
+
+  <li>メディアアイテム表示の際にディスプレイフレームをともに表示する</li>
+
+  <li>そのアルバムのすべてのサブアルバムにサブアルバム用のフレームを表示する</li>
+
+</ul>
+
+<h4><a class="mozTocH4" name="mozTocId514642"></a>画像より先に子アルバムのリストを表示</h4>
+
+<p>メディアアイテムの前か後にサブアルバムを表示するか否かをここで設定します。
+これが有効になっている場合、すべてのサブアルバムがメディアアイテムが表示される前に表示されます。
+無効になっている場合には、すべてのメディアアイテムの後にサブアルバムがリスト表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId197016"></a>サムネールのサイズ</h4>
+
+<p>アルバムのサムネイルのサイズを決めます。
+３つから選択出来ます。</p>
+
+<ul>
+
+  <li>Small (100x100 pixels)</li>
+
+  <li>Medium (150x150 pixels)</li>
+
+  <li>Large (200x200 pixels)</li>
+
+  <li>Custom</li>
+
+</ul>
+
+<h4><a class="mozTocH4" name="mozTocId546486"></a>サムネイル幅と高さのカスタマイズ</h4>
+
+<p>サムネイルサイズでカスタムを選択した場合は、ここで高さと幅を指定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId705432"></a>オーディオ・ビデオ再生オプション</h4>
+
+<p>ユーザーがオーディオ・ビデオファイルの再生を選択した場合に、どのようにそのファイルを再生するかのいくつかのオプションです。</p>
+
+<ul>
+
+  <li>ポップアップウィンドウで再生 ポップアップウィンドウが表示されユーザーのコンピュータのMicrosoft Media Player, QuickTime or Flash Playerで再生が行われます。</li>
+
+  <li>ローカルにダウンロード　オーディオ・ビデオファイルへのリンクだけが表示され、ユーザーのローカルへのダウンロードに誘導します。
+  一般的に、ユーザーのブラウザがmimeタイプを認識しユーザーが使っている適当なプレイヤーが立ち上がるはずです。</li>
+
+  <li>インライン オプションに１に似ていますが、ポップアップウィンドウ表示はせず、メディア画面の中のMicrosoft Media Player, QuickTime or Flashを使います。</li>
+
+  <li>Microsoftがサポートするメディアにmms://リンクを使うこのオプションではオーディオ・ビデオリンクの前にmms://をつけ、MicrosoftMediaPlayerを直接呼び出します。
+  そのファイルがMicrosoftMediaPlayerをサポートしていない場合はダウンロードリンクになります。</li>
+
+</ul>
+
+<h4><a class="mozTocH4" name="mozTocId641432"></a>スライドショーを有効にする</h4>
+
+<p>アルバにあるメディアアイテムをスライドショーとして表示することが出来ます。
+これには３つの種類があります。</p>
+
+<ul>
+
+  <li>JavaScript 標準のスライドショーで、全機能を使い、ほとんどのブラウザで動作するものです。</li>
+
+  <li>LighBox light boxスライドショーを提供します。</li>
+
+  <li>Flashベース　Flashベースのスライドショーで、フルスクリーンでの閲覧が可能です。
+  <span style="font-weight: bold;">まだ実験段階であることに留意してください。</span></li>
+
+</ul>
+
+<p>スライドショー機能が不要の場合には「無効」にしてください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId813638"></a>表示する行数と列数</h4>
+
+<p>１ページあたりに表示するサムネイルの列数と行数を設定します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId472749"></a>アルバムの表紙</h3>
+
+<p>一番新しいサムネイルを表示するのがメディアギャラリーのデフォルト設定です。</p>
+
+<p>アルバムの表紙に使う画像をアップロードするオプションもあります。
+<b>サムネイル付加</b>チェックボックスを選択して<b>サムネイル</b>入力部分からアップロードした画像をアルバムの表紙に指定することが出来ます。
+アルバムにサムネイルを付加すると、常にその画像がアルバムの表紙になります。</p>
+
+<p>アルバムの中にある画像をアルバム表紙にすることも可能です。
+メディア管理画面で設定します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId35369"></a>注目のアルバム</h3>
+
+<p>アルバムを「注目のアルバム」に指定し指定のページに表示させることも出来ます。
+トップページ、特定の話題、またすべてのページに表示するオプションがあります。
+注目のアルバムにするには「注目のアルバムにする」にチェックを入れ表示する場所を選択します。
+そのアルバムを見る権限の無いユーザーには注目のアルバムでも見えることはありません。</p>
+
+<p>注目のアルバムは複数指定可能です。例えば、話題ごとに別の注目のアルバムを
+設定することなどが出来ます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId565953"></a>メディア処理のオプション</h3>
+
+<p>アルバム毎にメディアアイテムの見せ方や処理方法を選択出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId215744"></a>ファイル名をキャプション（メディアのタイトル）にする</h4>
+
+<p>このオプションが有効の場合、メディアアイテムのアップロードの際にキャプション（メディアのタイトル）は記録されず、そのファイル名がキャプション（メディアのタイトル）のフィールドに使われます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId285421"></a>オンライン印刷リンクを有効にする</h4>
+
+<p>DigiBugというオンライン写真印刷サービスをサポートしています。
+これを有効にすると新しいリンクとアイコンがメディアの右下に現れます。
+このリンクはDigiBugショッピングカートにその写真を追加します。</p>
+
+<p>オンライン印刷機能の詳細については「オンライン印刷」の項を御覧下さい。</p>
+
+<h4><a class="mozTocH4" name="mozTocId254152"></a>メディアのダウンロードを許可する</h4>
+
+<p>このオプションを有効にすると、メディア閲覧画面に<b>ダウンロード</b>リンクが出るようになります。
+サイトユーザーが簡単にメディアを自分のコンピュータにダウンロード出来るようになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId775663"></a>フルサイズ（原寸サイズ）表示の許可</h4>
+
+<p>アップロード時の原寸で画像をユーザーが見れるようにする機能を停止、もしくは制限出来ます。
+オプションは以下のとおりです。</p>
+
+<ul>
+
+  <li>閲覧可能　誰でもアップロード原寸で画像が見れます</li>
+
+  <li>登録ユーザーのみ　登録ユーザーだけがアップロード原寸で画像を見ることが出来ます</li>
+
+  <li>閲覧不許可　誰もアップロード原寸で画像を見ることが出来ません</li>
+
+</ul>
+
+<h4><a class="mozTocH4" name="mozTocId966732"></a>ランダムイメージブロックにインクルード</h4>
+
+<p>このオプションにより、そのアルバムの画像メディアをランダムイメージブロックにインクルードするか否かを設定します。</p>
+
+<div class="notetip">メディアギャラリー管理者権限を持つユーザーだけがこの設定の変更が出来ます。</div>
+
+<h4><a class="mozTocH4" name="mozTocId633090"></a>画像サイズ（高さと幅）の最大値</h4>
+
+<p>アルバムに置く画像の最大解像度を設定します。
+高さと幅の両方を設定すると、それ以上の値の画像はこの制限値にリサイズされます。</p>
+
+<p>解像度制限を設定したくない場合は、ここをゼロにします。</p>
+
+<h4><a class="mozTocH4" name="mozTocId186905"></a>ファイルサイズの容量制限</h4>
+
+<p>そのアルバムのファイルサイズの最大値も設定出来ます。
+<b>キロバイト</b>単位で、それを上回るサイズのファイルはアップロードされないように設定出来ます。
+最大値を超えるファイルのアップロードは拒否され、ファイルが大き過ぎる、というメッセージが表示されます。</p>
+
+<p>ファイルサイズ制限をしたくない場合は、ここでぜろを入力してください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId225667"></a>表示画像のサイズ</h4>
+
+<p>画像の表示サイズの指定も忘れないでください。ユーザーが個々のメディアを閲覧する際の、閲覧させるサイズです。
+いくつかのプリセットのサイズがあり、お好きなサイズを追加することも可能です。
+メディアギャラリー管理の項をご覧ください。</p>
+
+<p>画像がアップロードされたときに、メディアギャラリーはここで指定されたサイズで閲覧用画像を作成します。</p>
+
+<div class="notetip">アルバムに画像を加えた後に<b>表示画像のサイズ</b>を変更する場合、既に出来上がっている表示用画像はリサイズされずにそのままです。
+この設定は新しくアップロードされる画像にのみ有効です。
+既に出来上がっているアイテムのリサイズについては、メディアギャラリー管理の項をご覧ください。</div>
+
+<h3><a class="mozTocH3" name="mozTocId458779"></a>代替URLの使用</h3>
+
+<h3><a class="mozTocH3" name="mozTocId713858"></a>ウォーターマークのオプション</h3>
+
+<p>アルバムごとにウォーターマークを有効・無効にすることが出来ます。
+また、アルバムごとに別々のウォーターマーク画像とその位置を指定することが出来ます。
+<b>アップロード時に自動的にウォーターマークする</b>のチェックボックスにチェックを入れるとこれが有効になります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId132612"></a>ウォーターマークの半透明度</h4>
+
+<p>ウォーターマーク画像の透明度をここで指定します。
+数字が小さいと透明度が増し、数字が大きいとウォーターマーク画像がより濃く現れます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId789719"></a>ウォーターマークの位置</h4>
+
+<p>画像上のウォーターマークの位置をここで指定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId289815"></a>ウォーターマーク画像</h4>
+
+<p>新規にアップロードされる画像に適用するウォーターマーク画像をここで指定します。</p>
+
+<div class="noteimportant">これらの設定を変更しても既にアップロード済みのアルバム上のアイテムには適用されません。
+新規にアップロードされる画像メディアにのみ適用されます。</div>
+
+<p>メディアギャラリーのウォーターマーク機能の詳細についてはウォーターマークの項をご覧ください。</p>
+
+<h3><a class="mozTocH3" name="mozTocId853037"></a>許可するメディアの種類</h3>
+
+<p>アルバムごとに特定の種類のメディアのみを受け入れるように設定が出来ます。
+例えば、音楽ファイル（つまりMP３ファイル）のみのアルバムを作りたいと思えば、MP3のみを許可することが出来ます。
+この場合、他の種類のファイルをアップロードするとエラーになり、その種類のメディアは許可されていないとのメッセージが表示されます。</p>
+
+<p>許可するメディアのタイプは以下のとおりです。</p>
+
+<table class="mg_admin_table" style="text-align: center;">
+  <tbody>
+    <tr>
+      <th style="width:33%;">画像</th>
+      <th style="width:34%;">音声 / 動画</th>
+      <th style="width:33%;">その他</th>
+    </tr>
+    <tr>
+      <td>JPEG</td>
+      <td>MP3</td>
+      <td>ZIP</td>
+    </tr>
+    <tr>
+      <td>PNG</td>
+      <td>OGG</td>
+      <td>Any Other Type</td>
+    </tr>
+    <tr>
+      <td>TIF</td>
+      <td>WMV</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>GIF</td>
+      <td>SWF</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>BMP</td>
+      <td>MOV</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>TGA</td>
+      <td>MP4</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>PSD</td>
+      <td>MPEG</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>FLV</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>Remove FLV</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>Embedded Video</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>メディアタイプの詳細については「サポートしているメディアタイプ」の項をご覧ください。</p>
+
+<p><span style="font-weight: bold;">Image Formats</span></p>
+
+<p>JPEG - ImageMagick, GD Library, and NetPBMがサポートする画像フォーマット</p>
+
+<p>PNG - ImageMagick, GD Library, and NetPBMがサポートする画像フォーマット</p>
+
+<p>GIF - ImageMagick, GD Library, and NetPBMがサポートする画像フォーマット</p>
+
+<p>アニメーションGIF - ImageMagickがサポートする画像フォーマット。
+メディアギャラリーはアニメーションGIFのサムネイルを作成するが、アニメーション版にならないことがあり得る。</p>
+
+<p>BMP - ImageMagick and NetPBMがサポートする画像。</p>
+
+<p>TIFF - ImageMagickのみがサポートする画像フォーマット。
+TIFF画像はJPGフォーマットに変換されて閲覧用画像とサムネイルとして供される。
+元画像はそのまま保存される。</p>
+
+<p>TGA - ImageMagickのみがサポートする画像フォーマット。
+TGA画像はJPGフォーマットに変換されて閲覧用画像とサムネイルとして供される。
+元画像はそのまま保存される。</p>
+
+<p>PSD - ImageMagickのみがさぽ画像フォーマット。
+PSD画像はJPGフォーマットに変換されて閲覧用画像とサムネイルとして供される。
+元画像はそのまま保存される。</p>
+
+<p><span style="font-weight: bold;">オーディオフォーマット</span></p>
+
+<p>MP3 - オーディオフォーマット。
+MP3ファイルのMetaデータから自動設定のタイトル・アーティスト・アルバム・ジャンルを取り出します。
+MP3ファイルにサムネイルが埋め込まれていれば、その画像も取り出してMP3ファイルのサムネイルとして使用します。</p>
+
+<p>OGG - オーディオフォーマット。
+Metaデータから自動設定のタイトル・アーティスト・アルバム・ジャンルを取り出します。</p>
+
+<p>WMA - オーディオフォーマット。
+WMAファイルの認識はしますが、それ以外の追加処理やデータの処理はメディアギャラリーではしません。</p>
+
+<p><span style="font-weight: bold;">ビデオフォーマット</span></p>
+
+<p>SWF - フラッシュフォーマット</p>
+
+<h3><a class="mozTocH3" name="mozTocId876064"></a>ユーザーのファイルアップロード</h3>
+
+<p>デフォルトではアルバムの所有者と書込み権限を持っているユーザーだけがメディアアイテムをアップロードできます。
+「ユーザーのファイルアップロード」によりすべてのサイト訪問者がその対象になります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId23314"></a>このアルバムへのメディアのアップロードを登録ユーザーに許可する</h4>
+
+<p>この機能をONにすると、すべてのログインユーザーがこのアルバムにメディアをアップロード出来るようになります。
+ここがチェックされていない（OFFの）場合、書込み権限を持ったユーザーだけがアップロード出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId327095"></a>このアルバムでのモデレーションを有効にする</h4>
+
+<p>モデレーションを有効にすることににより、登録ユーザー全員がファイルアップロード出来るようになり、そのファイルは一時保存場所に置かれ、それらはレビューされ、アルバムに含めるか否かの承認あるいは否認をされるようになります。
+ユーザーコミュニティによりそのアルバムに適切なメディアのみが残るようになる、実用性の高いツールです。</p>
+
+<p>このオプションを有効にすると、登録ユーザーによってアップロードされたメディアはすべてモデレーション・キューにリダイレクトされることになります。</p>
+
+<p><b>このアルバムへのメディアのアップロードを登録ユーザーに許可する</b>が有効になっている場合にのみこのオプションは有効になります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId861510"></a>モデレーターグループ</h4>
+
+<p>アルバムでモデレーションを有効にした場合は、ユーザーグループを選択して、投稿されたメディアのレビューと承認に責任をもつ人を決定して置きます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId157831"></a>投稿をモデレーターにemailで通知</h4>
+
+<p>このオプションが有効の場合、モデレーターグループの全員にemailで新しいメディアがアップロードされたことが通知されます。
+メディアギャラリーではemailの発信数が多くなり過ぎ無いための対策もしています。
+短い間に10個のメディアが投稿された場合、一つのemailで済ますようにします。</p>
+
+<p>メディアギャラリーのモデレーション機能詳細については、モデレーションの項をご覧ください。</p>
+
+<h3><a class="mozTocH3" name="mozTocId591295"></a>パーミッション</h3>
+
+<p>メディアギャラリーはGeeklgのセキュリティモデルをサポートしています。
+所有者、グループ、登録ユーザー、匿名ユーザーのパーミッション設定が各アルバムで出来ます。
+メディアアイテムのレベルでのパーミッション設定は出来ません。</p>
+
+<p>メディアギャラリーでは、シングルグローバルパーミッションをサポートしており、未ログインユーザーがアルバムにアクセス出来るか否かを設定します。
+設定オプションで<b>ログインが必要</b>にした場合、アルバム個々のパーミッションがどうであろうと登録ユーザーだけがアルバムを見れることになります。</p>
+
+<p>個々のアルバムには一連のパーミッションが準備されています。
+ここで誰が、閲覧・編集・メディア追加を出来るのかを決めておきます。
+パーミッションは以下のとおりです。</p>
+
+<table class="mg_admin_table" style="text-align:center;">
+  <tbody>
+    <tr>
+      <th style="width:32%">ユーザー</th>
+      <th style="width:36%">閲覧パーミッション</th>
+      <th style="width:32%">編集パーミッション</th>
+    </tr>
+    <tr>
+      <td>所有者</td>
+      <td>閲覧</td>
+      <td>編集</td>
+    </tr>
+    <tr>
+      <td>グループ</td>
+      <td>閲覧</td>
+      <td>編集</td>
+    </tr>
+    <tr>
+      <td>ログインユーザー</td>
+      <td>閲覧</td>
+      <td>編集</td>
+    </tr>
+    <tr>
+      <td>匿名ユーザー</td>
+      <td>閲覧</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><b>定義は以下のとおりです。</b></p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:23%">属性</th>
+      <th style="width:77%">説明と定義</th>
+    </tr>
+    <tr>
+      <td>所有者</td>
+      <td>個々のアルバムには所有者が存在。
+      所有者とはアルバムを作成したユーザー。
+      所有者は常に閲覧と書き込みのパーミッションを与えられている。</td>
+    </tr>
+    <tr>
+      <td>グループ</td>
+      <td>個々のアルバムにはグループ所有者が存在する。
+      グループ所有者とは、アルバムの所有権を持つGeeklogのグループである。
+      グループ所有者は閲覧のみ、または閲覧・書込みのパーミッションをサイト管理者が与えることが出来る。</td>
+    </tr>
+    <tr>
+      <td>ログインユーザー（登録メンバー）</td>
+      <td>あなたのサイトにログインアカウントを持つすべてのユーザーでログインしている人。
+      ログインユーザーはアルバムに対して閲覧のみのパーミッション、またはパーミッションなしの設定がサイト管理者から与えられる。</td>
+    </tr>
+    <tr>
+      <td>匿名ユーザー</td>
+      <td>サイトにログインしていないすべてのユーザー。
+      匿名ユーザーはアルバムに対して閲覧のみのパーミッション、またはまったく閲覧出来ないパーミッションを与えられる。</td>
+    </tr>
+    <tr>
+      <td>閲覧パーミッション</td>
+      <td>ユーザーにアルバムのコンテンツ閲覧を許可する。</td>
+    </tr>
+    <tr>
+      <td>書込みパーミッション</td>
+      <td>ユーザーにアルバム属性（名前、説明、セキュリティパーミッションなど）の編集を許可し、アルバムへのメディアのアップロードを許可する。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4><a class="mozTocH4" name="mozTocId729984"></a>隠しアルバム</h4>
+
+<p>隠しアルバムには特別な目的があります。
+一般ユーザーに見せるすべてのリストからは隠されていますが、自動タグが使えます。
+例えば、記事だけで使いたい画像を集めたアルバムが欲しいけどユーザーにはそのアルバムを見せたくない場合に、そのアルバムを隠しアルバムに指定します。
+この隠しアルバムを指すすべての自動タグは画像を提供するだけでアルバムへのハイパーリンクは出力しません。</p>
+
+<p>隠しアルバムへの<b>書込み</b>権限を持つユーザーがこのアルバムを見るときには、普通のアルバムとして見えます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId689802"></a>設定の継承</h4>
+
+<p>サブアルバムを持つアルバムのパーミッションを変更下場合、このオプションを選択することにより、その設定がサブアルバムの設定として受け継がれます。</p>
+
+<h2><a name="mozTocId794718"></a>アルバムの作成</h2>
+
+<p>メディアギャラリーでアルバムを作成するにはオプションのドロップダウンメニューから<b>アルバム作成</b>を選択します。
+ここのアルバムには一連の設定属性が用意されており、アルバムをどのように見せるか、メディアをどのように見せるか、そしてアクセス権限を制御します。</p>
+
+<h2><a name="mozTocId526936"></a>アルバムの編集</h2>
+
+<p>アルバム閲覧画面（編集するアルバムをあなたが見ている必要があります）に、管理ドロップダウンメニューがあります。
+ここで「編集」を選びます。
+編集画面が現れアルバムの設定を変更することが出来ます。
+親アルバムを変更することも出来ます。</p>
+
+<p>編集アルバムにサブアルバムがある場合は「パーミッションの継承」のオプションが現れます。
+サブアルバムに親アルバムのパーミッションを継承させる機能です。
+<b>パーミッションの継承</b>とラベルされているチェックボックスにチェックを入れます。</p>
+
+<h2><a name="mozTocId512933"></a>アルバムの削除</h2>
+
+<p>アルバム編集画面で「削除」ボタンを選択するとアルバムが削除されます。
+この場合、サブアルバムとメディアを別のアルバムに移動するか、削除するかのオプションを与えられます。
+「全てを削除」を選択すると、すべてのコンテンツは永久に削除されUNDOは出来ません。
+すべてのサブアルバムとメディアが除去されます。</p>
+
+<p><b>アルバムのバッチ削除</b>機能をメディアギャラリー管理画面で提供しています。
+アルバムのリストを提示し削除するものを選択出来るものです。
+この場合、コンテンツを移動するオプションはありませんのでご注意ください。
+すべてのメディアとサブアルバムは永久に削除されます。</p>
+
+<h2><a name="mozTocId195956"></a>アルバムのソート</h2>
+
+<p>ギャラリー閲覧画面ではアルバムをソートするオプションが提供されています。
+サイトユーザーにアルバムをどのように見せるかを制御します。
+アルバムは降順にソートされており、順番の高いものが前に表示されます。</p>
+
+<p><i>オプションのドロップダウンメニュー</i>から<b>アルバムのソート</b>を選択するとすべてのアルバムのリストが提示されます。
+親アルバムのリンクを選択するとすべてのサブアルバムのリストが提示され、サブアルバムをソートすることが出来ます。</p>
+
+<h2><a name="mozTocId67034"></a>アルバムのグローバル属性編集画面</h2>
+
+<p>「アルバムのグローバル属性編集画面」でグローバル属性の編集が出来ます。
+この画面に入ると選択可能なアルバム属性が全てリスト表示されます。
+変更したい属性の<b>アップデート</b>チェックボックスをチェックして変更を行います。
+これにより、すべてのアルバム属性が新しいものにアップデートされます。</p>
+
+<p>ここで<b>スタートのアルバム</b>という選択もあります。
+そのアルバムとその下にあるサブアルバムだけに限ってその設定が適用されます。
+<b>-----</b>を選ぶと、その変更がサイトのすべてのアルバムに適用されます。</p>
+
+<p>例として、<b>コメント許可</b>チェックボックスにチェックをして、あなたがすべてのアルバムへのコメントを許可したとします。
+次に<b>アップデート</b>の下にあるチェックボックスをチェックするとこの設定が有効になり「コメント許可」属性のみがすべてのアルバムに適用されます。</p>
+
+<h2><a name="mozTocId69877"></a>アルバムのグローバルパーミッション編集画面</h2>
+
+<p>アルバムのグローバルパーミッション編集画面では、グローバルパーミッションの変更が出来ます。
+この画面では提供可能なすべてのパーミッションのリストを提供します。
+変更したいパーミッションのチェックボックスにチェックを入れます。
+これによりすべてのアルバムのパーミッションが新しいものに変更されます。</p>
+
+<p>例として、すべてのアルバムのグループ所有者を変更する場合を見てみましょう。
+ドロップダウンリストからグループを選び、「アップデート」の真下のチェックボックスにチェックを入れます。
+これによりすべてのアルバムのグループ所有者のみがアップデートされます。</p>
+
+<h2><a name="mozTocId214085"></a>アルバム作成時のデフォルト値設定</h2>
+
+<p>アルバム作成の際の初期設定はメディアギャラリー管理画面の項でデフォルト値が設定されます。</p>
+
+<h2><a name="mozTocId632238"></a>特別なタイプのアルバム</h2>
+
+<p>設定オプションの特定のセットを選ぶことにより、特定の目的に使う特別なタイプのアルバムを作成出来ます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId197646"></a>メンバーアルバム</h3>
+
+<p>メンバーアルバムはメディアギャラリーv1.4特有の機能で、サイトユーザーが自分自身のアルバムを持ち、メディアをアップロードすることが出来るようになりました。
+１ユーザーに複数アルバムも可能です。
+メンバーアルバムは保護機能を持っており、メンバーが<b>注目のアルバム</b>を設定したり、モデレーションをON/OFFするなどの設定変更はできないようになっています。
+サイト管理者がいくつかの制限を設けることが出来、最大ファイルサイズ、画像の最大解像度、ディスク容量の割当などが可能です。</p>
+
+<p>どこにメンバーアルバムを作成するかはサイト管理者が指定します。
+例えば、<strong>メンバーギャラリー</strong>という特別なアルバムを作るとして、すべてのメンバーアルバムをこのアルバムの下に置くことが可能です。
+または、ユーザーがパーミッションを持っている場所ならどこにでもメンバーアルバムを作成出来る、といった指定も可能です。
+例えば、<strong>root</strong>アルバムをMember Album Rootに指定すると、ユーザーはこの直下にアルバムを作ることになります。
+しかしながら、他のユーザーのアルバムの下にユーザーが自分のサブアルバムを作ることは出来ません。
+パーミッションがこれを許しません。</p>
+
+<p>ユーザーがサイトに登録したときに自動的にメンバーアルバムを生成する機能も提供しています。
+これの問題点は、すべてのユーザーがメンバーアルバムを必要としないだろうこと、結果、使われないアルバムがサイトに残ることです。
+この問題に対処するために、メディアギャラリーでは<strong>Self Enrollment ユーザーインストール</strong>という機能を提供しています。
+これによりユーザーは使用条件を承諾した上で、メンバーアルバムを作成するか否かを自ら選択出来るようになります。
+これにより使われずに放置されるメンバーアルバムの数を減らすことが出来ます。</p>
+
+<p><strong>Self Enrollment ユーザーインストール</strong>の実行には幾つかのオプションがあります。</p>
+
+<ul type="disc">
+
+  <li>メディアギャラリーのインストールが終わると<strong>Member Albums</strong>というブロックが生成されユーザーインストールのリンクが表示されています。
+  このブロックを有効にしてください。</li>
+
+  <li>メンバーアルバムの説明を静的ページで作成し、そこに以下へのリンクを置く。<br>
+  http://[yoursitehere]/mediagallery/enroll.php</li>
+
+</ul>
+
+<p>使われていないメンバーアルバムの管理のために、管理者用の機能<strong>メンバーアルバムの削除</strong>があります。
+サイト内のからのメンバーアルバムをリストアップし、ユーザーの最新ログイン日を表示します。
+このバッチ機能により未使用アルバムの管理が容易になります。</p>
+
+<p>ユーザー登録時にメンバーアルバムを自動生成させるのと同じように、ユーザーがサイトから削除された時にメンバーアルバムも自動的に削除またはアーカイブすることが出来ます。
+アルバムとそのコンテンツを削除するか、アーカイブ領域に移動するかを選択することが出来ます。</p>
+
+<p>メンバーアルバムはメディアアイテムをシェアする柔軟で安全な方法を提供しています。</p>
+
+<p>メンバーアルバムの詳細設定と管理についてはメディアギャラリー管理画面の項をご覧ください。</p>
+
+<h3><a class="mozTocH3" name="mozTocId14200"></a>隠しアルバム</h3>
+
+<p>隠しアルバムは特定の目的で使われます。
+一般ユーザーに供されるすべてのリストからは隠されていますが自動タグが使えます。
+例えば、記事に使う画像のみを保管するアルバムを作りたいが、そのアルバムは一般ユーザーには見せたくないという場合、「隠す」としておけばすべての自動タグがこの隠しアルバムで使えるようになり、画像を提供するのみでアルバムへのハイパーリンクは出力しません。</p>
+
+<p>隠しアルバムへの書き込み権限を持っているユーザーには、通常のアルバムとして見えます。
+メディアギャラリー管理者属性を持っているユーザーも同じです。</p>
+
+<h1><a name="mozTocId979363"></a>メディアアイテム</h1>
+
+<p>メディアギャラリーの中核は、アルバムにアップロードされる実際のメディアそのものです。
+メディアギャラリーは幅広い種類のメディアをサポートしており、メディアのアップロードについてはユニークな方法を取っています。
+以下は、メディアギャラリーがどのようにメディアアイテムを処理するかの概要です。</p>
+
+<h2><a name="mozTocId171925"></a>メディアギャラリーのメディア保存方法</h2>
+
+<p>メディアギャラリーは、メディアアイテムをルートディレクトリの外には保存しません。（非公開領域には置かないの意）
+つまり、Geeklogのセキュリティ装置を経由せずにユーザーはメディアアイテムを直接見る、ということです。
+だからと言って慌てないでください。
+セキュリティリスクを最小限にするのに適当な方法はありますし、実際に可能です。
+必要なことは、あなたの環境とあなた自身が必要とするものに見合った方法を選択することです。</p>
+
+<p>メディアギャラリーは他の多くのギャラリー系ソリューションとは違い、製品のインストール後に名づけられたサブディレクトリにメディアを保存することをしません。
+メディアアイテムを保管するアルバムと物理ディレクトリとを関連付けるものが何もありません。
+メディアギャラリーは0-fの16のディレクトリを持ち、そこにメディアアイテムを保管します。</p>
+
+<p>また、あなたのメディア保管で実際に使われるファイ名は、ユニークなハッシュアルゴリズムで生成されます。
+例えば09b1867c5238c1c9035bc73f76b29bf4.jpgのようになります。</p>
+
+<p>ディレクトリ名とユニークなハッシュファイル名の両方を正しく推定することはほとんど不可能ですから、これら2つの機能によりあなたのサイトのメディアアイテムには包括的なセキュリティが付与されます。
+同時に、そのメディアアイテムを取り出したりそのファイルを物理的にローカルで管理することも非常に難しくなります。</p>
+
+<p>ハッシュによるユニークなファイル名の機能を無効にするオプションがあります。
+その場合、メディアギャラリーはメディアアイテムのオリジナルのファイル名を使用します。
+ただ、この場合はアイテムのダウンロードが少々簡単になります。</p>
+
+<p>メディアギャラリーはアイテムのファイル名を一切表示しません。
+ファイル名は生成されるHTMLページのイメージタグに埋め込まれています。
+思うに、あるアルバムへのアクセス権を持つユーザーがそのアルバムを見て、ブラウザの「ソースを見る」オプションを使った場合、ファイル名を見ることが出来ます。
+この場合は既にメディアアイテムへのアクセスしていることになります。</p>
+
+<p>メディアアイテムを直接見る能力のないサイトユーザーのアクセスを防止するレベルの保護は提供出来ているものと思います。</p>
+
+<p>私が聞いた一つの心配事は、他のサイトからメディアアイテムに直リンクを貼られることです。
+基本的にこれを許してしまうとあなたのサイトの帯域幅を消費します。
+これらを防ぐためにGeeklogとメディアギャラリーが幾つかのオプションがあります。
+大抵のレンタルサーバーでは直リンクを防止する方法を提供しています。
+Apache webサーバーを使っているなら直リンクを防ぐ方法はたくさんあります。
+Microsoft IISサーバーには同じようにISAPIフィルターがあります。
+「直リンク防止」をGoogle検索してみましょう。
+幾つかの方法が見つかるはずです。</p>
+
+<p>一つ注意書きを。
+直リンク防止策を講じた上でメディアギャラリーのオンライン印刷機能で画像を印刷することをユーザーに許可した場合、あなたのサイトからdigibug.comドメインが直接画像を持っていくのを許可するのを忘れないでください。
+digibug.comを許可する例外のリストに入れてください。</p>
+
+<p>メディアギャラリーがなぜこのように設計されているかを簡単に説明します。
+メディアギャラリーの最初のバージョンではメディアアイテムをルートディレクトリの外に保存するようにし、プログラム経由でアイテムにアクセスするようにしましたが、いくつかの問題点がありました。
+毎回コンテンツを動的に送信するので、ブラウザーがコンテンツをキャッシュしません。
+また、幾つかのプライバシーツールと広告ブロッカーがコンテンツをブロックしてしまうのです。
+よって、ファイル名と保管場所を高度に推測しにくくするとともに、画像に直接アクセス出来る設計にすることで妥協することにしました。
+今のところ、この方法は成功しています。
+ログインユーザー以外がメディアアイテムにアクセスできないことの100%保証を必要とするユーザーがいることは理解しています。
+しかしながら、この点についてはメディアギャラリーは最善のソリューションではない、と言わざるを得ません。
+そんな方には<a href="http://www.4wiseguys.com/filemgmt/singlefile.php?lid=21" title="http://www.4wiseguys.com/filemgmt/singlefile.php?lid=21">Gallery2Bridge</a>をお勧めします。
+GeeklogへのGallery v2.1のエンベッドをサポートしており、Gallery v2.1はルートディレクトリの外への画像配置をサポートしています。</p>
+
+<h2><a name="mozTocId563326"></a>サポートするメディアの種類</h2>
+
+<p>メディアギャラリーは画像・動画・音声、その他あなたが使いたいと思う幅広い種類のメディアをサポートしています。
+アルバム単位でで許可するメディアの種類を制御出来ます。
+お使いになるグラフィックパッケージによっては使えない種類のメディアがあります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId389131"></a>画像メディア</h3>
+
+<p>メディアギャラリーはアップロードされたすべての画像メディアを自動的にJPGフォーマットに変換します。
+ブラウザによるアップロードの場合には、この変換を無効にするオプションがあります。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">フォーマット</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>JPEG</td>
+      <td>JPGは広く使われている画像メディアの圧縮・保管フォーマットです。</td>
+    </tr>
+    <tr>
+      <td>PNG</td>
+      <td>PNGはデータ圧縮に伴うデータのロスが少ないビットマップ画像フォーマットです。</td>
+    </tr>
+    <tr>
+      <td>TIF</td>
+      <td>Tagged Image File Formatは主に画像メディアの保管に使われます。
+      グラフィックパッケージではImageMagickのみがTIFFフォーマットをサポートしています。</td>
+    </tr>
+    <tr>
+      <td>GIF</td>
+      <td>Graphics Interchange Formatは８bit/pixelのビットマップ画像フォーマットで、1987年にCompuServeが発表したものです。
+      サポート対象の広さとと携帯性のため、Webの世界で幅広く受け入れられました。</td>
+    </tr>
+    <tr>
+      <td>BMP</td>
+      <td>bitmapped graphics formatはMicrosoftWindowsとOS/2の内部画像システム(GDI)として使われ、これらのプラットフォームでの簡便な画像ファイルフォーマットとしてよく使われています。</td>
+    </tr>
+    <tr>
+      <td>TGA</td>
+      <td>TFAファイルフォーマットはTARGAファイルフォーマットとしても知られるラスター画像ファイルのフォーマットです。</td>
+    </tr>
+    <tr>
+      <td>PSD</td>
+      <td>PSD(Photoshop Document)はPhotoshopで取り扱うほとんどの画像オプションを保存するフォーマットです。
+      マスクとレイヤー、色スペース、ICCプロファイル、透明度、テキスト、アルファチャンネル、スポットカラー、クリッピングパス、デュオトーン設定などです。
+      PSDフォーマットはImageMagickグラフィックパッケージでのみサポートされています。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId772773"></a>音声・動画メディア</h3>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">フォーマット</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>MP3</td>
+      <td>MP3は広く使われている音声エンコードフォーマットです。
+      圧縮時のロスが少なく、圧縮効率の高いアルゴリズムを使い、一般的なリスナーにとっては原音に忠実な再生を可能にしています。</td>
+    </tr>
+    <tr>
+      <td>OGG</td>
+      <td>Oggはデジタルマルティメディア用の無料でオープンなコンテナフォーマットです。
+      効率のよいストリーミングと複製のためにソフトウェア特許の制限がありません。</td>
+    </tr>
+    <tr>
+      <td>WMV</td>
+      <td>WMV(*.wmv)ファイルはMicrosoftのASFコンテナフォーマットを使います。
+      Windows Media Playerと他のプレイヤー、MPlayer, VLC media player,Media Player Classicなどで再生可能です。</td>
+    </tr>
+    <tr>
+      <td>SWF</td>
+      <td>SWFはプロプライエタリなベクターグラフィックファイルで、Adobe（以前のMacromedia）のFlashソフトウェアで制作されたものです。
+      web上で使うことを意識的して充分に（容量が）小さくなっています。
+      SWFファイルには、アニメーション、様々な種類の関数やインタラクティブなアプレットを埋め込むことが出来ます。</td>
+    </tr>
+    <tr>
+      <td>MOV</td>
+      <td>QuickTime(.mov)ファイルフォーマットはマルティメディアコンテナファイルで、一つまたは複数のトラックに特定のタイプのデータファイル、音声・動画・エフェクト・テキスト（例えば字幕など）などを埋め込むことが出来ます。</td>
+    </tr>
+    <tr>
+      <td>MP4 / MPEG</td>
+      <td>MP4はMPEG-4の一部を構成するマルティメディアコンテナフォーマットです。
+      デジタル音声やMPEGで定義されるデジタル動画ストリームの保存に使われます。
+      また、字幕や静止画の保存にも使用可能です。</td>
+    </tr>
+    <tr>
+      <td>FLV</td>
+      <td>Flash Video(FLV)はAdobe Flash Player（以前はMacromedia Flash Playerとして知られていました）version 6,7,8,9を使ってインターネット上で動画を送信するためのプロプライエタリなファイルフォーマットです。</td>
+    </tr>
+    <tr>
+      <td>ストリーミングFLV</td>
+      <td>上記と同じく、但しストリーミングフラッシュビデオサーバーで使われます。
+      このファイルを使うためにはストリーミングフラッシュビデオサーバが必要です。</td>
+    </tr>
+    <tr>
+      <td>Embedded Video</td>
+      <td>YouTubeやGoogleVideoのようなすべての埋め込み型動画</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>メディアギャラリーはアップロードされたMP3ファイルにサムネイル画像が埋め込まれているかをチェックします。
+YESの場合、サムネイルを抽出しそのファイルの添付サムネイルとっして使用します。</p>
+
+<p>また、メディアギャラリーはタイトル、アーティスト名、ジャンルの埋込みタグを取り出し、これらをメディアのタイトル、説明、キーワードとして使います。</p>
+
+<h3><a class="mozTocH3" name="mozTocId754251"></a>他の種類のメディア</h3>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">フォーマット</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>ZIP</td>
+      <td>設定されていればメディアギャラリーはZIPファイルを抽出し内部のコンテンツを処理することも出来ます。</td>
+    </tr>
+    <tr>
+      <td>その他</td>
+      <td>アルバムに置かれるメディアで上記に定義されていないタイプのものでも使用可能です。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="mozTocId738453"></a>メディア処理の概要</h2>
+
+<p>メディアギャラリーはアップロードされたすべての画像メディアのサムネイルを生成し表示します。
+これはつまり、メディアギャラリーは常に3種類の画像のコピーを保管していることになります。
+静的サムネイルを生成してそれを表示するかどうかはそのパフォーマンスにより決定されます。
+ある画像がアップロードされ何回も閲覧される場合には、画像が閲覧される度にサムネイル画像と表示画像を動的に生成するのは無駄が多いので、サムネイル画像と表示画像とを作ってそれを何回も表示させるほうが効率的です。
+これによりメディアギャラリーは大きなパフォーマンス上の優位性を持ちつつ、多くのアクティブなユーザーがを抱えることが出来る能力を内包しています。
+この仕組のデメリットは、サーバーにこれらの静的画像を持ち続けるため大きなディスクスペースを必要とすることです。</p>
+
+<p>新しくメディアがアップロードされた時、メディアギャラリーは幾つかのアクションを行います。
+これらのほとんどのアクションは、アルバム設定からコントロール可能です。</p>
+
+<p>新しくメディアがアップロードされた時、メディアギャラリーは以下のことを行います。</p>
+
+<ul>
+
+  <li>そのユーザーがアルバムにアップロードする権限を持っているかをチェック</li>
+
+  <li>アルバム設定で許可されている種類のメディアであるかをチェック</li>
+
+  <li>アルバム設定で定義されている最大ファイルサイズを超えていないかをチェック</li>
+
+  <li>サムネイル画像の生成</li>
+
+  <li>表示用画像を生成</li>
+
+  <li>メディアギャラリー設定オプションでオリジナル画像を保存することになっているかをチェック</li>
+
+  <li>アルバム設定でオリジナル画像をリサイズすることになっているかチェック</li>
+
+  <li>画像にウォーターマークするかアルバム設定をチェック</li>
+
+  <li>画像をモデレーションキューに置くか、アップロードをモデレーターに通知するかをアルバム設定をチェック</li>
+
+</ul>
+
+<p>動画メディアがアップロードされるとメディアギャラリーは以下のことを行います。</p>
+
+<ul>
+
+  <li>そのユーザーがアルバムにアップロードする権限を持っているかをチェック</li>
+
+  <li>アルバム設定でそのビデオタイプが許可されているかをチェック</li>
+
+  <li>アルバム設定で定義された最大ファイルサイズを超えていないかをチェック</li>
+
+  <li>FFMpegがビデオのサムネイルを生成スべきかをメディアギャラリーの設定でチェック</li>
+
+  <li>アルバム設定を確認し、アップロードされたビデオをモデレーションキューに置くか、モデレーターにアップロードを通知するかを決定する。</li>
+
+</ul>
+
+<p>新たにオーディオメディアがアップロードされた場合、メディアギャラリーは次のことを行います。</p>
+
+<ul>
+
+  <li>ユーザーがアルバムにアップロードする権限を持っているかをチェック</li>
+
+  <li>アルバム設定で許可されているタイプかを確認</li>
+
+  <li>アルバム設定で定義された最大ファイルサイズを超えていないかをチェック</li>
+
+  <li>MP3ファイルに埋め込まれているサムネイルを抽出する</li>
+
+  <li>IDv3メタデータを取り出しメディアのタイトルと説明フィールドに自動転送</li>
+
+  <li>アルバム設定を確認し、そのオーディオファイルをモデレーションキューに置くか、アップロードをモデレーターに知らせるかを決定する。</li>
+
+</ul>
+
+<p>これでお分かりになるように、新しいメディアの取り扱いはアルバムの設定に大きく依存しており、これが大事なことが分かっていただけると思います。</p>
+
+<h2><a name="mozTocId837834"></a>メディアのアップロード</h2>
+
+<p>アルバムにメディアを追加する方法は幾つかあります。
+ブラウザからの直接アップロード、FTPによるインポート、JUPLOAD Java Applet経由のアップロード、そしてWindowsのWeb Publishing Wizardです。</p>
+
+<p>アルバムにどうやってメディアを取り込むかを説明する前に、アルバムへのアップロードに影響のある外部要因についてお話したいと思います。
+アップローがどのように行われるかと何がアップロードできるかにはサーバー設定とPHPの設定が大きな役割を果たします。
+例えば、PHPの設定ファイルであるphp.iniはアップロード可能な最大ファイルサイズを管理します。
+また、投稿可能なページのサイズも制御します。
+このオンラインFAQで詳細をご覧ください。</p>
+
+<p>では、アルバムにメディアを追加する場合のオプションについてお話しましょう。</p>
+
+<h3><a class="mozTocH3" name="mozTocId95544"></a>ブラウザからの直接アップロード</h3>
+
+<p>このオプションによりアルバムへのメディアのアップロードが出来るようになります。
+アップロードするファイルのキャプション（タイトル）を指定してください。
+説明とキーワードはオプション入力項目です。
+アルバムにアップロードするアイテムそれぞれのサムネイルもアップロードしてみてください。</p>
+
+<p>ブラウザーでのアップロードは非常に便利ですが、ファイルサイズと一度にアップロード出来るファイル数に制限があります。
+例えば、PHP設定で2MBのファイルサイズ制限をしていれば、これを超えるサイズのファイルをブラウザーからアップロードすることは出来ません。
+20や30個のファイルをアップロードしたくてもブラウザからアップロード出来るのは4個までです。</p>
+
+<h3><a class="mozTocH3" name="mozTocId80048"></a>FTPインポート</h3>
+
+<p>FTPインポートを使えば、もっとフレキシブルにアイテム追加ができます。
+1度に幾つでもアイテム追加が出来ますし、ファイルサイズの制限もありません。</p>
+
+<p>FTPインポートを使うためには、まずメディアアイテムを一時ディレクトリに保管します。
+通常、FTPプログラム（私のお薦めは<a href="http://sourceforge.net/projects/filezilla/" title="http://sourceforge.net/projects/filezilla/">FileZilla</a>です。
+柔軟性が高く複数のプラットフォームに対応している無償のFTPユーティリティーです）を使ってこの作業をします。
+FTPクライアントによるメディアアイテムのアップロードが完了したら、FTPインポートのオプションでアルバムにこれらを移動します。</p>
+
+<p><b>システム設定のFTPパスで指定されているディレクトリに必ずアップロードしてください。</b></p>
+
+<p>FTPインポートによるメディアの追加には他にも幾つかのメリットがあります。
+サブディレクトリ名に基づいてアルバムが自動的に作成されるので、大量のアイテムをメディアギャラリーに追加する場合でも非常に簡単・らくちんです。</p>
+
+<p>例えば、あなたのFTPディレクトリに以下のようなディレクトリがあると・・・</p>
+
+<pre>	+- vacation pictures<br>	+- school pictures<br>	+- outdoor pictures<br></pre>
+
+<p><b>vacation pictures, school pictures</b> そして <b>outdoor pictures</b> というアルバムが自動的に生成されます。
+アルバム作成時のデフォルト値が適用されます。</p>
+
+<p>MP3やOGGファイルにFTPを使う場合、インポートの際にタイトルと（あれば）アーティスト情報が引き出され、タイトルフィールドに自動的に挿入されます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId246016"></a>ギャラリーリモートアプレット</h3>
+
+<p><a href="http://gallery.menalto.com/wiki/Gallery_Remote" title="http://gallery.menalto.com/wiki/Gallery_Remote">ギャラリーリモート</a>は<a href="http://gallery.menalto.com/" title="http://gallery.menalto.com/">Gallery Project</a>が開発したJAVAアプレットです。
+APIと仕様が公開されており他のプロジェクトとの統合が可能です。</p>
+
+<p>メディアギャラリーv1.4.4以降ではアップロードツールとしてギャラリーリモートをフルサポートしています。</p>
+
+<p>ギャラリーリモートの使用法はアプレットのダウンロードとインストールと同じようにシンプルです。
+インストールが完了したら、<b>Add Gallery URL</b>を選択してメディアギャラリーとの接続をセットアップします。</p>
+
+<h3><a class="mozTocH3" name="mozTocId248715"></a>JUPLOAD JAVAアプレット</h3>
+
+<p><a href="http://www.jupload.biz/" title="http://www.jupload.biz/">JUPLOAD</a>はJAVAアップロードアプレットです。</p>
+
+<p>JUPLOADを使うためには、Java Runtime Environmentがあなたのローカルコンピュータにインストールされている必要があります。
+アプレットがスタートしたら、「アルバム選択」のドロップダウンリストメニューから対象のアルバムを選んで、JUPLOADアプレットを使ってアップロードしたいファイルを選択します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId506520"></a></h3>
+
+<p>メディアギャラリーはWeb Puablishing WizardによるMicrosoft Window XPからの直接アップロードをサポートしています。
+簡単で楽な方法です。</p>
+
+<p>Web Puablishing Wizardは、Windows Vistaでは削除されました。</p>
+
+<p>Web Puablishing Wizardを使う前に、Windowsにあなたのサイトのことを知らせなければなりません。
+小さなレジストリファイルをインストールすることによりこれを行います。</p>
+
+<p>このレジストリファイルは次の方法で作成します。
+メディアギャラリーのアップロード画面で<b>Windows Publishing</b>を選択。
+お使いのOSのレジストリファイルを選択し、それをダブルクリック、または「ダウンロードダイヤログボックスから実行」を選択します。
+これでレジストリファイルがインストールされます。</p>
+
+<p>これでWindowsXPからメディアギャラリーインストレーションに直接投稿する準備が整いました。</p>
+
+<p>「File and Folder Tasks」の下の左メニューで、投稿したいメディアアイテムまたは画像のフォルダーを開き、「Publish」でこれらを投稿します。
+Windows Explorerで投稿したいアイテムを選択ハイライトした場合は、それらをWebに「Publish」することになります。</p>
+
+<p>「Select Provider」画面が出てくるまでWindowsのメッセージに従います。
+これであなたのサイトに繋がります。
+この画面が出てこない場合は、前述の手続きに従ってレジストリファイルをインストールします。</p>
+
+<p>サイトにログインします。
+ウィザードが立ち上がるのでeeklogのユーザー名とパスワードを入力します。</p>
+
+<p>アルバムの一覧が見えるはずです。
+アイテムをアップロードするアルバムを選択し「次へ」を選びます。
+新しいアルバムを作りたい場合は、「アルバム作成」ボタンを押し、出てくるメッセージに従います。</p>
+
+<p>アップロードの前にファイルをリサイズするかを訊いてきます。
+これはあなた次第ですが、リサイズする選択をすると一般的にはアップロード時間が短くなります。
+但し、WindowXPはアップロードの途中で埋め込まれたEXIF情報をスキップしたり失くしたりすることがあります。
+また、ユーザーにオンライン印刷を許可した場合、リサイズ寸法を小さくするほどユーザーの印刷オプションは減ります。
+例えば、アップロード後のサイズを1024x768ピクセルにすると16x20インチへの印刷はできなくなります。
+画象のリサイズをするかを決めた上で「次へ」に行きます。</p>
+
+<p>ファイルのアップロードが始まります。</p>
+
+<p>実はWindow Web Publishin Wizardはエラー通知機能があまりよくありません。
+アップロード時に問題があった場合は、Geeklogのerror.logを見たほうがいいです。</p>
+
+<p>Window Web Publishin Wizardはブラウザ経由のアップロードと同等のサイズ制限があることを忘れないでください。
+PHPでの設定が2MBならそれがアップロード出来る最大のファイルサイズとなります。</p>
+
+<p>ウィザーとがアップロードを完了すると、自動的にWebからログアウトします。</p>
+
+<div class="notetip">メディアギャラリーはWindow Web Publishin Wizardに対してXML宣言の最後にダミーのアップロード記録を加えるトリックを使って、強制的にアップロード完了と同時にログアウトします。
+つまり、10個の画像をアップロードした場合、XP Publishing Wizardは11個のファイルをアップロードした、と報告を受けます。
+画象の数が違う、ときに擦る必要はありません。
+アップロードされた画像には何の影響もありませんし、見た目だけの問題です。</div>
+
+<h3><a class="mozTocH3" name="mozTocId126156"></a>ZIPファイルのアップロード</h3>
+
+<p>ZIPファイルのサポートをシステム設定で有効にした場合は、画像のZIPファイルをアップロードすることが出来ます。
+メディアギャラリーが中に埋め込まれたサブディレクトリを含めてファイルを解凍します。
+FTPインポートと同じようにこれらのサブディレクトリに対応するアルバムをメディアギャラリーが自動的に生成します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId907379"></a>ストリーミングFLVや埋込メディアのアップロード</h3>
+
+<p>ストリーミング・リモートメディアをメディアギャラリーのアルバムに追加するには、「メディアの追加」を選ぶと「リモートメディア」という新しいタブがあります。
+このタブを選ぶと新しいアップロードフォームが表示されます。</p>
+
+<p>アップロードフィールド</p>
+
+<ul>
+
+  <li>リモートメディアタイプ - 2つから選択します。ストリーミングFLVと埋込ビデオです。</li>
+
+  <li>サムネイル - リモートメディアにサムネイルを添付したい場合は、ここで指定します。</li>
+
+  <li>リモートURL - ストリーミング用フラッシュビデオファイル（例えばrtmp://www.yourstreamingserver.com/video/videofile.flv）。
+  または、動画を埋め込む場合はソースのサイトから埋込みコードのソースを省略せずにここに入力します。</li>
+
+  <li>幅・高さ - ストリーミングフラッシュビデオの場合にのみ有効で、再生時の幅と高さを指定します。
+  埋込みビデオの場合は、再生サイズは埋込みコードに指定されています。</li>
+
+</ul>
+
+<h2><a name="mozTocId781301"></a>アップロード後の処理</h2>
+
+<h3><a class="mozTocH3" name="mozTocId678433"></a>FFmpegビデオサムネイルのサポート</h3>
+
+<p>FFmpegはストリーミングのオーディオとビデオを記録・変換するのに他の追随を許さないソリューションです。
+広く支持されているオーディオ・ビデオコーデックであるlibavcodecを同梱しています。
+Linux用に開発されましたがWindowsを含む多くのOS用にコンパイル可能です。</p>
+
+<p>ビデオがアップロードされるとメディアギャラリーはFFmpegでサムネイルを自動的に生成します。
+そのためには、あなたのサーバーでFFmpegが準備されている必要があります。
+調べてみるとレンタルサーバーでFFmpegが実装されている例は少ないようです。
+かなりのリソースが必要なことがその理由です。
+よって、ご自身でFFmpegををコンパイルしインストールするか、コンパイルされたバージョンをインストールする必要があるかもしれません。
+必要なら、あなたの環境で使えるようにコンパイルされたものをGoogleで探してみてください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId525093"></a>メディアギャラリーをFFmpeg用に設定する</h4>
+
+<p>また、FFmpegには多くのバージョンが有るようです。
+それぞれがサポートするセットとコマンドラインは少しづつ違っています。
+出来るだけメディアギャラリーを柔軟に使えるようにするために、FFmpegをどのように呼び出すかを正しくカスタマイズしてください。</p>
+
+<p>メディアギャラリーのconfig.phpファイルを見ると下記の項目があります。</p>
+
+<pre>$_MG_CONF['ffmpeg_command_args'] = ' -i %s -f mjpeg -t 0.01 -y %s';</pre>
+
+<p>ここでどのようにFFmpegを呼び出すかを設定します。例えば、FFmpegのフルコマンドは以下のとおりです。</p>
+
+<pre>ffmpeg -i INPUTFILE -f mjpeg -t 0.01 -y OUTPUTFILE</pre>
+
+<p>config.phpファイルを見ると、幾つかのコマンドラインのサンプルがあります。
+それぞれをテストしてみて、あなたの環境で最善の働きをするものを見つけてください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId519703"></a>FFmpegのサポートがない場合</h4>
+
+<p>あなたのサーバーでFFmpegを実装することが出来ない場合でも方法があります。
+あなたのローカルコンピュータでFFmpegを動作させアップロードの度にビデオファイルからサムネイルを生成させ、メディアギャラリー上にそれを添付することが可能です。</p>
+
+<p>ほとんどのOSに対応したFFmpegの各バージョンが入手可能です。
+下記のすべてがあなたの環境に合わない場合は、Googleで更に検索してみてください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId395718"></a>Windows XP / Vista</h4>
+
+<p>ＷｉｎｄｏｗｓユーザーにはRivaで無償バージョンが入手可能です。
+このユーティリティーはサムネイルの生成とともにイロイロな種類のビデオフォーマットをフラッシュビデオに変換してくれます。</p>
+
+<p>もしもFFmpegを直接、他に何もインストールしないで使うのがお好みなら、フリーウェアのFLV Converter（サイトは現在ダウンしているのでミラーサイトからダウンロード）の中からffmpeg.exeを直接入手できます。
+FLV converterはffmpeg.exeにシンプルなFLVフロントエンドを追加しただけのものです。
+これにより、FLVファイルをAVI/MPG/MP2フォーマットに変換する（正しいパラメータによるffmpeg.exeを使うバッチファイルを作ります）のにffmpegを使えることになります。
+もちろん、FLV機能のみをフロントエンドを使わなくても構いません。
+特にAVI出力設定は正しく設定されていません。
+（正しく設定するのは簡単です。
+バッチファイルを作るときに「copy」を「mp3」に変えるだけです。
+どなたか新しいフロントエンドを開発しませんか？）</p>
+
+<h4><a class="mozTocH4" name="mozTocId405445"></a>他のOS</h4>
+
+<p>他のOSを使っている方には、多くのコンパイル済みのFFmpegがあります。
+少しweb検索をすればあなたの環境用にものが必ず見つかります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId853222"></a>「動かない！」という方に・・・</h4>
+
+<p>サーバーで最初にFFmpegを設定するときに、メディアギャラリーのシステム設定画面でVerbose Loggin（エラーログをerror.logに書出し有効？）をONにすることを推奨します。
+これによりGeeklogののerror.logで多くの情報を得られるので、あなたの環境でどのコマンドラインが最も有効かを決めることが出来ます。
+テストをしてみて私がわかったことですが、FFmpegはinput outputフォーマットをサポートしていません。
+クラッシュした後何もコードを返しません。
+うまく動作するようにするには少々の忍耐が必要です。</p>
+
+<h3><a class="mozTocH3" name="mozTocId258510"></a>ウォータマーキングの画像メディア</h3>
+
+<p>ギャラリーへの自動ウォーターマーク画像適用を選択している場合は、メディアギャラリーがウォーターマーク管理システムをインクルードします。
+これにより、管理者とユーザー（アルバムの所有者権限を持っている場合）がウォーターマーク用の画像をアップロード・削除が出来るようになります。
+この管理システムに入るには、アルバム画面のメイン管理者ドロップダウンメニューを選択します。
+</p>
+
+<p>ウォーターマークをアップロードする際、メディアギャラリー管理者はウォーターマーク画像を公開にするか非公開にするかの選択が出来ます。
+公開とされた場合、アルバムへの所有権パーミッションを持つすべてのユーザーが、その画像をウォーターマークとして仕様出来ます。
+非公開画像はアップロードしたユーザー以外には使用出来ません。</p>
+
+<p>アルバム設定でウォーターマークを自動化することも出来ます。
+また、いつでも手動でウォーターマークを指定することも可能です。
+ウォーターマークを自動化するにはアルバム編集画面で「自動ウォーターマーク」を有効にします。</p>
+
+<p>手動または選択でウォーターマーク指定するにはメディア管理画面で行います。
+ウォーターマークに使う画像を選択し、バッチドロップダウンから「ウォーターマーク」を選択します。</p>
+
+<p>画像が一度ウォーターマークされたら、それを再度ウォーターマークすることは出来ません。</p>
+
+<h3><a class="mozTocH3" name="mozTocId563805"></a>画像リサイズと制限</h3>
+
+<p>アルバム設定に従ってメディアギャラリーはアップロードされた画像をリサイズします。
+画像の解像度がアルバム設定で指定されたよりも大きければ、それ以下にリサイズが行われます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId415433"></a>MP3 / OGGの処理</h3>
+
+<p>メディアギャラリーはMP3とOGGオーディオファイルに幾つかの追加処理を行います。</p>
+
+<ul>
+
+  <li>MP3ファイルにサムネイルが埋め込まれていれば、それを取り出しファイルの添付サムネイルとして使用します。</li>
+
+  <li>MP3ファイル・OGGファイルからアーティスト・タイトル・ジャンルのメタデータを取り出し、キャプション・説明フィールドにこれらを挿入します。</li>
+
+</ul>
+
+<h1><a name="mozTocId768958"></a>メディアアイテムの管理</h1>
+
+<p>このオプションでアルバムにあるメディアの移動・消去のバッチ処理を行います。
+同時にメディアの手動再ソートとキャプションの追加を行うことが出来ます。
+どの画像をアルバムカバーとして使うかも選択出来ます。アルバムリストにある画像から選びます。</p>
+
+<p>メディア管理画面で画像をクリックすると属性の編集と簡単な画像編集を行えます。
+キャプチャー時刻・画象の回転・タイトル・説明・カテゴリ・キーワードの変更が可能です。</p>
+
+<p>メディアアイテムのアイコンを選択すると画象がポップアップ・ズームインして、フルサイズで確認が出来ます。</p>
+
+<p>メディア管理画面では次のことが可能です。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td>画象回転のバッチ</td>
+      <td>サムネイルの左の選択ボックスをチェックして回転したい画像を選びます。
+      バッチドロップダウンメニューから回転方向を選び「<b>バッチ</b>」ボタンをクリックします。</td>
+    </tr>
+    <tr>
+      <td>メディアを新しいアルバムに移動する</td>
+      <td>サムネイルの左の選択ボックスをチェックして移動したいメディアを選びます。
+      移動先のアルバムをドロップダウンリストから選び「移動」ボタンをクリックします。</td>
+    </tr>
+    <tr>
+      <td>メディアアイテムの削除</td>
+      <td>削除したいメディアアイテムを選び「削除」ボタンをクリックします。<br>
+      <b>注：</b>削除したものは二度と元に戻せません。</td>
+    </tr>
+    <tr>
+      <td>ウォーターマーク画像</td>
+      <td>アルバム属性でウォーターマークを選択した（ウォーターマーク画像を使うことにした）場合、ウォーターマークに使いたい画像を選んでください。
+      バッチドロップダウンメニューから「ウォーターマーク」を選び「<b>バッチ</b>」ボタンをクリックします。
+      アルバムのウォーターマークが定義されていないと「ウォーターマーク」は現れません。</td>
+    </tr>
+    <tr>
+      <td>アルバムカバーの設定</td>
+      <td>デフォルトではアルバムの中の一番新しい画像がアルバムカバーとして使われます。
+      一つのイメージを指定することも可能です。サムネイル（カバーの行）の右のラジオボタンをクリックして使いたい画像を選択し、画像を選んでください。
+      「<b>保存</b>」ボタンを押して設定を保存することを忘れないでください。</td>
+    </tr>
+    <tr>
+      <td>アルバムカバーのリセット</td>
+      <td>アルバムカバーの画像を指定した後にデフォルトの最新画像を使う設定に戻したい場合は「アルバムカバーのリセット」とラベルされたボタンを押してください。
+      「<b>保存</b>」ボタンを押して設定を保存することを忘れないでください。</td>
+    </tr>
+    <tr>
+      <td>メディアアイテムのソート</td>
+      <td>手動でアルバム内のメディアの並び順を変えられます。
+      サムネイルの右が番号付きのボックスになっています。この番号がアルバム内での並び順を示します。
+      大きな番号が先に表示されます。
+      このボックス内の番号を変えることにより並び順の変更が出来ます。
+      「<b>保存</b>」ボタンを押して設定を保存してください。</td>
+    </tr>
+    <tr>
+      <td>スライドショー自動タグを使う</td>
+      <td>スライドショー自動タグはとてもパワフルなツールですが限界もあります。
+      スライドショー自動タグに縦置きと横置きを混ぜた場合、サイズと向きを揃えた場合に比べると見栄えはよくありません。
+      「SSを使う」行の下にあるチェックボックスでスライドショーに含める画像を選択します。<br>
+      <b>注：</b>この機能を使ってもアルバムのスライドショーには影響が出来ません。</td>
+    </tr>
+    <tr>
+      <td>メディアアイテムのタイトル・説明・キーワード・カテゴリを編集</td>
+      <td>アルバムの中の個々のアイテムのタイトル・説明は編集出来ますし、キーワードの追加、カテゴリの変更が可能です。<br>
+      <b>注：</b>カテゴリーの定義がされていない場合は、カテゴリードロップダウンメニューは現れません。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>個々のサムネイルの下の「編集」リンクからメディアアイテムのすべての属性を編集出来ます。</p>
+
+<h2><a name="mozTocId716339"></a>メディアの編集</h2>
+
+<p>メディアの属性を編集するには、メディアアイテム管理画面、またはメディアギャラリーのメディアアイテムを見ながらメディアのサムネイルを選択します。</p>
+
+<p>この画面では画象の向き（縦置き・横置き）・タイトル・説明などのアイテムの一般的な属性の変更が出来ます。
+メディアアイテムにサムネイルを付加することも出来ます。
+サムネイルが付加されるとアルバムサムネイルを見るときにはそのサムネイル画像が表示されます。</p>
+
+<p><span style="font-weight: bold;">ビューカウンターのリセット</span></p>
+
+<p>ここでビューカウンターをゼロにリセットします。</p>
+
+<p><span style="font-weight: bold;">評価のリセット</span></p>
+
+<p>そのメディアアイテムへの評価データを消去します。</p>
+
+<p><span style="font-weight: bold;">オリジナルファイル名</span></p>
+
+<p>メディアギャラリーにアップロードされた時のオリジナルのファイル名です。
+ここは単なる情報フィールドで、メディアアイテムをエクスポートする際に使われます。</p>
+
+<p><span style="font-weight: bold;">付加されたサムネイル</span></p>
+
+<p>このオプションでメディアアイテムにサムネイルを付加します。
+付加されたサムネイルはアルバムのインデックスビューで表示されます。
+付加されたサムネイルを除去したい場合は、「付加されたサムネイル」のチェックボックスのチェックを外します。</p>
+
+<p>付加されたサムネイルは入れ替えも可能です。
+参照ボタンを選んで新しくアップロードする画像を選んでください。</p>
+
+<p><span style="font-weight: bold;">ファイルの入れ替え　Replace File</span></p>
+
+<p>ファイルを再アップロードしたい、今のファイルに入れ替えて新しいものをアップロードしたい。
+そういう場合は、「ファイルの入れ替え」チェックボックスを選択し、入力フィールドに新しいファイル名を入力します。</p>
+
+<p><span style="font-weight: bold;">代替URL / リモードURL</span></p>
+
+<p>代替URLは自動タグが使い、メディアアイテム画面の代わりに代替の場所のリンクを提供します。
+今のところ、スライドショー自動タグがこのフィールドを使用します。</p>
+
+<p>リモートURLはストリーミングFLVメディアや埋込ビデオが使います。</p>
+
+<p><span style="font-weight: bold;">タイトル</span></p>
+
+<p>メディアアイテムのタイトル</p>
+
+<p><span style="font-weight: bold;">説明</span></p>
+
+<p>メディアアイテムの説明</p>
+
+<p><span style="font-weight: bold;">キーワード</span></p>
+
+<p>検索機能を補完するための、そのメディアのキーワード</p>
+
+<p><span style="font-weight: bold;">カテゴリー</span></p>
+
+<p>そのメディアアイテムが属するカテゴリ</p>
+
+<p><span style="font-weight: bold;">キャプチャー時刻</span></p>
+
+<p>ここでデータベースに保管するキャプチャー時間を変更します。</p>
+
+<div class="noteimportant"><span style="font-weight: bold;">「保存」ボタンを押すのを忘れないでください。
+ここではじめて変更がデータベースに保管され新しいサムネイルがアップロードされ、ファイルの置き換えが行われます。</span></div>
+
+<h2><a name="mozTocId83636"></a>キャプション編集のバッチ</h2>
+
+<p>アルバムへのアイテムのアップロードに「FTP経由のインポート」と「XP Publsihing Wizard」を選択している場合、タイトルや詳細を入力する機会がありません。
+「キャプション編集のバッチ」はこれらを提供するストリームライン・インターフェイスで、ここでメディアアイテムのタイトルや説明を追加・編集が可能です。</p>
+
+<h2><a name="mozTocId747225"></a>メディアアイテムのソート</h2>
+
+<p>このオプションでアルバムの中にある全てのメディアをソートします。
+アップロード時刻とキャプチャー時刻が基準です。
+EXIFデータがあればそれを使います。
+希望するオプションを選択し保存します。アルバムのすべてのメディアが再ソートされます。</p>
+
+<h1><a name="mozTocId32228"></a>メディアギャラリーの一般アイテム</h1>
+
+<h2><a name="mozTocId885785"></a>RSSフィード　RSS Feeds</h2>
+
+<p>メディアギャラリーはすべてのアルバムを含むフルRSSフィードをサポートしています。
+アルバムごとのRSSフィードも可能で個々にON/OFFがアルバム属性編集画面から可能です。
+RSSフィードには2つの種類があります。
+サイトのすべてのアルバムをカバーするものと、アルバムごとのRSSフィードです。</p>
+
+<h2><a name="mozTocId331186"></a>電子ポストカード</h2>
+
+<p>メディアギャラリーは電子ポストカードをサポートしており、アルバム中のどの画像でも送ることが出来ます。
+アルバム属性画面でこの機能のON/OFFをします。
+また、すべてのユーザー（ログインユーザー以外でも）がこの機能を使えるようにするか、ログインユーザーだけに限って使用させるかを指定出来ます。</p>
+
+<p>CAPTCHA v3プラグインがインストールされていれば、電子ポストカードを送る際にCAPTCHA入力フィールドを有効に出来ます。
+これによりスパマーによる迷惑行為を防止することが出来ます。</p>
+
+<h2><a name="mozTocId880455"></a>モデレーション</h2>
+
+<p>メディアギャラリーはモデレーション機能をサポートしており、アップロード権限があるアルバムにユーザーがメディアをアップロードすることが出来ます。
+この場合、メディアアイテムはモデレーションキューに置かれ、モデレーターによる承認または削除を待つことになります。</p>
+
+<p>モデレーション設定はアルバム個々に設定します。
+アルバムごとに別々のモデレーションを指定出来ます。
+Geeklogグループによりモデレーターは規定されます。</p>
+
+<p>例えば、まず「Youth Album Moderators」というGeeklogグループを作ります。
+ワンセットのアルバムに対してモデレーションを有効にし「Youth Album Moderators」をモデレーショングループとして選択します。
+ユーザーがメディアアイテムをこれらのアルバムのどれかにアップロードした時に、「Youth Album Moderators」グループのすべてのメンバーが「メディアアイテム1件がモデレーションを待っています」というemail通知を受け取ります。
+但しこれはemail通知が有効になっている場合で、アルバム属性で無効にすることも出来ます。
+「Youth Album Moderators」のメンバーだけがメディアアイテムの承認が出来ます。
+例外としてメディアギャラリー管理者グループも承認が出来ます。</p>
+
+<p>モデレーターがシステムにログインすると、モデレーター権限を持つアルバムでは管理ドロップダウンメニューに「メディアキュー」というオプションが現れ、キューにあるアイテムを表示します。
+モデレーターはメディアキューに入りメディアアイテムを承認または削除します。</p>
+
+<h2><a name="mozTocId696648"></a>オンライン印刷</h2>
+
+<p>メディアギャラリーはDigiBug.comのオンラインサービスによる画象の直接印刷をサポートしています。
+「統合オンライン印刷」は無効にすることもアルバムごとに設定することも可能です。
+Digibug.comにはメディアギャラリーも参加しているアフィリエイトプログラムがあり、オンライン印刷サービスが提供されると、メディアギャラリーと私（メディアギャラリーの作者）は1回のサービスごとに取り分を受け取ります。
+この取り分をなくすつもりは今のところありません。
+画像毎の僅かな金額なのでこれで大きく稼ぐことは考えていません。
+高品質のサービスなのでメディアギャラリーでこれを提供したいと考えています。
+あなたのサイトのユーザーにも是非このサービスが使えるよう有効にしていただければと思います。
+個々からの取り分がメディアギャラリーの将来の開発の役に立ちます。</p>
+
+<p>メディアギャラリーはDigibug.comのサービスのすべてをサポートしているのでユーザーにとってはまったくメディアギャラリーとの境界を感じることなく使っていただけます。
+ユーザーが画像を印刷したいと思ったら、画像の右下のDigiBugアイコンをクリックするだけです。
+すぐにDigiCom.comのサイトに遷移し、画像がカートに入っている状態になります。
+ユーザーは多くの種類のサイズと他の項目、例えば印刷するモノをコーヒーカップやTシャツなどから選べます。
+「ContinueBrowsing」からすぐにメディアギャラリーに戻ることも可能です。</p>
+
+<p>DigiBugは世界中の多くの場所からの注文に対応しています。
+以下は同社が注文品を発送出来る国のリストです。</p>
+
+<h2><a name="mozTocId9477"></a>バッチ処理システム</h2>
+
+<p>メディアギャラリーの目指すものの一つはリソースフレンドリーなアプリケーションになることです。
+特にレンタルサーバー・ホスティングサービス環境での動作を前提に設計されています。
+この目的のためにFTPインポート、ウォーターマーキング、画像リサイズなどをバッチ処理システムで行っています。
+バッチ処理システムは大きな動作をする代わりに、それらを「サイクル」と呼ばれる小さな動作に分けて大きなバッチオペレーションを行います。
+例えば、100個の画像にウォーターマーキングを施すとすると、メディアギャラリーは「バッチセッション」を生成し画像を幾つかの「サイクル」でウォーターマーキングを施します。
+共有ホスティング環境におけるいくつかの問題がこのアプローチにより解決します。
+第1に、多くのホスティングサービスでは一度に実行できるスクリプトの数に上限があり、それを上回った場合スクリプトは止まってしまいます。
+より小さな単位での大きなオペレーションを処理することでサーバーのタイムアウトを回避します。
+第2に、画像処理そのものが非常にリソースを消費するプロセスで、一般的にCPU能力を大きく使います。
+共有ホスティング環境ではやはり一定の時間に一つのスクリプトが使えるCPUリソースの制限を設けています。
+ホスティングサービスとのトラブルを避けるためにメディアギャラリーのバッチ処理システムはCPUリソースをムダに使わないサービスを提供しています。</p>
+
+<h2><a name="mozTocId478715"></a>ユーザー設定</h2>
+
+<p>メディアギャラリーはユーザーの閲覧習慣に従って幾つかのユーザー設定が出来るようになっています。
+「MGユーザーオプション」とラベルされたユーザー機能のオプションメニューを用意しています。
+登録ユーザーがこれを使うことが出来ます。</p>
+
+<ul type="disc">
+
+  <li>行の表示</li>
+
+  <li>列の表示</li>
+
+  <li>オーディオ・ビデオ再生タイプ</li>
+
+  <li>サムネイルサイズ設定</li>
+
+</ul>
+
+<p>サイト管理者はこの全機能の無効または幾つかの項目のみを無効にすることが出来ます。
+メディアギャラリー管理画面で「システムオプション」を選び、どの項目をユーザー設定可能にするかを「ユーザー設定オーバーライド」で設定します。</p>
+
+<h2><a name="mozTocId199546"></a>ウォーターマーキング</h2>
+
+<p>ギャリーにアップロードされた画像に対するウォーターマークの自動適用を選択することが出来ます。
+メディアギャラリーにはウォーターマーク監理システムがあり、そこであなたと（アルバム所有権を持つ）ユーザーへのウォーターマーク画像のアップロード・削除・編集の許可・不許可を設定します。
+ウォーターマーク管理システムには、アルバム閲覧画面のメイン監理ドロップダウンメニューから「ウォーターマーク」を選びます。</p>
+
+<p>ウォーターマークのアップロードの際に、mediagallery.adminsはウォーターマーク画像を公開にするか非公開にするか指定するオプションがあります。
+公開設定された画像はアルバムの所有権を持つすべてのユーザーがその画像をウォーターマークに使うことが出来ます。
+非公開画像はアップロードしたユーザーのみが使えます。</p>
+
+<p>アルバムは、アップロードされた時に自動的にウォーターマークを施す、または、手動でいつでもウォーターマークを施す設定が出来ます。
+自動的にウォーターマークを施すにはアルバム編集画面の「自動ウォーターマーク」を有効にします。</p>
+
+<p>手動・選択的ウォーターマークにするには、メディア管理画面で行います。
+ウォーターマークする画像を選び、バッチドロップダウンから「」ウォーターマーク」を選びます。</p>
+
+<p>一度ウォーターマークされた画像には別にウォーターマークすることは出来ません。</p>
+
+<h1><a name="mozTocId580924"></a>Geeklogとの統合</h1>
+
+<p>Geeklogでは豊富な統合APIが提供されており、メディアギャラリーもそのお陰で、ウェブ管理者に豊富な選択肢を与え得る真に統合されてシステムを作り上げることが出来ました。
+プラグイン作者がコーディング過程を単純化出来、緊密に統合されたソリューションを使える基礎を築くという素晴らしい仕事をGeeklog開発グループはしてくれました。
+次の項でこれら統合作業の幾つかの詳細を説明します。</p>
+
+<h2><a name="mozTocId34513"></a>Comments</h2>
+
+<p>メディアギャラリーはGeeklogコメントエンジンのすべてのメリットを教授出来ます。
+アルバム属性でコメントを許可していれば、メディアアイテムにユーザーがコメントを残すことが出来ます。
+メディアギャラリーはGeeklogコメントエンジンを使うので、Spam-Xプラグインでコメントスパムを防止することが出来ます。
+コメントの間隔制限もメディアギャラリーに適用されます。</p>
+
+<h2><a name="mozTocId54737"></a>自動タグ</h2>
+
+<p>メディアギャラリーはGeeklogの自動タグをフルサポートしています。
+記事の表示の際に使われる、記事に埋め込まれるタグです。
+自動タグはメディアギャラリーで最も強調したい機能の一つです。
+Geeklogの記事・静的ページ・フォーラム投稿でオーディオ・ビデオがシンプルに使えるようになります。</p>
+
+<p>すべての自動タグはメディアIDとアルバムIDをすぐに使えるようになります。
+多くの自動タグでは追加パラメータが使えるので、これで見栄えを制御し統一感を演出することが出来ます。</p>
+
+<p>自動タグはまた、アルバムのパーミッション設定にも引き継がれます。
+あるユーザーがアルバムを見るパーミッションを与えられていない場合、アルバムやそのコンテンツを示すすべての自動タグはこのユーザーには表示されません。
+この唯一の例外は、「ログインが必要」の設定です。
+この設定をしていると、ログインしていないユーザーにはアルバムは見えませんが、ログインユーザーにはすべての自動タグが表示されます。</p>
+
+<p>メディアギャラリーは自動タグに関して幾つかの特別な機能を提供しています。
+記事にメディアギャラリーのサムネイルが使われた場合、左から右にalignするのがデフォルトです。
+右寄せ、左寄せ、またはno alignとしたい場合は「align:」パラメータを使ってお好みに合わせてください。</p>
+
+<h3><a class="mozTocH3" name="mozTocId122342"></a>album:</h3>
+
+<p>アルバム自動タグは、アルバムカバーでサムネイルを生成します。
+この自動タグはサムネイルのみを使います。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>サムネイルの幅を##ピクセルで指定</td>
+    </tr>
+    <tr>
+      <td>height:##</td>
+      <td>サムネイルの高さを##ピクセルで指定</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none</td>
+      <td>自動タグの寄せ方向を設定。
+      使えるオプションはleft;左寄せ、right;右寄せ、auto;メディアギャラリーが規定の右から左への寄せ、none;no align(寄せ無し)</td>
+    </tr>
+    <tr>
+      <td>linkid:##</td>
+      <td>linkid：が指定されているとメディアギャラリー自動タグはそのlinkid:パラメータで指定されたメディアアイテムをリンクします。
+      linkid:で対象がない場合はアルバム画面にリンクします。</td>
+    </tr>
+    <tr>
+      <td>border:0/1</td>
+      <td>1でサムネイル周りにborder(frame)を配置します。<br>
+      0でborderを無効にします</td>
+    </tr>
+    <tr>
+      <td>link:0/1</td>
+      <td>1でサムネイルがアルバムにリンクします。<br>
+      0はこの直リンクを無効にし、代わりにリンクなしでアルバムカバーのサムネイルが表示されます。</td>
+    </tr>
+    <tr>
+      <td>caption</td>
+      <td><b>]</b>で閉められる前のテキストはイメージのキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>使用例:</p>
+
+<p>[album:1 width:200 height:200 align:auto border:1 link:1 A sample album auto tag]</p>
+
+<p>この使用例は、高さ・幅約200x200ピクセルでアルバムカバーサムネイルを記事に配置しています。
+メディアギャラリーは画像をアスペクト比を保存するのでサイズは正確に200x200にならないこともありますが、200x200より大きくはなりません。
+サムネイルの寄せ設定は記事の中の自動タグに従って自動的に右から左の間で決定されます。
+サムネイルの周りに細いborderがあり、アルバム画面への直リンクが貼ってあります。
+キャプションはサムネイルの下に配置されます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId433513"></a>media:</h3>
+
+<p>メディア自動タグは一般用との自動タグです。すべてのメディア一つ一つに作用します。
+オーディオ・ビデオメディアには、付加されたサムネイル、付加されたサムネイルがない場合は生成されたサムネイルを表示します。
+画像メディアにはメディアアイテムのサムネイルを表示します。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>##ピクセルでサムネイル画像の幅を設定します。</td>
+    </tr>
+    <tr>
+      <td>height:##</td>
+      <td>##ピクセルでサムネル画像の高さを設定します。</td>
+    </tr>
+    <tr>
+      <td>border:0/1</td>
+      <td>1はサムネイル周りにborder(frame)を配置します。<br>
+      0はborderを無効にします。</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none</td>
+      <td>自動タグのalignmentを設定します。
+      オプションはleft:左寄せ、right:右寄せ、auto:メディアギャラリーの自動alignment=右から左、none:no alignとなります。</td>
+    </tr>
+    <tr>
+      <td>src:orig, disp or tn </td>
+      <td>どの画像を使うかの指定です。
+      オリジナル画像（フルサイズ）、表示用画像、サムネイルです。
+      <b>src</b>オプションが指定されない場合はサムネイルがデフォルトとして使われます。</td>
+    </tr>
+    <tr>
+      <td>alt:0/1</td>
+      <td>1はメディアアイテムへの代替URLをhrefリンクで指定します。<br>
+      0はメディアアイテムへの直リンクを指定します。</td>
+    </tr>
+    <tr>
+      <td><i>caption</i></td>
+      <td><b>]</b>で閉められる前のすべてのテキストは画像のキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>例えば、[media:200706012342 What a pretty flower]はこんな指示になります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId312670"></a>img:</h3>
+
+<p>メディアアイテムへの&lt;img&gt; HTMLタグを生成し、オプションとしてそのメディアアイテムへのリンクを付加します。
+<b>img:</b>自動タグはサムネイルサイズとalignment以外のいかなるフォーマットもサポートしません。
+この自動タグの目的とするのは、記事への生の&lt;img&gt;HTMLタグを生成することです。
+よって、この自動タグではオリジナル画像へのリンクは提供しません。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>##ピクセルでサムネイルの幅を設定</td>
+    </tr>
+    <tr>
+      <td>height:##</td>
+      <td>##ピクセルでサムネイルの高さを設定。</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none </td>
+      <td>自動タグのalignmentを設定します。
+      オプションはleft:左寄せ、right:右寄せ、auto:メディアギャラリーの自動alignment設定（右から左）、none:no align、です。</td>
+    </tr>
+    <tr>
+      <td>src:orig, disp or tn </td>
+      <td>使用する画像を指定します。
+      オリジナル画像（フルサイズ）、表示用画像、サムネイルです。
+      <b>src</b>オプションが指定されていない場合、サムネイル画像がデフォルトとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId609416"></a>slideshow:</h3>
+
+<p><b>slideshow</b>自動タグは記事にJavaScriptベースのスライドショーを埋め込みます。</p>
+
+<p>JavaScriptのスライドショーには若干の制限があります。
+画像はセンター寄せにならないので横長と縦長の画像が混在する場合、縦長の画像は左寄せになります。
+各アルバムのメディア監理画面にどの画像をスライドショーに含めるかのオプションがありますのでこちらでこの自動タグのコントロールをしてください。
+こちらからなら近いサイズと向きの画像が選択出来るので、よりよいスライドショーが作れるでしょう。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>##ピクセルでサムネイルの幅を指定します。</td>
+    </tr>
+    <tr>
+      <td>height:##</td>
+      <td>##ピクセルでサムネイルの高さを設定します。</td>
+    </tr>
+    <tr>
+      <td>border:0/1</td>
+      <td>1はサムネイル周りにborderを配置します。<br>
+      0はborderを無効にします。</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none</td>
+      <td>自動タグのalignmentを設定します。オプションはleft:左寄せ、right:右寄せ、auto:メディアギャラリーの自動alignment(右から左)、none:no align、です。</td>
+    </tr>
+    <tr>
+      <td>delay:##</td>
+      <td>次の画像に移動するまでの秒数</td>
+    </tr>
+    <tr>
+      <td><i>caption</i></td>
+      <td><b>]</b>で閉められる前のすべてのテキストは画像のキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId234744"></a>fslideshow:</h3>
+
+<p>Flashベースのミニスライドショーをあなたのページに提供します。
+画像がスクロールすると個々の画像へのリンクが現れます。
+キャプションが指定してあれば、スライドショーの下に表示されます。</p>
+
+<p><b>注意:</b>ミニスライドショーではborderは表示されません。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>##ピクセルでスライドショーの幅を設定します。</td>
+    </tr>
+    <tr>
+      <td>height:##</td>
+      <td>##ピクセルでサムネイルの高さを指定します</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none </td>
+      <td>自動タグのalignmentを指定します。オプションはleft:左寄せ、right:右寄せ、auto:メディアギャラリーの自動alignment(右から左)、none:no align、です。</td>
+    </tr>
+    <tr>
+      <td>src:tn/disp/orig</td>
+      <td>どの画像を使うかを指定します。
+      <ul>
+        <li>tn - サムネイル画像</li>
+        <li>disp - 表示用画像</li>
+        <li>orig - オリジナル画像</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td>link:0/1</td>
+      <td>0はメディアへのリンクなし、<br>
+      1はメディアアイテムへのリンクを提供</td>
+    </tr>
+    <tr>
+      <td>delay:#</td>
+      <td>次の画像に移動するまでの秒数を指定します。</td>
+    </tr>
+    <tr>
+      <td>title:top/bottom</td>
+      <td>topはタイトルバナーをスライドショーの上部に配置、bottomは下部に配置します。</td>
+    </tr>
+    <tr>
+      <td><i>caption</i> </td>
+      <td><b>]</b>で閉められる前のすべてのテキストは画像のキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId438736"></a>video:</h3>
+
+<p>media_id=で200x200のビデオプレーヤーを記事に配置し自動再生します。
+video自動タグはメディアギャラリー内のすべてのビデオアイテムを記事に埋め込みます。
+YouTubeビデオなどの埋込みビデオも同様です。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>##ピクセルでビデオの幅を設定します。</td>
+    </tr>
+    <tr>
+      <td>height:##</td>
+      <td>##ピクセルでビデオの高さを設定します。</td>
+    </tr>
+    <tr>
+      <td>align:auto, none, right, left</td>
+      <td>自動タグのalignmentを設定します。オプションは、left:左寄せ、right:右寄せ、auto:でメディアギャラリーの自動alignment(右から左)、none:no align、となります。</td>
+    </tr>
+    <tr>
+      <td>autoplay:0/1</td>
+      <td>1でビデオの自動再生が始まり、0でユーザーが再生ボタンを押してから再生が始まります。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><b>注意:</b>埋込みビデオでは埋込文字列で高さ・幅が指定されているので、これを変更することは出来ません。
+この場合高さ・幅のパラメータは無視されます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId141414"></a>audio:</h3>
+
+<p>記事にオーディオプレーヤーを配置します。
+サムネイルがない場合15x200、サムネイルがある場合200x200サイズです。
+オーディオファイルに付加されたサムネイルがある場合はプレイヤーのコントロールボタンの上に表示されます。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>align:auto, none, right, left</td>
+      <td>自動タグのalignmentを設定します。オプションは、left:左寄せ、right:右寄せ、auto:でメディアギャラリーの自動alignment(右から左)、none:no align、となります。</td>
+    </tr>
+    <tr>
+      <td>autoplay:0/1</td>
+      <td>1でオーディオ自動再生が始まり、0でユーザーが再生ボタンを押してから再生が始まります。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId726137"></a>playall:#</h3>
+
+<p>記事にMP3ジュークボックスを配置します。
+アルバム中のすべてのMP3メディアのプレイリストを含みます。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>#</td>
+      <td>Album ID</td>
+    </tr>
+    <tr>
+      <td>align:auto, none, right, left</td>
+      <td>自動タグのalignmentを設定します。オプションは、left:左寄せ、right:右寄せ、auto:でメディアギャラリーの自動alignment(右から左)、none:no align、となります。</td>
+    </tr>
+    <tr>
+      <td>autoplay:0/1</td>
+      <td>1でオーディオ自動再生が始まり、0でユーザーが再生ボタンを押してから再生が始まります。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId534534"></a>download:</h3>
+
+<p>アルバムに保管されたメディアアイテムやアイテムをユーザーがダウンロード出来るようにします。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td><i>caption</i></td>
+      <td><b>]</b>で閉められる前のすべてのテキストは画像のキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId885157"></a>mlink:</h3>
+
+<p>メディアアイテムへのテキストリンクを配置。
+サムネイルは使われません。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>alt:0/1</td>
+      <td>1ではメディアアイテムの代替URLのhrefリンクを使用、<br>
+      0はメディアアイテムへの直リンクを提供。</td>
+    </tr>
+    <tr>
+      <td><i>href text</i></td>
+      <td><b>]</b>で閉められる前のすべてのテキストはhrefテキストとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId105679"></a>image:</h3>
+
+<p>メディアIDで指定したメディアアイテムのサムネイル画像を配置。
+リンクは生成せず画像のみを配置します。
+キャプションを指定した場合、画象の下に表示されます。</p>
+
+<p><b>image:自動タグの必要性は減ってきたので、代わりにmedia:自動タグを使ってください。</b></p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:##</td>
+      <td>##ピクセルでサムネイルの幅を設定します。</td>
+    </tr>
+    <tr>
+      <td>border:0/1</td>
+      <td>1はborder(frame)をサムネイルの周りに配置<br>
+      0はborderを無効にします。</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none </td>
+      <td>自動タグのalignmentを設定します。オプションは、left:左寄せ、right:右寄せ、auto:でメディアギャラリーの自動alignment(右から左)、none:no align、となります。</td>
+    </tr>
+    <tr>
+      <td>src:orig, disp or tn </td>
+      <td>使用する画像を指定します。
+      オリジナル画像（フルサイズ）、表示用画像、サムネイルです。
+      <b>src</b>オプションが指定されていない場合、サムネイル画像がデフォルトとして使われます。</td>
+    </tr>
+    <tr>
+      <td>link:0/1</td>
+      <td>1は画像へのリンクを表示、0はオリジナル画像へのリンクを無効にします。</td>
+    </tr>
+    <tr>
+      <td><i>caption</i> </td>
+      <td><b>]</b>で閉められる前のすべてのテキストは画像のキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId606100"></a>oimage:</h3>
+
+<p>オリジナル画像を生成します。
+アップロードされた画像をそのまま使うので標準のサムネイルよりもかなり大きなものになります。</p>
+
+<p><b>oimage;自動タグの必要性は少なっていますのでmedia:自動タグを使うようにしてください。</b></p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <th style="width:15%">パラメータ</th>
+      <th style="width:85%">説明</th>
+    </tr>
+    <tr>
+      <td>width:## </td>
+      <td>##ピクセルでサムネイルの幅を設定します。</td>
+    </tr>
+    <tr>
+      <td>border:0/1 </td>
+      <td>1でborder(frame)をサムネイルの周りに配置します。<br>
+      0でborderを無効にします。</td>
+    </tr>
+    <tr>
+      <td>align:left, right, auto or none </td>
+      <td>自動タグのalignmentを設定します。オプションは、left:左寄せ、right:右寄せ、auto:でメディアギャラリーの自動alignment(右から左)、none:no align、となります。</td>
+    </tr>
+    <tr>
+      <td><i>caption</i></td>
+      <td><b>]</b>で閉められる前のすべてのテキストは画像のキャプションとして使われます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId715690"></a>アルバムIDとメディアIDをどこで探すか？</h3>
+
+<p>アルバムIDはアルバム閲覧画面の左下端に表示されています（メディアID表示を有効にしている場合の管理者にのみ）。
+メディアIDはアルバムを見ている時の、URLのパラメータとして表示されています。
+ブラウザのアドレスバー、またはメインアルバムページでアルバムにマウスオーバーした時のブラウザのステイタスバーを見てください。</p>
+
+<p>メディアIDは画像詳細ページの左フッターに表示されています。（メディアID表示を有効にしている場合の管理者にのみ）</p>
+
+<h3><a class="mozTocH3" name="mozTocId685853"></a>埋込画像の見栄えを変えるにはどうすればよいか？</h3>
+
+<p>画像周りのボックスが気に入らない場合、またはサイトに合わせて少し変えてみたい場合、autotag.thtmlテンプレートファイルを編集してください。
+plugins/mediagallery/templates/ディレクトリにあります。
+ここで埋め込み画像の見栄えをコントロールします。</p>
+
+<h2><a name="mozTocId160636"></a>自動リンク</h2>
+
+<p>メディアギャラリーv1.6はGeeklogの自動リンクをフルサポートしています。
+他プラグイン自動タグのメディアギャラリーのアルバムとアイテムのタイトルや説明への埋め込みが可能です。
+自動リンクのサポートは自動的に行われ、設定オプションも不要です。</p>
+
+<h2><a name="mozTocId741121"></a>サイトの統計</h2>
+
+<p>メディアギャラリーはGeeklogの統計エンジンともフルに統合されています。
+特に何もすることなくこの機能のメリットを享受出来ます。
+Geeklogサイトでユーザーがサイトの統計を見た時、メディアギャラリーはシステム中の画像の総数、人気のある画像、得票の高い画像（ランキングが有効なら）を表示します。</p>
+
+<h2><a name="mozTocId169118"></a>検索</h2>
+
+<p>メディアギャラリーはGeeklogの検索エンジンと完全に統合されています。
+特別なことをすることなくこの機能の恩恵を享受出来ます。
+特記すべきは、メディアアイテムにはキャプションがありませんが、メディアギャラリーはアルバムタイトルを使って検索結果を表示します。</p>
+
+<p>メディアギャラリーは自身の検索システムも持っています。
+Geeklogの標準検索に幾つかの付加機能を持っています。
+メディアギャラリー検索は特定のカテゴリーとキーワードでの検索が可能です。</p>
+
+<h2><a name="mozTocId593778"></a>新着表示</h2>
+
+<p>メディアギャラリーはGeeklogの新着表示ブロックと完全に統合されています。
+この機能は、メディアギャラリーシステムオプションで無効に出来ます。</p>
+
+<p>メディアギャラリーのコメントが有効な場合、メディアへのすべての新しいコメントも新着表示ブロックに表示されます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId397000"></a>新着表示への特別な配慮</h3>
+
+<p>新着表示を有効にしている場合、メディアギャラリーはメディアへのすべての新しいコメントを表示しようとしますが、このオペレーションは非常にリソースを消費します。
+目に見える背後のサーバーで行われていることは、データベースエンジンがコメントの一時コピーを生成し、そのファイルの個々のレコードをスキャンする、という作業が行われています。
+数百のコメントある場合、サーバーには大きな負荷がかかります。
+いくつかのレンタルサーバーでは生成された一時テーブルに対してのディスクスペースを割り当てていないため、ディスクスペースの問題も起こり得ます。</p>
+
+<p>この機能のリソース付加が過大なため、新しいコメントを引かずに新しいアイテムはリストに載せる方法があります。
+システムオプション設定画面の<b>Disable What's New</b> Commentsのチェックボックスにチェックを入れてください。</p>
+
+<h2><a name="mozTocId519863"></a>注目のアルバム</h2>
+
+<p>Geeklogの「注目の記事」と同じように「注目の記事」が作れます。
+「注目のアルバム」はhomepage（または設定された話題ページ）の記事の前または後に表示されます。
+加えて、メディアギャラリーはGeeklogの話題毎に別の注目のアルバムの指定も可能です。</p>
+
+<p>「注目のアルバム」を作るには、アルバム編集画面の注文くアルバム属性を有効にしてそのアルバムを表示したい場所と話題を選択してください。</p>
+
+<h2><a name="mozTocId56915"></a>ランダムイメージブロック</h2>
+
+<p>メディアギャラリーがインストールされると、自動的にランダムイメージブロックがGeeklogのブロックシステムに生成されます。
+このブロックはデフォルトでは無効ですが、Geeklogのブロック管理システムで有効にします。</p>
+
+<p>ランダムイメージブロックはすべてのアルバムからランダムに画像を表示します。
+ページがリロードされるごとにその画像は変わり、その画像が保管されているアルバムへの直リンクを提供します。</p>
+
+<h1><a name="mozTocId803390"></a>ユーザープロフィール</h1>
+
+<p>メディアギャラリーはGeeklogのユーザープロフィールシステムとも統合されています。
+ユーザーがアップロードした最近5個の画像、ユーザーが所有しているアルバムを表示します。
+ユーザーがメディアをアップロードしたことがなく、アルバムを所有していない場合は何も表示しません。</p>
+
+<p>この機能はメディアギャラリーのシステムオプション設定画面の「ユーザープロフィール統合」で有効・無効を設定します。</p>
+
+<h1><a name="mozTocId370857"></a>メディアギャラリーのルック＆フィール</h1>
+
+<p>メディアギャラリーの見た目はテンプレートファイルとフォントと色はGeeklogテーマのスタイルシートでコントロールされています。</p>
+
+<p>メディアギャラリーは別にスタイルシートを持っており、メディアギャラリーに適したスタイルを提供しており、普通は帰る必要がありません。</p>
+
+<p>スタイルシートには2つの特別はalignment classがあります。</p>
+
+<ul>
+
+  <li>#mgAdminAlignLeft</li>
+
+  <li>#mgAdminAlignRight</li>
+
+</ul>
+
+<p>この2つのスタイルで管理画面のalignmentをコントロールしています。
+あなたが右から左に書かれる（RTL）言語を使っている場合、見栄えが良くないと思います。
+その場合、この2つのスタイルをお好みに合わせて変えてください。</p>
+
+<p><b>MGpluginMI</b>スタイルはそのまま使われるべきものです。
+これによりメディアギャラリーの画像からすべてのpaddingとmarginが取り去られており、画像のフレームが適切に表示されるようになっています。</p>
+
+<p>色やフォントは手軽に変更可能です。
+/layout/yourthemeの下にあるstyle.cssの.plugin styleを変種すればOKです。</p>
+
+<h1><a name="mozTocId809667"></a>メディアギャラリーのアルバムテーマ</h1>
+
+<p>メディアギャラリーはアルバムごとのテーマ、そしてメディアギャラリー全体のテーマをサポートしています。
+このテーマサポートには以下のメリットがあります。</p>
+
+<ul>
+
+  <li>メディアギャラリーのコアテンプレートファイルを編集する必要がなく、自分好みのテーマを作り、そこでファイルを編集することが出来ます。
+  これにより将来のアップグレードにおいてあなたが編集した内容は上書きされないのでアップグレードがより簡単になります。</li>
+
+  <li>テーマによりメディアギャラリーのすべての部分のカスタマイズが可能になります。</li>
+
+</ul>
+
+<p>メディアギャラリーテーマを編集するにあたって、すべてのテンプレートファイルを新テーマディレクトリにコピーする必要はありません。
+編集したいファイルだけをコピーすればOKです。
+テーマは容量が非常に小さくどのファイルが編集されたのかすぐにチェック出来ます。
+メディアギャラリーは常にテーマディレクトリを見に行き、それが見つからなかったときには標準テンプレートディレクトリを見に行きます。
+この仕組みによりアップグレードも編集内容の保存も簡単に出来るようになっています。</p>
+
+<h2><a name="mozTocId285200"></a>どうやってテーマを作る？</h2>
+
+<p>テーマがどのように動作するかを理解するにはメディアギャラリーに含まれるテーマを見ていただくのが一番です。
+編集するファイルをコピーするだけでよいことがすぐに分かると思います。
+非常にシンプルなプロセスです。</p>
+
+<p>最初にすることはテーマディレクトリを作ることです。
+このディレクトリはplugins/mediagallery/templates/themes/の下に作ります。
+ディレクトリの名前がテーマ名になります。</p>
+
+<p>次に、編集したいファイルのみをコピーします。コピーしたらそれらを自分の好みにあわせて編集します。</p>
+
+<p>デフォルトテーマのテンプレートで、どのテンプレート変数が使えるのか確認してください。</p>
+
+<h2><a name="mozTocId467866"></a>テーマのスタイル</h2>
+
+<p>あなたのテーマに合わせてスタイルシートを使うことも出来ます。
+plugins/mediagallery/templates/themes/YOURTHEMENAME/ ディレクトリにあなたのスタイルシートを置き、<span style="font-weight: bold;">styles.css</span>で呼び出すように設定してください。
+メディアギャラリーが自動的にこれをロードします。</p>
+
+<h2><a name="mozTocId633773"></a>テーマJavaScript</h2>
+
+<p>テーマごとに別々のJavaScriptファイルを設定出来ます。
+必ずjavascript.jsという名前にしてください。</p>
+
+<h2><a name="mozTocId740990"></a>テーマ画像</h2>
+
+<p>テーマごとに別々の画像セットを置くことが可能です。相対パスを使って指定してください。</p>
+
+<h1><a name="mozTocId164653"></a>メディアギャラリー管理</h1>
+
+<p>メディアギャラリー管理では幾つかの先進的な機能を取り入れています。
+このメニューはmediagallery.admin権限（メディアギャラリー管理者グループ）のサイト管理者だけが使えるものです。
+メディアギャラリー管理画面に入るにはメディアギャラリーの<b>Admins Only</b>ラベルの下のリンクを辿ります。
+各機能の詳しい説明を以下に行います。</p>
+
+<h2><a name="mozTocId555458"></a>設定</h2>
+
+<p>設定セクションでは数多くの設定オプションによりメディアギャラリーの動作の変更を行います。</p>
+
+<h3><a class="mozTocH3" name="mozTocId135508"></a><a name="System_Options"></a>システムオプション</h3>
+
+<h4><a class="mozTocH4" name="mozTocId87233"></a>メディアギャラリーをGeeklogのトップページに置く</h4>
+
+<p>このオプションではGeeklogサイトのトップページにメディアギャラリーのメインページが配置されます。
+このオプションは単純に写真やメディアシステムを動かしたくて記事などのGeeklogの他の機能を使わないひとのために設計されました。</p>
+
+<h4><a class="mozTocH4" name="mozTocId865925"></a>ログインが必要</h4>
+
+<p>ここでYesに設定されていると、ログインメンバーのみがメディアギャラリーのアルバムを閲覧出来ます。
+Noに設定されていると、誰でも閲覧可能になります。
+個々のアルバムにもセキュリティ機能があり、アルバム毎に設定が可能であることを忘れないでください。
+ここの設定はすべてのメディアギャラリー機能にグローバルに効くものです。</p>
+
+<h4><a class="mozTocH4" name="mozTocId36923"></a>アルバム/メディア タイトルにHTMLを許可する</h4>
+
+<p>これがYesに設定されていると、アルバムとメディアのタイトル・説明にHTMLが使えるようになります。
+Geeklogのconfig.phpで規定されているHTML設定を拡張する機能です。
+Noに設定されていると、HTMLは不許可になり保存の前にHTMLは取り去られます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId431525"></a>使用履歴の追跡</h4>
+
+<p>メディアギャラリーへのすべての訪問と閲覧を記録する使用履歴追跡システムを実装しました。
+これをONにするとデータベースサイズが大きくなりますが、誰がギャラリーを訪問したかを見ることが出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId438630"></a>新着情報の有効化</h4>
+
+<p>Geeklogの新着情報ブロックにアルバムとコメントのアップデート表示をしたければ、ここを有効にしてください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId705132"></a>新着情報タイトルの長さ</h4>
+
+<p>デフォルトで28文字（英数半角）が新着情報でのアルバムタイトルの長さです。
+Geeklogテーマやテンプレートがこれ以上・以下の幅をサポートしている場合、ここでその長さを調整することが出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId537235"></a>新着表示時間</h4>
+
+<p>新着情報に表示する日数です。新たにアップロードされたメディアアイテムとコメントはこの日数だけGeeklogの新着情報ブロックに表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId671717"></a>オリジナルのファイル名を保管する</h4>
+
+<p>メディアギャラリーでは通常、アップロードされたファイルのファイル名を秘密のハッシュ名にリネームします。
+これはセキュリティのために行われることで、誰かがファイル名を推測するのを非常に難しくするためです。
+が、これは別の問題点があります。
+ユーザーにファイルをダウンロードさせたい場合に理解の助けになるような名前が必要です。</p>
+
+<p>このオプションを有効にすると、メディアギャラリーはオリジナルのファイル名を少々変えてから保管します。
+オリジナルのファイル名の前に#_(#は0-f)を追加します。
+これはメディアギャラリーがファイル名の最初の文字を増殖するディレクトリを行き来するファイルのコントロールに使うからです。
+これによりメディアギャラリーは数千の画像でも扱うことが出来るようになっています。
+既に使われたファイル名でアイテムをアップロードする際にもこれが役に立ちます。
+ファイル名の中のスペースは_アンダーバーに置き換えられます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId200639"></a>オリジナル画像の破棄</h4>
+
+<p>メディアギャラリーのデフォルトではアップロードされた画像に対して3つのコピーを生成し保管します。
+オリジナル画像、表示用画像、サムネイル画像の3つです。
+このオプションを有効にするとオリジナル画像を保管しません。
+代わりに表示用画像・サムネイル画像を生成した後でオリジナルのアップロード画像を消去します。</p>
+
+<p>このオプションはオリジナル画像が必要でなく、それを保管する必要もない人に有効です。
+この設定をONにするとメディアギャラリーのフルサイズモードは無効になります。</p>
+
+<p>このオプションはv1.4で新たに追加された、（必要なら）オリジナル画像を消去するためのものです。
+メディアギャラリー管理画面の新「メンテナンスオプション」としても追加されました。</p>
+
+<p>オリジナル画像を保管する大きな理由はオンライン印刷でよりよい画像を得るためです。
+最大解像度での画像を保持することにより、より大きなサイズでも印刷が可能になります。</p>
+
+<div class="notetip">このオプションは画像ファイルのみに有効で、QuickTime, Windows Media Player, MP3, MP4 や他の非画像メディアには有効ではありません。
+非画像メディアファイルはメディアギャラリーに必要に応じて保管されます。</div>
+
+<h4><a class="mozTocH4" name="mozTocId903494"></a>デバッグモード</h4>
+
+<p>アップロードの際の問題点を分析したいなら「デバッグモード」を使えば、アップロードの過程の詳細なログを吐き出してくれます。
+これらのメッセージはGeeklogのerror.logに記録されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId381939"></a>新着情報の無効化</h4>
+
+<p>アルバムへの新たなコメントの有無を確認するオペレーションは非常に大きなリソースを消費します。
+これは普通、サイトのトップページに表示されるものですが、新たなコメントを引いてくることを無効にすることによりサーバーの負荷が軽減出来、サイトのレスポンスが向上します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId498629"></a>ユーザープロフィールにMG情報表示</h4>
+
+<p>このオプションにチェックを入れると、メディアギャラリーはそのユーザーがアップロードした最新5つのアイテムと、そのユーザーが所有する最初の20のアルバムを、そのユーザーのプロフィールに表示します。</p>
+
+<p>そのユーザーが何もメディアのアップロードをしておらず、アルバムの所有もしていない場合、ユーザープロフィールには何も追加されません。</p>
+
+<h4><a class="mozTocH4" name="mozTocId818800"></a>ポストカード保存日数</h4>
+
+<p>ポストカード機能を有効にした場合に、送付済みポストカードは受信者が後日でも取り出しできるようにデータベースに保存されます。
+ここで設定した日数保存されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId622507"></a>日付のフォーマット</h4>
+
+<p>メディアギャラリーの日付フォーマットをここで指定します。
+Geeklogのデフォルトの日付フォーマットは少々長過ぎ、メディアギャラリーのリスト表示でキレイに見えません</p>
+
+<h4><a class="mozTocH4" name="mozTocId770792"></a>Geeklogブロックの表示</h4>
+
+<p>基本的にGeeklogは3つの情報ブロックを持っています。
+左ブロック、中央ブロック、右ブロックです。
+メディアギャラリーは常に中央ブロックに表示されます。
+メディアギャラリーが閲覧されるときに、左ブロック、右ブロックのいずれを表示するかをここで指定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId206262"></a>アルバム表示行</h4>
+
+<p>このオプションで、アルバムインデックスを表示するときに何行表示するかを設定します。
+アルバムインデックス表示の際に、必要であればページナビゲーションも表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId595982"></a>アルバム表示列数</h4>
+
+<p>このオプションで、アルバムインデックスを表示するときに何列表示するかを設定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId709394"></a>セレクトボックスにサブアルバムを表示</h4>
+
+<p>このオプションが有効な場合、すべてのサブアルバムがドロップダウンのセレクトボックスに表示されます。
+無効にするとサブアルバムが箇条書きリストで表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId315540"></a>アルバムインデックスのスキン</h4>
+
+<p>アルバムインデックスでどのフレームを使うかを選択します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId920032"></a>オリジナル画像の品質</h4>
+
+<p>オリジナルのアップロード画像をリサイズする際に使われる画像品質設定</p>
+
+<h4><a class="mozTocH4" name="mozTocId233244"></a>表示画像の品質</h4>
+
+<p>表示用画像を生成する際に使われる画像品質設定</p>
+
+<h4><a class="mozTocH4" name="mozTocId529279"></a>サムネイル画像の品質</h4>
+
+<p>サムネイル画像を生成する際に使われる画像品質設定</p>
+
+<h4><a class="mozTocH4" name="mozTocId717250"></a>ギャラリー画面のサムネイルサイズ</h4>
+
+<p>ギャラリー閲覧画面でのサムネイルサイズをここで決定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId109636"></a>メディアID表示の有効化</h4>
+
+<p>メディアギャラリー自動タグを使う場合にメディアIDが必要になることがあります。
+デフォルトではメディアIDは管理者権限のあるユーザーにのみ表示され、一般のログインユーザーからは見えません。
+このオプションを有効にすると、すべてのユーザーがメディア閲覧画面でメディアIDを見れるようになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId544238"></a>フルサイズ画像のポップアップ表示</h4>
+
+<p>このオプションを有効にすると、フルサイズの画像表示が可能になり、すべてのフルサイズ（オリジナルサイズ）の画像はポップアップ・ウィンドウに表示されるようになります。
+このオプションが無効の場合、フルサイズ画像のはインラインで表示されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId289385"></a>コメントバーのフルサイズ表示</h4>
+
+<p>アルバムへのコメントを有効な状態で、コメントが一つもない場合、ページ下部に「コメント投稿」と表示されます。
+Geeklog標準のコメントバーをお好みの場合はここを有効にします。</p>
+
+<h4><a class="mozTocH4" name="mozTocId709049"></a>バードシード？・セパレーター</h4>
+
+<p>メディアギャラリーのバードシード？の間で使われるセパレーターになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId352344"></a>画像の幅・高さのカスタマイズ</h4>
+
+<p>メディアギャラリーではいくつかのプリセット画像サイズが用意されていますが、これでは不足の場合はこちらでサイズを指定してください。
+アルバム毎に表示画像のサイズの指定が可能です。</p>
+
+<h4><a class="mozTocH4" name="mozTocId335414"></a>アルバムビューでオーディオ・ビデオメディアを直接再生</h4>
+
+<p>通常のメディアアイテムのシークエンスは以下のとおりです。</p>
+
+<ol start="1" type="1">
+
+  <li>サムネイルでアルバムインデックスを表示</li>
+
+  <li>サムネイルを選択してメディアアイテムを見る</li>
+
+</ol>
+
+<p>しかしながら、オーディオ・ビデオメディアの場合、このシークエンスは暫々この通りには行きません。
+例えば、アルバムにオーディオファイルがあったとして、ユーザーがアルバムインデックス画面のサムネイルを見たあとに、サムネイルをもう一度見るためにメディアアイテム画面のサムネイルをクリックしたりします。</p>
+
+<p>このオプションを有効にすると、アルバムインデックスのサムネイルをクリックするとすぐにオーディオ・ビデオファイルをプレイヤーが再生します。
+通常のプロセスからワンステップ手順が省略されます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId818881"></a>メディアとアルバムのタイトルを自動タグのキャプションに使う</h4>
+
+<p>自動タグでキャプションが指定されていない場合にアイテムのタイトルを代わりに使います。</p>
+
+<h4><a class="mozTocH4" name="mozTocId930096"></a>ランダムイメージブロックの幅</h4>
+
+<p>このオプションで、ランダムイメージブロックの幅をピクセル単位で指定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId772099"></a>パンくずリストのための文字切り詰め</h4>
+
+<p>パンくずリスト表示でのアルバムタイトル文字数を指定します。0でこの機能が無効化されます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId600399"></a>バッチオプション</h3>
+
+<h4><a class="mozTocH4" name="mozTocId527375"></a>リフレッシュレート</h4>
+
+<p>バッチサイクルの間にメディアギャラリーを停止する時間を指定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId156399"></a>サイクルごとの最大アイテム数</h4>
+
+<p>サイクルごとに処理するアイテムの最大数をここで指定します。
+一般的にバッチ処理システムは最大実行時間まで実効されますが、最大実行時間が非常に大きい場合、その時間の全てを使うと特に共有ホスティング環境ではサーバー負荷が非常に大きくなります。
+このオプションはサイクルごとの最大アイテム数を指定してこれを軽減します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId175123"></a>最大実行許可時間</h4>
+
+<p>バッチ処理システムがサイクルごとに使える最大時間です。この数字がサイト設定で許可されているよりも大きい場合、メディアギャラリーは2つのうち小さい方を使います。</p>
+
+<h3><a class="mozTocH3" name="mozTocId242843"></a>ユーザー設定のオーバーライド</h3>
+
+<p>登録ユーザーがサイトのデフォルト設定をオーバーライドすることを許可します。
+管理者がこれを望まない場合、これを無効にすることも出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId822697"></a>ユーザーに表示行数指定を許可する</h4>
+
+<p>ここをチェックすると、登録ユーザーがアルバム閲覧画面での表示行数を指定出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId319994"></a>ユーザーに表示列数指定を許可する</h4>
+
+<p>ここをチェックすると、登録ユーザーがアルバム閲覧画面での表示列数を指定出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId145638"></a>ユーザーにMP3プレイヤーの設定を許可する</h4>
+
+<p>チェックすると、登録ユーザーがデフォルトMP3プレイヤーを設定出来ます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId523582"></a>ユーザーにAV再生オプション設定を許可する</h4>
+
+<p>チェックすると、アルバム設定で登録ユーザーがオーディオ・ビデオファイルをどのように再生するか設定をオーバーライド出来るようになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId987241"></a>ユーザーにサムネイルサイズ設定を許可する</h4>
+
+<p>チェックすると、登録ユーザーがアルバム設定でサムネイルサイズ設定をオーバーライド出来るようになります。</p>
+
+<h3><a class="mozTocH3" name="mozTocId246318"></a>グラフィックパッケージ</h3>
+
+<p>メディアギャラリーはアップロードされたメディアのサムネイル生成やその他の画像複製に外部グラフィックパッケージを必要とします。
+現在メディアギャラリーがサポートしているのはImageMagick, NetPBM and GD Librariesです。
+あなたの環境に合ったものを一つ選択します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId641773"></a>グラフィックパッケージのパス</h4>
+
+<p>ImageMagick や NetPBMのバイナリープログラムを設置した場所をここで指定します。</p>
+
+<h4><a class="mozTocH4" name="mozTocId139800"></a>JHEADサポートの有効化</h4>
+
+<p>JHEADは画像の中にあるEXIF/IPTCデータを保存するコマンドラインユーティリティーです。
+JHEADサポートを有効化することにより、元画像をリサイズ・削除しなければならない（EXIF/IPTCデータは表示用画像に保存される）場合でもEXIF/IPTCデータを保存することが出来るようになります。</p>
+
+<h4><a class="mozTocH4" name="mozTocId690302"></a>jheadバイナリへのパス</h4>
+
+<p>サーバー上のjheadバイナリが設置された場所の絶対パスです。
+メディアギャラリーは幾つかのデフォルトの場所(/usr/bin, /usr/local/bin, /usr/X11R6/bin)を見てそこにあればこのフィールドにそのディレクトリを移植します。Windowsシステムを使っていたり、他の場所にjheadを置いている場合は、ここに入力してください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId781272"></a>JPEGTRANサポートの有効化</h4>
+
+<p>JPEGTRANSはJPG画像複製のためのロスの無いツールです。
+画像品質を劣化させることなく画像を回転させます。</p>
+
+<h4><a class="mozTocH4" name="mozTocId396279"></a>jpegtranバイナリのパス</h4>
+
+<p>サーバー上のjpegtransバイナリが設置された場所の絶対パスです。
+メディアギャラリーは幾つかのデフォルトの場所(/usr/bin, /usr/local/bin, /usr/X11R6/bin)を見てそこにあればこのフィールドにそのディレクトリを移植します。Windowsシステムを使っていたり、他の場所にjheadを置いている場合は、ここに入力してください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId559811"></a>ZIPアップロードを有効にする</h4>
+
+<p>有効にするとメディアアイテムを含む.zipファイルのアップロードが出来るようになります。
+メディアギャラリーが自動的にアーカイブを解凍し、アーカイブに含まれるすべてのファイルの処理を行います。</p>
+
+<h4><a class="mozTocH4" name="mozTocId106347"></a>解凍プログラムのパス</h4>
+
+<p>サーバー上の解凍プログラムが設置された場所の絶対パスです。
+メディアギャラリーは幾つかのデフォルトの場所(/usr/bin, /usr/local/bin, /usr/X11R6/bin)を見てそこにあればこのフィールドにそのディレクトリを移植します。
+Windowsシステムを使っていたり、他の場所にjheadを置いている場合は、ここに入力してください。</p>
+
+<h4><a class="mozTocH4" name="mozTocId439427"></a>一時ディレクトリのパス</h4>
+
+<p>メディアギャラリーではメディアアイテムとZIPファイルの処理のために一時ファイルを読み書きするための一時ディレクトリが必要です。
+そのディレクトリのサーバー上の絶対パスを入力してください。
+メディアギャラリーのデフォルトは、$_CONF[&rsquo;path&rsquo;] /plugins/mediagallery/tmp です。</p>
+
+<h4><a class="mozTocH4" name="mozTocId313874"></a>FTPパスのディレクトリ</h4>
+
+<p>メディアギャラリーではオンライン設定でFTPディレクトリの指定が必要です。
+これはFPTインポートの安全措置で、使ってはいけないディレクトリへのFTPを防止します。
+サーバー上のこのディレクトリの絶対パスを入力してください。メディアギャラリーのデフォルトは$_CONF[&rsquo;path&rsquo;]/plugins/mediagallery/uploads/ です。</p>
+
+<h2><a name="mozTocId30100"></a>EXIF/IPTC管理</h2>
+
+<p>メディアギャラリーはデジタルカメラの画像に保管された埋め込みEXIF/IPTCデータを表示することが出来ます。
+この機能を使うには、メディアギャラリーにどのEXIF/IPTCデータ要素を表示したいのかを教える必要があります。
+あなたの画像にすべてのデータ要素が保存されているわけではないことに留意してください。
+これは全てデジタルカメラやスキャンプロセスに依って変わります。
+デフォルトでは、幾つかの主な要素が有効になっています。</p>
+
+<p>メディアギャラリー管理画面の「EXIF/IPTC管理」でEXIF/IPTCデータのうち、どの要素を表示するようにするかを選択します。
+これによりメディアギャラリーが認識できるEXIF/IPTCデータがリスト表示されます。
+画像の要素のうち表示したいものの右側のチェックボックスをチェックします。</p>
+
+<p>アルバム設定画面でアルバム個々のEXIF/IPTCサポートのON/OFFが可能です。
+EXIF/IPTCデータをどのように表示させるかも選択可能で、メディアアイテムの下かポップアップウィンドウ、または両方から選びます。</p>
+
+<h2><a name="mozTocId266603"></a><a name="Category_Maintenance"></a>カテゴリー・メンテナンス</h2>
+
+<p>メディアアイテムの管理と整理のためにカテゴリーの追加が出来ます。
+カテゴリーはメディアギャラリーの検索の時にだけ使われます。
+特定のカテゴリーに限った検索や、あるカテゴリーのすべてのアイテムの検索が出来ます。</p>
+
+<p>このオプションにより、カテゴリーの追加、編集、削除が出来ます。</p>
+
+<h2><a name="mozTocId87981"></a><a name="Reset_System_Options"></a>システムオプションのリセット</h2>
+
+<p>ここですべての設定をリセットしてメディアギャラリーをインストール時のデフォルトに戻すことが出来ます。
+一般的には、この機能は新しいバージョンのテストの時にだけ使われますが、必要があればインストール時の設定に簡単に戻せる方法です。</p>
+
+<h2><a name="mozTocId755594"></a>メディアギャラリー設定ファイルについて</h2>
+
+<p>全てのメディアギャラリーの設定オプションは上述の通りオンラインで行いますが、幾つかの項目はplugins/mediagallery/ ディレクトリにあるconfig.phpファイルで変更します。</p>
+
+<h3><a class="mozTocH3" name="mozTocId383647"></a>メディアギャラリーのパスの位置 (config.php)</h3>
+
+<p>デフォルトで、メディアギャラリーはpublic_html/mediagallery/ で動作するように設計されています。
+config.phpの変数を以下のように変更することにより、この位置を変更することが可能です。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td>$_MG_CONF[&rsquo;path_mg&rsquo;]</td>
+      <td>public_html/ かのどのディレクトリにメディアギャラリーが設置されているかを指定します。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF[&rsquo;path_html&rsquo;]</td>
+      <td>この変数は変えないでください。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF[&rsquo;site_url&rsquo;]</td>
+      <td>この変数は変えないでください。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF[&rsquo;admin_url&rsquo;]</td>
+      <td>メディアギャラリー管理ディレクトリのフルURLです。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['path_mediaobjects']</td>
+      <td><span style="font-style: italic;">mediaobjects</span>ディレクトリのフルパスです。
+      注意：必要ならmediaobjects/ディレクトリの名前を変えられます。<br>
+      <span style="font-weight: bold;">'/'で終わること</span></td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['mediaobjects_url']</td>
+      <td><span style="font-style: italic;">mediaobjects</span>ディレクトリのフルURLです。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId830305"></a>グローバルオプション</h3>
+
+<p>以下の設定でメディアギャラリーのデフォルト動作が変わります。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td>$_MG_CONF[&rsquo;disable_version_check&rsquo;]</td>
+      <td>1に設定すると、管理画面でのメディアギャラリーの自動バージョンチェックが無効になります。
+      1の場合、メディアギャラリーは<a href="http://www.gllabs.org/">www.gllabs.org</a>に最新バージョンか否かをチェックすることをしません。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF[&rsquo;mediamanage_items&rsquo;]</td>
+      <td>アルバムに数百のアイテムがある場合、メディア管理画面は非常にリソースを消費するものになります。
+      この画面で問題がある場合、ここの数字を小さくすることにより表示アイテムの数を減らしてみてください。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF[&rsquo;do_not_convert_original&rsquo;]</td>
+      <td>デフォルトでメディアギャラリーはすべてのアップロード画像をJPGに変換します。
+      この変換を止めたい場合は、ここを1に設定します。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['disable_search_integration']</td>
+      <td>Geeklogの検索機能との統合を無効にします。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['im_keep_profiles']</td>
+      <td>ImageMagickによりJPEGプロファイル（EXIF）データが表示用・サムネイル画像に保存されます。
+      ここを1にセットするとファイルが少々大きくなります。
+      Solarisでは1にセットするとこの変換コマンドを中止するようです。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['skip_file_find']</td>
+      <td>メディアギャラリーは幾つかの外部ユーティリティーを自動的に設置しようとします。
+      あなたのサーバー環境においてPHPがopen_basedir制限がかかっている場合、ここが幾つかの問題を起こすことがあります。
+      ここを1にセットすると自動探索をスキップします。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['use_default_resolution'] </td>
+      <td>1にセットすると、メディアギャラリーはビデオ再生解像度を自動設定せず、デフォルト設定を使います。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['use_wmp_mpeg']</td>
+      <td>デフォルトでメディアギャラリーはAppleのQuickTimeでMPEGを再生しますが、MicrosoftのWindowsMediaPlayerを使いたい場合は1にセットしてください。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['use_upload_time']</td>
+      <td>ほとんどのデジタルカメラやグラフィックパッケージはメタデータに実際に画像がキャプチャーされた日付を付加していますが、メディアギャラリーはデフォルトでこれを取り出そうとします。
+      もし、これの代わりにアップロード日（あなたがメディアギャラリーのアルバムに画像を追加した日）を表示された日付として設定したいなら、ここを1にセットしてください。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['template_path']</td>
+      <td>デフォルトではプラグインディレクトリのテンプレートを参照しますが、別のテンプレートを使いたい場合は、ここでテンプレートディレクトリのパスをセットします。</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['ffmpeg_command_args']</td>
+      <td>ffmpegは世の中に数多くのヴァージョンが存在します。
+      あるものは一式のスイッチとして動作しますがあるものはしません。
+      以下の引数を変更することにより、ビデオのサムネイルを生成するためのコマンドの変更が簡単に出来ます。
+      最初の %s はソースビデオ、2番目の %s は目的のサムネイル。両方の %s がコマンドに含まれている必要があります。</td>
+    </tr>
+  <tr>
+      <td>$_MG_CONF['thumbnail_actual_size']</td>
+      <td>メディアギャラリーはデフォルトですべてのサムネイルを200x200にします。
+      アルバム設定に基づきimgタグに小さ目の幅・高さを渡すことに依って動的に画像の縮小を行っています。
+      サムネイルサイズをアルバム設定のサイズにしたい場合は、ここの値を1にします。</td>
+    </tr>
+  <tr>
+      <td>$_MG_CONF['rating_speedlimit']</td>
+      <td>メディアオブジェクトを評価する際にユーザーが待つべき秒数</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>非メディア系ファイル(zip, doc, xls, pdf, etc...)のデフォルトのサムネイルを指定出来ます。
+拡張子ごとにどのサムネイルを使うかを以下で制御します。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td>$_MG_CONF['dt']['doc']</td>
+      <td>doc.png</td>
+    </tr>
+    <tr>
+      <td>$_MG_CONF['dt']['pdf']</td>
+      <td>pdf.png</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>サムネイルファイルはpublic_html/mediagallery/mediaobjects/ に置きます。</p>
+
+<h2><a name="mozTocId424871"></a>システムデフォルト管理画面</h2>
+
+<p>アルバムがどう動作するか、マルチメディアファイルをどのように見せるかについて
+メディアギャラリーには幾つかのオプションがあります。
+個人の好みに応じてデフォルトを設定してアルバム作成をより簡単に迅速に出来るようにしましょう。</p>
+
+<h3><a class="mozTocH3" name="mozTocId62126"></a>アルバムのデフォルト</h3>
+
+<p>アルバムの個々の属性のデフォルト値を設定します。
+この設定がアルバム作成の際のデフォルト値になります。
+個々の項目のオプションと詳細については「アルバムの作成」の項をご覧下さい。</p>
+
+<h3><a class="mozTocH3" name="mozTocId252334"></a>オーディオ・ビデオのデフォルト</h3>
+
+<p>MP3&rsquo;s, QuickTime Player and Windows Media Playerでのオーディオ・ビデオ再生の各機能のデフォルト値を設定します。
+個々の項目のオプションと詳細については「メディアアイテムのオーディオ・ビデオ属性」の項をご覧下さい。</p>
+
+<h3><a class="mozTocH3" name="mozTocId392216"></a>グローバル・パーミッションの編集</h3>
+
+<p>グローバル・パーミッション管理画面ですべてのアルバムのパーミッションをグローバルに変更が可能です。</p>
+
+<h3><a class="mozTocH3" name="mozTocId819240"></a>アルバム編集のグローバル属性の編集</h3>
+
+<p>グローバル・アルバム属性編集画面で、すべてのアルバム属性をグローバルに変更可能です。
+<b>アップデート</b>チェックボックスをチェックして属性を変更します。
+その後、すべてのアルバムは新しい属性にアップデートされます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId838177"></a>メディア・キュー</h3>
+
+<p>メディア・キューではモデレーション・キューにあるすべての承認待ちのアイテムを表示します。</p>
+
+<p>メディアアイテムを承認するには「承認」ラジオボタンを選択します。すると、承認されたアイテムは目的のアルバムに配置され、アップロードしたユーザーは承認された旨のemail通知を受け取ります。</p>
+
+<p>メディアアイテムを却下（削除）するには、「削除」ラジオボタンを選択します。
+アイテムは削除されます。
+アップロードしたユーザーに通知はされません。</p>
+
+<h2><a name="mozTocId675193"></a>メンバーアルバム</h2>
+
+<p>メンバーアルバムはメディアギャラリーv1.5の新機能で、サイト管理者がサイトユーザー対して自分のアルバムを持てるようにする、またはメディアをアップロード出来るアルバムを提供することが出来るようにするものです。
+メンバーが設定出来ない幾つかの保護機能を特別に持っており、「注目のアルバム」にする、モデレーションのON/OFFなどはユーザーが勝手に設定出来ません。
+サイト管理者として、メンバーに対する最大ファイルサイズ、最大画像解像度、ディスクスペースなどの指定が可能です。</p>
+
+<h3><a class="mozTocH3" name="mozTocId110583"></a><a name="Member_Album_Options"></a>メンバーアルバムのオプション</h3>
+
+<p>メンバーアルバムには以下のオプションが設定出来ます。
+<b>注意：</b>これらはアルバムが作成される時のデフォルト設定です。
+「アルバム属性」「アクセス権」の変更は既に作成されたメンバーアルバムには影響を与えません。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td colspan="2"><b>メンバーアルバム</b></td>
+    </tr>
+    <tr>
+      <td>メンバーアルバムを有効にするか</td>
+      <td>メンバーアルバムの機能のON/OFFをここで行います。
+      基本的にメンバーアルバムが有効になっていなければ、自動作成・自動削除機能は動作しません。</td>
+    </tr>
+    <tr>
+      <td>メンバー用スペースのデフォルト容量</td>
+      <td>メンバーアルバムへの最初の割当スペース。
+      0で割当がゼロ。</td>
+    </tr>
+    <tr>
+      <td>アルバム自動作成</td>
+      <td>このオプションでユーザー登録と同時にメンバーアルバムが作成されます。</td>
+    </tr>
+    <tr>
+      <td>メンバールートでの作成許可</td>
+      <td>デフォルトではメンバーが作れるアルバムはメンバーアルバムのルートアルバム下に一つだけですが、ここを有効にするとメンバーアルバムのルートアルバム下にメンバーが希望するだけの数のアルバムを作れるようになります。</td>
+    </tr>
+    <tr>
+      <td>メンバーアルバムのルートアルバム</td>
+      <td>すべてのメンバーアルバムが作成されるルートとなるアルバムを指定</td>
+    </tr>
+    <tr>
+      <td>メンバーアルバム削除の場合のアーカイブ</td>
+      <td>メンバーがGeeklogユーザーデータベースから削除された場合にどうするか。</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>アルバム属性</b></td>
+    </tr>
+    <tr>
+      <td>ランダムイメージブロックに含める</td>
+      <td>新しいメンバーアルバムを<b>ランダムイメージブロック</b>に含めるか否かを指定</td>
+    </tr>
+    <tr>
+      <td>最大画像幅</td>
+      <td>メンバーアルバムで許可する最大解像度（ピクセル数での高さと幅）
+      これより大きいものはアップロード時にリサイズされる。</td>
+    </tr>
+    <tr>
+      <td>最大画像高さ</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>最大ファイルサイズ</td>
+      <td>メンバーアルバムにアップロード出来る最大ファイルサイズを指定</td>
+    </tr>
+    <tr>
+      <td>登録ユーザのメディアアップロードを許可</td>
+      <td>ログインユーザーが他のメンバーのメンバーアルバムにアップロード出来るか否か</td>
+    </tr>
+    <tr>
+      <td>このアルバムのモデレーションを有効にする</td>
+      <td>メンバーアルバムのモデレーションを有効にするか否か</td>
+    </tr>
+    <tr>
+      <td>モデレーターグループ</td>
+      <td>どのGeeklogグループがモデレーターグループになるかの指定（有効な場合）</td>
+    </tr>
+    <tr>
+      <td>投稿をモデレーターにemail通知する</td>
+      <td>新たにメディアがアップロードされた時にモデレーターにemail通知をする</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>アクセス権</b></td>
+    </tr>
+    <tr>
+      <td>所有者パーミッション</td>
+      <td>新しいメンバーアルバムのデフォルトの所有者パーミッション</td>
+    </tr>
+    <tr>
+      <td>グループ・パーミッション</td>
+      <td>新しいメンバーアルバムのデフォルトのグループ・パーミッション
+      </td>
+    </tr>
+    <tr>
+      <td>メンバー（ログインユーザー）パーミッション</td>
+      <td>ログインユーザーのデフォルトのパーミッション</td>
+    </tr>
+    <tr>
+      <td>匿名パーミッション</td>
+      <td>匿名ユーザーのデフォルト・パーミッション</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>保存ボタンを必ずクリックしてデフォルト設定を保存してください。</p>
+
+<h3><a class="mozTocH3" name="mozTocId741721"></a>メンバーアルバムのユーザーリスト</h3>
+
+<p>すべてのサイトユーザーのメディアギャラリーのメンバーアルバムの割当使用状況のリストを表示します。
+リストには次の項目があります。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td>ユーザー名</td>
+      <td>Geeklogユーザー名</td>
+    </tr>
+    <tr>
+      <td>アクティブ</td>
+      <td>メンバーアルバムのアクティブなユーザーであるか否か。
+      あるユーザーがspam行為をした場合など、メンバーアルバムへの管理者アクセスを停止する必要がある場合、アクティブフラグをOFFにし、これらユーザーが閲覧しか出来ない様に出来ます。</td>
+    </tr>
+    <tr>
+      <td>割当</td>
+      <td>そのユーザーが使用可能なディスクスペース容量</td>
+    </tr>
+    <tr>
+      <td>割当のうち使用済み分</td>
+      <td>そのユーザーが既に使用したディスクスペース容量</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>ユーザーの割当容量やアクティブフラグを編集したいときは、ユーザー名をクリックするだけで編集画面が現れます。
+アクティブフラグかユーザー割当を変更してください。
+「保存」をクリックして設定保存することを忘れないでください。</p>
+
+<h3><a class="mozTocH3" name="mozTocId454098"></a>メンバーアルバム作成のバッチ</h3>
+
+<p>メディアギャラリーをインストール、またはアップグレードしたばかりで既にサイトユーザーが大勢いる場合、このユーティリティーを使えば、既存のどのユーザーに対してもメンバーアルバムを作成出来ます。
+ユーザー名の隣にあるチェックボックスをチェックして「保存」してください。</p>
+
+<p>この機能のもう一つの使用場面として考えられるのは、自動作成をしない設定をしているケースです。
+サイト運営方針として、メンバーアルバムを使いたいユーザーはあなたにemailで要望を出してもらうようにします。
+「メンバーアルバム自動作成バッチ」がアルバム作成を非常に楽なものにしてくれるはずです。</p>
+
+<h3><a class="mozTocH3" name="mozTocId286901"></a>メンバーアルバムの除去</h3>
+
+<p>空のユーザーアルバムを管理するために「メンバーアルバム除去」機能が空のメンバーアルバムのみをリスト表示してくれます。
+所有者名と最後にログインした日付も分かります。
+未使用のメンバーアルバムの除去という管理作業をお手伝いします。</p>
+
+<h3><a class="mozTocH3" name="mozTocId589409"></a>メンバーアルバム作成フラグのリセット</h3>
+
+<p>この機能は標準の管理ツールほどめったに使うものではないけど、開発ツールよりは使う。
+Geeklogデータベースでユーザーをチェックしメンバーアルバムを所有しているか否かを確認する。
+所有している場合member_galleryフラグを1とし、所有していない場合0とする。
+member_galleryフラグはメディアギャラリー内部で使われ、メンバーアルバム作成バッチにそのユーザーを含めるか否か、またその他の幾つかの場所で使われる。</p>
+
+<p>メンバーアルバムのルートを変更したい場合、このユーティリティーですべてが同期しているかを確かめてみてください。</p>
+
+<p>メディアギャラリーではこのユーティリティーを動作させなくてもmember_galleryフラグを適切に設定していますが、万が一のためにここに紹介しました。</p>
+
+<h2><a name="mozTocId979613"></a>RSSフィード</h2>
+
+<p>メディアギャラリーはフルRSSフィードをサポートしており、すべてのアルバムとアルバム毎のRSSフィードがアルバム属性編集画面で個々にON/OFF可能です。
+次の形式をサポートしています。 
+RSS2.0, RSS1.0, RSS0.91, ATOM, ATOM0.3.</p>
+
+<h3><a class="mozTocH3" name="mozTocId710230"></a>RSSフィードのオプション</h3>
+
+<p>RSSフィード設定情報です。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td>すべてのアルバムのRSSフィードを生成</td>
+      <td>すべてのアルバムのフィードを生成させるオプションです。</td>
+    </tr>
+    <tr>
+      <td>RSS Feed Type</td>
+      <td>どのタイプを使うか選択します。</td>
+    </tr>
+    <tr>
+      <td>空アルバムの除外</td>
+      <td>メディアアイテムのないアルバムを対象外にしたい場合ここで指定します。</td>
+    </tr>
+    <tr>
+      <td>公開アルバムのみを含める。</td>
+      <td>匿名アクセスを許可されたアルバムのみを対象にする。</td>
+    </tr>
+    <tr>
+      <td>emailを除外する</td>
+      <td>RSSフィードからemailアドレスを除外します。</td>
+    </tr>
+    <tr>
+      <td>フィードの基本ファイル名</td>
+      <td>基本ファイル名です。
+      メディアギャラリーが自動的に.rss拡張子をフルフィードに付加し、ファイル名を「基本ファイル名#####.rss」とします。
+      #####はアルバムIDです。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a class="mozTocH3" name="mozTocId85678"></a>フルRSSフィードの再構築</h3>
+
+<p>メディアギャラリーのフルRSSフィードを再構築します。
+アルバムに変更（アップロード、移動、削除）があった場合、フィードは自動的にメンテナンスされるので通常は使う必要がありません。</p>
+
+<p>メディアのタイトルや説明を編集した場合に、編集結果が反映されているか確かめるためにこの再構築機能が必要になるかもしれません。</p>
+
+<p>フルRSSフィードを最初に有効にする場合に、ファイル生成のためにこれを使うかもしれません。</p>
+
+<h3><a class="mozTocH3" name="mozTocId706619"></a>すべてのアルバムのRSSフィード再構築</h3>
+
+<p>RSSを有効にしたすべての個別のアルバム毎のフィードファイルの再構築を行います。
+アルバムに変更（アップロード、移動、削除）があった場合、フィードは自動的にメンテナンスされるので通常は使う必要がありません。</p>
+
+<p>メディアのタイトルや説明を編集した場合に、編集結果が反映されているか確かめるためにこの再構築機能が必要になるかもしれません。</p>
+
+<h2><a name="mozTocId304644"></a>レポート</h2>
+
+<p>メディアギャラリーはどんどん機能追加を行っているので、たくさんのレポートが取れるようになる予定ですが、今は一つだけです。</p>
+
+<h3><a class="mozTocH3" name="mozTocId339071"></a>使用レポート</h3>
+
+<p>使用状況追跡データベースからの（これを有効にしている場合）使用レポートの作成をここで有効にします。
+どのユーザーがメディアギャラリーを訪問し、どのアイテムを閲覧したかをレポートします。</p>
+
+<h2><a name="mozTocId288811"></a>バッチセッション</h2>
+
+<p>メディアギャラリーのパッチ処理システムはサーバーへの負担を心配することなく大きな時間とリソースを使うタスクを行います。</p>
+
+<h3><a class="mozTocH3" name="mozTocId509732"></a>セッションの一時停止</h3>
+
+<p>バッチ処理が始まっても、バッチ処理システム画面の「キャンセル」ボタンを選べば必要に応じて中止することが出来ます。
+これにより効果的にバッチ処理を一時停止します。
+「停止したセッション」欄に停止したバッチ処理がリスト処理されます。
+「継続」リンクを選択すればセッションが継続され、「選択」チェックボックスで選択して「削除」ボタンをクリックすればセッションが削除されます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId105754"></a>サムネイルの再構築</h3>
+
+<p>メディアギャラリーのバッチ処理システムで作成したシステム内すべてのサムネイルを再構築します。</p>
+
+<p>メディアギャラリーv1.2以前からバージョンアップした場合には、より大きなサムネイルを使うv1.2移行に合わせてサムネイルの再構築をしたほうがよいでしょう。</p>
+
+<p>サーバーのファイルを無くしてしまった場合にもサムネイルの再構築が必要です。</p>
+
+<p>個々の特定のアルバムのサムネイルを再構築するオプションもあります。アルバム閲覧画面のオプションメニューをご覧下さい。</p>
+
+<h3><a class="mozTocH3" name="mozTocId151221"></a>画像のリサイズ</h3>
+
+<p>メディアギャラリーのバッチ処理システムで作成したシステム内すべての表示用画像を再構築します。
+すべてのアルバムの表示用画像サイズを変更した場合、ここで迅速かつ簡単に新サイズへの画像リサイズを行うことが出来ます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId462948"></a>オリジナル画像の破棄</h3>
+
+<p>このオプションでアップロードされたオリジナル画像をシステムから削除し、表示用画像とサムネイル画像のみを保管します。
+システムオプションの<b>「オリジナル画像の消去」</b>を選択してこの機能を使います。</p>
+
+<p>この機能の実行時に、オリジナル画像からEXIF/IPTCデータを保持しデータベースを適切にアップデートするために幾つかの手順を踏みます。</p>
+
+<p>システムに現存するオリジナル画像を削除するための唯一の方法です。</p>
+
+<p><b>一度オリジナル画像を削除してしまうと、それを元に戻す簡単な方法はありません！</b></p>
+
+<h3><a class="mozTocH3" name="mozTocId939717"></a>ユーザー割当スペース情報の再構築</h3>
+
+<p>メディアギャラリーはサイトユーザーがどれだけのディスクスペースを使っているかを常に監視しています。
+この機能で割当スペース情報のアップデートを常に行っており、通常はこのユーティリティーを使うことはありません。</p>
+
+<h3><a class="mozTocH3" name="mozTocId667276"></a>アルバムの静的ソート</h3>
+
+<p>非常にスピーディーで簡単に<b>すべて</b>のアルバムをソートする手段を、以下の属性のうち一つをキーに提供しています。</p>
+
+<ul>
+
+  <li>アルバムタイトル</li>
+
+  <li>メディア閲覧数</li>
+
+  <li>最新アップデート日</li>
+
+</ul>
+
+<p>ソートを始めるアルバムの指定が出来ますが、指定しなくても問題ありません。
+ソートにはサブアルバムも含まれます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId213301"></a>メディアの静的ソート</h3>
+
+<p>非常にスピーディーで簡単にすべてのメディアをソートする手段を、以下の属性のうち一つをキーに提供しています。</p>
+
+<ul>
+
+  <li>メディアのキャプチャー時刻</li>
+
+  <li>メディアのアップロード時刻</li>
+
+  <li>メディアタイトル</li>
+
+  <li>オリジナルファイル名</li>
+
+</ul>
+
+<p>You can select which album to start sorting and whether the sorting should process any sub-albums. </p>
+
+<h3><a class="mozTocH3" name="mozTocId507496"></a>アルバム削除のバッチ</h3>
+
+<p>重複しているアルバムを削除するためのインターフェイスとしてサイトにあるすべてのアルバムリストを提供します。
+<b>アルバムの中にあるすべてのメディアアイテムが削除されます！</b>
+確認ページやメッセージは出てきませんので充分に注意して使用してください。</p>
+
+<p><b>気をつけて使ってください！</b></p>
+
+<h2><a name="mozTocId735663"></a>ユーティリティー</h2>
+
+<h3><a class="mozTocH3" name="mozTocId77245"></a>Geeglogログビューア</h3>
+
+<p>Tom Willet作のログビューアをメディアギャラリー管理画面に同梱しました。
+小さいけれどもとても便利なツールでGeeklogのerror.logとaccess.logをオンラインで見ることが出来ます。
+メディアギャラリー管理画面から使えます。</p>
+
+<p>ログビューアはGeeklogのログを簡単にオンラインで見れるようにしてくれますし、必要なら内容の削除も出来ます。</p>
+
+<h3><a class="mozTocH3" name="mozTocId666851"></a>PHP情報</h3>
+
+<p>このオプションは、あなたのサーバーのPHP情報を表示してくれます。
+PHPがどのようにインストール・設定されているかを知るのに非常に便利です。</p>
+
+<h3><a class="mozTocH3" name="mozTocId764400"></a>FileCheck</h3>
+
+<p>FileCheckは手軽にメディアギャラリーのインストール状況をスキャンして古いファイルや使われていないファイルを知らせてくれるユーティリティーです。
+メディアギャラリーソースファイルで古いもの、使われていないものを取り去るのに使います。</p>
+
+<p>FileCheckメディアギャラリーのディストリビューションに含まれるファイルを比較のために使います。
+新しくファイルを追加・作成している場合はリストに表示されます。
+<b>必要のあるファイルを消さないように注意してください！</b></p>
+
+<p><b>FileCheckを使う前にバックアップを取って置くのも良い方法です。</b></p>
+
+<h3><a class="mozTocH3" name="mozTocId136199"></a>使用方法のドキュメント</h3>
+
+<p>ここでこの書類へのリンクをHMTLで提供しておきます。</p>
+
+<h1><a name="mozTocId662715"></a>サポート</h1>
+
+<p>メディアギャラリーのサポートサイトはコチラです。
+<a href="http://www.gllabs.org/" title="http://www.mediagallery.org">Media Gallery Support Site</a>
+インストール・使用上の問題・FAQなどがあります。
+アクティブなユーザーコミュニティでサポートが行われており、メディアギャラリーの作者が常にサポートフォーラムを覗いています。
+必要があればいつでもアシストさせていただきます。</p>
+
+<h1><a name="mozTocId899144"></a>一般的な問題とトラブルシューティング</h1>
+
+<p>Media Gallery has been designed to run in many diverse environments, but there are always issues that pop up.</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td><b>現象</b></td>
+      <td>メディアアイテムをアップロードしたらブランクページが現れた</td>
+    </tr>
+    <tr>
+      <td><b>対策</b></td>
+      <td>一般的に、php.iniで設定されているよりも大きなサイズのファイルがアップロードされた時にこの現象が起こります。</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul type="disc">
+
+  <li>post_max_size</li>
+
+  <li>upload_max_filesize</li>
+
+</ul>
+
+<p>php.iniの上の2つの設定が充分か確認してください。</p>
+
+<p>アップロード後にブランクページが表示される別の問題はメモリーサイズの問題です。
+大抵の場合、phpはmax 8Mb/processの設定ですがメディアギャラリーは大きなサイズのファイルを扱うので最低48Mbが必要です。
+php.iniのmemory_limitの値を確認してください。
+グラフィック・プログラムとアップロードするメディアファイルのサイズによっては48Mb以上が必要なこともあります。
+サーバーのエラーログを検索して次のエラーを探してください。</p>
+
+<p>Put memory exhausted error here....</p>
+
+<p>これらの方法でも解決しない場合、ウェブサーバーのエラーログを見て、diagnosticメッセージがないか確認してください。
+その内容をメディアギャラリーサポートサイトのフォーラムに投稿して下さい。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td><b>現象</b></td>
+      <td>画像アップロード後にサムネイルと表示用画像が生成されない</td>
+    </tr>
+    <tr>
+      <td><b>対策</b></td>
+      <td>public_html/mediagallery/mediaobjects/ 下のすべてのサブディレクトリに書き込み可能なパーミッション設定がされているか確認してください。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>グラフィックパッケージが適切に設定されているかを再度確認することも是非忘れないでください。</p>
+
+<p>これら2つはメディアギャラリー管理画面でシステムオプションを選び保存することでチェックが可能です。
+メディアギャラリーがディレクトリのパーミッションとグラフィックパッケージを自動的に確認します。
+エラーが出た場合、それを直して再度トライしてください。</p>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td><span style="font-weight: bold;">現象</span></td>
+      <td>An error has occurred:<br>
+      2 - fopen(/path/to/geeklog/logs/error.log) [function.fopen]: failed to open stream: Permission denied @ /path/to/geeklog/public_html/lib-common.php line 1807</td>
+    </tr>
+    <tr>
+      <td><span style="font-weight: bold;">対策</span></td>
+      <td>これは簡単です。
+      /opt/lampp/logsディレクトリか/opt/lampp/logs/error.logファイルに書込みパーミッションがありません。
+      このファイルはGeeklogのエラーログファイルでメディアギャラリーはそこにインストールのステップを記録しようとします。<br>
+      ディレクトリにWebサーバーが書込み出来るように設定出来たら作業に戻ります。</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="mg_admin_table">
+  <tbody>
+    <tr>
+      <td><span style="font-weight: bold;">現象</span></td>
+      <td>An error has occurred:<br> 2 - file_exists() [function.file-exists]: open_basedir restriction in effect.
+      File(/usr/X11R6/bin/jhead) is not within the allowed path(s): (/home/mfxnjunn/:/usr/lib/php:/usr/local/sqmail:/usr/local/lib/php:/tmp) @ /home/mfxnjunn/public_html/lfp/admin/plugins/mediagallery/cfgedit.php line 240</td>
+    </tr>
+    <tr>
+      <td><span style="font-weight: bold;">対策</span></td>
+      <td>これはパーミッションの問題の一種です。
+      管理者が設定画面に入ったときにメディアギャラリーが行うことの一つが必要な外部プログラムを探すことです。
+      Jheadはそうしたプログラムの一つです。<br>
+      PHP設定でopen?basedir制限をしているサイトでは、許可リストに載っているディレクトリ以外にPHPがアクセスすることを禁止しています。
+      メディアギャラリーが許可されていないディレクトリを見に行くためこのエラーが表示されます。<br>
+      メディアギャラリーのconfig.phpに以下を追加することでこのチェックを外すことが出来ます。<br>
+      <br>
+      PHP Formatted Code<br>
+      $_MG_CONF['skip_file_find'] = 1;<br>
+      <br>
+      これでファイルを見に行くことはなくなり、今後同様のエラーは出なくなります。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="mozTocId773690"></a>トラブルに遭ったらまずしてほしいこと</h2>
+
+<p>メディアギャラリーを使っていて問題が生じた場合の標準のトラブルシューティング項目があります。
+これらの実行により問題の切り分けが可能になります。</p>
+
+<p><b>Webサーバーのエラーログをチェックする</b></p>
+
+<p>最初にエラーログを見るべき場所の一つがWebサーバーのエラーログです。
+ホスティング環境やホスティングサービスによって、チェック方法は違います。
+ほとんどのホスティングサービスではPHPコードが動作するディレクトリ毎にerror_logがあります。
+よって、例えば画像アップロードで問題があるなら、public_html/mediagallery/ にerror_logファイルがあるかをチェックしてください。</p>
+
+<p><b>Geeklogのerror.logをチェックする</b></p>
+
+<p>Geeklog自身のエラーファイルがlogs/　ディレクトリにあります。
+問題に種類によりますが、ここにかなり詳しい情報があります。</p>
+
+<p><b>メディアギャラリーのデバグモードログイン</b></p>
+
+<p>メディアギャラリーは画像処理などの処理のステップをしっかりと記録します。
+デバッグモード・ログインにより、問題の解析に役立つ詳細を記録します。
+この記録は上述のGeeklogのerror.logに記録されます。</p>
+
+<p><b>メディアギャラリー・サポートサイトのサポートフォーラムを検索する</b></p>
+
+<p><a href="http://www.gllabs.org">Media Gallery Support site</a>のサポートフォーラムは多くの問題と解決方法が蓄積されています。
+ここをチェックして他の人が似た問題に遭遇していなかったか調べてみましょう。
+もし記録がなければ、問題を投稿していただければ可能な限り早く回答します。</p>
+
+<h1><a name="mozTocId920237"></a>既知の問題</h1>
+
+<p>メディアギャラリーの最新リリースには、あなたが遭遇するかも知れない少しの既知の問題があります: </p>
+
+<ul type="disc">
+
+  <li>データベースエンジンとしてMSSQLを使う時に、メディアギャラリーは新着情報リストの中でメディアアイテムについての新しいコメントを表示しません。</li>
+
+</ul>
+
+<h1><a name="mozTocId130520"></a>どうすれば貢献できるか</h1>
+
+<p>皆さんが支援できる様々なチャンスがあります。
+メディアギャラリーのような複雑なプログラムの開発やサポートは非常に時間がかかる作業です。
+あなたが提供できるものはすべて重宝されるでしょう。</p>
+
+<ul type="disc">
+
+  <li>質問に答えることによって、サポートフォーラムで助けてください。</li>
+
+  <li>オンラインドキュメントを改善してください。</li>
+
+  <li>他の言語への翻訳を提供したり、既存の翻訳を更新してください。</li>
+
+</ul>
+
+<p>あなたが開発に参加したいなら、私が支援を有難く思う多くの分野があります。</p>
+
+<ul type="disc">
+
+  <li>コーディングしたい、話しましょう&hellip;</li>
+
+  <li>テンプレート / スタイルシート - 何というか、私はここでたくさんの助けが必要です！</li>
+
+  <li>テスト、テスト、もっとテスト、いつもこの助けが必要です&hellip;</li>
+
+</ul>
+
+<p>あなたがメディアギャラリーを楽しみ、ただ感謝の言葉を言いたい場合は、ノートをフォーラムに送ってください。
+もし寄付をしたいと思ったら、受け入れます。
+これは私の<strong>ハードウェア/ソフトウェア</strong>の資金ですので、いくらでも有難いですが、<strong>決して必要ではありません!</strong></p>
+
+<p>あなたが関与したい所についてのアイデアを持っているならば、私に知らせてください。</p>
+
+<h1><a name="mozTocId179642"></a>謝辞</h1>
+
+<p>私は、開発プロセス全体を通して援助してくださった方々に感謝を申し上げたいと思います。
+皆さんの、すべての開発リリースをダウンロードし、インストールし、テストするという重労働がなければ、メディアギャラリーがこのようになることは無かったでしょう。</p>
+
+<p>また、皆さんの提案してくださったアイデアと機能は信じられないほどの数でした。
+さらに、皆さんの想像力と創造性なくして、メディアギャラリーは、今は持つ堅牢な機能群を持ち得なかったでしょう。</p>
+
+<p>私は特に、翻訳を提供された方すべてに感謝したい。
+私は、座ってメディアギャラリーの数百ものフレーズを翻訳することがどれほど難しく、多大な時間を要するかを知っていますが、あなたの重労働のお陰で、メディアギャラリーは、私一人では決して達成し得ない国や環境へ進出することができました。</p>
+
+<p>メディアギャラリーは、私の趣味よりももっと大きなものになりました。
+世界中に多くの新しい友人を私に作ってくれましたし、それはどれほど楽しかったことでしょう！</p>
+
+<p>Thank you!</p>
+
+<p>Mark R. Evans </p>
+
+<h1><a name="mozTocId259021"></a>付記A - データのインポート</h1>
+
+<p>メディアギャラリーはアルバムと画像を他のギャラリープログラムからインポートする機能を提供します。
+この機能は、メディアギャラリーを評価するために使用することができます。
+インポートウィザードはオリジナルのギャラリープログラムを更新したり支障をきたすことは<b>ありません。</b>
+したがって、メディアギャラリーへアイテムをインポートすることによるリスクはありません。</p>
+
+<h2><a name="mozTocId603399"></a>Inmemoriamからのインポート</h2>
+
+<p>このインポートウィザードはインストールされたInmemoriam Galleryからアルバム、メディアアイテムそしてコメントの全てをインポートします。
+このウィザードはInmemoriam v1.01を対象としています。</p>
+
+<p>インポートするために、メディアギャラリー管理のインポートウィザードから <b>Inmemoriam</b> を選択します。</p>
+
+<ul type="disc">
+
+  <li>Inmemoriamアルバムの全てのリストが表示されます。</li>
+
+  <li>インポートするアルバムのチェックボックスを選択してください。</li>
+
+  <li><b>save</b>をクリックするとインポート処理が行われます。</li>
+
+</ul>
+
+<p>メディアギャラリーはInmemoriamシステムから直ちにアルバムの構造を作成し、全ての画像を<b>バッチ処理システム</b>によって処理される<b>バッチ処理キュー</b>へ読み出します。</p>
+
+<p><b>バッチ処理</b>画面に遷移し、インポートは継続します。</p>
+
+<p>インポートが完了したら、タイトル、説明、ヒットカウントおよびコメントを含む、Inmemoriamアルバムの中にあったアイテムの正確なコピーを持っておくべきです。</p>
+
+<h2><a name="mozTocId117698"></a>Geekaryからのインポート</h2>
+
+<p>このインポートウィザードはインストールされたGeekaryプラグインからアルバム、メディアアイテムそしてコメントの全てをインポートします。
+このウィザードはInmemoriam v1.01を対象としています。</p>
+
+<p>インポートするために、メディアギャラリー管理のインポートウィザードから <b>Gallery</b> を選択します。</p>
+
+<ul type="disc">
+
+  <li>Geekaryアルバムの全てのリストが表示されます。</li>
+
+  <li>インポートするアルバムのチェックボックスを選択してください。</li>
+
+  <li><b>save</b>をクリックするとインポート処理が行われます。</li>
+
+</ul>
+
+<p>メディアギャラリーはGeekaryシステムから直ちにアルバムの構造を作成し、全ての画像を<b>バッチ処理システム</b>によって処理される<b>バッチ処理キュー</b>へ読み出します。</p>
+
+<p><b>バッチ処理</b>画面に遷移し、インポートは継続します。</p>
+
+<p>インポートが完了したら、タイトル、説明、ヒットカウントおよびコメントを含む、Geekaryアルバムの中にあったアイテムの正確なコピーを持っておくべきです。</p>
+
+<h2><a name="mozTocId847246"></a>Gallery v1からのインポート</h2>
+
+<p>このインポートウィザードはインストールされたGallery v1からアルバムおよびメディアアイテムの全てをインポートします。
+このウィザードはGallery v1.4+を対象としています。</p>
+
+<p>インポートするために、メディアギャラリー管理のインポートウィザードから <b>Gallery v1.x</b> を選択します。</p>
+
+<ul type="disc">
+
+  <li>Galleryの <b>albums/</b> ディレクトリの<b>絶対</b>パスを入力する欄が表示されます。
+  <b>save</b>をクリックしてください。</li>
+
+  <li>Galleryアルバムの全てのリストが表示されます。</li>
+
+  <li>インポートするアルバムのチェックボックスを選択してください。</li>
+
+  <li><b>save</b>をクリックするとインポート処理が行われます。</li>
+
+</ul>
+
+<p>メディアギャラリーはGalleryシステムから直ちにアルバムの構造を作成し、全ての画像を<b>バッチ処理システム</b>によって処理される<b>バッチ処理キュー</b>へ読み出します。</p>
+
+<p><b>バッチ処理</b>画面に遷移し、インポートは継続します。</p>
+
+<p>インポートが完了したら、タイトルおよび説明を含む、Galleryアルバムの中にあったアイテムの正確なコピーを持っておくべきです。</p>
+
+<p><b>アルバムのパーミッションが正しくインポートされたことを確認するため、２重にチェックしてください。</b></p>
+
+<h2><a name="mozTocId708323"></a>Gallery v2からのインポート</h2>
+
+<p>このインポートウィザードはインストールされたGallery v2からアルバムおよびメディアアイテムの全てをインポートします。
+このウィザードはGallery v2.1+を対象としています。</p>
+
+<p>インポートするために、メディアギャラリー管理のインポートウィザードから <b>Gallery v2</b> を選択します。</p>
+
+<ul type="disc">
+
+  <li>Gallery 2のディレクトリにあるconfig.phpで見つけられる以下の情報が表示されます。</li>
+
+  <li>
+  <ul type="circle">
+
+    <li>Hostname - MySQLのホスト名</li>
+
+    <li>Database - Gallery 2のデータベース名</li>
+
+    <li>Username - データベースのユーザ名</li>
+
+    <li>Password - データベースのパスワード</li>
+
+    <li>Table Prefix - Gallery2のテーブルのプレフィックス</li>
+
+    <li>Column Prefix - Gallery 2のカラムのプレフィックス</li>
+
+    <li>Gallery v2の基準ディレクトリ</li>
+
+  </ul>
+  </li>
+
+  <li><b>save</b>をクリックします。</li>
+
+  <li>Galleryアルバムの全てのリストが表示されます。</li>
+
+  <li>インポートするアルバムのチェックボックスを選択してください。</li>
+
+  <li><b>save</b>をクリックするとインポート処理が行われます。</li>
+
+</ul>
+
+<p>メディアギャラリーはGalleryシステムから直ちにアルバムの構造を作成し、全ての画像を<b>バッチ処理システム</b>によって処理される<b>バッチ処理キュー</b>へ読み出します。</p>
+
+<p><b>バッチ処理</b>画面に遷移し、インポートは継続します。</p>
+
+<p>インポートが完了したら、タイトルおよび説明を含む、Galleryアルバムの中にあったアイテムの正確なコピーを持っておくべきです。</p>
+
+<p><b>アルバムのパーミッションが正しくインポートされたことを確認するため、２重にチェックしてください。</b></p>
+
+<h2><a name="mozTocId112793"></a>4imagesからのインポート</h2>
+
+<p>このインポートウィザードはインストールされた4imagesからアルバムおよびメディアアイテムの全てをインポートします。
+このウィザードは4images 1.7.3を対象としています。</p>
+
+<p>インポートするために、メディアギャラリー管理のインポートウィザードから <b>4Images</b> を選択します。</p>
+
+<ul type="disc">
+
+  <li>4imagesの設定ファイルで見つけられる以下の情報が表示されます。</li>
+
+  <li>
+  <ul type="circle">
+
+    <li>Database - 4imagesのデータベース名</li>
+
+    <li>Database Prefix - 4Imagesのテーブルのプレフィックス</li>
+
+    <li>Database User - データベースのユーザ名</li>
+
+    <li>Database Password - データベースのパスワード</li>
+
+    <li>4images Root Path - 4imagesのメインディレクトリです。<b>data/</b>ディレクトリを含んでいる必要があります。</li>
+
+  </ul>
+  </li>
+
+  <li><b>save</b>をクリックします。</li>
+
+  <li>4imagesアルバムの全てのリストが表示されます。</li>
+
+  <li>インポートするアルバムのチェックボックスを選択してください。</li>
+
+  <li><b>save</b>をクリックするとインポート処理が行われます。</li>
+
+</ul>
+
+<p>メディアギャラリーは4imagesシステムから直ちにアルバムの構造を作成し、全ての画像を<b>バッチ処理システム</b>によって処理される<b>バッチ処理キュー</b>へ読み出します。</p>
+
+<p><b>バッチ処理</b>画面に遷移し、インポートは継続します。</p>
+
+<p>インポートが完了したら、タイトルおよび説明を含む、4imagesカテゴリの中にあったアイテムの正確なコピーを持っておくべきです。</p>
+
+<p><b>アルバムのパーミッションが正しくインポートされたことを確認するため、２重にチェックしてください。</b></p>
+
+<h2><a name="mozTocId580820"></a>Geeklog記事からのインポート</h2>
+
+<p>このインポートウィザードは全てのGeeklog記事を検索し、その中に含まれる画像（自動タグの [imageX] や [unscaledX] を使用）をメディアギャラリーに移します。
+自動タグ[imageX]はメディアギャラリーの自動タグに置き換えられますので、画像は記事の中にそのまま表示されます。</p>
+
+<p>インポートする画像を選択する際に、次の4つのオプションを設定してください。</p>
+
+<ul type="disc">
+
+  <li>メディアギャラリーの自動タグのうち、どれを選択するか。(<a href="http://wiki.mediagallery.org/index.php?title=Geeklog_Integration#Auto_Tags" title="Geeklog Integration">media</a>, <a href="http://wiki.mediagallery.org/index.php?title=Geeklog_Integration#Auto_Tags" title="Geeklog Integration">image</a>)</li>
+
+  <li>自動タグの配置 (none, left, right, auto)</li>
+
+  <li>画像をどこに置くか。
+  (既存のアルバム、または、記事タイトルを基にアルバムを作成)</li>
+
+  <li>インポートの後に画像をGeeklogの /images/ ディレクトリから削除するかどうか。</li>
+
+</ul>
+
+<p>記事タイトルを使ってアルバムを作成することを選択した場合は、メデイアギャラリーは記事の導入部のテキストフィールドをアルバムの説明文に使用します。
+これの大きさの程度によっては、インポートの後に、これを編集したくなる場合があるかもしれません。</p>
+
+<p>記事に含まれる自動タグが <b>unscalled</b> であった場合は、メデイアギャラリーは自動的に <b>oimage:</b> 自動タグを使用します。</p>
+
+<p>メディアギャラリーは現在の <b>imageX</b> や <b>unscaledX</b> 自動タグから、既定の配置を受け取ります。</p>
+
+<p>このインポートは、埋め込まれたイメージを含んでいるすべてのあなたの記事を変更するでしょう。</p>
+
+<p><b>このインポート処理では、画像を含む記事の全部を書き換えます。</b>
+このインポートウィザードを実行する前に、必ず有効なバックアップを確保しておいてください。</p>
+
+</div><!-- end of Section3 -->
+
+</body>
+</html>
