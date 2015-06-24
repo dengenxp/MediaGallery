@@ -187,6 +187,9 @@
     font-family: "Times New Roman";
     font-weight: bold;
   }
+  .nowrap {
+    white-space: nowrap;
+  }
   -->
   </style>
 </head>
@@ -313,7 +316,7 @@
             <li><a href="#mozTocId30100">EXIF/IPTC Administration</a></li>
             <li><a href="#mozTocId266603">Category Maintenance</a></li>
             <li><a href="#mozTocId87981">Reset System Options</a></li>
-            <li><a href="#mozTocId755594">Media Gallery Configuration File Directives</a></li>
+            <li><a href="#mozTocId755594">Configuration File Directives</a></li>
             <li><a href="#mozTocId424871">System Defaults Editor</a></li>
             <li><a href="#mozTocId675193">Member Albums</a></li>
             <li><a href="#mozTocId979613">RSS Feeds</a></li>
@@ -714,7 +717,8 @@ One of the features of FlowPlayer is the ability for you to customize the look a
 Starting with FlowPlayer v1.19, you can now 'skin' the player.</p>
 
 <p>The FlowPlayer author has released a separate tool for skinning.
-It is called the FlowPlayer Skinning Kit and is available at <a href="http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349">http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349</a></p>
+It is called the FlowPlayer Skinning Kit and is available at
+<a href="http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349">http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349</a></p>
 
 <p>The kit is designed to run out of the box on a Windows workstation.
 It requires that you have the Sun Java runtime installed and also Apache&rsquo;s ANT system installed.
@@ -867,7 +871,8 @@ you will replace that with the path defined in $_CONF['path_html'].</p>
 <p>To install Media Gallery, or any Geeklog plugin, you will need to un-archive the plugin on your local computer.
 The Media Gallery distribution will automatically create all the proper directories when it is un-archived.</p>
 
-<p>To un-archive a .gz file, you can use later copies of WinZIP or <a href="http://www.rarlab.com/" title="http://www.rarlab.com/">WinRAR</a>.
+<p>To un-archive a .gz file, you can use later copies of WinZIP or
+<a href="http://www.rarlab.com/" title="http://www.rarlab.com/">WinRAR</a>.
 If you are running Mac OSX, please ensure you have the latest version of <i>StuffIt</i> installed.</p>
 
 <ol start="1" type="1">
@@ -3959,7 +3964,7 @@ You can limit your search to a specific category, or search for all items in a s
 Generally this is only used when testing new releases,
 but can be a quick method to return to the installation defaults if you have the need.</p>
 
-<h2><a name="mozTocId755594"></a>Media Gallery Configuration File Directives</h2>
+<h2><a name="mozTocId755594"></a>Configuration File Directives</h2>
 
 <p>All but a few of Media Gallery&rsquo;s configuration options are available in the On line interface documented above.
 But there are a couple of specific items that can be changed in the config.php file located in the plugins/mediagallery/ directory: </p>
@@ -4494,12 +4499,12 @@ There is an active user community to help provide support and the author of Medi
 <table class="mg_admin_table">
   <tbody>
     <tr>
-      <td><b>Symptom:</b></td>
+      <th class="nowrap">Symptom</th>
       <td>Uploading media items results in a blank page.</td>
     </tr>
     <tr>
-      <td><b>Solution:</b></td>
-      <td>Generally this is a result of trying to upload a file that is larger than the file size specified in the following php.ini configuration directives:</td>
+      <th class="nowrap">Solution</th>
+      <td>Generally this is a result of trying to upload a file that is larger than the file size specified in the following php.ini configuration directives.</td>
     </tr>
   </tbody>
 </table>
@@ -4529,11 +4534,11 @@ Please post the issue at the Media Gallery Support site&rsquo;s forums.</p>
 <table class="mg_admin_table">
   <tbody>
     <tr>
-      <td><b>Symptom:</b></td>
+      <th class="nowrap">Symptom</th>
       <td>Thumbnails and display images are not being created after image upload.</td>
     </tr>
     <tr>
-      <td><b>Solution:</b></td>
+      <th class="nowrap">Solution</th>
       <td>Validate that the directory permissions will allow the web server write access to all the sub-directories under public_html/mediagallery/mediaobjects/.</td>
     </tr>
   </tbody>
@@ -4548,12 +4553,12 @@ If any errors are reported try to fix the issue and try again.</p>
 <table class="mg_admin_table">
   <tbody>
     <tr>
-      <td><span style="font-weight: bold;">Symtpom:</span></td>
+      <th class="nowrap">Symptom</th>
       <td>An error has occurred:<br>
       2 - fopen(/path/to/geeklog/logs/error.log) [function.fopen]: failed to open stream: Permission denied @ /path/to/geeklog/public_html/lib-common.php line 1807</td>
     </tr>
     <tr>
-      <td><span style="font-weight: bold;">Solution:</span></td>
+      <th class="nowrap">Solution</th>
       <td>This is an easy one.
       The web server does not have write permissions to the /opt/lampp/logs directory or the file /opt/lampp/logs/error.log.
       This is Geeklog's error log file and Media Gallery tries to log the install steps there.<br>
@@ -4565,12 +4570,12 @@ If any errors are reported try to fix the issue and try again.</p>
 <table class="mg_admin_table">
   <tbody>
     <tr>
-      <td><span style="font-weight: bold;">Symtpom:</span></td>
+      <th class="nowrap">Symptom</th>
       <td>An error has occurred:<br> 2 - file_exists() [function.file-exists]: open_basedir restriction in effect.
       File(/usr/X11R6/bin/jhead) is not within the allowed path(s): (/home/mfxnjunn/:/usr/lib/php:/usr/local/sqmail:/usr/local/lib/php:/tmp) @ /home/mfxnjunn/public_html/lfp/admin/plugins/mediagallery/cfgedit.php line 240</td>
     </tr>
     <tr>
-      <td><span style="font-weight: bold;">Solution:</span></td>
+      <th class="nowrap">Solution</th>
       <td>This is sort of a permission problem.
       One of the things Media Gallery does is when you enter the configuration screen it tries to proactively find the external programs it wants to use.
       Jhead is one of those programs.<br>
