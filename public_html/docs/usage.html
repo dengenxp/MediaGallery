@@ -10,20 +10,19 @@
     background: white;
     color: black;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: smaller;
     font-size: 14px;
   }
   h1 {
-    font-size: 1.4em;
-    color: green;
+    font-size: 22px;
+    color: darkgreen;
   }
   h2 {
-    font-size: 1.2em;
+    font-size: 20px;
     color: brown;
   }
   h3 {
-    font-size: 1.0em;
-    color: blue;
+    font-size: 17px;
+    color: darkblue;
   }
   p, ul, ol, li {
     margin-top: 0.6em;
@@ -50,11 +49,11 @@
 
   .mg_admin_table {
     width: 100%;
-    margin: 1em;
+    margin: 1em 0;
     background: #F9F9F9;
     border: 1px #AAA solid;
     border-collapse: collapse;
-    font-size: 1.0em;
+    font-size: 13px;
   }
 
   .mg_admin_table th,
@@ -63,7 +62,6 @@
     padding: 5px;
     vertical-align: top;
     line-height: 140%;
-    font-size: 1.0em;
   }
 
   .mg_admin_table th {
@@ -88,24 +86,8 @@
     line-height: 1.4em;
   }
 
-  .r2 {
-    background: rgb(240,240,240);
-  }
   dt {
     font-weight: bold;
-  }
-  .usual {
-    font-size: 100%;
-  }
-  .menu {
-    font-size: 90%;
-    background: #dddddd;
-    color: black;
-  }
-  .footer {
-    font-size: 90%;
-    background: #dddddd;
-    color: black;
   }
   .comment {
     font-size: 80%;
@@ -113,28 +95,24 @@
   .codeheader {
     font-family: Courier, "Courier New", monospace;
   }
-  a:link {
-    color: #2222FF;
-    background: transparent;
-  }
+
+  a:link,
   a:visited {
-    color: #2222FF;
-    background: transparent;
+    text-decoration: none;
   }
+
   a:hover {
-    color: #5252FF;
-    background: transparent;
+    text-decoration: underline;
   }
-  a:active {
+
+  a:link,
+  a:visited,
+  a:hover {
     color: #2222FF;
-    background: transparent;
   }
-  /* this is to prevent Mozilla from applying :hover on <a name="..."> */
-  a[name] {
-    color: black;
-    background: transparent;
-  }
-  .noteclassic,.noteimportant,
+
+  .noteclassic,
+  .noteimportant,
   .notewarning,
   .notetip {
     margin:2em;
@@ -149,9 +127,9 @@
     padding:15px 20px 15px 80px;
     background-position:20px 50%;
     background-repeat:no-repeat;
-    -moz-border-radius:20px;
-    -khtml-border-radius:20px;
-    border-radius:20px;
+    -moz-border-radius:8px;
+    -khtml-border-radius:8px;
+    border-radius:8px;
   }
   .noteclassic{
     background-color:#eef;
@@ -190,6 +168,22 @@
   .nowrap {
     white-space: nowrap;
   }
+  .index_1,
+  .index_2 {
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .Section2:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 1px;
+    overflow: hidden;
+  }
   -->
   </style>
 </head>
@@ -200,156 +194,151 @@
 <p class="version">v1.6</p>
 <div class="indexofcontents">Table of Contents</div>
 
-<table class="mg_frame_table" style="text-align: left; width: 80%; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr>
-      <td style="width:50%;">
+<div class="index_1">
+  <ul>
+    <li><a href="#mozTocId490119">Overview</a></li>
+    <li><a href="#mozTocId42517">License</a></li>
+    <li><a href="#mozTocId788061">Credits</a></li>
+    <li><a href="#mozTocId27867">Requirements</a>
       <ul>
-        <li><a href="#mozTocId490119">Overview</a></li>
-        <li><a href="#mozTocId42517">License</a></li>
-        <li><a href="#mozTocId788061">Credits</a></li>
-        <li><a href="#mozTocId27867">Requirements</a>
-          <ul>
-            <li><a href="#mozTocId190332">Geeklog Version</a></li>
-            <li><a href="#mozTocId101151">Caching Template Library v2.0</a></li>
-            <li><a href="#mozTocId592268">PHP Version / Configuration</a></li>
-            <li><a href="#mozTocId518716">Graphics Package</a></li>
-            <li><a href="#mozTocId92633">Database</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId32420">What&rsquo;s New in v1.6.0</a></li>
-        <li><a href="#mozTocId623782">Installation</a>
-          <ul>
-            <li><a href="#mozTocId473182">Auto Installed Geeklog</a></li>
-            <li><a href="#mozTocId312812">FTP Installation</a></li>
-            <li><a href="#mozTocId773303">Standard Shell Access Installation</a></li>
-            <li><a href="#mozTocId586179">Online Installation</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId617560">Upgrading</a>
-          <ul>
-            <li><a href="#mozTocId960221">Directory Permissions</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId197289">Getting Started - The Quick Start Guide</a>
-          <ul>
-            <li><a href="#mozTocId639286">Media Gallery Configuration</a></li>
-            <li><a href="#mozTocId449279">Creating Your First Album</a></li>
-            <li><a href="#mozTocId497890">Adding Media to Your New Album</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId585727">Configuration</a>
-          <ul>
-            <li><a href="#mozTocId537717">Media Gallery Environment</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId220901">Albums</a>
-          <ul>
-            <li><a href="#mozTocId454806">Album Configuration Options</a></li>
-            <li><a href="#mozTocId794718">Creating an Album</a></li>
-            <li><a href="#mozTocId526936">Editing an Album</a></li>
-            <li><a href="#mozTocId512933">Deleting Albums</a></li>
-            <li><a href="#mozTocId195956">Sorting Albums</a></li>
-            <li><a href="#mozTocId67034">Global Album Attribute Editor</a></li>
-            <li><a href="#mozTocId69877">Global Album Permission Editor</a></li>
-            <li><a href="#mozTocId214085">Setting Album Create Defaults</a></li>
-            <li><a href="#mozTocId632238">Special Types of Albums</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId979363">Media Items</a>
-          <ul>
-            <li><a href="#mozTocId171925">How Media Gallery Stores your Media</a></li>
-            <li><a href="#mozTocId563326">Supported Media Types</a></li>
-            <li><a href="#mozTocId738453">Media Handling Overview</a></li>
-            <li><a href="#mozTocId837834">Uploading Media</a></li>
-            <li><a href="#mozTocId781301">Post Upload Processing</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId768958">Manage Media Items</a>
-          <ul>
-            <li><a href="#mozTocId716339">Media Edit</a></li>
-            <li><a href="#mozTocId83636">Batch Caption Editor</a></li>
-            <li><a href="#mozTocId747225">Sort Media Items</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId32228">Media Gallery General Items</a>
-          <ul>
-            <li><a href="#mozTocId885785">RSS Feeds</a></li>
-            <li><a href="#mozTocId331186">Electronic PostCard</a></li>
-            <li><a href="#mozTocId880455">Moderation</a></li>
-            <li><a href="#mozTocId696648">On line Printing</a></li>
-            <li><a href="#mozTocId9477">Batch Processing System</a></li>
-            <li><a href="#mozTocId478715">User Preferences</a></li>
-            <li><a href="#mozTocId199546">Watermarking</a></li>
-          </ul>
-        </li>
+        <li><a href="#mozTocId190332">Geeklog Version</a></li>
+        <li><a href="#mozTocId101151">Caching Template Library v2.0</a></li>
+        <li><a href="#mozTocId592268">PHP Version / Configuration</a></li>
+        <li><a href="#mozTocId518716">Graphics Package</a></li>
+        <li><a href="#mozTocId92633">Database</a></li>
       </ul>
-      </td>
-
-      <td style="width:50%;">
+    </li>
+    <li><a href="#mozTocId32420">What&rsquo;s New in v1.6.0</a></li>
+    <li><a href="#mozTocId623782">Installation</a>
       <ul>
-        <li><a href="#mozTocId580924">Geeklog Integration</a>
-          <ul>
-            <li><a href="#mozTocId34513">Comments</a></li>
-            <li><a href="#mozTocId54737">Auto Tags</a></li>
-            <li><a href="#mozTocId160636">Auto Links</a></li>
-            <li><a href="#mozTocId741121">Site Statistics</a></li>
-            <li><a href="#mozTocId169118">Searching</a></li>
-            <li><a href="#mozTocId593778">What&rsquo;s New Listing</a></li>
-            <li><a href="#mozTocId519863">Featured Albums</a></li>
-            <li><a href="#mozTocId56915">Random Image Block</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId803390">User Profile</a></li>
-        <li><a href="#mozTocId370857">Media Gallery Look and Feel</a></li>
-        <li><a href="#mozTocId809667">Media Gallery Album Themes</a>
-          <ul>
-            <li><a href="#mozTocId285200">How to Create a Theme</a></li>
-            <li><a href="#mozTocId467866">Theme Styles</a></li>
-            <li><a href="#mozTocId633773">Theme JavaScript</a></li>
-            <li><a href="#mozTocId740990">Theme Images</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId164653">Media Gallery Administration</a>
-          <ul>
-            <li><a href="#mozTocId555458">Configuration</a></li>
-            <li><a href="#mozTocId30100">EXIF/IPTC Administration</a></li>
-            <li><a href="#mozTocId266603">Category Maintenance</a></li>
-            <li><a href="#mozTocId87981">Reset System Options</a></li>
-            <li><a href="#mozTocId755594">Configuration File Directives</a></li>
-            <li><a href="#mozTocId424871">System Defaults Editor</a></li>
-            <li><a href="#mozTocId675193">Member Albums</a></li>
-            <li><a href="#mozTocId979613">RSS Feeds</a></li>
-            <li><a href="#mozTocId304644">Reports</a></li>
-            <li><a href="#mozTocId288811">Batch Sessions</a></li>
-            <li><a href="#mozTocId735663">Utilities</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId662715">Support</a></li>
-        <li><a href="#mozTocId899144">Common Problems and Troubleshooting</a>
-          <ul>
-            <li><a href="#mozTocId773690">Common Troubleshooting Practices</a></li>
-          </ul>
-        </li>
-        <li><a href="#mozTocId920237">Known Issues</a></li>
-        <li><a href="#mozTocId130520">How Can I Help</a></li>
-        <li><a href="#mozTocId179642">Special Thanks</a></li>
-        <li><a href="#mozTocId259021">Appendix A - Importing</a>
-          <ul>
-            <li><a href="#mozTocId603399">Inmemoriam Import</a></li>
-            <li><a href="#mozTocId117698">Geekary Import</a></li>
-            <li><a href="#mozTocId847246">Gallery v1 Import</a></li>
-            <li><a href="#mozTocId708323">Gallery v2 Import</a></li>
-            <li><a href="#mozTocId112793">4images Import</a></li>
-            <li><a href="#mozTocId580820">Geeklog Story Images Import</a></li>
-          </ul>
-        </li>
+        <li><a href="#mozTocId473182">Auto Installed Geeklog</a></li>
+        <li><a href="#mozTocId312812">FTP Installation</a></li>
+        <li><a href="#mozTocId773303">Standard Shell Access Installation</a></li>
+        <li><a href="#mozTocId586179">Online Installation</a></li>
       </ul>
+    </li>
+    <li><a href="#mozTocId617560">Upgrading</a>
+      <ul>
+        <li><a href="#mozTocId960221">Directory Permissions</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId197289">Getting Started - The Quick Start Guide</a>
+      <ul>
+        <li><a href="#mozTocId639286">Media Gallery Configuration</a></li>
+        <li><a href="#mozTocId449279">Creating Your First Album</a></li>
+        <li><a href="#mozTocId497890">Adding Media to Your New Album</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId585727">Configuration</a>
+      <ul>
+        <li><a href="#mozTocId537717">Media Gallery Environment</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId220901">Albums</a>
+      <ul>
+        <li><a href="#mozTocId454806">Album Configuration Options</a></li>
+        <li><a href="#mozTocId794718">Creating an Album</a></li>
+        <li><a href="#mozTocId526936">Editing an Album</a></li>
+        <li><a href="#mozTocId512933">Deleting Albums</a></li>
+        <li><a href="#mozTocId195956">Sorting Albums</a></li>
+        <li><a href="#mozTocId67034">Global Album Attribute Editor</a></li>
+        <li><a href="#mozTocId69877">Global Album Permission Editor</a></li>
+        <li><a href="#mozTocId214085">Setting Album Create Defaults</a></li>
+        <li><a href="#mozTocId632238">Special Types of Albums</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId979363">Media Items</a>
+      <ul>
+        <li><a href="#mozTocId171925">How Media Gallery Stores your Media</a></li>
+        <li><a href="#mozTocId563326">Supported Media Types</a></li>
+        <li><a href="#mozTocId738453">Media Handling Overview</a></li>
+        <li><a href="#mozTocId837834">Uploading Media</a></li>
+        <li><a href="#mozTocId781301">Post Upload Processing</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId768958">Manage Media Items</a>
+      <ul>
+        <li><a href="#mozTocId716339">Media Edit</a></li>
+        <li><a href="#mozTocId83636">Batch Caption Editor</a></li>
+        <li><a href="#mozTocId747225">Sort Media Items</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId32228">Media Gallery General Items</a>
+      <ul>
+        <li><a href="#mozTocId885785">RSS Feeds</a></li>
+        <li><a href="#mozTocId331186">Electronic PostCard</a></li>
+        <li><a href="#mozTocId880455">Moderation</a></li>
+        <li><a href="#mozTocId696648">On line Printing</a></li>
+        <li><a href="#mozTocId9477">Batch Processing System</a></li>
+        <li><a href="#mozTocId478715">User Preferences</a></li>
+        <li><a href="#mozTocId199546">Watermarking</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div class="index_2">
+  <ul>
+    <li><a href="#mozTocId580924">Geeklog Integration</a>
+      <ul>
+        <li><a href="#mozTocId34513">Comments</a></li>
+        <li><a href="#mozTocId54737">Auto Tags</a></li>
+        <li><a href="#mozTocId160636">Auto Links</a></li>
+        <li><a href="#mozTocId741121">Site Statistics</a></li>
+        <li><a href="#mozTocId169118">Searching</a></li>
+        <li><a href="#mozTocId593778">What&rsquo;s New Listing</a></li>
+        <li><a href="#mozTocId519863">Featured Albums</a></li>
+        <li><a href="#mozTocId56915">Random Image Block</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId803390">User Profile</a></li>
+    <li><a href="#mozTocId370857">Media Gallery Look and Feel</a></li>
+    <li><a href="#mozTocId809667">Media Gallery Album Themes</a>
+      <ul>
+        <li><a href="#mozTocId285200">How to Create a Theme</a></li>
+        <li><a href="#mozTocId467866">Theme Styles</a></li>
+        <li><a href="#mozTocId633773">Theme JavaScript</a></li>
+        <li><a href="#mozTocId740990">Theme Images</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId164653">Media Gallery Administration</a>
+      <ul>
+        <li><a href="#mozTocId555458">Configuration</a></li>
+        <li><a href="#mozTocId30100">EXIF/IPTC Administration</a></li>
+        <li><a href="#mozTocId266603">Category Maintenance</a></li>
+        <li><a href="#mozTocId87981">Reset System Options</a></li>
+        <li><a href="#mozTocId755594">Configuration File Directives</a></li>
+        <li><a href="#mozTocId424871">System Defaults Editor</a></li>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <li><a href="#mozTocId838177">Media Queue</a></li>
+
+        <li><a href="#mozTocId675193">Member Albums</a></li>
+        <li><a href="#mozTocId979613">RSS Feeds</a></li>
+        <li><a href="#mozTocId304644">Reports</a></li>
+        <li><a href="#mozTocId288811">Batch Sessions</a></li>
+        <li><a href="#mozTocId735663">Utilities</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId662715">Support</a></li>
+    <li><a href="#mozTocId899144">Common Problems and Troubleshooting</a>
+      <ul>
+        <li><a href="#mozTocId773690">Common Troubleshooting Practices</a></li>
+      </ul>
+    </li>
+    <li><a href="#mozTocId920237">Known Issues</a></li>
+    <li><a href="#mozTocId130520">How Can I Help</a></li>
+    <li><a href="#mozTocId179642">Special Thanks</a></li>
+    <li><a href="#mozTocId259021">Appendix A - Importing</a>
+      <ul>
+        <li><a href="#mozTocId603399">Inmemoriam Import</a></li>
+        <li><a href="#mozTocId117698">Geekary Import</a></li>
+        <li><a href="#mozTocId847246">Gallery v1 Import</a></li>
+        <li><a href="#mozTocId708323">Gallery v2 Import</a></li>
+        <li><a href="#mozTocId112793">4images Import</a></li>
+        <li><a href="#mozTocId580820">Geeklog Story Images Import</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
 
 </div><!-- end of Section2 -->
 
@@ -426,7 +415,7 @@ Many thanks to those that have allowed me to see their work and in many cases bo
   - Copyright &copy; Geoff Stearns
   - <a href="http://blog.deconcept.com/" title="http://blog.deconcept.com">http://blog.deconcept.com</a></li>
 
-  <li>Flash Video Player, Flash <abbr>MP3</abbr> Player and Flash mini-slideshow
+  <li>Flash Video Player, Flash MP3 Player and Flash mini-slideshow
   - Copyright &copy; Wayne Patterson
   - <a href="http://www.flashyourweb.com/" title="http://www.flashyourweb.com">http://www.flashyourweb.com</a></li>
 
@@ -485,10 +474,10 @@ See this <a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">
 
 <h2><a name="mozTocId592268"></a>PHP Version / Configuration</h2>
 
-<p>Media Gallery requires that you have <abbr>PHP</abbr> v4.3.0 or later.</p>
+<p>Media Gallery requires that you have PHP v4.3.0 or later.</p>
 
 <p>Media Gallery requires a reasonable amount of memory to run, calling the external graphics packages to work with large image files takes a lot of memory.
-You should configure <abbr>PHP</abbr> to allow for at least 48 M of memory per process. Check your <strong>memory_limit</strong> variable in php.ini and ensure it is set to at least 48M.</p>
+You should configure PHP to allow for at least 48 M of memory per process. Check your <strong>memory_limit</strong> variable in php.ini and ensure it is set to at least 48M.</p>
 
 <p>Media Gallery will work fine with <strong>register_globals=off</strong></p>
 
@@ -501,7 +490,7 @@ I know of only 1 user who has successfully run Media Gallery with safe mode enab
 
 <ul type="disc">
 
-  <li>GD Libraries v2 linked into <abbr>PHP</abbr></li>
+  <li>GD Libraries v2 linked into PHP</li>
 
   <li>ImageMagick</li>
 
@@ -570,8 +559,8 @@ The source (original) image is maintained in the native format and will be downl
 <p>Media Gallery has the same requirements for databases as Geeklog.
 Currently, Media Gallery support MySQL v3.23 and above, including the latest v5.1 beta releases.</p>
 
-<p>Media Gallery also fully supports Microsoft&rsquo;s <abbr>SQL</abbr> Server 2000 and <abbr>SQL</abbr> Server 2005.
-<abbr>SQL</abbr> Server support is a new feature in Geeklog v1.4.1.</p>
+<p>Media Gallery also fully supports Microsoft&rsquo;s SQL Server 2000 and SQL Server 2005.
+SQL Server support is a new feature in Geeklog v1.4.1.</p>
 
 <h1><a name="mozTocId32420"></a>What&rsquo;s New in v1.6.0</h1>
 
@@ -2198,7 +2187,7 @@ There is an option you can specify during the upload
   </tbody>
 </table>
 
-<p>Media Gallery will now determine if there is an embedded thumbnail image in an uploaded <abbr>MP3</abbr> file.
+<p>Media Gallery will now determine if there is an embedded thumbnail image in an uploaded MP3 file.
 If there is, Media Gallery will extract it and automatically use it as the attached thumbnail for the audio file.</p>
 
 <p>Media Gallery will also pull the <em>title</em>,<em>artist</em>,
@@ -4127,10 +4116,10 @@ For specific details on each item and their options, please refer to Audio / Vid
 
 <p>You can globally change an attribute for all of your albums using the Global Album Attribute Editor.
 This screen gives you a list of all available album attributes;
-you will need to check the <b>Update </b>check box for the attributes you wish to change.
+you will need to check the <b>Update</b> check box for the attributes you wish to change.
 On submit all albums will be updated with the new attributes.</p>
 
-<h3><a class="mozTocH3" name="mozTocId838177"></a>Media Queue</h3>
+<h2><a class="mozTocH3" name="mozTocId838177"></a>Media Queue</h2>
 
 <p>The Media Queue will display all items currently in the Moderation Queue waiting for approval.</p>
 
