@@ -479,9 +479,8 @@ See this <a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">
 <p>Media Gallery requires a reasonable amount of memory to run, calling the external graphics packages to work with large image files takes a lot of memory.
 You should configure PHP to allow for at least 48 M of memory per process. Check your <strong>memory_limit</strong> variable in php.ini and ensure it is set to at least 48M.</p>
 
-<p>Media Gallery will work fine with <strong>register_globals=off</strong></p>
-
-<p>Media Gallery can work with <strong>safe_mode=on</strong> but it is not supported.
+<p>Media Gallery will work fine with <strong>register_globals=off</strong><br>
+Media Gallery can work with <strong>safe_mode=on</strong> but it is not supported.
 I know of only 1 user who has successfully run Media Gallery with safe mode enabled.</p>
 
 <h2><a name="mozTocId518716"></a>Graphics Package</h2>
@@ -569,7 +568,7 @@ below is a quick list of new or enhanced features in this release:</p>
 
 <h3><a class="mozTocH3" name="mozTocId559914"></a>Media Gallery Requires Geeklog v1.4.0 or Higher</h3>
 
-<p>Release 1.6.0 of Media Gallery has removed support for Geeklog v1.3.11 and older.</p>
+<p>Release v1.6.0 of Media Gallery has removed support for Geeklog v1.3.11 and older.</p>
 
 <h3><a class="mozTocH3" name="mozTocId517439"></a>Media Gallery Requires the Caching Template Library to be Installed</h3>
 
@@ -584,7 +583,7 @@ Now, with logic processing, Media Gallery does the following in the template:</p
 
 <h3><a class="mozTocH3" name="mozTocId859771"></a>AJAX Star Rating System</h3>
 
-<p>The media rating system has been completely reworked in Media Gallery 1.6.0.
+<p>The media rating system has been completely reworked in Media Gallery v1.6.0.
 It now supports a visual star based rating and uses <abbr title="Asynchronous JavaScript and XML">AJAX</abbr> (if JavaScript is enabled) to rate the media without having to refresh the page.
 If JavaScript is disabled, then the rating will require a page refresh.</p>
 
@@ -632,7 +631,7 @@ Media Gallery now no longer performs this conversion, instead it keeps the image
 <h3><a class="mozTocH3" name="mozTocId849016"></a>Search Enhancements</h3>
 
 <p>Media Gallery now supports an internal search feature that will return the search results in a standard album view format.
-You can configure how the album view will look by modifying the new configuration options located in System Options -&gt; Display Options:</p>
+You can configure how the album view will look by modifying the new configuration options located in <span style="font-weight: bold;">System Options</span> &rarr; <span style="font-weight: bold;">Display Options</span>:</p>
 
 <table class="mg_admin_table">
   <tbody>
@@ -710,13 +709,13 @@ It is called the FlowPlayer Skinning Kit and is available at
 <a href="http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349">http://sourceforge.net/project/showfiles.php?group_id=133868&amp;package_id=146998&amp;release_id=524349</a></p>
 
 <p>The kit is designed to run out of the box on a Windows workstation.
-It requires that you have the Sun Java runtime installed and also Apache&rsquo;s ANT system installed.
+It requires that you have the Sun Java runtime installed and also Apache&rsquo;s Ant system installed.
 You can download Sun&rsquo;s latest Java runtime here.
-You can get a copy of Apache's ANT system here:<br>
+You can get a copy of Apache's Ant system here:<br>
 <a href="http://code.google.com/p/winant/">http://code.google.com/p/winant/</a></p>
 
 <p>The kit runs from the command line.
-CD to the directory where you unpacked the distribution package and run ant.
+CD to the directory where you unpacked the distribution package and run Ant.
 The generated player is placed in build/FlowPlayer.swf.
 By default it generates the default player with the gray skin.</p>
 
@@ -724,7 +723,7 @@ By default it generates the default player with the gray skin.</p>
 The names of the files are fairly self explanatory and there is some supporing comments in the included xml/Skin.xml.tmpl file.</p>
 
 <p>To use it on Linux or Mac you need to replace the included swfmill binary with the version built for your operating system.
-Swfmill is availabe for download in their site.</p>
+Swfmill is available for download in their site.</p>
 
 <p>Please refer to the README file included in the package for more info.</p>
 
@@ -773,7 +772,7 @@ For example, the little envelope icon used for Media Gallery post cards can be c
 <h3><a class="mozTocH3" name="mozTocId82940"></a>Media Gallery Security / Safety Feature</h3>
 
 <p>I have enhanced the filecheck utility in Media Gallery to now verify every file included in the Media Gallery distribution.
-It also reports if any unknown directories or files exist within Media Gallerydirectory structure.</p>
+It also reports if any unknown directories or files exist within Media Gallery directory structure.</p>
 
 <p>The main reason for this feature is to allow you to clean up old Media Gallery files.
 As Media Gallery has grown, some files have been renamed, moved, or simply deleted.
@@ -1404,22 +1403,22 @@ your browsing will not increment this counter.</div>
 These are primarily used to improve searching.
 If this option is enabled, the keywords will be displayed below the thumbnail image.</p>
 
-<h4><a class="mozTocH4" name="mozTocId495252"></a>Image / Display / Album Skin</h4>
+<h4><a class="mozTocH4" name="mozTocId495252"></a>Thumbnail Image / Display Image / Sub-Album Frame</h4>
 
-<p>The frame around each image / thumbnail is the album is specified here.
+<p>The frame around each image / thumbnail in the album is specified here.
 Media Gallery supports several different frames.</p>
 
 <ul>
 
-  <li>Image Frame is displayed with the thumbnail</li>
+  <li>Thumbnail Image Frame is displayed with the thumbnail</li>
 
-  <li>Display Frame is displayed with the Display Image (Media Item View)</li>
+  <li>Display Image Frame is displayed with the Display Image (Media Item View)</li>
 
-  <li>Sub-Album frame is displayed for all sub-albums in this album.</li>
+  <li>Sub-Album Frame is displayed for all sub-albums in this album.</li>
 
 </ul>
 
-<h4><a class="mozTocH4" name="mozTocId514642"></a>List sub-albums before images</h4>
+<h4><a class="mozTocH4" name="mozTocId514642"></a>List Sub-Albums before Images</h4>
 
 <p>This specifies if any sub-albums should be listed before the media items or after.
 If enabled, all sub-albums will be displayed before the media items are displayed.
@@ -1443,7 +1442,7 @@ If disabled, the sub-albums will be listed after all the media items.</p>
 
 <h4><a class="mozTocH4" name="mozTocId546486"></a>Custom Thumbnail Width / Height</h4>
 
-<p>If you choose a custom thumbnail size, enter the height and width here.</p>
+<p>If you choose a custom thumbnail size, enter the width and height here.</p>
 
 <h4><a class="mozTocH4" name="mozTocId705432"></a>Audio / Video Playback Options</h4>
 
@@ -1476,7 +1475,7 @@ There are three types of slideshows in Media Gallery:</p>
 
   <li>JavaScript - This is the standard slideshow that is full featured and works with most browsers.</li>
 
-  <li>LightBox - This will provide a light box slide show.</li>
+  <li>Lightbox - This will provide a light box slide show.</li>
 
   <li>Flash Based - This is a Flash based slideshow that will allow Full Screen viewing.
   <span style="font-weight: bold;">Keep in mind the Flash Based slideshow is still experimental.</span></li>
@@ -1494,7 +1493,7 @@ There are three types of slideshows in Media Gallery:</p>
 <p>By default, Media Gallery will use the most recent thumbnail as the album cover.</p>
 
 <p>You also have the option of uploading an image to be used as the album cover.
-By selecting the <b>Attached Thumbnail</b> checkbox and specifying the image to upload in the <b>Thumbnail </b>input,
+By selecting the <b>Attached Thumbnail</b> checkbox and specifying the image to upload in the <b>Thumbnail</b> input,
 you can add the album cover.
 When you attach a thumbnail to the album, that image will always be used as the album cover.</p>
 
@@ -3581,7 +3580,7 @@ Media Gallery will automatically load that style sheet.</p>
 <h2><a name="mozTocId633773"></a>Theme JavaScript</h2>
 
 <p>You can also include a separate JavaScript file for each theme.
-Make sure it is named javascript.js.</p>
+Make sure it is named <span style="font-weight: bold;">javascript.js</span>.</p>
 
 <h2><a name="mozTocId740990"></a>Theme Images</h2>
 
@@ -3733,7 +3732,7 @@ The index will display page navigation if necessary.</p>
 <p>If this option is enabled, all sub-albums will display in a drop down select box.
 If this option is disabled, the sub-albums will be listed as a bulleted list.</p>
 
-<h4><a class="mozTocH4" name="mozTocId315540"></a>Index Album Skin</h4>
+<h4><a class="mozTocH4" name="mozTocId315540"></a>Index Album Frame</h4>
 
 <p>Selects which frame to use for the thumbnail images in the Album Index.</p>
 
