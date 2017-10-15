@@ -210,7 +210,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_media_album_queue']} (
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_playback_options']} (
   `media_id` varchar(40) NOT NULL default '',
-  `option_name` varchar(255) NOT NULL default '',
+  `option_name` varchar(210) NOT NULL default '',
   `option_value` varchar(255) NOT NULL default '',
   UNIQUE KEY `media_id_2` (`media_id`,`option_name`),
   KEY `media_id` (`media_id`)
@@ -326,7 +326,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_rating']} (
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_exif_tags']} (
-  `name` varchar(255) NOT NULL default '',
+  `name` varchar(250) NOT NULL default '',
   `selected` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`name`)
 ) ENGINE=MyISAM
