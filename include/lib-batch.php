@@ -413,21 +413,19 @@ function mg_batch_session_ftpimport($row)
             COM_errorLog("MediaGallery: File " . $baseSrcFile . " exceeds maximum filesize for this album.");
             $statusMsg = addslashes(sprintf($LANG_MG02['upload_exceeds_max_filesize'], $baseSrcFile));
             MG_setSessionLog($session_id, $statusMsg);
-            continue;
+        } else {
+            $filetype = "application/force-download";
+            $opt = array(
+                'upload'     => 0,
+                'purgefiles' => $purgefiles,
+                'filetype'   => $filetype,
+            );
+            list($rc, $msg) = MG_getFile($srcFile, $baseSrcFile, $album_id, $opt);
+            $statusMsg = addslashes($baseSrcFile . " " . $msg);
+            MG_setSessionLog($session_id, $statusMsg);
+            MG_SortMedia($album_id);
+            @set_time_limit($time_limit + 20);
         }
-
-        $filetype = "application/force-download";
-        $opt = array(
-            'upload'     => 0,
-            'purgefiles' => $purgefiles,
-            'filetype'   => $filetype,
-        );
-        list($rc, $msg) = MG_getFile($srcFile, $baseSrcFile, $album_id, $opt);
-        $statusMsg = addslashes($baseSrcFile . " " . $msg);
-        MG_setSessionLog($session_id, $statusMsg);
-        MG_SortMedia($album_id);
-        @set_time_limit($time_limit + 20);
     }
     return;
 }
-?>
