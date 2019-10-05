@@ -56,31 +56,32 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
 
     $_MG_USERPREFS = MG_getUserPrefs();
 
-    $uploadMenu = 0;
-    $adminMenu  = 0;
+    $isShowUploadMenu = false;
+    $isShowAdminMenu  = false;
+
     if ($root_album->owner_id) {
-        $uploadMenu = 1;
-        $adminMenu  = 1;
+        $isShowUploadMenu = true;
+        $isShowAdminMenu  = true;
     } elseif ($album->access == 3) {
-        $uploadMenu = 1;
-        $adminMenu  = 1;
+        $isShowUploadMenu = true;
+        $isShowAdminMenu  = true;
         if ($_MG_CONF['member_albums']) {
             if ($_MG_USERPREFS['active'] != 1) {
-                $uploadMenu = 0;
-                $adminMenu  = 0;
+                $isShowUploadMenu = false;
+                $isShowAdminMenu  = false;
             } else {
-                $uploadMenu = 1;
-                $adminMenu  = 1;
+                $isShowUploadMenu = true;
+                $isShowAdminMenu  = true;
             }
         }
     } elseif ($album->member_uploads == 1 &&
                isset($_USER['uid']) && $_USER['uid'] >= 2) {
-        $uploadMenu = 1;
-        $adminMenu  = 0;
+        $isShowUploadMenu = true;
+        $isShowAdminMenu  = false;
     }
 
     $admin_box_option = '';
-    if ($uploadMenu == 1) {
+    if ($isShowUploadMenu) {
         $admin_box_option .= MG_options(array(
             'current' => '',
             'values'  => array(
@@ -88,7 +89,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
             )
         ));
     }
-    if ($adminMenu == 1) {
+    if ($isShowAdminMenu) {
         $admin_box_option .= MG_options(array(
             'current' => '',
             'values'  => array(
@@ -112,11 +113,11 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
             )
         ));
 
-        $adminMenu = 1;
+        $isShowAdminMenu = true;
     }
 
     $admin_box = '';
-    if ($uploadMenu == 1 || $adminMenu == 1) {
+    if ($isShowUploadMenu || $isShowAdminMenu) {
         $action = $_MG_CONF['site_url'] . '/admin.php';
         $admin_box = '<form name="adminbox" id="adminbox" action="' . $action . '" method="get" class="uk-form"><div>' . LB;
         $admin_box .= '<input type="hidden" name="album_id" value="' . $album->id . '"' . XHTML . '>' . LB;
@@ -129,7 +130,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
     }
 
     $edit_album = '';
-    if ($adminMenu == 1) {
+    if ($isShowAdminMenu) {
         $url_edit = $_MG_CONF['site_url'] . '/admin.php?album_id=' . $album->id . '&amp;mode=edit';
         $lang_edit = $LANG_MG01['edit'];
         $edit_album = '<a href="' . $url_edit . '"' . '>' . $lang_edit . '</a>';
