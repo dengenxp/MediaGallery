@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
@@ -72,7 +74,7 @@ function MG_navbar($selected='', $album_id)
     }
     $navbar->add_menuitem($LANG_MG01['remote_media'], $_MG_CONF['site_url'] . '/admin.php?mode=remote&amp;album_id=' . $album_id);
     $navbar->set_selected($selected);
-    $retval .= $navbar->generate();
+    $retval = $navbar->generate();
     return $retval;
 }
 
@@ -119,7 +121,7 @@ if ($mode == 'edit') {
     if (!isset($_GET['album_id'])) MG_invalidRequest();
     require_once $include . 'global.php';
     $album_id = COM_applyFilter($_GET['album_id'], true);
-    $admin_menu = COM_applyFilter($_GET['a'], true);
+    $admin_menu = (int) Input::fGet('a', 0);
     $display = MG_globalAlbumAttributeEditor($admin_menu);
     $display = MG_createHTMLDocument($display);
     COM_output($display);
@@ -128,7 +130,7 @@ if ($mode == 'edit') {
     if (!isset($_GET['album_id'])) MG_invalidRequest();
     require_once $include . 'global.php';
     $album_id = COM_applyFilter($_GET['album_id'], true);
-    $admin_menu = COM_applyFilter($_GET['a'], true);
+    $admin_menu = (int) Input::fGet('a', 0);
     $display = MG_globalAlbumPermEditor($admin_menu);
     $display = MG_createHTMLDocument($display);
     COM_output($display);
@@ -518,7 +520,7 @@ if ($mode == 'edit') {
     $display = MG_createHTMLDocument($display);
     COM_output($display);
 
-} else if (mode == 'cancel') {
+} else if ($mode === 'cancel') {
     if (isset($_POST['admin_menu']) && $_POST['admin_menu'] == 1) {
         echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
         exit;
@@ -534,7 +536,7 @@ if ($mode == 'edit') {
     if (isset($_POST['album_id']) && isset($_POST['action'])) {
         $album_id = COM_applyFilter($_POST['album_id'], true);
         $action   = COM_applyFilter($_POST['action']);
-        $queue = COM_applyFilter($_POST['queue'], true);
+        $queue = (int) Input::fPost('queue', 0);
         switch ($action) {
             case 'savemedia' :
                 if ($queue == 1) {

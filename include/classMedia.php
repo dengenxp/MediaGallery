@@ -69,7 +69,7 @@ class Media {
     var $media_thumbnail_file;
     var $media_size;
 
-    function Media(&$M, &$aid) {
+    public function __construct(&$M, &$aid) {
         $this->id   = $M['media_id'];
         $this->type = $M['media_type'];
         if ($this->type != -1) {
@@ -897,4 +897,3 @@ class Media {
         return array($resolution_x, $resolution_y);
     }
 }
-?>

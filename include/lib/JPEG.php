@@ -69,7 +69,7 @@ class JPEG // extends PEAR
      *
      * @param string  the name or url of the jpeg file
      */
-    function JPEG($fileName)
+    public function __construct($fileName)
     {
         //$this->PEAR();
 

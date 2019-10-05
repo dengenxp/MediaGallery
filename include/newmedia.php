@@ -97,7 +97,7 @@ function MG_SWFUpload($album_id)
         'upload_url'                => 'swfupload/swfupload.php',
         'flash_url'                 => 'swfupload/swfupload.swf',
         'user_id'                   => $user_id,
-        'user_token'                => $user_token,
+        'user_token'                => @$user_token,
         'swfupload_usage'           => $LANG_MG01['swfupload_usage'],
         'swfupload_allowed_types'   => $LANG_MG01['swfupload_allowed_types'],
         'swfupload_file_types'      => $allowed_file_types,

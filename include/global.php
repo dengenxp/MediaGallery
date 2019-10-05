@@ -303,8 +303,8 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $max_image_width_input  = '<input type="text" size="4" name="max_image_width" value="0"' . XHTML . '>';
     $max_filesize_input     = '<input type="text" size="10" name="max_filesize" value="0"' . XHTML . '>';
 
-    $rows_input      = '<input type="text" size="3" name="display_rows" value="' . $_MG_CONF['display_rows'] . '"' . XHTML . '>';
-    $columns_input   = '<input type="text" size="3" name="display_columns" value="' . $_MG_CONF['display_columns'] . '"' . XHTML . '>';
+    $rows_input      = '<input type="text" size="3" name="display_rows" value="' . $_MG_CONF['album_display_rows'] . '"' . XHTML . '>';
+    $columns_input   = '<input type="text" size="3" name="display_columns" value="' . $_MG_CONF['album_display_columns'] . '"' . XHTML . '>';
 
     $playback_type  = '<select name="playback_type">';
     $playback_type .= '<option value="0">' . $LANG_MG01['play_in_popup'] . '</option>';
@@ -665,5 +665,3 @@ function MG_GlobalrebuildAllAlbumsRSS($aid)
         MG_GlobalrebuildAllAlbumsRSS($child);
     }
 }
-
-?>

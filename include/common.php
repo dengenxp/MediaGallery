@@ -53,10 +53,10 @@ function MG_getUserPrefs()
 {
     global $_TABLES, $_USER;
 
-    static $prefs = '';
+    static $prefs = array();
 
     if (isset($_USER['uid'])) {
-        if ($prefs == '') {
+        if (empty($prefs)) {
             $result = DB_query("SELECT * FROM " . $_TABLES['mg_userprefs']
                              . " WHERE uid='" . intval($_USER['uid']) . "'");
             if (DB_numRows($result) == 1) {
@@ -458,17 +458,29 @@ function MG_getFeedUrl($feedfile = '')
 function MG_return_bytes($val)
 {
    $val  = trim($val);
-   $last = strtolower($val{strlen($val) - 1});
+   $last = strtolower(substr($val, -1));
+   $num = (int) substr($val, 1);
+   
    switch($last) {
        // The 'G' modifier is available since PHP 5.1.0
        case 'g':
-           $val *= 1024;
+           $retval = $num * 1024 * 1024 * 1024;
+		   break;
+		   
        case 'm':
-           $val *= 1024;
+           $retval = $num * 1024 * 1024;
+		   break;
+		   
        case 'k':
-           $val *= 1024;
+           $retval = $num * 1024;
+		   break;
+		   
+	   default:
+	   	   $retval = $num;
+		   break;
    }
-   return $val;
+   
+   return $retval;
 }
 
 /**
@@ -513,7 +525,11 @@ function MG_getValidFileTypes($album_id)
 
     if ($album_id > 0) {
         $valid_formats = DB_getItem($_TABLES['mg_albums'], 'valid_formats', 'album_id = ' . intval($album_id));
-    }
+    } else {
+		$valid_formats = MG_JPG || MG_PNG || MG_GIF || MG_MP3 || MG_OGG || MG_MOV ||
+			MG_MP4 || MG_MPG || MG_FLV || MG_ZIP || MG_PDF;
+	}
+	
     if ($valid_formats & MG_OTHER) {
         $valid_types = '*.*';
     } else {
@@ -721,14 +737,18 @@ function MG_getFrames()
 
 function MG_sortFrames($array, $key)
 {
-    for ($i=0; $i<sizeof($array); $i++) {
+	$sort_values = array();
+	
+    for ($i = 0; $i < count($array); $i++) {
         $sort_values[$i] = $array[$i][$key];
     }
+
     asort($sort_values);
-    reset($sort_values);
-    while (list($arr_key, $arr_val) = each($sort_values)) {
+
+    foreach ($sort_values as $arr_key => $arr_val) {
         $sorted_arr[] = $array[$arr_key];
     }
+
     return $sorted_arr;
 }
 

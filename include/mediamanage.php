@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
     die('This file can not be used on its own!');
 }
@@ -307,7 +309,7 @@ function MG_saveMedia($album_id, $actionURL = '')
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $numItems = count($_POST['mid']);
+    $numItems = count(Input::post('mid', array()));
 
     for ($i=0; $i < $numItems; $i++) {
         $media[$i]['mid']         = $_POST['mid'][$i];

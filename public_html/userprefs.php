@@ -194,7 +194,7 @@ if ($_MG_CONF['up_display_columns_enabled']) {
     ));
     $T->parse('pRow', 'prefRow', true);
 }
-if ($_MG_CONF['up_mp3_player_enabled']) {
+if (isset($_MG_CONF['up_mp3_player_enabled']) && $_MG_CONF['up_mp3_player_enabled']) {
     $T->set_var(array(
         'lang_prompt' => $LANG_MG01['mp3_player'],
         'input_field' => $mp3_select,
@@ -231,4 +231,3 @@ $display = $T->finish($T->parse('output', 'admin'));
 $display = COM_createHTMLDocument($display);
 
 COM_output($display);
-?>

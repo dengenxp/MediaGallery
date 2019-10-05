@@ -109,7 +109,7 @@ class mgAlbum {
     var $rssChildren;
     var $valid;
 
-    function mgAlbum($album_id = NULL, $groups = array())
+    public function __construct($album_id = NULL, $groups = array())
     {
         $this->valid = true;
 
@@ -937,5 +937,3 @@ class mgAlbum {
         return $count;
     }
 }
-
-?>

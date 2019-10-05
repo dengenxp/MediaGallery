@@ -692,7 +692,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
         'rsschildren_select'      => $rsschildren_select,
         'full_select'             => $full_select,
         'ss_select'               => $ss_select,
-        'sf_select'               => $sf_select,
+        'sf_select'               => @$sf_select,
         'views_select'            => $views_select,
         'keywords_select'         => $keywords_select,
         'album_views_select'      => $album_views_select,
