@@ -94,7 +94,7 @@ function MG_displayASF($I, $opt=array())
     $playback_options['playcount']         = $_MG_CONF['asf_playcount'];
 
     $sql = "SELECT * FROM {$_TABLES['mg_playback_options']} "
-         . "WHERE media_id='" . addslashes($I['media_id']) . "'";
+         . "WHERE media_id='" . DB_escapeString($I['media_id']) . "'";
     $poResult = DB_query($sql);
     while ($poRow = DB_fetchArray($poResult)) {
         $playback_options[$poRow['option_name']] = $poRow['option_value'];
@@ -195,7 +195,7 @@ function MG_displayMOV($I, $opt=array())
     $playback_options['bgcolor']    = $_MG_CONF['mov_bgcolor'];
 
     $sql = "SELECT * FROM {$_TABLES['mg_playback_options']} "
-         . "WHERE media_id='" . addslashes($I['media_id']) . "'";
+         . "WHERE media_id='" . DB_escapeString($I['media_id']) . "'";
     $poResult = DB_query($sql);
     while ($poRow = DB_fetchArray($poResult)) {
         $playback_options[$poRow['option_name']] = $poRow['option_value'];
@@ -279,7 +279,7 @@ function MG_displaySWF($I, $opt=array())
     $playback_options['swf_version'] = $_MG_CONF['swf_version'];
     $playback_options['flashvars']   = $_MG_CONF['swf_flashvars'];
 
-    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . addslashes($I['media_id']) . "'");
+    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . DB_escapeString($I['media_id']) . "'");
     while ($poRow = DB_fetchArray($poResult)) {
         $playback_options[$poRow['option_name']] = $poRow['option_value'];
     }
@@ -384,7 +384,7 @@ function MG_displayFLV($I, $opt=array())
     $playback_options['swf_version'] = $_MG_CONF['swf_version'];
     $playback_options['flashvars']   = $_MG_CONF['swf_flashvars'];
 
-    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . addslashes($I['media_id']) . "'");
+    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . DB_escapeString($I['media_id']) . "'");
     while ($poRow = DB_fetchArray($poResult)) {
         $playback_options[$poRow['option_name']] = $poRow['option_value'];
     }
@@ -584,7 +584,7 @@ function MG_displayMP3($I, $opt=array())
     $playback_options['uimode']            = $_MG_CONF['mp3_uimode'];
     $playback_options['loop']              = $_MG_CONF['mp3_loop'];
 
-    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . addslashes($I['media_id']) . "'");
+    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . DB_escapeString($I['media_id']) . "'");
     while ($poRow = DB_fetchArray($poResult)) {
         $playback_options[$poRow['option_name']] = $poRow['option_value'];
         $playback_options[$poRow['option_name']. '_tf'] = ($poRow['option_value'] ? 'true' : 'false');
@@ -994,7 +994,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
 
     $retval = '';
 
-    $aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($id) . '"');
+    $aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . DB_escapeString($id) . '"');
     require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
     $mg_album = new mgAlbum($aid);
     $root_album = new mgAlbum(0);
@@ -1059,7 +1059,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
     if (!$root_album->owner_id /*SEC_hasRights('mediagallery.admin')*/ ) {
         $media_views = $media['media_views'] + 1;
         DB_change($_TABLES['mg_media'], 'media_views', $media_views,
-                  'media_id', addslashes($media['media_id']));
+                  'media_id', DB_escapeString($media['media_id']));
     }
 
     $columns_per_page = ($mg_album->display_columns == 0) ? $_MG_CONF['ad_display_columns'] : $mg_album->display_columns;
@@ -1368,7 +1368,7 @@ function MG_rotateMedia($album_id, $media_id, $direction, $actionURL='')
     global $_TABLES, $_MG_CONF;
 
     $sql = "SELECT media_filename,media_mime_ext FROM {$_TABLES['mg_media']} "
-         . "WHERE media_id='" . addslashes($media_id) . "'";
+         . "WHERE media_id='" . DB_escapeString($media_id) . "'";
     $result = DB_query($sql);
     list($filename, $mime_ext) = DB_fetchArray($result);
     if (DB_error() != 0) {
@@ -1411,7 +1411,7 @@ function MG_deleteMedia($media_id)
     global $_TABLES;
 
     $sql = "SELECT media_filename, media_mime_ext FROM {$_TABLES['mg_media']} "
-         . "WHERE media_id='" . addslashes($media_id) . "'";
+         . "WHERE media_id='" . DB_escapeString($media_id) . "'";
     $result = DB_query($sql);
     while (list($filename, $mime_ext) = DB_fetchArray($result)) {
         $orig = Media::getFilePath('orig', $filename, $mime_ext);
@@ -1426,10 +1426,10 @@ function MG_deleteMedia($media_id)
             $fpath = Media::getThumbPath($tn, $t);
             @unlink($fpath);
         }
-        DB_delete($_TABLES['mg_media_albums'], 'media_id', addslashes($media_id));
-        DB_delete($_TABLES['mg_media'], 'media_id', addslashes($media_id));
-        DB_delete($_TABLES['comments'], 'sid', addslashes($media_id));
-        DB_delete($_TABLES['mg_playback_options'], 'media_id', addslashes($media_id));
+        DB_delete($_TABLES['mg_media_albums'], 'media_id', DB_escapeString($media_id));
+        DB_delete($_TABLES['mg_media'], 'media_id', DB_escapeString($media_id));
+        DB_delete($_TABLES['comments'], 'sid', DB_escapeString($media_id));
+        DB_delete($_TABLES['mg_playback_options'], 'media_id', DB_escapeString($media_id));
         PLG_itemDeleted($media_id, 'mediagallery');
     }
 }

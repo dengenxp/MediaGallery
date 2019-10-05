@@ -425,8 +425,8 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
         }
         return $retval;
     } else { // success
-        $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
-        DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
+        $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(DB_escapeString($id), 'mediagallery'));
+        DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', DB_escapeString($id));
         COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
     }
 
@@ -445,7 +445,7 @@ function plugin_deletecomment_mediagallery($cid, $id)
     global $_CONF, $_MG_CONF, $_TABLES;
 
     // find the album that holds this peice of media
-    $sql = "SELECT album_id FROM {$_TABLES['mg_media_albums']} WHERE media_id='" . addslashes($id) . "'";
+    $sql = "SELECT album_id FROM {$_TABLES['mg_media_albums']} WHERE media_id='" . DB_escapeString($id) . "'";
     $result = DB_query($sql);
     $nRows  = DB_numRows($result);
     $access = 0;
@@ -462,8 +462,8 @@ function plugin_deletecomment_mediagallery($cid, $id)
 
     if ($access == 3 && SEC_hasRights('mediagallery.admin')) {
         if (CMT_deleteComment($cid, $id, 'mediagallery') == 0) {
-            $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
-            DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
+            $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(DB_escapeString($id), 'mediagallery'));
+            DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', DB_escapeString($id));
             COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
         }
     }
@@ -986,7 +986,7 @@ function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic
 
     if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
-    $query = trim(addslashes(htmlspecialchars($query)));
+    $query = trim(DB_escapeString(htmlspecialchars($query)));
 
     $sql = "SELECT DISTINCT "
          . "m.media_id AS id, "
@@ -1377,15 +1377,15 @@ function MG_deleteMemberAlbums($album_id)
     ));
     $result = DB_query($sql);
     while ($A = DB_fetchArray($result)) {
-        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', addslashes($A['media_id']));
+        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', DB_escapeString($A['media_id']));
         if ($count <= 1) {
             $fn = $A['media_filename'];
             @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'orig/' . $fn[0] . '/' . $fn . '.' . $A['media_mime_ext']);
-            DB_delete($_TABLES['mg_media'], 'media_id', addslashes($A['media_id']));
-            DB_delete($_TABLES['comments'], 'sid', addslashes($A['media_id']));
-            DB_delete($_TABLES['mg_playback_options'], 'media_id', addslashes($A['media_id']));
+            DB_delete($_TABLES['mg_media'], 'media_id', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['comments'], 'sid', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['mg_playback_options'], 'media_id', DB_escapeString($A['media_id']));
         }
     }
     DB_delete($_TABLES['mg_media_albums'], 'album_id', intval($album_id));
@@ -1498,7 +1498,7 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
          . "LEFT JOIN {$_TABLES['mg_albums']} AS c ON b.album_id=c.album_id";
 
     if ($id != '*') {
-        $sql .= " WHERE a.media_id = '" . addslashes($id) . "' LIMIT 1";
+        $sql .= " WHERE a.media_id = '" . DB_escapeString($id) . "' LIMIT 1";
     }
 
     $result = DB_query($sql);

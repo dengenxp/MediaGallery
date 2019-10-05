@@ -454,7 +454,7 @@ class Media {
                     $playback_options['height'] = $_MG_CONF['swf_height'];
                     $playback_options['width']  = $_MG_CONF['swf_width'];
                     $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} "
-                                       . "WHERE media_id='" . addslashes($this->id) . "'");
+                                       . "WHERE media_id='" . DB_escapeString($this->id) . "'");
                     while ($poRow = DB_fetchArray($poResult)) {
                         $playback_options[$poRow['option_name']] = $poRow['option_value'];
                     }
@@ -890,7 +890,7 @@ class Media {
             $sql = "UPDATE " . $_TABLES['mg_media']
                  . " SET media_resolution_x=" . intval($resolution_x)
                      . ",media_resolution_y=" . intval($resolution_y)
-                 . " WHERE media_id='" . addslashes($I['media_id']) . "'";
+                 . " WHERE media_id='" . DB_escapeString($I['media_id']) . "'";
             DB_query($sql);
         }
 

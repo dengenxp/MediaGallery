@@ -767,7 +767,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
     }
 
     if ($replace > 0) {
-        $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($replace) . "'";
+        $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . DB_escapeString($replace) . "'";
         $result = DB_query($sql);
         $row = DB_fetchArray($result);
         $media_filename = $row['media_filename'];
@@ -970,14 +970,14 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
                 }
             }
             if (isset($mimeInfo['tags']['id3v1']['artist'][0])) {
-                $artist = addslashes($mimeInfo['tags']['id3v1']['artist'][0]);
+                $artist = DB_escapeString($mimeInfo['tags']['id3v1']['artist'][0]);
             }
 
             if (isset($mimeInfo['tags']['id3v2']['genre'][0])) {
-                $genre = addslashes($mimeInfo['tags']['id3v2']['genre'][0]);
+                $genre = DB_escapeString($mimeInfo['tags']['id3v2']['genre'][0]);
             }
             if (isset($mimeInfo['tags']['id3v1']['album'][0])) {
-                $musicAlbum = addslashes($mimeInfo['tags']['id3v1']['album'][0]);
+                $musicAlbum = DB_escapeString($mimeInfo['tags']['id3v1']['album'][0]);
             }
             if ($rc != 1) {
                 COM_errorLog("Media Upload - Error moving uploaded file in audio processing....");
@@ -1061,13 +1061,13 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
         }
 
         if ($_MG_CONF['htmlallowed'] != 1) {
-            $media_desc     = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($description)))));
-            $media_caption  = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($caption)))));
-            $media_keywords = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($keywords)))));
+            $media_desc     = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($description)))));
+            $media_caption  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($caption)))));
+            $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($keywords)))));
         } else {
-            $media_desc     = addslashes(COM_checkHTML(COM_killJS($description)));
-            $media_caption  = addslashes(COM_checkHTML(COM_killJS($caption)));
-            $media_keywords = addslashes(COM_checkHTML(COM_killJS($keywords)));
+            $media_desc     = DB_escapeString(COM_checkHTML(COM_killJS($description)));
+            $media_caption  = DB_escapeString(COM_checkHTML(COM_killJS($caption)));
+            $media_keywords = DB_escapeString(COM_checkHTML(COM_killJS($keywords)));
         }
 
         // Check and see if moderation is on.  If yes, place in mediasubmission
@@ -1081,7 +1081,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
           $queue = 0;
         }
 
-        $original_filename = addslashes($file);
+        $original_filename = DB_escapeString($file);
 
         if ($album->filename_title) {
             if ($media_caption == '') {
@@ -1155,18 +1155,18 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
 
         if ($replace > 0) {
             $sql = "UPDATE " . $tableMedia . " SET "
-                 . "media_filename='"          . addslashes($media_filename)      . "',"
+                 . "media_filename='"          . DB_escapeString($media_filename)      . "',"
                  . "media_original_filename='" . $original_filename               . "',"
-                 . "media_mime_ext='"          . addslashes($mimeExt)             . "',"
-                 . "mime_type='"               . addslashes($mimeType)            . "',"
-                 . "media_time='"              . addslashes($media_time)          . "',"
-                 . "media_user_id='"           . addslashes($media_user_id)       . "',"
-                 . "media_type='"              . addslashes($mediaType)           . "',"
-                 . "media_upload_time='"       . addslashes($media_upload_time)   . "',"
-                 . "media_watermarked='"       . addslashes($successfulWatermark) . "',"
+                 . "media_mime_ext='"          . DB_escapeString($mimeExt)             . "',"
+                 . "mime_type='"               . DB_escapeString($mimeType)            . "',"
+                 . "media_time='"              . DB_escapeString($media_time)          . "',"
+                 . "media_user_id='"           . DB_escapeString($media_user_id)       . "',"
+                 . "media_type='"              . DB_escapeString($mediaType)           . "',"
+                 . "media_upload_time='"       . DB_escapeString($media_upload_time)   . "',"
+                 . "media_watermarked='"       . DB_escapeString($successfulWatermark) . "',"
                  . "media_resolution_x='"      . intval($resolution_x)            . "',"
                  . "media_resolution_y='"      . intval($resolution_y)            . "' "
-                 . "WHERE media_id='"          . addslashes($replace)             . "'";
+                 . "WHERE media_id='"          . DB_escapeString($replace)             . "'";
             DB_query($sql);
         } else {
             $sql = "INSERT INTO " . $tableMedia
@@ -1177,26 +1177,26 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
                  . "media_type,media_upload_time,media_category,media_watermarked,v100,"
                  . "maint,media_resolution_x,media_resolution_y,remote_media,remote_url,"
                  . "artist,album,genre) "
-                 . "VALUES ('" . addslashes($new_media_id)        . "','"
-                               . addslashes($media_filename)      . "','"
+                 . "VALUES ('" . DB_escapeString($new_media_id)        . "','"
+                               . DB_escapeString($media_filename)      . "','"
                                . $original_filename               . "','"
-                               . addslashes($mimeExt)             . "','1','"
-                               . addslashes($mimeType)            . "','"
-                               . addslashes($media_caption)       . "','"
-                               . addslashes($media_desc)          . "','"
-                               . addslashes($media_keywords)      . "','"
-                               . addslashes($media_time)          . "','0','0','0','0.00','"
-                               . addslashes($atttn)               . "','','1','"
-                               . addslashes($media_user_id)       . "','','0','"
-                               . addslashes($mediaType)           . "','"
-                               . addslashes($media_upload_time)   . "','"
-                               . addslashes($category)            . "','"
-                               . addslashes($successfulWatermark) . "','0','0',"
+                               . DB_escapeString($mimeExt)             . "','1','"
+                               . DB_escapeString($mimeType)            . "','"
+                               . DB_escapeString($media_caption)       . "','"
+                               . DB_escapeString($media_desc)          . "','"
+                               . DB_escapeString($media_keywords)      . "','"
+                               . DB_escapeString($media_time)          . "','0','0','0','0.00','"
+                               . DB_escapeString($atttn)               . "','','1','"
+                               . DB_escapeString($media_user_id)       . "','','0','"
+                               . DB_escapeString($mediaType)           . "','"
+                               . DB_escapeString($media_upload_time)   . "','"
+                               . DB_escapeString($category)            . "','"
+                               . DB_escapeString($successfulWatermark) . "','0','0',"
                                . intval($resolution_x)            . ","
                                . intval($resolution_y)            . ",0,'','"
-                               . addslashes($artist)              . "','"
-                               . addslashes($musicAlbum)          . "','"
-                               . addslashes($genre)               . "');";
+                               . DB_escapeString($artist)              . "','"
+                               . DB_escapeString($musicAlbum)          . "','"
+                               . DB_escapeString($genre)               . "');";
             DB_query($sql);
 
             if ($_MG_CONF['verbose']) {
@@ -1214,7 +1214,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
             $sql = "INSERT INTO " . $tableMediaAlbum
                  . " (media_id, album_id, media_order) "
                  . "VALUES ('"
-                 . addslashes($new_media_id) . "', "
+                 . DB_escapeString($new_media_id) . "', "
                  . intval($album_id)         . ", "
                  . intval($media_seq)        . ")";
             DB_query($sql);

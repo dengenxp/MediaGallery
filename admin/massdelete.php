@@ -177,15 +177,15 @@ function MG_MassdeleteChildAlbums($album_id)
     ));
     $result = DB_query($sql);
     while ($A = DB_fetchArray($result)) {
-        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', addslashes($A['media_id']));
+        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', DB_escapeString($A['media_id']));
         if ($count <= 1) {
             $fn = $A['media_filename'];
             @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'orig/' . $fn[0] . '/' . $fn . '.' . $A['media_mime_ext']);
-            DB_delete($_TABLES['mg_media'], 'media_id', addslashes($A['media_id']));
-            DB_delete($_TABLES['comments'], 'sid', addslashes($A['media_id']));
-            DB_delete($_TABLES['mg_playback_options'], 'media_id', addslashes($A['media_id']));
+            DB_delete($_TABLES['mg_media'], 'media_id', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['comments'], 'sid', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['mg_playback_options'], 'media_id', DB_escapeString($A['media_id']));
         }
     }
     DB_delete($_TABLES['mg_media_albums'], 'album_id', intval($album_id));

@@ -250,12 +250,12 @@ function MG_updateUsage($application, $album_title, $media_title, $media_id)
 
     $log_time    = $now;
     $user_id     = intval($_USER['uid']);
-    $user_ip     = addslashes($REMOTE_ADDR);
-    $user_name   = addslashes($_USER['username']);
-    $application = addslashes($application);
-    $title       = addslashes($album_title);
-    $ititle      = addslashes($media_title);
-    $media_id    = addslashes($media_id);
+    $user_ip     = DB_escapeString($REMOTE_ADDR);
+    $user_name   = DB_escapeString($_USER['username']);
+    $application = DB_escapeString($application);
+    $title       = DB_escapeString($album_title);
+    $ititle      = DB_escapeString($media_title);
+    $media_id    = DB_escapeStrng($media_id);
 
     $sql = "INSERT INTO {$_TABLES['mg_usage_tracking']} "
          . "(time, user_id, user_ip, user_name, application, album_title, media_title, media_id) "
@@ -932,7 +932,7 @@ function MG_resetAlbumCover($album_id)
     $result = DB_query($sql);
     $filename = '';
     while ($row = DB_fetchArray($result)) {
-        $filename = addslashes($row['media_filename']);
+        $filename = DB_escapeStrng($row['media_filename']);
     }
     DB_change($_TABLES['mg_albums'], 'album_cover', -1, 'album_id', intval($album_id));
     DB_change($_TABLES['mg_albums'], 'album_cover_filename', $filename, 'album_id', intval($album_id));

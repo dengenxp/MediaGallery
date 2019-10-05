@@ -398,7 +398,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
         $media_id = $media_id_array[$i];
         $sql = "UPDATE {$_TABLES['mg_media_albums']} "
              . "SET album_id=" . intval($destination) . ", media_order=" . intval($media_seq)
-             . " WHERE album_id=" . intval($album_id) . " AND media_id='" . addslashes($media_id) . "'";
+             . " WHERE album_id=" . intval($album_id) . " AND media_id='" . DB_escapeString($media_id) . "'";
         DB_query($sql);
         $media_seq += 10;
 
@@ -614,25 +614,25 @@ function MG_batchCaptionSave($album_id, $actionURL)
     $total_media = count($media_id);
 
     $table = $_TABLES['mg_media'];
-    $id = DB_getItem($table, 'media_id', 'media_id="' . addslashes($media_id[0]) . '"');
+    $id = DB_getItem($table, 'media_id', 'media_id="' . DB_escapeString($media_id[0]) . '"');
     if (empty($id)) {
         $table = $_TABLES['mg_mediaqueue'];
     }
 
     for ($i=0; $i < $total_media; $i++) {
         if ($_MG_CONF['htmlallowed']) {
-            $title = addslashes(COM_checkWords(COM_stripslashes($media_title[$i])));
-            $desc  = addslashes(COM_checkWords(COM_stripslashes($media_desc[$i])));
+            $title = DB_escapeString(COM_checkWords(COM_stripslashes($media_title[$i])));
+            $desc  = DB_escapeString(COM_checkWords(COM_stripslashes($media_desc[$i])));
         } else {
-            $title = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_title[$i])))));
-            $desc  = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_desc[$i])))));
+            $title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_title[$i])))));
+            $desc  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_desc[$i])))));
         }
 
         $media_time = time();
         $sql = "UPDATE " . $table
             . " SET media_title='" . $title . "', media_time='" . $media_time
             . "', media_upload_time='" . $media_time  . "', media_desc='" . $desc
-            . "' WHERE media_id='" . addslashes(COM_applyFilter($media_id[$i])) . "'";
+            . "' WHERE media_id='" . DB_escapeString(COM_applyFilter($media_id[$i])) . "'";
 
         DB_query($sql);
         PLG_itemSaved($media_id[$i], 'mediagallery');

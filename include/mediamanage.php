@@ -326,11 +326,11 @@ function MG_saveMedia($album_id, $actionURL = '')
         $media_title_safe = substr($media[$i]['title'], 0, 254);
 
         if ($_MG_CONF['htmlallowed'] != 1) {
-            $media_title = addslashes(htmlspecialchars(strip_tags(COM_checkWords($media_title_safe))));
-            $media_desc  = addslashes(htmlspecialchars(strip_tags(COM_checkWords($media[$i]['description']))));
+            $media_title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_title_safe))));
+            $media_desc  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media[$i]['description']))));
         } else {
-            $media_title = addslashes($media_title_safe);
-            $media_desc  = addslashes($media[$i]['description']);
+            $media_title = DB_escapeString($media_title_safe);
+            $media_desc  = DB_escapeString($media[$i]['description']);
         }
         if ($media[$i]['include_ss'] == 1) {
             $ss = 1;
@@ -338,7 +338,7 @@ function MG_saveMedia($album_id, $actionURL = '')
             $ss = 0;
         }
         $media_keywords_safe = substr($media[$i]['keywords'],0,254);
-        $media_keywords = addslashes(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
+        $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
         $cat_id = $media[$i]['cat_id'];
 
         $sql = "UPDATE {$_TABLES['mg_media']} SET media_title='" . $media_title
@@ -346,12 +346,12 @@ function MG_saveMedia($album_id, $actionURL = '')
              . "',include_ss=" . intval($ss)
              . ",media_keywords='" . $media_keywords
              . "',media_category=" . $cat_id
-             . " WHERE media_id='" . addslashes($media[$i]['mid']) . "'";
+             . " WHERE media_id='" . DB_escapeString($media[$i]['mid']) . "'";
         DB_query($sql);
         $sql = "UPDATE {$_TABLES['mg_media_albums']}"
              . " SET media_order=" . intval($media[$i]['seq'])
              . " WHERE album_id=" . intval($album_id)
-             . " AND media_id='" . addslashes($media[$i]['mid']) . "'";
+             . " AND media_id='" . DB_escapeString($media[$i]['mid']) . "'";
         DB_query($sql);
         PLG_itemSaved($media[$i]['mid'],'mediagallery');
     }
@@ -373,7 +373,7 @@ function MG_saveMedia($album_id, $actionURL = '')
     if ($cover != -1) {
 
         $sql = "SELECT media_type,media_tn_attached,media_filename "
-             . "FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($cover) . "'";
+             . "FROM {$_TABLES['mg_media']} WHERE media_id='" . DB_escapeString($cover) . "'";
         $result = DB_query($sql);
         $nrows = DB_numRows($result);
         if ($nrows > 0) {
@@ -395,7 +395,7 @@ function MG_saveMedia($album_id, $actionURL = '')
             }
         }
         if ($coverFilename != '') {
-            DB_change($_TABLES['mg_albums'], 'album_cover', addslashes($cover), 'album_id', intval($album_id));
+            DB_change($_TABLES['mg_albums'], 'album_cover', DB_escapeString($cover), 'album_id', intval($album_id));
             DB_change($_TABLES['mg_albums'], 'album_cover_filename', $coverFilename, 'album_id', intval($album_id));
         }
     }
@@ -438,7 +438,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
         $sql = "SELECT *,CAST(media_desc AS TEXT) AS media_desc FROM ";
     }
     $sql .= ($mqueue ? $_TABLES['mg_mediaqueue'] : $_TABLES['mg_media']) .
-            " WHERE media_id='" . addslashes($media_id) . "'";
+            " WHERE media_id='" . DB_escapeString($media_id) . "'";
     $result = DB_query($sql);
     $row = DB_fetchArray($result);
 
@@ -578,7 +578,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
 
     $sql = "SELECT * FROM {$_TABLES['mg_playback_options']} "
-         . "WHERE media_id='" . addslashes($row['media_id']) . "'";
+         . "WHERE media_id='" . DB_escapeString($row['media_id']) . "'";
     $poResult = DB_query($sql);
     $poNumRows = DB_numRows($poResult);
 
@@ -978,9 +978,9 @@ function MG_mediaResetRating($album_id, $media_id, $mqueue)
 {
     global $_MG_CONF, $_TABLES;
 
-    DB_change($_TABLES['mg_media'], 'media_rating', 0, 'media_id', addslashes($media_id));
-    DB_change($_TABLES['mg_media'], 'media_votes', 0, 'media_id', addslashes($media_id));
-    DB_delete($_TABLES['mg_rating'], 'media_id', addslashes($media_id));
+    DB_change($_TABLES['mg_media'], 'media_rating', 0, 'media_id', DB_escapeString($media_id));
+    DB_change($_TABLES['mg_media'], 'media_votes', 0, 'media_id', DB_escapeString($media_id));
+    DB_delete($_TABLES['mg_rating'], 'media_id', DB_escapeString($media_id));
     $retval = MG_mediaEdit($album_id, $media_id,
                            $_MG_CONF['site_url'] . '/admin.php?mode=media&amp;album_id='
                            . $album_id, $mqueue);
@@ -991,7 +991,7 @@ function MG_mediaResetViews($album_id, $media_id, $mqueue)
 {
     global $_MG_CONF, $_TABLES;
 
-    DB_change($_TABLES['mg_media'], 'media_views', 0, 'media_id', addslashes($media_id));
+    DB_change($_TABLES['mg_media'], 'media_views', 0, 'media_id', DB_escapeString($media_id));
     $retval = MG_mediaEdit($album_id, $media_id,
                            $_MG_CONF['site_url'] . '/admin.php?mode=media&amp;album_id='
                            . $album_id, $mqueue);
@@ -1002,12 +1002,12 @@ function MG_savePBOption($mid, $name, $val, $is_num=false)
 {
     global $_TABLES;
 
-    $mid = addslashes($mid);
-    $name = addslashes($name);
+    $mid = DB_escapeString($mid);
+    $name = DB_escapeString($name);
     if ($is_num) {
         $val = intval($val);
     } else {
-        $val = addslashes($val);
+        $val = DB_escapeString($val);
     }
     DB_save($_TABLES['mg_playback_options'], 'media_id, option_name, option_value', "'$mid', '$name', '$val'");
 }
@@ -1048,7 +1048,7 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
 
     $table = $queue ? $_TABLES['mg_mediaqueue'] : $_TABLES['mg_media'];
 
-    $old_attached_tn = DB_getItem($table, 'media_tn_attached', 'media_id="' . addslashes($media_id) . '"');
+    $old_attached_tn = DB_getItem($table, 'media_tn_attached', 'media_id="' . DB_escapeString($media_id) . '"');
 
     if ($old_attached_tn == 0 && $att == 1 && $thumbnail == '') {
         $attachtn = 0;
@@ -1059,9 +1059,9 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
         $remove_old_tn = 1;
     }
 
-    $remote_media = DB_getItem($table, 'remote_media', 'media_id="' . addslashes($media_id) . '"');
+    $remote_media = DB_getItem($table, 'remote_media', 'media_id="' . DB_escapeString($media_id) . '"');
 
-    $remote_url = addslashes(COM_stripslashes($_POST['remoteurl']));
+    $remote_url = DB_escapeString(COM_stripslashes($_POST['remoteurl']));
 
     if ($_MG_CONF['htmlallowed']) {
         $media_title    = COM_checkWords(COM_stripslashes($_POST['media_title']));
@@ -1082,11 +1082,11 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
     $cat_id             = COM_applyFilter($_POST['cat_id'],true);
     $media_keywords     = COM_stripslashes($_POST['media_keywords']);
     $media_keywords_safe = substr($media_keywords,0,254);
-    $media_keywords = addslashes(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
+    $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
 
-    $artist     = addslashes(COM_applyFilter(COM_stripslashes($_POST['artist']) ) );
-    $musicalbum = addslashes(COM_applyFilter(COM_stripslashes($_POST['musicalbum']) ) );
-    $genre      = addslashes(COM_applyFilter(COM_stripslashes($_POST['genre']) ) );
+    $artist     = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['artist']) ) );
+    $musicalbum = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['musicalbum']) ) );
+    $genre      = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['genre']) ) );
 
     $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year,1);
 
@@ -1097,9 +1097,9 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
     }
 
     $sql = "UPDATE " . $table . "
-            SET media_title='"  . addslashes($media_title) . "',
-            media_desc='"       . addslashes($media_desc) . "',
-            media_original_filename='" . addslashes($original_filename) . "',
+            SET media_title='"  . DB_escapeString($media_title) . "',
+            media_desc='"       . DB_escapeString($media_desc) . "',
+            media_original_filename='" . DB_escapeString($original_filename) . "',
             media_time="        . $media_time . ",
             media_tn_attached=" . $attachtn . ",
             media_category="    . intval($cat_id) . ",
@@ -1109,7 +1109,7 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
             genre='"            . $genre . "',
             remote_url='"       . $remote_url . "' " .
             $owner_sql .
-            "WHERE media_id='"   . addslashes($media_id) . "'";
+            "WHERE media_id='"   . DB_escapeString($media_id) . "'";
 
     DB_query($sql);
     if (DB_error() != 0) {
@@ -1200,13 +1200,13 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
 
     if ($attachtn == 1 && $thumbnail != '') {
         require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-upload.php';
-        $media_filename = DB_getItem($_TABLES['mg_media'], 'media_filename', 'media_id="' . addslashes($media_id) . '"');
+        $media_filename = DB_getItem($_TABLES['mg_media'], 'media_filename', 'media_id="' . DB_escapeString($media_id) . '"');
         $thumbFilename = $_MG_CONF['path_mediaobjects'] . 'tn/' . $media_filename[0] . '/tn_' . $media_filename;
         MG_attachThumbnail($album_id, $thumbnail, $thumbFilename);
     }
 
     if ($remove_old_tn == 1) {
-        $media_filename = DB_getItem($_TABLES['mg_media'], 'media_filename', 'media_id="' . addslashes($media_id) . '"');
+        $media_filename = DB_getItem($_TABLES['mg_media'], 'media_filename', 'media_id="' . DB_escapeString($media_id) . '"');
         $tmpstr = 'tn/' . $media_filename[0] . '/tn_' . $media_filename;
         $ext = Media::getMediaExt($_MG_CONF['path_mediaobjects'] . $tmpstr);
         if (!empty($ext)) {

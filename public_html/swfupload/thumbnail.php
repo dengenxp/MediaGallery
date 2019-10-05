@@ -40,10 +40,10 @@ $id = isset($_GET['id']) ? COM_applyFilter($_GET['id']) : '';
 if (empty($id)) exit(0);
 
 $is_queue = false;
-$aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($id) . '"');
+$aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . DB_escapeString($id) . '"');
 if (empty($aid)) {
     $is_queue = true;
-    $aid = DB_getItem($_TABLES['mg_media_album_queue'], 'album_id', 'media_id="' . addslashes($id) . '"');
+    $aid = DB_getItem($_TABLES['mg_media_album_queue'], 'album_id', 'media_id="' . DB_escapeString($id) . '"');
 }
 
 $album_data = MG_getAlbumData($aid, array('album_id'), true);
@@ -55,9 +55,9 @@ if ($album_data['access'] == 0) {
     exit(0);
 }
 if ($is_queue) {
-    $sql = "SELECT * FROM {$_TABLES['mg_mediaqueue']} WHERE media_id='" . addslashes($id) . "'";
+    $sql = "SELECT * FROM {$_TABLES['mg_mediaqueue']} WHERE media_id='" . DB_escapeString($id) . "'";
 } else {
-    $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($id) . "'";
+    $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . DB_escapeString($id) . "'";
 }
 $tn_size = 11; // include:150x150
 $result = DB_query($sql);
@@ -74,4 +74,3 @@ while ($A = DB_fetchArray($result)) {
     echo $buffer;
 }
 exit(0);
-?>

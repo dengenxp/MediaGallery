@@ -56,12 +56,12 @@ function MG_beginSession($action, $origin, $description, $flag0='', $flag1='', $
     $session_action      = $action;
     $session_start_time  = time();
     $session_end_time    = time();
-    $session_description = addslashes($description);
-    $flag0               = addslashes($flag0);
-    $flag1               = addslashes($flag1);
-    $flag2               = addslashes($flag2);
-    $flag3               = addslashes($flag3);
-    $flag4               = addslashes($flag4);
+    $session_description = DB_escapeString($description);
+    $flag0               = DB_escapeString($flag0);
+    $flag1               = DB_escapeString($flag1);
+    $flag2               = DB_escapeString($flag2);
+    $flag3               = DB_escapeString($flag3);
+    $flag4               = DB_escapeString($flag4);
 
     $sql = "INSERT INTO {$_TABLES['mg_sessions']} "
          . "(session_id, session_uid, session_description, "
@@ -105,7 +105,7 @@ function MG_continueSession($session_id, $item_limit, $refresh_rate)
 
     // Pull the session status info
     $sql = "SELECT * FROM {$_TABLES['mg_sessions']} "
-         . "WHERE session_id='" . addslashes($session_id) . "'";
+         . "WHERE session_id='" . DB_escapeString($session_id) . "'";
     $result = DB_query($sql, 1);
     if (DB_error()) {
         COM_errorLog("MediaGallery:  Error - Unable to retrieve batch session data");
@@ -142,7 +142,7 @@ function MG_continueSession($session_id, $item_limit, $refresh_rate)
     // Pull the detail data from the sessions_items table...
 
     $sql = "SELECT * FROM {$_TABLES['mg_session_items']} "
-         . "WHERE session_id='" . addslashes($session_id) . "' "
+         . "WHERE session_id='" . DB_escapeString($session_id) . "' "
          . "AND status=0 LIMIT " . $item_limit;
     $result = DB_query($sql);
 
@@ -185,14 +185,14 @@ function MG_continueSession($session_id, $item_limit, $refresh_rate)
 
     $sql = "SELECT COUNT(*) AS processed "
          . "FROM {$_TABLES['mg_session_items']} "
-         . "WHERE session_id='" . addslashes($session_id) . "' AND status=1";
+         . "WHERE session_id='" . DB_escapeString($session_id) . "' AND status=1";
     $result = DB_query($sql);
     $row = DB_fetchArray($result);
     $session_items_processed = $row['processed'];
 
     $sql = "SELECT COUNT(*) AS processing "
          . "FROM {$_TABLES['mg_session_items']} "
-         . "WHERE session_id='" . addslashes($session_id) . "'";
+         . "WHERE session_id='" . DB_escapeString($session_id) . "'";
     $result = DB_query($sql);
     $row = DB_fetchArray($result);
     $session_items_processing = $row['processing'];
@@ -221,7 +221,7 @@ function MG_continueSession($session_id, $item_limit, $refresh_rate)
         $refresh_rate = -1;
         $form_action = $session['session_origin'];
         $result = DB_query("SELECT * FROM {$_TABLES['mg_session_log']} "
-                         . "WHERE session_id='" . addslashes($session_id) . "'");
+                         . "WHERE session_id='" . DB_escapeString($session_id) . "'");
         while ($row = DB_fetchArray($result)) {
             $processing_messages .= '<p>' . $row['session_log'] . '</p>';
         }
@@ -268,12 +268,12 @@ function MG_registerSession($info=array())
 {
     global $_TABLES;
 
-    $session_id = addslashes($info['session_id']);
-    $mid    = isset($info['mid'])    ? addslashes($info['mid'])   : '';
+    $session_id = DB_escapeString($info['session_id']);
+    $mid    = isset($info['mid'])    ? DB_escapeString($info['mid'])   : '';
     $aid    = isset($info['aid'])    ? intval($info['aid'])       : 0;
-    $data   = isset($info['data'])   ? addslashes($info['data'])  : '';
-    $data2  = isset($info['data2'])  ? addslashes($info['data2']) : '';
-    $data3  = isset($info['data3'])  ? addslashes($info['data3']) : '';
+    $data   = isset($info['data'])   ? DB_escapeString($info['data'])  : '';
+    $data2  = isset($info['data2'])  ? DB_escapeString($info['data2']) : '';
+    $data3  = isset($info['data3'])  ? DB_escapeString($info['data3']) : '';
     $status = isset($info['status']) ? intval($info['status'])    : 0;
     if (!empty($session_id)) {
         DB_query("INSERT INTO {$_TABLES['mg_session_items']} "
@@ -286,7 +286,7 @@ function MG_endSession($session_id)
 {
     global $_TABLES;
 
-    $session_id = addslashes($session_id);
+    $session_id = DB_escapeString($session_id);
     DB_delete($_TABLES['mg_sessions'],      'session_id', $session_id);
     DB_delete($_TABLES['mg_session_items'], 'session_id', $session_id);
     DB_delete($_TABLES['mg_session_log'],   'session_id', $session_id);
@@ -298,8 +298,8 @@ function MG_setSessionLog($session_id, $msg)
 {
     global $_TABLES;
 
-    $session_id = addslashes($session_id);
-    $msg = addslashes($msg);
+    $session_id = DB_escapeString($session_id);
+    $msg = DB_escapeString($msg);
     DB_query("INSERT INTO {$_TABLES['mg_session_log']} "
            . "(session_id, session_log) "
            . "VALUES "

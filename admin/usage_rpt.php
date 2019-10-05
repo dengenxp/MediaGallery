@@ -112,7 +112,7 @@ function MG_usageReport()
         }
 
         $sql = "SELECT * FROM {$_TABLES['mg_media']} "
-             . "WHERE media_id='" . addslashes($row['media_id']) . "'";
+             . "WHERE media_id='" . DB_escapeString($row['media_id']) . "'";
         $result2 = DB_query($sql);
         $A = DB_fetchArray($result2);
         $opt['media_id'] = $A['media_id'];
