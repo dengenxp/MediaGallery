@@ -209,8 +209,8 @@ class mgAlbum {
         $this->rssChildren          = isset($_MG_CONF['ad_rsschildren']) ? $_MG_CONF['ad_rsschildren'] : 0;
 
         if (!SEC_hasRights('mediagallery.admin')) {
-            $this->perm_members     = $_MG_CONF['member_perm_members'];
-            $this->perm_anon        = $_MG_CONF['member_perm_anon'];
+            $this->perm_members     = isset($_MG_CONF['member_perm_members']) ? $_MG_CONF['member_perm_members'] : 2;
+            $this->perm_anon        = isset($_MG_CONF['member_perm_anon']) ? $_MG_CONF['member_perm_anon'] : 2;
         }
     }
 

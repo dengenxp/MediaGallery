@@ -61,7 +61,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
     if ($root_album->owner_id) {
         $uploadMenu = 1;
         $adminMenu  = 1;
-    } else if ($album->access == 3) {
+    } elseif ($album->access == 3) {
         $uploadMenu = 1;
         $adminMenu  = 1;
         if ($_MG_CONF['member_albums']) {
@@ -73,7 +73,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
                 $adminMenu  = 1;
             }
         }
-    } else if ($album->member_uploads == 1 &&
+    } elseif ($album->member_uploads == 1 &&
                isset($_USER['uid']) && $_USER['uid'] >= 2) {
         $uploadMenu = 1;
         $adminMenu  = 0;
@@ -100,7 +100,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
                 'rebuild'    => $LANG_MG01['rebuild_thumb'],
             )
         ));
-    } else if ($_MG_CONF['member_albums'] == 1 &&
+    } elseif ($_MG_CONF['member_albums'] == 1 &&
                !empty($_USER['username']) &&
                $_MG_CONF['member_create_new'] == 1 &&
                $_MG_USERPREFS['active'] == 1 &&
@@ -133,7 +133,10 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
         $url_edit = $_MG_CONF['site_url'] . '/admin.php?album_id=' . $album->id . '&amp;mode=edit';
         $lang_edit = $LANG_MG01['edit'];
         $edit_album = '<a href="' . $url_edit . '"' . '>' . $lang_edit . '</a>';
-    }
+    } else {
+		$url_edit = '';
+		$lang_edit = '';
+	}
 
     $T->set_var(array(
         'select_adminbox' => $admin_box,
@@ -210,7 +213,7 @@ $media_per_page = $columns_per_page * $rows_per_page;
 
 if ($page != 0) {
     $page = $page - 1;
-} else if ($media_id != 0) {
+} elseif ($media_id != 0) {
     $sql = MG_buildMediaSql(array(
         'album_id'  => $album_id,
         'fields'    => array('media_id'),
@@ -233,7 +236,7 @@ if ($page != 0) {
 $errorMessage = '';
 if (!isset($album->id)) {
     $errorMessage = $LANG_MG02['albumaccessdeny'];
-} else if ($album->access == 0 || ($album->hidden == 1 && $album->access != 3)) {
+} elseif ($album->access == 0 || ($album->hidden == 1 && $album->access != 3)) {
     $errorMessage = $LANG_MG02['albumaccessdeny'];
 } else {
     $aOffset = $album->getOffset();
@@ -452,4 +455,3 @@ $display = $T->finish($T->parse('output', 'page'));
 $display = MG_createHTMLDocument($display);
 
 COM_output($display);
-?>

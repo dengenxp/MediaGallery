@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
@@ -47,34 +49,18 @@ if (COM_isAnonUser()) {
 
 require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
-$mode = isset($_REQUEST['mode']) ? COM_applyFilter ($_REQUEST['mode']) : '';
+$mode = Input::fRequest('mode', '');
 
 if ($mode == $LANG_MG01['cancel']) {
-    header("Location: " . $_MG_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/index.php');
 }
 
 if ($mode == $LANG_MG01['submit'] && !empty($LANG_MG01['submit'])) {
-    $display_columns = 0;
-    $display_rows = 0;
-    $mp3_player = -1;
-    $playback_mode = -1;
-    $tn_size = -1;
-    if (!empty($_POST['display_rows'])) {
-        $display_rows    = intval(COM_applyFilter($_POST['display_rows'], true));
-    }
-    if (!empty($_POST['display_columns'])) {
-        $display_columns = intval(COM_applyFilter($_POST['display_columns'], true));
-    }
-    if (!empty($_POST['mp3_player'])) {
-        $mp3_player      = intval(COM_applyFilter($_POST['mp3_player'], true));
-    }
-    if (!empty($_POST['playback_mode'])) {
-        $playback_mode   = intval(COM_applyFilter($_POST['playback_mode'], true));
-    }
-    if (!empty($_POST['tn_size'])) {
-        $tn_size         = intval(COM_applyFilter($_POST['tn_size'], true));
-    }
+    $display_columns = (int) Input::fPost('display_columns', 0);
+	$display_rows    = (int) Input::fPost('display_rows', 0);
+    $mp3_player      = (int) Input::fPost('mp3_player', -1);
+    $playback_mode   = (int) Input::fPost('playback_mode', -1);
+    $tn_size         = Input::fPost('tn_size', -1);
     $uid             = intval($_USER['uid']);
 
     if ($display_columns < 0 || $display_columns > 5) {
@@ -89,7 +75,7 @@ if ($mode == $LANG_MG01['submit'] && !empty($LANG_MG01['submit'])) {
     if ($_MG_CONF['up_display_columns_enabled'] == 0) {
         $display_columns = 0;
     }
-    if ($_MG_CONF['up_mp3_player_enabled'] == 0) {
+    if (isset($_MG_CONF['up_mp3_player_enabled']) && ($_MG_CONF['up_mp3_player_enabled'] == 0)) {
         $mp3_player = -1;
     }
     if ($_MG_CONF['up_av_playback_enabled'] == 0) {
@@ -103,8 +89,7 @@ if ($mode == $LANG_MG01['submit'] && !empty($LANG_MG01['submit'])) {
             'uid,display_rows,display_columns,mp3_player,playback_mode,tn_size',
             "$uid,$display_rows,$display_columns,$mp3_player,$playback_mode,$tn_size");
 
-    header("Location: " . $_MG_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/index.php');
 }
 
 $display = '';

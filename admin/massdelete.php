@@ -201,9 +201,9 @@ function MG_massDeleteAlbums($aid)
 
     $children = MG_getAlbumChildren($aid);
     $numItems = count($children);
-    for ($x=0; $x < $numItems; $x++) {
+    for ($x = 0; $x < $numItems; $x++) {
         $i = $children[$x];
-        if ($_POST['album'][$i] == 1) {
+        if (isset($_POST['album'][$i]) && ($_POST['album'][$i] == 1)) {
             MG_MassdeleteAlbum($children[$x]);
         } else {
             MG_massDeleteAlbums($children[$x]);
