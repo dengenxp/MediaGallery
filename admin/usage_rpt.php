@@ -245,8 +245,7 @@ if ($mode == $LANG_MG01['submit'] && !empty ($LANG_MG01['submit'])) {
         'title'      => $LANG_MG01['usage_reports'],
     ));
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_usageReportMenu(),

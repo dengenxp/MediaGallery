@@ -87,8 +87,7 @@ function MG_batchProcess($album_id, $media_id_array, $action, $actionURL = '')
             break;
 
     }
-    echo COM_refresh($actionURL  . '&t=' . time());
-    exit;
+    COM_redirect($actionURL  . '&t=' . time());
 }
 
 
@@ -101,8 +100,7 @@ function MG_albumResizeConfirm($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
     }
 
     if ($_MG_CONF['discard_original'] == 1) {
@@ -136,13 +134,11 @@ function MG_albumResizeDisplay($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     if ($_MG_CONF['discard_original'] == 1) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     require_once $_CONF['path'].'plugins/mediagallery/include/lib-upload.php';
@@ -201,8 +197,7 @@ function MG_albumRebuildConfirm($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
     }
 
     $title = sprintf($LANG_MG01['batch_rebuild_thumbs'], $album_data['album_title']);
@@ -232,8 +227,7 @@ function MG_albumRebuildThumbs($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-upload.php';
@@ -246,8 +240,7 @@ function MG_albumRebuildThumbs($aid, $actionURL)
     $result = DB_query($sql);
     $nRows = DB_numRows($result);
     if ($nRows <= 0) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     $session_description = sprintf($LANG_MG01['batch_rebuild_thumbs'], $album_data['album_title']);
@@ -339,8 +332,7 @@ function MG_batchDeleteMedia($album_id, $media_id_array, $actionURL = '')
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildFullRSS();
     MG_buildAlbumRSS($album_id);
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL = '')
@@ -364,8 +356,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
 
     // make sure they are not the same...
     if ($album_id == $destination) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     // check permissions...
@@ -434,8 +425,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
     MG_buildAlbumRSS($album_id);
     MG_buildAlbumRSS($destination);
 
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 
@@ -568,8 +558,7 @@ function MG_deleteAlbum($album_id, $target_id, $actionURL='')
     MG_buildFullRSS();
     if ($target_id != 0) MG_buildAlbumRSS($target_id);
 
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 
@@ -652,7 +641,5 @@ function MG_batchCaptionSave($album_id, $actionURL)
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildAlbumRSS($album_id);
 
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
-?>

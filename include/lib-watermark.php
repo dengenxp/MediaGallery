@@ -200,8 +200,7 @@ function MG_watermarkSave($actionURL = '')
         $wid = $media[$i]['wid'];
         DB_change($_TABLES['mg_watermarks'], 'description', $media_title, 'wm_id', addslashes($media[$i]['wid']));
     }
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_watermarkDelete($actionURL = '')
@@ -240,8 +239,7 @@ function MG_watermarkDelete($actionURL = '')
             }
         }
     }
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_watermarkUpload($actionURL = '')

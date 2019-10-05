@@ -146,8 +146,7 @@ function MG_rebuildThumb()
         COM_output($display);
         exit;
     } else {
-        echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=7');
-        exit;
+        COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=7');
     }
 }
 
@@ -157,8 +156,7 @@ $mode = COM_applyFilter($_GET['mode']);
 if (isset($_POST['submit'])) {
     $submit = COM_applyFilter($_POST['submit']);
     if ($submit == $LANG_MG01['cancel']) {
-        echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-        exit;
+        COM_redirect($_MG_CONF['admin_url'] . 'index.php');
     }
 }
 
@@ -267,8 +265,7 @@ if ($mode == 'thumbs') {
                 exit;
 
             } else {
-                echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=7');
-                exit;
+                COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=7');
             }
             break;
         default :
@@ -360,8 +357,7 @@ if ($mode == 'thumbs') {
                 COM_output($display);
                 exit;
             } else {
-                echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=7');
-                exit;
+                COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=7');
             }
             break;
     }
@@ -374,19 +370,16 @@ if ($mode == 'thumbs') {
         $result = DB_query($sql);
         if (DB_error()) {
             COM_errorLog("Media Gallery Error - Unable to retrieve batch session data");
-            echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-            exit;
+            COM_redirect($_MG_CONF['site_url'] . '/index.php');
         }
         $nRows = DB_numRows($result);
         if ($nRows > 0) {
             $session = DB_fetchArray($result);
         } else {
             COM_errorLog("Media Gallery Error: Unable to find batch session id");
-            echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-            exit; // no session found
+            COM_redirect($_MG_CONF['site_url'] . '/index.php');
         }
-        echo COM_refresh($session['session_origin']);
-        exit;
+        COM_redirect($session['session_origin']);
     }
 
     $display = COM_startBlock($LANG_MG00['admin'], '', COM_getBlockTemplate('_admin_block', 'header'));
@@ -417,8 +410,5 @@ if ($mode == 'thumbs') {
     exit;
 
 } else {
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 }
-
-?>

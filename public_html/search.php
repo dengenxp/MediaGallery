@@ -35,8 +35,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
@@ -495,8 +494,7 @@ if ($mode == $LANG_MG01['search'] || $mode == 'search') {
     DB_query("DELETE FROM {$_TABLES['mg_sort']} WHERE sort_datetime < " . $sort_purge);
 
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/index.php');
 } elseif (isset($_GET['id'])) {
     $id = COM_applyFilter($_GET['id']);
     $page = intval(COM_applyFilter($_GET['page'], true));
@@ -505,6 +503,4 @@ if ($mode == $LANG_MG01['search'] || $mode == 'search') {
 }
 
 $display = MG_createHTMLDocument($display, $LANG_MG00['results']);
-
 COM_output($display);
-?>

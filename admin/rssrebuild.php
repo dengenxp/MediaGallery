@@ -75,6 +75,4 @@ switch( $mode ) {
         break;
 }
 
-echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=7');
-exit;
-?>
+COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=7');

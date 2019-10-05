@@ -144,8 +144,7 @@ function MG_purgeMemberAlbums()
         MG_buildFullRSS();
     }
 
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=8');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=8');
 }
 
 
@@ -174,8 +173,7 @@ if ($mode == $LANG_MG01['delete'] && !empty ($LANG_MG01['delete'])) {
     MG_purgeMemberAlbums();
     exit;
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_selectAlbums(),

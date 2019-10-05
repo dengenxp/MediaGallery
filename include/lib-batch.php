@@ -213,8 +213,7 @@ function MG_continueSession($session_id, $item_limit, $refresh_rate)
         $T->set_var("META", '<meta http-equiv="refresh" content="' . $refresh_rate . ';url=' . $form_action . '"' . XHTML . '>');
     } else {
         if ($item_limit == 0) {
-            echo COM_refresh($session['session_origin']);
-            exit;
+            COM_redirect($session['session_origin']);
         }
         $next_button = $LANG_MG01['finished'];
         $processing_messages .= '<p>' . $LANG_MG01['all_done'] . '</p>';

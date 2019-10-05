@@ -215,8 +215,7 @@ function MG_saveAlbumSort($album_id)
 
     MG_reorderAlbum($parent);
 
-    echo COM_refresh($_MG_CONF['site_url'] . '/admin.php?album_id=0&mode=albumsort');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/admin.php?album_id=0&mode=albumsort');
 }
 
 function MG_staticSortMedia($album_id, $actionURL='')
@@ -337,8 +336,7 @@ function MG_saveStaticSortMedia($album_id, $actionURL='')
         DB_change($_TABLES['mg_media_albums'], 'media_order', $order, 'media_id', $row['media_id']);
         $order += 10;
     }
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 

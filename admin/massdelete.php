@@ -148,7 +148,7 @@ function MG_MassdeleteAlbum($album_id)
     }
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildFullRSS();
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=15');
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=15');
 }
 
 
@@ -209,7 +209,7 @@ function MG_massDeleteAlbums($aid)
             MG_massDeleteAlbums($children[$x]);
         }
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=15');
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=15');
 }
 
 /**
@@ -236,8 +236,7 @@ $T->set_var(array(
 if ($mode == $LANG_MG01['delete'] && !empty($LANG_MG01['delete'])) {
     $T->set_var('admin_body', MG_massDeleteAlbums(0));
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_massDelete(),

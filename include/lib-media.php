@@ -1376,8 +1376,7 @@ function MG_rotateMedia($album_id, $media_id, $direction, $actionURL='')
         if ($actionURL == '') {
             return false;
         }
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     $orig = Media::getFilePath('orig', $filename, $mime_ext);
@@ -1403,8 +1402,7 @@ function MG_rotateMedia($album_id, $media_id, $direction, $actionURL='')
 
     if ($actionURL == -1 || $actionURL == '') return true;
 
-    echo COM_refresh($actionURL . '&t=' . time());
-    exit;
+    COM_redirect($actionURL . '&t=' . time());
 }
 
 

@@ -68,8 +68,7 @@ if ($mode == 'editsubmission') {
     $media_id = COM_applyFilter($_GET['id']);
     $album_id = DB_getItem($_TABLES['mg_media_album_queue'], 'album_id', 'media_id="' . $media_id . '"');
     if (empty($media_id) || empty($album_id)) {
-        echo COM_refresh($home_url);
-        exit;
+        COM_redirect($home_url);
     }
     require_once $_CONF['path'] . 'plugins/mediagallery/include/mediamanage.php';
     $actionURL = $_CONF['site_url'] . '/admin/plugins/mediagallery/index.php?mode=savemedia';
@@ -87,8 +86,7 @@ if ($mode == 'editsubmission') {
             MG_saveMediaEdit($album_id, $media_id, $home_url);
         }
     }
-    echo COM_refresh($home_url);
-    exit;
+    COM_redirect($home_url);
 }
 
 $display = COM_startBlock($LANG_MG00['admin'], '', COM_getBlockTemplate('_admin_block', 'header'));

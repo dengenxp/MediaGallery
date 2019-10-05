@@ -36,8 +36,7 @@ require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS) ||
   $_MG_CONF['var_current_code'] !== true) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {

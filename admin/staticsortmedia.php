@@ -198,8 +198,7 @@ $T->set_var(array(
 if ($mode == $LANG_MG01['save'] && !empty($LANG_MG01['save'])) {
     $T->set_var('admin_body', MG_staticSortMediaSave());
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_staticSortMediaOptions(),

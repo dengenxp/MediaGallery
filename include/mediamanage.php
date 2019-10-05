@@ -405,8 +405,7 @@ function MG_saveMedia($album_id, $actionURL = '')
     }
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildAlbumRSS($album_id);
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $back='')
@@ -1215,12 +1214,10 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
         }
     }
     if ($queue) {
-        echo COM_refresh($actionURL);
+        COM_redirect($actionURL);
     } else {
         require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
         MG_buildAlbumRSS($album_id);
-        echo COM_refresh($actionURL);
+        COM_redirect($actionURL);
     }
-    exit;
 }
-?>

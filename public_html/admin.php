@@ -37,8 +37,7 @@ use Geeklog\Input;
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
@@ -86,8 +85,7 @@ function MG_navbar($selected='', $album_id)
 $display = '';
 $mode = isset($_REQUEST['mode']) ? COM_applyFilter($_REQUEST['mode']) : '';
 if ($mode == 'search') {
-    echo COM_refresh($_MG_CONF['site_url'] . "/search.php");
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . "/search.php");
 }
 $include = $_CONF['path'] . 'plugins/mediagallery/include/';
 
@@ -358,8 +356,7 @@ if ($mode == 'edit') {
         $album_id = COM_applyFilter($_GET['album_id'], true);
         $form = MG_SWFUpload($album_id);
         if (empty($form)) {
-            echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-            exit;
+            COM_redirect($_MG_CONF['site_url'] . '/index.php');
         }
         $display .= $form;
         $display = MG_createHTMLDocument($display);
@@ -477,8 +474,7 @@ if ($mode == 'edit') {
     $destination = COM_applyFilter($_POST['album'], true);
     $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id;
     if ($destination == 0) { // deny move to the root album
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
     $media_id_array = array();
     $numItems = count($_POST['sel']);
@@ -522,14 +518,12 @@ if ($mode == 'edit') {
 
 } else if ($mode === 'cancel') {
     if (isset($_POST['admin_menu']) && $_POST['admin_menu'] == 1) {
-        echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-        exit;
+        COM_redirect($_MG_CONF['admin_url'] . 'index.php');
     } else {
         if (isset($_POST['album_id']) && $_POST['album_id'] > 0) {
-            echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . COM_applyFilter($_POST['album_id']), true);
+            COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . COM_applyFilter($_POST['album_id']), true);
         }
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
 
 } else {
@@ -540,38 +534,32 @@ if ($mode == 'edit') {
         switch ($action) {
             case 'savemedia' :
                 if ($queue == 1) {
-                    echo COM_refresh($_MG_CONF['site_url'] . '/admin.php?album_id=0&mode=moderate');
+                    COM_redirect($_MG_CONF['site_url'] . '/admin.php?album_id=0&mode=moderate');
                 } else {
-                    echo COM_refresh($_MG_CONF['site_url'] . '/admin.php?mode=media&album_id=' . $album_id);
+                    COM_redirect($_MG_CONF['site_url'] . '/admin.php?mode=media&album_id=' . $album_id);
                 }
-                exit;
         }
     }
 
     if (isset($_POST['queue'])) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/admin.php?album_id=1&mode=moderate');
+        COM_redirect($_MG_CONF['site_url'] . '/admin.php?album_id=1&mode=moderate');
     }
     if (isset($_POST['origaid'])) {
         $album_id = COM_applyFilter($_POST['origaid'],true);
         if ($album_id == 0) {
-            echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+            COM_redirect($_MG_CONF['site_url'] . '/index.php');
         } else {
-            echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
+            COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
         }
         exit;
     } else if (isset($_POST['album_id']) && $_POST['album_id'] != 0) {
         $album_id = COM_applyFilter($_POST['album_id'], true);
-        echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
 
     } else if (isset($_GET['aid']) && $_GET['aid'] != 0) {
         $album_id = COM_applyFilter($_GET['aid'], true);
-        echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
-        exit;
-
+        COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
     } else {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
 }
-?>

@@ -412,7 +412,7 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
     $A = DB_fetchArray($result);
 
     if ($A['enable_comments'] != 1) {
-        return COM_refresh($_CONF['site_url'] . '/index.php');
+        COM_redirect($_CONF['site_url'] . '/index.php');
     }
 
     $ret = CMT_saveComment($title, $comment, $id, $pid, 'mediagallery', $postmode);
@@ -427,7 +427,7 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
     } else { // success
         $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
         DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
-        return COM_refresh($_MG_CONF['site_url'] . "/media.php?s=$id");
+        COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
     }
 
     return false;
@@ -464,7 +464,7 @@ function plugin_deletecomment_mediagallery($cid, $id)
         if (CMT_deleteComment($cid, $id, 'mediagallery') == 0) {
             $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
             DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
-            return COM_refresh($_MG_CONF['site_url'] . "/media.php?s=$id");
+            COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
         }
     }
 

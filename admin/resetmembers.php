@@ -54,8 +54,7 @@ $step = isset($_REQUEST['step']) ? COM_applyFilter($_REQUEST['step']) : '';
 $mode = isset($_POST['submit'])  ? COM_applyFilter($_POST['submit'])  : '';
 
 if ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 }
 
 switch ($step) {
@@ -80,8 +79,9 @@ switch ($step) {
                 DB_query($sql);
             }
         }
-        echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=14');
-        exit;
+        COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=14');
+		break;
+
     default :
         $B = new Template($_MG_CONF['template_path']);
         $B->set_file('admin', 'thumbs.thtml');

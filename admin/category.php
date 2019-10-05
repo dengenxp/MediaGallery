@@ -159,8 +159,7 @@ function MG_saveCategory($cat_id)
     DB_save($_TABLES['mg_category'], "cat_id,cat_name,cat_description,cat_order",
             "'{$A['cat_id']}','{$A['cat_name']}','{$A['cat_description']}',{$A['cat_order']}");
 
-    echo COM_refresh($_MG_CONF['admin_url'] . 'category.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'category.php');
 }
 
 function MG_batchDeleteCategory()
@@ -181,8 +180,7 @@ function MG_batchDeleteCategory()
         }
     }
 
-    echo COM_refresh($_MG_CONF['admin_url'] . 'category.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'category.php');
 }
 
 function MG_displayCategories()
@@ -278,8 +276,7 @@ if ($mode == $LANG_MG01['save'] && !empty($LANG_MG01['save'])) {
     if ($action == 'edit_category') {
         $page = 'category.php';
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . $page);
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . $page);
 } elseif ($mode == $LANG_MG01['create'] && !empty($LANG_MG01['create'])) {
     $T->set_var(array(
         'admin_body' => MG_editCategory(0,'create'),

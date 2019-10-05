@@ -184,11 +184,10 @@ function MG_saveGlobalAlbumPerm()
     }
 
     if ($adminMenu == 1 ) {
-        echo COM_refresh($_MG_CONF['admin_url'] . '/index.php?msg=10');
+        COM_redirect($_MG_CONF['admin_url'] . '/index.php?msg=10');
     } else {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
-    exit;
 }
 
 
@@ -648,11 +647,10 @@ function MG_saveGlobalAlbumAttr()
     }
 
     if ($admin_menu == 1) {
-        echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=11');
+        COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=11');
     } else {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
-    exit;
 }
 
 function MG_GlobalrebuildAllAlbumsRSS($aid)

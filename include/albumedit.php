@@ -1292,8 +1292,7 @@ function MG_saveAlbum($album_id)
     MG_buildAlbumRSS($album->id);
 
     $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $album->id;
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_staticSortAlbum($startaid, $sortfield, $sortorder, $process_subs)
