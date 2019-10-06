@@ -201,10 +201,10 @@ if ($mode === 'edit') {
     }
     $display = MG_createHTMLDocument($display);
     COM_output($display);
-} elseif ($mode == $LANG_MG01['save'] && !empty ($LANG_MG01['save'])) {    // save the album...
+} elseif ($mode == $LANG_MG01['save'] && !empty($LANG_MG01['save'])) {    // save the album...
     // OK, we have a save, now we need to see what we are saving...
     $action   = Input::fPost('action');
-    $album_id = (int) Input::fGet('album_id', -1);
+    $album_id = (int) Input::fPost('album_id', -1);
     if (empty($action) || ($album_id <= 0)) {
         MG_invalidRequest();
     }
@@ -367,7 +367,7 @@ if ($mode === 'edit') {
         $display = MG_createHTMLDocument($display);
     } elseif ($album_id > 0) {
         require_once $include . 'newmedia.php';
-        $form = MG_SWFUpload($album_id);
+        $form = MG_userUpload($album_id);
         if (empty($form)) {
             COM_redirect($_MG_CONF['site_url'] . '/index.php');
         }

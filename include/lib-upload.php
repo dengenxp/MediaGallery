@@ -570,7 +570,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
     }
 
     $gotTN = 0;
-    if ($mimeInfo['id3v2']['APIC'][0]['mime'] == 'image/jpeg') {
+    if (isset($mimeInfo['id3v2']) && ($mimeInfo['id3v2']['APIC'][0]['mime'] === 'image/jpeg')) {
         $mp3AttachdedThumbnail = $mimeInfo['id3v2']['APIC'][0]['data'];
         $gotTN = 1;
     }
