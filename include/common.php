@@ -932,7 +932,7 @@ function MG_resetAlbumCover($album_id)
     $result = DB_query($sql);
     $filename = '';
     while ($row = DB_fetchArray($result)) {
-        $filename = DB_escapeStrng($row['media_filename']);
+        $filename = DB_escapeString($row['media_filename']);
     }
     DB_change($_TABLES['mg_albums'], 'album_cover', -1, 'album_id', intval($album_id));
     DB_change($_TABLES['mg_albums'], 'album_cover_filename', $filename, 'album_id', intval($album_id));
