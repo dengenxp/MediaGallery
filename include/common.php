@@ -255,7 +255,7 @@ function MG_updateUsage($application, $album_title, $media_title, $media_id)
     $application = DB_escapeString($application);
     $title       = DB_escapeString($album_title);
     $ititle      = DB_escapeString($media_title);
-    $media_id    = DB_escapeStrng($media_id);
+    $media_id    = DB_escapeString($media_id);
 
     $sql = "INSERT INTO {$_TABLES['mg_usage_tracking']} "
          . "(time, user_id, user_ip, user_name, application, album_title, media_title, media_id) "
