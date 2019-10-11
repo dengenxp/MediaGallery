@@ -163,7 +163,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'create') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -205,7 +205,7 @@ if ($mode === 'edit') {
     // OK, we have a save, now we need to see what we are saving...
     $action   = Input::fPost('action');
     $album_id = (int) Input::fPost('album_id', -1);
-    if (empty($action) || ($album_id <= 0)) {
+    if (empty($action) ) {
         MG_invalidRequest();
     }
     $display = '';
