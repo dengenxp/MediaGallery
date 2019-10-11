@@ -296,7 +296,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode == $LANG_MG01['delete'] && !empty($LANG_MG01['delete'])) {
     $action   = Input::fPost('action');
-    $album_id = (int) Input::fGet('album_id', -1);
+    $album_id = (int) Input::fPost('album_id', -1);
     if (empty($action) ) {
         MG_invalidRequest();
     }
