@@ -163,7 +163,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'create') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -205,7 +205,7 @@ if ($mode === 'edit') {
     // OK, we have a save, now we need to see what we are saving...
     $action   = Input::fPost('action');
     $album_id = (int) Input::fPost('album_id', -1);
-    if (empty($action) || ($album_id <= 0)) {
+    if (empty($action) ) {
         MG_invalidRequest();
     }
     $display = '';
@@ -296,8 +296,8 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode == $LANG_MG01['delete'] && !empty($LANG_MG01['delete'])) {
     $action   = Input::fPost('action');
-    $album_id = (int) Input::fGet('album_id', -1);
-    if (empty($action) || ($album_id <= 0)) {
+    $album_id = (int) Input::fPost('album_id', -1);
+    if (empty($action) ) {
         MG_invalidRequest();
     }
     $display = '';
@@ -325,7 +325,7 @@ if ($mode === 'edit') {
 
         case 'confalbum' :
             $target_id = (int) Input::fPost('target', -1);
-            if ($target_id > 0) {
+            if ($target_id >= 0) {
                 require_once $include . 'batch.php';
                 $actionURL = $_MG_CONF['site_url'] . '/index.php';
                 $display .= MG_deleteAlbum($album_id, $target_id, $actionURL);
