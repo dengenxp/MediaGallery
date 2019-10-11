@@ -325,7 +325,7 @@ if ($mode === 'edit') {
 
         case 'confalbum' :
             $target_id = (int) Input::fPost('target', -1);
-            if ($target_id > 0) {
+            if ($target_id >= 0) {
                 require_once $include . 'batch.php';
                 $actionURL = $_MG_CONF['site_url'] . '/index.php';
                 $display .= MG_deleteAlbum($album_id, $target_id, $actionURL);
