@@ -1088,7 +1088,11 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
     $musicalbum = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['musicalbum']) ) );
     $genre      = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['genre']) ) );
 
-    $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year,1);
+    if (version_compare(PHP_VERSION, '5.1.0', '>=')) {
+        $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year);
+    } else {
+        $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year,1);
+    }
 
     $owner_sql = '';
     if (isset($_POST['owner_name'])) {
