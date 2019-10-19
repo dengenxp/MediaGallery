@@ -1573,7 +1573,7 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
     }
 
     if (($id != '*') && (count($retval) == 1)) {
-        $retval = $retval[0];
+        $retval = array_shift($retval);
     }
 
     return $retval;
