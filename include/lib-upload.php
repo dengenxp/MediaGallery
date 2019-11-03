@@ -894,7 +894,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
                         } else {
                             $rc1 = MG_watermark($media_orig, $album_id, 1);
                             $rc2 = MG_watermark($media_disp, $album_id, 0);
-                            if ($rc1 == ture && $rc2 == true) {
+                            if ($rc1 == true && $rc2 == true) {
                                 $successfulWatermark = 1;
                             }
                         }

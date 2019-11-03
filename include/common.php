@@ -413,20 +413,13 @@ function MG_getSize($size)
 /**
 * Get the path of the feed directory or a specific feed file
 *
-* @param    string  $feedfile   (option) feed file name
+* @param    string  $feedFile   (option) feed file name
 * @return   string              path of feed directory or file
 *
 */
-function MG_getFeedPath($feedfile = '')
+function MG_getFeedPath($feedFile = '')
 {
-    global $_CONF;
-
-    $feedpath = $_CONF['rdf_file'];
-    $pos = strrpos($feedpath, '/');
-    $feed = substr($feedpath, 0, $pos + 1);
-    $feed .= $feedfile;
-
-    return $feed;
+    return SYND_getFeedPath($feedFile);
 }
 
 /**
@@ -465,19 +458,19 @@ function MG_return_bytes($val)
        // The 'G' modifier is available since PHP 5.1.0
        case 'g':
            $retval = $num * 1024 * 1024 * 1024;
-		   break;
-		   
+           break;
+           
        case 'm':
            $retval = $num * 1024 * 1024;
-		   break;
-		   
+           break;
+           
        case 'k':
            $retval = $num * 1024;
-		   break;
-		   
-	   default:
-	   	   $retval = $num;
-		   break;
+           break;
+           
+       default:
+           $retval = $num;
+           break;
    }
    
    return $retval;
@@ -526,10 +519,10 @@ function MG_getValidFileTypes($album_id)
     if ($album_id > 0) {
         $valid_formats = DB_getItem($_TABLES['mg_albums'], 'valid_formats', 'album_id = ' . intval($album_id));
     } else {
-		$valid_formats = MG_JPG || MG_PNG || MG_GIF || MG_MP3 || MG_OGG || MG_MOV ||
-			MG_MP4 || MG_MPG || MG_FLV || MG_ZIP || MG_PDF;
-	}
-	
+        $valid_formats = MG_JPG || MG_PNG || MG_GIF || MG_MP3 || MG_OGG || MG_MOV ||
+            MG_MP4 || MG_MPG || MG_FLV || MG_ZIP || MG_PDF;
+    }
+    
     if ($valid_formats & MG_OTHER) {
         $valid_types = '*.*';
     } else {
@@ -737,8 +730,8 @@ function MG_getFrames()
 
 function MG_sortFrames($array, $key)
 {
-	$sort_values = array();
-	
+    $sort_values = array();
+    
     for ($i = 0; $i < count($array); $i++) {
         $sort_values[$i] = $array[$i][$key];
     }
@@ -1454,4 +1447,3 @@ function MG_input($info)
 
     return $retval;
 }
-?>

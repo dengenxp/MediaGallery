@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
@@ -363,7 +365,7 @@ function MG_saveUserUpload($album_id)
         $caption     = COM_stripslashes($_POST['caption'][$key]);
         $description = COM_stripslashes($_POST['description'][$key]);
         $keywords    = COM_stripslashes($_POST['keywords'][$key]);
-        $category    = COM_applyFilter($_POST['cat_id'][$key],true);
+        $category    = (int) Input::fPost('cat_id', 0);
         $attachtn    = isset($_POST['attachtn'][$key]) ? $_POST['attachtn'][$key] : '';
         $thumbnail   = isset($thumbs['tmp_name'][$key]) ? $thumbs['tmp_name'][$key] : '';
         if (isset($_POST['dnc'][$key]) && $_POST['dnc'][$key] == 'on') {

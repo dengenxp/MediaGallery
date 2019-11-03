@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
     die('This file can not be used on its own!');
 }
@@ -196,16 +198,15 @@ function MG_saveAlbumSort($album_id)
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $parent = COM_applyFilter($_POST['parent_id'], true);
+    $parent = (int) Input::fPost('parent_id', 0);
+    $numItems = isset($_POST['aid']) ? count($_POST['aid']) : 0;
 
-    $numItems = count($_POST['aid']);
-
-    for ($i=0; $i < $numItems; $i++) {
-        $album[$i]['aid'] = $_POST['aid'][$i];
-        $album[$i]['seq'] = $_POST['seq'][$i];
+    for ($i = 0; $i < $numItems; $i++) {
+        $album[$i]['aid'] = (int) $_POST['aid'][$i];
+        $album[$i]['seq'] = (int) $_POST['seq'][$i];
     }
 
-    for ($i=0; $i < $numItems; $i++) {
+    for ($i = 0; $i < $numItems; $i++) {
         DB_change($_TABLES['mg_albums'], 'album_order', intval($album[$i]['seq']),
                                          'album_id',    intval($album[$i]['aid']));
         if (DB_error()) {

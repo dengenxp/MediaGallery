@@ -82,11 +82,13 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $root_album->buildAlbumBox($album_selectbox, $album_id, 3, $album_id, 'manage');
     $album_selectbox .= '</select>';
 
+	$catRow = array();
     $sql = "SELECT * FROM {$_TABLES['mg_category']} ORDER BY cat_id ASC";
     $result = DB_query($sql);
+
     $nrows = DB_numRows($result);
-    for ($i=0; $i < $nrows; $i++) {
-        $catRow[$i] = DB_fetchArray($result);
+    for ($i = 0; $i < $nrows; $i++) {
+        $catRow[] = DB_fetchArray($result);
     }
 
     $sql = "SELECT COUNT(*) AS totalitems "
@@ -212,7 +214,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $cat_select = '<select name="cat_id[]">';
                 $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
                 $cRows = count($catRow);
-                for ($i=0; $i < $cRows; $i++) {
+                for ($i = 0; $i < $cRows; $i++) {
                     $cat_select .= '<option value="' . $catRow[$i]['cat_id'] . '" '
                                  . ($catRow[$i]['cat_id'] == $row['media_category'] ? ' selected="selected"' : '') . '>'
                                  . $catRow[$i]['cat_name'] . '</option>';

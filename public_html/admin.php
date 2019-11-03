@@ -89,7 +89,7 @@ $include = $_CONF['path'] . 'plugins/mediagallery/include/';
 
 if ($mode === 'edit') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -100,7 +100,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'browser') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -110,7 +110,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'import') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -120,7 +120,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'globalattr') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -131,7 +131,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'globalperm') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -148,7 +148,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode == $LANG_MG01['save_exit']) {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -250,7 +250,7 @@ if ($mode === 'edit') {
             $display .= MG_saveMedia($album_id, $actionURL);
             break;
 
-        case 'albumsort' :
+        case 'albumsort':
             require_once $include . 'sort.php';
             $actionURL = $_MG_CONF['site_url'] . '/index.php';
             $display .= MG_saveAlbumSort($album_id, $actionURL);
@@ -380,7 +380,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'remote') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -390,7 +390,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'media') { // manage media items
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -404,7 +404,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'resize') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -415,7 +415,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'rebuild') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -449,7 +449,7 @@ if ($mode === 'edit') {
 } elseif ($mode === 'mediaedit') { // edit a media item...
     $album_id = (int) Input::fGet('album_id', -1);
     $media_id = (int) Input::fGet('mid', -1);
-    if (($album_id <= 0) || ($media_id <= 0)) {
+    if (($album_id < 0) || ($media_id < 0)) {
         MG_invalidRequest();
     }
 
@@ -466,7 +466,7 @@ if ($mode === 'edit') {
 } elseif ($mode === 'mediaeditq') { // edit a media item...
     $album_id = (int) Input::fGet('album_id', -1);
     $media_id = (int) Input::fGet('mid', -1);
-    if (($album_id <= 0) || ($media_id <= 0)) {
+    if (($album_id < 0) || ($media_id < 0)) {
         MG_invalidRequest();
     }
 
@@ -477,7 +477,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode == $LANG_MG01['batch_process'] && !empty($LANG_MG01['batch_process'])) {
     $album_id = (int) Input::fPost('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -498,7 +498,7 @@ if ($mode === 'edit') {
     exit;
 } elseif ($mode == $LANG_MG01['move'] && !empty($LANG_MG01['move'])) {
     $album_id = (int) Input::fPost('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -525,7 +525,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'albumsort') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -536,7 +536,7 @@ if ($mode === 'edit') {
     COM_output($display);
 } elseif ($mode === 'staticsort') {
     $album_id = (int) Input::fGet('album_id', -1);
-    if ($album_id <= 0) {
+    if ($album_id < 0) {
         MG_invalidRequest();
     }
 
@@ -549,7 +549,9 @@ if ($mode === 'edit') {
     $album_id = (int) Input::fGet('album_id', -1);
     $media_id = (int) Input::fGet('media_id', -1);
     $direction = Input::fGet('action');
-    if (($album_id <= 0) || ($media_id <= 0) || empty($direction)) {
+
+    if (($album_id < 0) || ($media_id < 0) ||
+            empty($direction) || (($direction !== 'left') && ($direction !== 'right'))) {
         MG_invalidRequest();
     }
 
@@ -592,7 +594,7 @@ if ($mode === 'edit') {
     if (isset($_POST['origaid'])) {
         $album_id = (int) Input::fPost('origaid', -1);
 
-        if ($album_id <= 0) {
+        if ($album_id < 0) {
             COM_redirect($_MG_CONF['site_url'] . '/index.php');
         } else {
             COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);

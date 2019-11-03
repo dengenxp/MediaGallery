@@ -719,11 +719,11 @@ class FeedCreator extends HtmlDescribable {
 	 * @param filename	string	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
 	 * @param redirect	boolean	optional	send an HTTP redirect header or not. If true, the user will be automatically redirected to the created file.
 	 */
-	function saveFeed($filename="", $displayContents=true) {
-		if ($filename=="") {
+	function saveFeed($filename = '', $displayContents=true) {
+		if (empty($filename)) {
 			$filename = $this->_generateFilename();
 		}
-		$feedFile = fopen($filename, "w+");
+		$feedFile = @fopen($filename, "w+");
 		if ($feedFile) {
 			fputs($feedFile,$this->createFeed());
 			fclose($feedFile);

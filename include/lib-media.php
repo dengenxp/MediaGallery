@@ -1363,20 +1363,23 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
 }
 
 
-function MG_rotateMedia($album_id, $media_id, $direction, $actionURL='')
+function MG_rotateMedia($album_id, $media_id, $direction, $actionURL = '')
 {
     global $_TABLES, $_MG_CONF;
 
-    $sql = "SELECT media_filename,media_mime_ext FROM {$_TABLES['mg_media']} "
-         . "WHERE media_id='" . DB_escapeString($media_id) . "'";
+    $album_id = (int) $album_id;
+    $media_id = (int) $media_id;
+    $sql = "SELECT media_filename, media_mime_ext FROM {$_TABLES['mg_media']} "
+         . "WHERE media_id = " . $media_id;
     $result = DB_query($sql);
     list($filename, $mime_ext) = DB_fetchArray($result);
-    if (DB_error() != 0) {
+    if (DB_error()) {
         COM_errorLog("MG_rotateMedia: Unable to retrieve media object data");
         if ($actionURL == '') {
             return false;
+        } else {
+            COM_redirect($actionURL);
         }
-        COM_redirect($actionURL);
     }
 
     $orig = Media::getFilePath('orig', $filename, $mime_ext);
@@ -1400,7 +1403,9 @@ function MG_rotateMedia($album_id, $media_id, $direction, $actionURL='')
         }
     }
 
-    if ($actionURL == -1 || $actionURL == '') return true;
+    if ($actionURL == -1 || $actionURL == '') {
+        return true;
+    }
 
     COM_redirect($actionURL . '&t=' . time());
 }
@@ -1475,5 +1480,3 @@ function MG_updateQuotaUsage($album_id)
         DB_change($_TABLES['mg_albums'], 'album_disk_usage', $quota, 'album_id', intval($album_id));
     }
 }
-
-?>

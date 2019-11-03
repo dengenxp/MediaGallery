@@ -595,7 +595,7 @@ function MG_deleteChildAlbums($album_id) {
 
     $feedname = sprintf($_MG_CONF['rss_feed_name'] . "%06d", $album_id);
     $feedpath = MG_getFeedPath();
-    @unlink($feedpath . '/' . $feedname . '.rss');
+    @unlink($feedpath . $feedname . '.rss');
 }
 
 
