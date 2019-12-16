@@ -56,7 +56,7 @@ function plugin_autoinstall_mediagallery($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.7.1',
+        'pi_version'      => '1.7.2',
         'pi_gl_version'   => '2.0.0',
         'pi_homepage'     => 'http://www.trybase.com/~dengen/log/'
     );
@@ -241,7 +241,7 @@ function MG_upgrade()
         case "1.6.16" :
         case "1.6.17" :
             if (MG_upgrade_170() != 0) break 2;
-            $current_version = "1.7.1";
+            $current_version = "1.7.2";
             break;
         default :
             $done = true;
