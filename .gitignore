@@ -3,3 +3,4 @@
 
 #Ignore user data files
 public_html/mediaobjects/**/*.*
+tmp/**/*.tmp
