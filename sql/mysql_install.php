@@ -90,7 +90,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_albums']} (
   `rsschildren` TINYINT( 4 ) NOT NULL DEFAULT '0',
   `wm_auto` tinyint(4) NOT NULL default '0',
   `wm_id` int(11) NOT NULL default '0',
-  `opacity` int(11) NOT NULL default '0',
+  `wm_opacity` int(11) NOT NULL default '0',
   `wm_location` tinyint(4) NOT NULL default '0',
   `album_sort_order` tinyint(4) NOT NULL default '0',
   `member_uploads` tinyint(4) NOT NULL default '0',
