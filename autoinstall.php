@@ -271,7 +271,7 @@ function MG_upgrade_1612()
 
     // Execute SQL now to perform the upgrade
     foreach ($_SQL as $sql) {
-        COM_errorLOG("Media Gallery plugin 1.6.11 update: Executing SQL => " . $sql));
+        COM_errorLOG("Media Gallery plugin 1.6.11 update: Executing SQL => " . $sql);
         DB_query($sql, 1);
 
         if (DB_error()) {
