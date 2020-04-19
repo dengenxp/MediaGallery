@@ -51,7 +51,7 @@ if (file_exists($langfile)) {
 
 //global $_MG_CONF;
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.1';
+$_MG_CONF['pi_version'] = '1.7.2.1';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
 

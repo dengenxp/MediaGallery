@@ -56,7 +56,7 @@ function plugin_autoinstall_mediagallery($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.7.2',
+        'pi_version'      => '1.7.2.1',
         'pi_gl_version'   => '2.0.0',
         'pi_homepage'     => 'http://www.trybase.com/~dengen/log/'
     );
@@ -97,9 +97,9 @@ function plugin_autoinstall_mediagallery($pi_name)
 
     $requires = array(
         array(
-               'db' => 'mysql',
-               'version' => '4.1'
-             )
+            'db'      => 'mysql',
+            'version' => '4.1'
+        )
     );
 
     $inst_parms = array(
@@ -234,6 +234,7 @@ function MG_upgrade()
             if (MG_upgrade_1612() != 0) break 2;
             $current_version = "1.6.12";
             break;
+
         case "1.6.12" :
         case "1.6.13" :
         case "1.6.14" :
@@ -241,8 +242,9 @@ function MG_upgrade()
         case "1.6.16" :
         case "1.6.17" :
             if (MG_upgrade_170() != 0) break 2;
-            $current_version = "1.7.2";
+            $current_version = "1.7.2.1";
             break;
+
         default :
             $done = true;
             break;
@@ -267,16 +269,17 @@ function MG_upgrade_1612()
     $_SQL = array();
     $_SQL[] = "REPLACE INTO {$_TABLES['mg_config']} VALUES ('ad_group_id', '$grp_id')";
 
-    /* Execute SQL now to perform the upgrade */
-    for ($i = 1; $i <= count($_SQL); $i++) {
-        COM_errorLOG("Media Gallery plugin 1.6.11 update: Executing SQL => " . current($_SQL));
-        DB_query(current($_SQL),1);
+    // Execute SQL now to perform the upgrade
+    foreach ($_SQL as $sql) {
+        COM_errorLOG("Media Gallery plugin 1.6.11 update: Executing SQL => " . $sql));
+        DB_query($sql, 1);
+
         if (DB_error()) {
-            COM_errorLog("SQL Error during Media Gallery plugin update",1);
+            COM_errorLog("SQL Error during Media Gallery plugin update", 1);
             return 1;
         }
-        next($_SQL);
     }
+
     return 0;
 }
 
@@ -323,8 +326,8 @@ function MG_upgrade_170()
         'mgShadow', 'new_border', 'new_shadow', 'none');
     $sql = "SELECT * FROM {$_TABLES['mg_albums']}";
     $result = DB_query($sql);
-    while ($A = DB_fetchArray($result)) {
 
+    while ($A = DB_fetchArray($result)) {
         $_SQL[] = "UPDATE {$_TABLES['mg_albums']} "
                 . "SET skin='default' "
                 . "WHERE album_id=" . $A['album_id'];
@@ -348,15 +351,15 @@ function MG_upgrade_170()
         }
     }
 
-    /* Execute SQL now to perform the upgrade */
-    for ($i = 1; $i <= count($_SQL); $i++) {
-        COM_errorLOG("Media Gallery plugin 1.7.0 update: Executing SQL => " . current($_SQL));
-        DB_query(current($_SQL),1);
+    // Execute SQL now to perform the upgrade
+    foreach ($_SQL as $sql) {
+        COM_errorLOG("Media Gallery plugin 1.7.0 update: Executing SQL => " . $sql);
+        DB_query($sql, 1);
+
         if (DB_error()) {
-            COM_errorLog("SQL Error during Media Gallery plugin update",1);
+            COM_errorLog("SQL Error during Media Gallery plugin update", 1);
             return 1;
         }
-        next($_SQL);
     }
 
     return 0;
