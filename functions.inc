@@ -404,6 +404,7 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
 
     $retval = '';
 
+	/*
     $sql = "SELECT a.enable_comments "
          . "FROM {$_TABLES['mg_albums']} AS a "
          . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
@@ -414,6 +415,13 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
     if ($A['enable_comments'] != 1) {
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
+	*/
+    
+	// Use plugin_commentenabled_foo permission check to determine if user has permissions to save a comment for this item
+    // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
+    if (plugin_commentenabled_mediagallery($id) != COMMENT_CODE_ENABLED) {
+        COM_handle404($_CONF['site_url'] . '/index.php');
+    }	
 
     $ret = CMT_saveComment($title, $comment, $id, $pid, 'mediagallery', $postmode);
 
@@ -434,15 +442,31 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
 }
 
 /**
+ * Comment Submission approved
+ *
+ * @param   string $id       Item id to which $cid belongs
+ * @param   int     $cid    Approved Comment id
+ */
+function plugin_moderationcommentapprove_mediagallery($id, $cid)
+{
+    // Nothing needed to do on approval of comment to plugin item
+    
+    return true;
+}
+
+/**
  * Plugin function to delete a comment
  *
- * @param   int     $cid    Comment to be deleted
- * @param   string  $id     Item id to which $cid belongs
- * @return  mixed   false for failure, HTML string (redirect?) for success
+ * @param   int    	$cid 			Comment to be deleted
+ * @param   string 	$id  			Item id to which $cid belongs
+ * @param   boolean $returnOption  	Either return a boolean on success or not, or redirect
+ * @return  mixed        			Based on $returnOption. False for failure or true for success, else a redirect for success or failure 
  */
-function plugin_deletecomment_mediagallery($cid, $id)
+function plugin_deletecomment_mediagallery($cid, $id, $returnBoolean)
 {
     global $_CONF, $_MG_CONF, $_TABLES;
+	
+	$retval = false;
 
     // find the album that holds this peice of media
     $sql = "SELECT album_id FROM {$_TABLES['mg_media_albums']} WHERE media_id='" . DB_escapeString($id) . "'";
@@ -464,21 +488,74 @@ function plugin_deletecomment_mediagallery($cid, $id)
         if (CMT_deleteComment($cid, $id, 'mediagallery') == 0) {
             $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(DB_escapeString($id), 'mediagallery'));
             DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', DB_escapeString($id));
-            COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
+			
+			if ($returnBoolean) {
+				$retval = true;
+			} else {		
+				COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
+			}			
+        }
+    }
+	
+	// So failed to delete for some reason and if not returnBoolean then...
+	if (!$returnBoolean && !$retval) {
+		COM_redirect($_CONF['site_url'] . '/index.php');
+	}	
+
+    return $retval;
+}
+
+function plugin_getcommenturlid_mediagallery($id)
+{
+    global $_CONF, $_MG_CONF;
+	
+	return $_MG_CONF['site_url'] . "/media.php?s=$id";
+}
+
+
+/**
+ * Return the comment code to this plugin item. This is based not only the code of the actual plugin item but the access the user has to the item
+ *
+ * @param   string $id   Item id to which $cid belongs
+ * @return  int    Return a CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
+ */
+function plugin_commentenabled_mediagallery($id)
+{
+    global $_CONF, $_TABLES;
+
+    // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
+    $commentCode = COMMENT_CODE_DISABLED;
+	
+    $sql = "SELECT a.enable_comments, a.owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon "
+         . "FROM {$_TABLES['mg_albums']} AS a "
+         . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
+         . "WHERE ma.media_id = '$id'";
+    $result = DB_query($sql);	
+    $A = DB_fetchArray($result);
+    if (DB_numRows($result) == 1) {
+		
+		// Media Gallery uses only comment enabled or disabled so update to use correct code
+		if ($A['enable_comments'] == 1) {
+			$A['commentcode'] = COMMENT_CODE_ENABLED;
+		} else {
+			$A['commentcode'] = COMMENT_CODE_DISABLED;
+		}
+		
+        if ($A['commentcode'] == COMMENT_CODE_ENABLED) {
+            $commentCode = COMMENT_CODE_ENABLED;
+        } elseif ($A['commentcode'] == COMMENT_CODE_CLOSED) { // Closed but still visible so give admins access
+            if (SEC_hasRights('mediagallery.admin') &&
+                (SEC_hasAccess($A['owner_id'], $A['group_id'],
+                        $A['perm_owner'], $A['perm_group'], $A['perm_members'],
+                        $A['perm_anon']) == 3)) {
+                $commentCode = COMMENT_CODE_ENABLED; // If Admin then treat comment like enabled
+            } else {
+                $commentCode = COMMENT_CODE_CLOSED;
+            }
         }
     }
 
-    return false;
-}
-
-function plugin_getcommenturlid_mediagallery()
-{
-    global $_CONF, $_MG_CONF;
-    $retval = array();
-    $retval[] = $_MG_CONF['site_url'] . '/media.php';
-    $retval[] = 's';
-    $retval[] = 'page=';
-    return $retval;
+    return $commentCode;
 }
 
 /**
@@ -675,6 +752,47 @@ function plugin_getwhatsnew_mediagallery()
         return $retval;
     } else {
         return $items;
+    }
+}
+
+/**
+* Return new Media comments for the What's New block
+*
+* @param    string  $numreturn  If 0 will return results for What's New Block. 
+*                               If > 0 will return last X new comments for User Profile.
+* @param    string  $uid        ID of the user to return results for. 0 = all users.
+* @return   array list of new comments (dups, type, title, sid, lastdate) or (sid, title, cid, unixdate)
+*
+*/
+function plugin_getwhatsnewcomment_mediagallery($numreturn = 0, $uid = 0)
+{
+    global $_CONF, $_TABLES, $_DLM_CONF;
+
+    $stwhere = ($uid > 0) ? "AND (c.uid = $uid) " : ' ';
+
+    if ($numreturn == 0) {
+        $select = "SELECT DISTINCT COUNT(*) AS dups, type, c.title, sid, max(c.date) AS lastdate ";
+        $order  = "GROUP BY c.sid, type, m.media_title ORDER BY 5 DESC LIMIT 15";
+    } else {
+        $select = "SELECT c.sid, c.title, c.cid, UNIX_TIMESTAMP(c.date) AS unixdate ";
+        $order  = "ORDER BY unixdate DESC LIMIT $numreturn";
+    }
+
+    $sql = $select . "FROM {$_TABLES['comments']} c, {$_TABLES['mg_media_albums']} d, {$_TABLES['mg_albums']} b, {$_TABLES['mg_media']} m "
+		 . "WHERE d.media_id = c.sid AND d.album_id = b.album_id AND d.media_id = m.media_id "
+         . "AND (b.enable_comments = 1) "
+         . COM_getPermSQL('AND', 0, 2, 'b')
+         . " AND (c.date >= (DATE_SUB(NOW(), INTERVAL {$_CONF['newcommentsinterval']} SECOND))) "
+         . $stwhere . $order;
+
+    $result = DB_query($sql);
+    $nrows = DB_numRows($result);
+    if ($nrows > 0) {
+        for ($x = 0; $x < $nrows; $x++) {
+            $A[] = DB_fetchArray($result);
+        }
+        
+        return $A;
     }
 }
 
