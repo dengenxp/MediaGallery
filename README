@@ -14,22 +14,16 @@
 
 Overview
 --------
-Media Gallery WKZ (With KZ_Template) is the one to have integrated Media Gallery
-v1.6.1 Japanese version which is released by maruyo and Media Gallery v1.6.8
-which is included with glFusion CMS.
-
-To execute Media Gallery v1.6.1 Japanese version, it is necessary to install
-Caching Template Library, but is not necessary to execute Media Gallery WKZ.
-Because the KZ_Template Class which is released by Mystral-kk is included with
-Media Gallery WKZ. Therefore, the installation is easier.
+Media Gallery is an integration of  Media Gallery v1.6.1 Japanese version 
+(released by maruyo) and Media Gallery v1.6.8 (glFusion CMS version).
 
 Note in case of upgrade
 -----------------------
-Media Gallery WKZ can upgrade from Media Gallery v1.6.1 Japanese version.
-But, in Media Gallery WKZ, the layout of files was mainly changed compared with
-Media Gallery v1.6.1 Japanese version.
-It is because I adjusted to Media Gallery is included in glFusion.
-Therefore, in case of upgrade, be careful sufficiently.
+Media Gallery can upgrade from Media Gallery v1.6.1 Japanese version.
+But, in Media Gallery, the layout of files was mainly changed compared with
+Media Gallery v1.6.1 Japanese version. It is because I had to change things 
+when I integratedthe Media Gallery from glFusion. Therefore, if you upgrade, 
+be careful.
 
 Before upgrade, Please make sure to back up previous versions of files and
 databases.
@@ -43,7 +37,7 @@ public_html/mediagallery/mediaobjects/disp
 public_html/mediagallery/mediaobjects/orig
 public_html/mediagallery/mediaobjects/tn
 
-All other files, please replace the files in the archive of Media Gallery WKZ.
+All other files, please replace the files in the archive of Media Gallery.
 Then please update Mediagallery plugin in the plugin administration page.
 
 Setting Permissions
@@ -59,7 +53,7 @@ public_html/mediagallery/mediaobjects/tn     and the following directories
 
 Change Log for Version 1.6.10
 ------------------------
-From Version1.6.10 I extend the functionality of glFusion version in earnest.
+From Version 1.6.10 I extend the functionality of the glFusion version.
 
 (1) Imported some of the version 1.6.10 of glFusion.
 
@@ -125,16 +119,6 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
 
 (9) Several bug fixes and optimizations.
 
-Change Log for Version 1.7.2.1
-------------------------
-* Misc fixes to be compatible with PHP v7.0+
-* Replaced SWFUpload with normal upload
-* Misc bug fixes on the Admin page
-* Refactored some code to work with the latest Geeklog API found in Geeklog 2.2.1sr1
-* Latest Geeklog Comment API is supported
-* Added New Media Comments to What's New Block
-* Fixed Media Comments when displayed on more than one page
-
 Change Log for Version 1.6.11
 ------------------------
 * Added one setting 'Media Gallery Administration'->'System Defaults Editor'->
@@ -176,6 +160,16 @@ Change Log for Version 1.6.16
 Change Log for Version 1.6.17
 ------------------------
 * Fixed issue not work with Geeklog 2.1.0.
+
+Change Log for Version 1.7.2.1
+------------------------
+* Misc fixes to be compatible with PHP v7.0+
+* Replaced SWFUpload with normal upload
+* Misc bug fixes on the Admin page
+* Refactored some code to work with the latest Geeklog API found in Geeklog 2.2.1sr1
+* Latest Geeklog Comment API is supported
+* Added New Media Comments to What's New Block
+* Fixed Media Comments when displayed on more than one page
 
 Caution
 -------
