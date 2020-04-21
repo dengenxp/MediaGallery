@@ -58,7 +58,7 @@ function plugin_autoinstall_mediagallery($pi_name)
         'pi_display_name' => $pi_display_name,
         'pi_version'      => '1.7.2.1',
         'pi_gl_version'   => '2.0.0',
-        'pi_homepage'     => 'http://www.trybase.com/~dengen/log/'
+        'pi_homepage'     => 'https://github.com/Geeklog-Plugins/MediaGallery'
     );
 
     $groups = array(

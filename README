@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------
 - Media Gallery Plugin for Geeklog
-- version: 1.7.0
+- version: 1.7.2.1
 - author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
-- date:    2015-xx-xx
+- date:    2020-4-21
 - license: GPLv2
 -----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ public_html/mediagallery/mediaobjects/disp   and the following directories
 public_html/mediagallery/mediaobjects/orig   and the following directories
 public_html/mediagallery/mediaobjects/tn     and the following directories
 
-Feature of Version1.6.10
+Change Log for Version 1.6.10
 ------------------------
 From Version1.6.10 I extend the functionality of glFusion version in earnest.
 
@@ -125,7 +125,17 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
 
 (9) Several bug fixes and optimizations.
 
-Feature of Version1.6.11
+Change Log for Version 1.7.2.1
+------------------------
+* Misc fixes to be compatible with PHP v7.0+
+* Replaced SWFUpload with normal upload
+* Misc bug fixes on the Admin page
+* Refactored some code to work with the latest Geeklog API found in Geeklog 2.2.1sr1
+* Latest Geeklog Comment API is supported
+* Added New Media Comments to What's New Block
+* Fixed Media Comments when displayed on more than one page
+
+Change Log for Version 1.6.11
 ------------------------
 * Added one setting 'Media Gallery Administration'->'System Defaults Editor'->
   'Album Defaults'->'Access Rights'->'Group'.
@@ -137,16 +147,16 @@ Feature of Version1.6.11
   /plugins/mediagallery/templates/autotag_ss_jquery.thtml
 * Fixed Line feed codes had been mixed. (CR+LF to LF)
 
-Feature of Version1.6.12
+Change Log for Version 1.6.12
 ------------------------
 * Fixed issue not work with Geeklog 1.8.0 or later.
 * Fixed issue can not be installed with MySQL 5.3.3 or later.
 
-Feature of Version1.6.13
+Change Log for Version 1.6.13
 ------------------------
 * Fixed issue can not be installed with Geeklog 2.0.0b1 or later.
 
-Feature of Version1.6.14
+Change Log for Version 1.6.14
 ------------------------
 * Supported COM_createHTMLDocument function with Geeklog2.0.0.
 * Updated Slimbox, AD Gallery and Colorbox.
@@ -154,16 +164,16 @@ Feature of Version1.6.14
 * Fixed issue Slideshow does not work with Internet Explorer 10.
 * Fixed issue error occurs in the search form.
 
-Feature of Version1.6.15
+Change Log for Version 1.6.15
 ------------------------
 * Updated jQuery Cycle Lite Plugin.
 * Updated SWFObject.
 
-Feature of Version1.6.16
+Change Log for Version 1.6.16
 ------------------------
 * Fixed Slideshow Autotag does not work correctly.
 
-Feature of Version1.6.17
+Change Log for Version 1.6.17
 ------------------------
 * Fixed issue not work with Geeklog 2.1.0.
 
