@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------
-- Media Gallery Plugin for Geeklog
+- Media Gallery Plugin for Geeklog 
 - version: 1.7.2.1
 - author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
 - date:    2020-4-21
@@ -14,8 +14,9 @@
 
 Overview
 --------
-Media Gallery is an integration of  Media Gallery v1.6.1 Japanese version 
-(released by maruyo) and Media Gallery v1.6.8 (glFusion CMS version).
+The Geeklog Media Gallery Plugin (formerly called Media Gallery WKZ) is 
+an integration of Media Gallery v1.6.1 Japanese version (released by maruyo) 
+and Media Gallery v1.6.8 (glFusion CMS version).
 
 Note in case of upgrade
 -----------------------
