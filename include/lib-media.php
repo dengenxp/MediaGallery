@@ -1341,7 +1341,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
         if ($mg_album->access == 3 || $root_album->owner_id) {
             $delete_option = true;
         }
-        $page = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 0;
+        $page = isset($_GET['cpage']) ? COM_applyFilter($_GET['cpage'], true) : 0;
         $comorder = '';
         if (isset($_POST['order'])) {
             $comorder = COM_applyFilter($_POST['order']);
