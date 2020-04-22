@@ -162,7 +162,7 @@ Change Log for Version 1.6.17
 ------------------------
 * Fixed issue not work with Geeklog 2.1.0.
 
-Change Log for Version 1.7.2.1
+Change Log for Version 1.7.2.2
 ------------------------
 * Misc fixes to be compatible with PHP v7.0+
 * Replaced SWFUpload with normal upload
