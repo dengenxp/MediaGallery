@@ -51,7 +51,7 @@ if (file_exists($langfile)) {
 
 //global $_MG_CONF;
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.2.1';
+$_MG_CONF['pi_version'] = '1.7.2.2';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
 
@@ -1005,10 +1005,15 @@ function plugin_submissioncount_mediagallery()
 
     $retval = 0;
 
-    $table = $_TABLES['mg_old_mediaqueue'];
-    if (version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version']) >= 0) {
-        $table = $_TABLES['mg_mediaqueue'];
-    }
+	// If 1.7.0 or higher always use new table name
+	if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
+		$table = $_TABLES['mg_mediaqueue'];
+	} else {
+		$table = $_TABLES['mg_old_mediaqueue'];
+		if (version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version']) >= 0) {
+			$table = $_TABLES['mg_mediaqueue'];
+		}
+	}
 
     if (plugin_ismoderator_mediagallery()) {
         $retval = DB_count($table);

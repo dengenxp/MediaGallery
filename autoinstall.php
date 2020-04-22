@@ -56,7 +56,7 @@ function plugin_autoinstall_mediagallery($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.7.2.1',
+        'pi_version'      => '1.7.2.2',
         'pi_gl_version'   => '2.0.0',
         'pi_homepage'     => 'https://github.com/Geeklog-Plugins/MediaGallery'
     );
@@ -196,7 +196,7 @@ function plugin_compatible_with_this_version_mediagallery($pi_name)
         return false;
     }
 
-    if (version_compare(VERSION, '2.0.0', '<')) {
+    if (COM_versionCompare(VERSION, '2.0.0', '<')) {
         return false;
     }
 
@@ -219,7 +219,7 @@ function MG_upgrade()
     if (!$func($pi_name)) return 3002;
 
     $current_version = $installed_version;
-    if (version_compare($current_version, '1.6.5', '<')) return 3;
+    if (COM_versionCompare($current_version, '1.6.5', '<')) return 3;
 
     $done = false;
     while (!$done) {
@@ -242,7 +242,7 @@ function MG_upgrade()
         case "1.6.16" :
         case "1.6.17" :
             if (MG_upgrade_170() != 0) break 2;
-            $current_version = "1.7.2.1";
+            $current_version = "1.7.2.2";
             break;
 
         default :

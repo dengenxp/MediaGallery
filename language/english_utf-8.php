@@ -61,6 +61,7 @@ $LANG_MG00 = array (
 // administration items....
 
 $LANG_MG01 = array (
+	'help'                      => 'Help',
     'save'                      => 'Save',
     'yes'                       => 'Yes',
     'no'                        => 'No',
