@@ -75,6 +75,9 @@ function formatCanonData($type,$tag,$intel,$data,$exif,&$result) {
 	} else if($type=="USHORT" || $type=="SSHORT" || $type=="ULONG" || $type=="SLONG" || $type=="FLOAT" || $type=="DOUBLE") {
 
 		$data = bin2hex($data);
+		if(!is_array($result)){
+         		$result = array();
+     			} 
 		$result['RAWDATA'] = $data;
 
 		if($tag=="0001") { //first chunk
