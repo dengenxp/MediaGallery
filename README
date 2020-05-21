@@ -23,7 +23,7 @@ Note in case of upgrade
 Media Gallery can upgrade from Media Gallery v1.6.1 Japanese version.
 But, in Media Gallery, the layout of files was mainly changed compared with
 Media Gallery v1.6.1 Japanese version. It is because I had to change things 
-when I integratedthe Media Gallery from glFusion. Therefore, if you upgrade, 
+when I integrated the Media Gallery from glFusion. Therefore, if you upgrade, 
 be careful.
 
 Before upgrade, Please make sure to back up previous versions of files and
