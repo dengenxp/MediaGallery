@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------
 - Media Gallery Plugin for Geeklog 
-- version: 1.7.2.1
+- version: 1.7.2.3
 - author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
-- date:    2020-4-21
+- date:    2020-06-08
 - license: GPLv2
 -----------------------------------------------------------------------
 
@@ -172,6 +172,10 @@ Change Log for Version 1.7.2.2
 * Added New Media Comments to What's New Block
 * Fixed Media Comments when displayed on more than one page
 * Added Help menu item to Media Gallery Admin page for easy access
+
+Change Log for Version 1.7.2.3
+------------------------
+* Fixed Media tab in Media Gallery plugin to work with themes that use UIKit
 
 Caution
 -------

@@ -50,8 +50,9 @@ if (file_exists($langfile)) {
 }
 
 //global $_MG_CONF;
+global $_TABLES, $_DB_table_prefix; // Needs to be set for when plugin enabled (if plugin already disabled)
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.2.2';
+$_MG_CONF['pi_version'] = '1.7.2.3';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
 
@@ -1683,7 +1684,7 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
                     $mapped[$key] = $value;
                 }
             } else {
-                $mapped[$key] = $value;
+                $mapped[] = $value;
             }
         }
 
