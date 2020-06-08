@@ -1704,6 +1704,21 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
 }
 
 /**
+ * Return URL of item even if the item doesn't exist, e.g., after it has been deleted
+ *
+ * @param  string  $sub_type  (unused) sub type of plugin
+ * @param  string  $item_id   the id of the item
+ * @return string
+ * @since  Geeklog 2.2.2
+ */
+function plugin_idToURL_mediagallery($sub_type, $item_id)
+{
+    global $_MG_CONF;
+
+    return $_MG_CONF['site_url'].'/media.php?f=0&amp;sort=0&amp;s='.$item_id;
+}
+
+/**
 * Provide URL of a documentation file
 *
 * @param    string  $file   documentation file being requested, e.g. 'config'
