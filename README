@@ -176,6 +176,11 @@ Change Log for Version 1.7.2.2
 Change Log for Version 1.7.2.3
 ------------------------
 * Fixed Media tab in Media Gallery plugin to work with themes that use UIKit
+* Fixed remote upload of media issue
+* Now works with XML Sitemap Plugin (fixed issue with plugin_getiteminfo_mediagallery and keys)
+* Added support for XML Sitemap Plugin v2.0.3 that should eventually ship with Geeklog v2.2.2
+* Updated support for Nikon cameras
+* Other minor misc fixes
 
 Caution
 -------
