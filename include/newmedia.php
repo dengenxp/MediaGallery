@@ -32,7 +32,9 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
+use Geeklog\Input;
+
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -41,48 +43,41 @@ require_once $_CONF['path'].'plugins/mediagallery/include/lib-upload.php';
 require_once $_CONF['path'].'plugins/mediagallery/include/sort.php';
 
 /**
-* Flash upload form
+* Upload form
 *
 * @param    int     album_id    album_id upload media
 * @return   string              HTML
-*
 */
-function MG_SWFUpload($album_id)
+function MG_uploadForm($album_id)
 {
     global $_USER, $_CONF, $_MG_CONF, $LANG_MG01, $LANG_MG03;
 
     $retval = '';
-
-    if($_MG_CONF['verbose']) {
-        COM_errorLog('***Inside MG_SWFUpload()***');
-    }
-
+    return MG_userUpload($album_id);
     $root_album = new mgAlbum(0);
 
-    // construct the album selectbox ...
+    // Construct the album selectbox
     $album_selectbox  = MG_buildAlbumBox($root_album, $album_id, 3, -1, 'upload');
-    if (empty($album_selectbox)) return '';
+    if (empty($album_selectbox)) {
+        return '';
+    }
 
-    // construct the album jumpbox...
+    // Construct the album jumpbox
     $album_jumpbox = MG_buildAlbumJumpbox($root_album, $album_id);
 
     // tell the flash uploader what the maximum file size can be.
     $file_size_limit = MG_getUploadLimit($album_id) . ' bytes';
-    if($_MG_CONF['verbose']) COM_errorLog('file_size_limit=' . $file_size_limit);
+    if($_MG_CONF['verbose']) {
+        COM_errorLog('file_size_limit=' . $file_size_limit);
+    }
 
-    // determine the valid filetypes for the current album
+    // Determine the valid filetypes for the current album
     $allowed_file_types = MG_getValidFileTypes($album_id);
-    if ($_MG_CONF['verbose']) COM_errorLog('allowed_file_types=' . $allowed_file_types);
-
-    // the flash uploader does not play nice with cookies, therefore we need to pass the uid
-    // and a token to use as a second authentication factor.  let's make the token good for 4 hours
-    // if the token expires, then the user will have to visit the swfupload page again, but
-    // unfortunately because the upload handler runs in the background, there is really no way
-    // to inform the users that the upload(s) failed (yet).
+    if ($_MG_CONF['verbose']) {
+        COM_errorLog('allowed_file_types=' . $allowed_file_types);
+    }
 
     $user_id = $_USER['uid'];
-//    $user_token = SEC_createTokenGeneral( 'swfupload', 14400 );//////////////////////////////////////////
-
     $T = COM_newTemplate(MG_getTemplatePath($album_id));
     $T->set_file('mupload', 'swfupload.thtml');
     $T->set_var(array(
@@ -97,7 +92,7 @@ function MG_SWFUpload($album_id)
         'upload_url'                => 'swfupload/swfupload.php',
         'flash_url'                 => 'swfupload/swfupload.swf',
         'user_id'                   => $user_id,
-        'user_token'                => $user_token,
+        'user_token'                => @$user_token,
         'swfupload_usage'           => $LANG_MG01['swfupload_usage'],
         'swfupload_allowed_types'   => $LANG_MG01['swfupload_allowed_types'],
         'swfupload_file_types'      => $allowed_file_types,
@@ -147,30 +142,28 @@ function MG_SWFUpload($album_id)
 }
 
 /**
-* Save flash upload(s)
-*
-* @param    int     album_id    album_id save uploaded media
-* @return   string              HTML
-*
-*/
-function MG_saveSWFUpload($album_id)
+ * Save upload(s)
+ *
+ * @param    int     album_id    album_id save uploaded media
+ * @return   string              HTML
+ */
+function MG_saveUpload($album_id)
 {
     global $_TABLES, $_MG_CONF, $LANG_MG01, $LANG_MG02, $new_media_id;
 
     $statusMsg = '';
-    $file = array();
-    $file = $_FILES;
+    $file = isset($_FILES) && is_array($_FILES) ? $_FILES : array();
     $album = new mgAlbum($album_id);
 
     if ($_MG_CONF['verbose']) {
-        COM_errorLog('*** Inside MG_saveSWFUpload()***');
+        COM_errorLog('*** Inside MG_saveUpload()***');
         COM_errorLog('uploading to album_id=' . $album_id);
         COM_errorLog("album owner_id=" . $album->owner_id);
     }
 
     if (!isset($album->id) || $album_id == 0) {
-        COM_errorLog('MediaGallery: SWFUpload was unable to determine album id');
-        return $LANG_MG01['swfupload_err_album_id'];
+        COM_errorLog('MediaGallery: Upload was unable to determine album id');
+        return $LANG_MG01['upload_err_album_id'];
     }
 
     $successfull_upload = 0;
@@ -195,7 +188,7 @@ function MG_saveSWFUpload($album_id)
         }
 
         // we need to move the max filesize stuff to the flash uploader
-        if ($album->max_filesize != 0 && $filesize > $album->max_filesize) {
+        if (($album->max_filesize != 0) && ($filesize > $album->max_filesize)) {
             COM_errorLog('MediaGallery: File ' . $filename . ' exceeds maximum allowed filesize for this album');
             COM_errorLog('MediaGallery: Max filesize for this album=' . $album->max_filesize);
             $tmpmsg = sprintf($LANG_MG02['upload_exceeds_max_filesize'], $filename);
@@ -217,7 +210,7 @@ function MG_saveSWFUpload($album_id)
         if ($rc == true) {
             $successfull_upload++;
         } else {
-            COM_errorLog('MG_saveSWFUpload error: ' . $msg, 1);
+            COM_errorLog('MG_saveUpload error: ' . $msg, 1);
             return $msg;
         }
     }
@@ -229,9 +222,9 @@ function MG_saveSWFUpload($album_id)
     // failsafe check - after all the uploading is done, double check that the database counts
     // equal the actual count of items shown in the database, if not, fix the counts and log
     // the error
-
     $dbCount = DB_count($_TABLES['mg_media_albums'], 'album_id', intval($album_id));
     $aCount  = DB_getItem($_TABLES['mg_albums'], 'media_count', "album_id=" . intval($album_id));
+
     if ($dbCount != $aCount) {
         DB_change($_TABLES['mg_albums'], 'media_count', $dbCount, 'album_id', intval($album_id));
         COM_errorLog("MediaGallery: Upload processing - Counts don't match - dbCount = " . $dbCount . " aCount = " . $aCount);
@@ -372,7 +365,7 @@ function MG_saveUserUpload($album_id)
         $caption     = COM_stripslashes($_POST['caption'][$key]);
         $description = COM_stripslashes($_POST['description'][$key]);
         $keywords    = COM_stripslashes($_POST['keywords'][$key]);
-        $category    = COM_applyFilter($_POST['cat_id'][$key],true);
+        $category    = (int) Input::fPost('cat_id', 0);
         $attachtn    = isset($_POST['attachtn'][$key]) ? $_POST['attachtn'][$key] : '';
         $thumbnail   = isset($thumbs['tmp_name'][$key]) ? $thumbs['tmp_name'][$key] : '';
         if (isset($_POST['dnc'][$key]) && $_POST['dnc'][$key] == 'on') {
@@ -621,4 +614,3 @@ function MG_saveFileUpload($album_id)
 
     return $json;
 }
-?>

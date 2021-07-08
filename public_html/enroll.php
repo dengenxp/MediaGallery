@@ -35,8 +35,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser()) {
@@ -55,8 +54,7 @@ function MG_enroll()
     // let's make sure this user does not already have a member album
 
     if ($_MG_CONF['member_albums'] != 1) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
 
     $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} "
@@ -95,8 +93,7 @@ function MG_saveEnroll()
     global $_CONF, $_MG_CONF, $_TABLES, $_USER, $LANG_MG03;
 
     if ($_MG_CONF['member_albums'] != 1) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
 
     if (!isset($_MG_CONF['member_quota'])) {
@@ -129,8 +126,7 @@ function MG_saveEnroll()
              . "VALUES (" . $uid . ",1,0,0,-1,-1,-1," . intval($_MG_CONF['member_quota']) . ",1)";
         DB_query($sql, 1);
     }
-    echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
 }
 
 // --- Main Processing Loop
@@ -142,12 +138,10 @@ $display  = '';
 if ($mode == $LANG_MG03['agree'] && !empty($LANG_MG03['agree'])) {
     $display .= MG_saveEnroll();
 } elseif ($mode == $LANG_MG03['cancel']) {
-    echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/index.php');
 } else {
     $display .= MG_enroll();
 }
 
 $display = MG_createHTMLDocument($display);
 COM_output($display);
-?>

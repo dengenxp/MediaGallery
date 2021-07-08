@@ -287,11 +287,10 @@ function MG_ftpProcess($album_id)
     $count = count($_POST['pic']);
     if ($count < 1) {
         if ($album_id == 0) {
-            echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+            COM_redirect($_MG_CONF['site_url'] . '/index.php');
         } else {
-            echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
+            COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id);
         }
-        exit;
     }
 
     foreach ($_POST['pic'] as $pic_id) {

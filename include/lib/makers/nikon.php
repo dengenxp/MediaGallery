@@ -212,7 +212,7 @@ function parseNikon($block,&$result) {
 	$model = $result['IFD0']['Model'];
 
 	//these 6 models start with "Nikon".  Other models dont.
-	if($model=="E700\0" || $model=="E800\0" || $model=="E900\0" || $model=="E900S\0" || $model=="E910\0" || $model=="E950\0") {
+	if($model=="COOLPIX A100 " || $model=="E700\0" || $model=="E800\0" || $model=="E900\0" || $model=="E900S\0" || $model=="E910\0" || $model=="E950\0") {
 		$place=8; //current place
 		$model = 0;
 

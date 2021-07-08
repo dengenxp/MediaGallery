@@ -2,13 +2,14 @@
 // +--------------------------------------------------------------------------+
 // | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
-// | swfupload.php                                                            |
+// | upload.php                                                               |
 // |                                                                          |
 // | Processes media files uploaded via SWFUpload                             |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2015 by the following authors:                             |
+// | Copyright (C) 2015-2019 by the following authors:                        |
 // |                                                                          |
 // | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// | Kenji ITO              msytralkk AT gmai DOT com                         |
 // |                                                                          |
 // | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2009 by the following authors:                        |
@@ -36,9 +37,8 @@
 require_once '../../lib-common.php';
 
 // main
-
 if (!in_array('mediagallery', $_PLUGINS)) {
-    COM_errorLog( 'SWFUpload: MediaGallery not found in $_PLUGINS', 1 );
+    COM_errorLog( 'Upload: MediaGallery is disabled', 1);
     COM_404();
     exit;
 }
@@ -57,11 +57,11 @@ if ($_MG_CONF['verbose']) {
 // let's try to set the $_USER array
 $_USER = SESS_getUserDataFromId($uid);
 if ($_USER['error'] == '1') {
-    COM_errorLog('SWFUpload: User identified by uid=' . $uid . ' not found.', 1);
-    echo $LANG_MG01['swfupload_err_session'];
+    COM_errorLog('Upload: User identified by uid=' . $uid . ' not found.', 1);
+    echo $LANG_MG01['upload_err_session'];
     exit (0);
-} elseif(!isset($_USER['uid']) || $_USER['uid'] < 2) {
-    COM_errorLog('SWFUpload: Anonymous upload rejection.', 1);
+} elseif (!isset($_USER['uid']) || ($_USER['uid'] < 2)) {
+    COM_errorLog('Upload: Anonymous upload rejection.', 1);
     echo 'Anonymous upload rejected';
     exit(0);
 }
@@ -79,17 +79,15 @@ if ($_USER['error'] == '1') {
 if ($_MG_CONF['verbose']) {
     COM_errorLog('The upload is authentic', 1);
     COM_errorLog('Retrieved ' . count($_USER) . ' user data values', 1);
-    COM_errorLog('***Leaving SWFUpload main()***', 1);
+    COM_errorLog('***Leaving Upload main()***', 1);
 }
 
 $_GROUPS = SEC_getUserGroups($_USER['uid']);
 $_RIGHTS = explode(',', SEC_getUserPermissions());
 
 // now that we're sure we have the right user
-
 require_once $_CONF['path'] . 'plugins/mediagallery/include/newmedia.php';
 
-$rc = MG_saveSWFUpload($aid);
+$rc = MG_saveUpload($aid);
 echo $rc;
 exit(0);
-?>

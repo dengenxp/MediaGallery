@@ -119,11 +119,11 @@ function MG_saveCategory($cat_id)
     $A['cat_id'] = COM_applyFilter($_POST['cat_id'], true);
 
     if ($_MG_CONF['htmlallowed'] == 1) {
-        $A['cat_name']        = addslashes(COM_checkHTML(COM_killJS($_POST['cat_name'])));
-        $A['cat_description'] = addslashes(COM_checkHTML(COM_killJS($_POST['cat_desc'])));
+        $A['cat_name']        = DB_escapeString(COM_checkHTML(COM_killJS($_POST['cat_name'])));
+        $A['cat_description'] = DB_escapeString(COM_checkHTML(COM_killJS($_POST['cat_desc'])));
     } else {
-        $A['cat_name']        = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($_POST['cat_name'])))));
-        $A['cat_description'] = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($_POST['cat_desc'])))));
+        $A['cat_name']        = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($_POST['cat_name'])))));
+        $A['cat_description'] = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($_POST['cat_desc'])))));
     }
 
     if (empty($A['cat_name'])) {
@@ -159,8 +159,7 @@ function MG_saveCategory($cat_id)
     DB_save($_TABLES['mg_category'], "cat_id,cat_name,cat_description,cat_order",
             "'{$A['cat_id']}','{$A['cat_name']}','{$A['cat_description']}',{$A['cat_order']}");
 
-    echo COM_refresh($_MG_CONF['admin_url'] . 'category.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'category.php');
 }
 
 function MG_batchDeleteCategory()
@@ -181,8 +180,7 @@ function MG_batchDeleteCategory()
         }
     }
 
-    echo COM_refresh($_MG_CONF['admin_url'] . 'category.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'category.php');
 }
 
 function MG_displayCategories()
@@ -278,8 +276,7 @@ if ($mode == $LANG_MG01['save'] && !empty($LANG_MG01['save'])) {
     if ($action == 'edit_category') {
         $page = 'category.php';
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . $page);
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . $page);
 } elseif ($mode == $LANG_MG01['create'] && !empty($LANG_MG01['create'])) {
     $T->set_var(array(
         'admin_body' => MG_editCategory(0,'create'),

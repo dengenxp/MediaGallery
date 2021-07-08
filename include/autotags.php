@@ -257,7 +257,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             $sql = "SELECT ma.album_id "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -274,7 +274,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             $sql = "SELECT m.remote_url,ma.album_id "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -317,7 +317,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                         . "m.media_resolution_x,m.media_resolution_y,m.remote_media "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -620,7 +620,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             $sql = "SELECT ma.album_id,m.media_title,m.mime_type,m.media_tn_attached,m.media_filename,m.media_mime_ext "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -1187,7 +1187,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                         . "m.media_mime_ext,m.mime_type,m.media_tn_attached,m.remote_url "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return $content; // no image found
             $row = DB_fetchArray($result);
@@ -1327,7 +1327,7 @@ function MG_autotags($op, $content = '', $autotag = '')
 
                 } else {
 
-                    $linkAID = intval(DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($linkID) . '"'));
+                    $linkAID = intval(DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . DB_escapeString($linkID) . '"'));
                     if ($linkAID != 0) {
                         $url = $_MG_CONF['site_url'] . '/media.php?s=' . $linkID;
                         $hidden = DB_getItem($_TABLES['mg_albums'], 'hidden', "album_id=" . intval($linkAID));

@@ -40,6 +40,15 @@ function MG_showAdminMenu($sub_menu='')
     global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG01, $LANG_ADMIN;
 
     require_once $_CONF['path'] . 'system/lib-admin.php';
+	
+
+	if (COM_getLanguageId() == 'ja') {
+		//$readme_url = $_MG_CONF['admin_url'] . 'install_doc_ja.html';
+		$help_url = $_MG_CONF['site_url'] . '/docs/usage_ja.html';
+	} else {
+		//$readme_url = $_MG_CONF['admin_url'] . 'install_doc.html';
+		$help_url = $_MG_CONF['site_url'] . '/docs/usage.html';
+	}		
 
     $menu_arr = array(
         array('url'  => $_MG_CONF['admin_url'] . 'category.php',
@@ -53,6 +62,9 @@ function MG_showAdminMenu($sub_menu='')
 
         array('url'  => $_MG_CONF['admin_url'] . 'index.php?s=c',
               'text' => $LANG_MG01['miscellaneous']),
+			  
+        array('url'  => $help_url,
+              'text' => $LANG_MG01['help']),			  
 
         array('url'  => $_CONF['site_admin_url'],
               'text' => $LANG_ADMIN['admin_home']));

@@ -35,8 +35,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
@@ -70,7 +69,7 @@ if (!isset($_USER['uid'])) {
 }
 
 $s   = COM_applyFilter($_GET['s']);
-$aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($s) . '"');
+$aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . DB_escapeString($s) . '"');
 
 $album_data = MG_getAlbumData($aid, array('full_display'), true);
 
@@ -84,7 +83,7 @@ if ($album_data['full_display'] == 2 || $_MG_CONF['discard_original'] == 1 || ($
 }
 
 $sql = "SELECT media_filename, media_mime_ext, media_title "
-     . "FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($s) . "'";
+     . "FROM {$_TABLES['mg_media']} WHERE media_id='" . DB_escapeString($s) . "'";
 $result = DB_query($sql);
 $A = DB_fetchArray($result);
 if (empty($A)) exit;

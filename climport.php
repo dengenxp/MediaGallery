@@ -397,7 +397,7 @@ function _MG_getFile($filename, $file, $album_id, $caption = '', $description = 
     }
 
     if ($replace > 0) {
-        $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($replace) . "'";
+        $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . DB_escapeString($replace) . "'";
         $result = DB_query($sql);
         $row = DB_fetchArray($result);
         $media_filename = $row['media_filename'];
@@ -784,18 +784,18 @@ function _MG_getFile($filename, $file, $album_id, $caption = '', $description = 
 
         if ($replace > 0) {
             $sql = "UPDATE " . $tableMedia . " SET "
-                 . "media_filename='"          . addslashes($media_filename)      . "',"
+                 . "media_filename='"          . DB_escapeString($media_filename)      . "',"
                  . "media_original_filename='" . $original_filename               . "',"
-                 . "media_mime_ext='"          . addslashes($mimeExt)             . "',"
-                 . "mime_type='"               . addslashes($mimeType)            . "',"
-                 . "media_time='"              . addslashes($media_time)          . "',"
-                 . "media_user_id='"           . addslashes($media_user_id)       . "',"
-                 . "media_type='"              . addslashes($mediaType)           . "',"
-                 . "media_upload_time='"       . addslashes($media_upload_time)   . "',"
-                 . "media_watermarked='"       . addslashes($successfulWatermark) . "',"
+                 . "media_mime_ext='"          . DB_escapeString($mimeExt)             . "',"
+                 . "mime_type='"               . DB_escapeString($mimeType)            . "',"
+                 . "media_time='"              . DB_escapeString($media_time)          . "',"
+                 . "media_user_id='"           . DB_escapeString($media_user_id)       . "',"
+                 . "media_type='"              . DB_escapeString($mediaType)           . "',"
+                 . "media_upload_time='"       . DB_escapeString($media_upload_time)   . "',"
+                 . "media_watermarked='"       . DB_escapeString($successfulWatermark) . "',"
                  . "media_resolution_x='"      . intval($resolution_x)            . "',"
                  . "media_resolution_y='"      . intval($resolution_y)            . "' "
-                 . "WHERE media_id='"          . addslashes($replace)             . "'";
+                 . "WHERE media_id='"          . DB_escapeString($replace)             . "'";
             DB_query($sql);
         } else {
             $sql = "INSERT INTO " . $tableMedia
@@ -806,26 +806,26 @@ function _MG_getFile($filename, $file, $album_id, $caption = '', $description = 
                  . "media_type,media_upload_time,media_category,media_watermarked,v100,"
                  . "maint,media_resolution_x,media_resolution_y,remote_media,remote_url,"
                  . "artist,album,genre) "
-                 . "VALUES ('" . addslashes($new_media_id)        . "','"
-                               . addslashes($media_filename)      . "','"
+                 . "VALUES ('" . DB_escapeString($new_media_id)        . "','"
+                               . DB_escapeString($media_filename)      . "','"
                                . $original_filename               . "','"
-                               . addslashes($mimeExt)             . "','1','"
-                               . addslashes($mimeType)            . "','"
-                               . addslashes($media_caption)       . "','"
-                               . addslashes($media_desc)          . "','"
-                               . addslashes($media_keywords)      . "','"
-                               . addslashes($media_time)          . "','0','0','0','0.00','"
-                               . addslashes($atttn)               . "','','1','"
-                               . addslashes($media_user_id)       . "','','0','"
-                               . addslashes($mediaType)           . "','"
-                               . addslashes($media_upload_time)   . "','"
-                               . addslashes($category)            . "','"
-                               . addslashes($successfulWatermark) . "','0','0',"
+                               . DB_escapeString($mimeExt)             . "','1','"
+                               . DB_escapeString($mimeType)            . "','"
+                               . DB_escapeString($media_caption)       . "','"
+                               . DB_escapeString($media_desc)          . "','"
+                               . DB_escapeString($media_keywords)      . "','"
+                               . DB_escapeString($media_time)          . "','0','0','0','0.00','"
+                               . DB_escapeString($atttn)               . "','','1','"
+                               . DB_escapeString($media_user_id)       . "','','0','"
+                               . DB_escapeString($mediaType)           . "','"
+                               . DB_escapeString($media_upload_time)   . "','"
+                               . DB_escapeString($category)            . "','"
+                               . DB_escapeString($successfulWatermark) . "','0','0',"
                                . intval($resolution_x)            . ","
                                . intval($resolution_y)            . ",0,'','"
-                               . addslashes($artist)              . "','"
-                               . addslashes($musicAlbum)          . "','"
-                               . addslashes($genre)               . "');";
+                               . DB_escapeString($artist)              . "','"
+                               . DB_escapeString($musicAlbum)          . "','"
+                               . DB_escapeString($genre)               . "');";
             DB_query($sql);
 
             $x = 0;
@@ -840,7 +840,7 @@ function _MG_getFile($filename, $file, $album_id, $caption = '', $description = 
             $sql = "INSERT INTO " . $tableMediaAlbum
                  . " (media_id, album_id, media_order) "
                  . "VALUES ('"
-                 . addslashes($new_media_id) . "', "
+                 . DB_escapeStrng($new_media_id) . "', "
                  . intval($album_id)         . ", "
                  . intval($media_seq)        . ")";
             DB_query($sql);

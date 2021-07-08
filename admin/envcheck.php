@@ -362,8 +362,7 @@ if (isset($_POST['mode'])) {
 }
 
 if ($mode == $LANG_MG01['continue']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 }
 
 $T = new Template($_MG_CONF['template_path']);

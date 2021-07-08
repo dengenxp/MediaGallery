@@ -68,8 +68,7 @@ function MG_batchDeleteSession()
         }
     }
 
-    echo COM_refresh($_MG_CONF['admin_url'] . 'sessions.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'sessions.php');
 }
 
 function MG_displaySessions()
@@ -156,8 +155,7 @@ $T->set_var(array(
 ));
 
 if ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } elseif ($mode == $LANG_MG01['delete'] && !empty ($LANG_MG01['delete'])) {
     MG_batchDeleteSession();
 } else {

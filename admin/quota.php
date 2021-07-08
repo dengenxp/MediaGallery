@@ -81,8 +81,7 @@ function MG_rebuildQuota()
     while ($row = DB_fetchArray($result)) {
         MG_updateQuotaUsage($row['album_id']);
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=16');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=16');
 }
 
 $mode = '';
@@ -104,8 +103,7 @@ $T->set_var(array(
 if ($mode == $LANG_MG01['save'] && !empty ($LANG_MG01['save'])) {
     MG_rebuildQuota();
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_quotaConfirm(),

@@ -25,7 +25,7 @@
 //================================================================================================
 //================================================================================================
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -73,7 +73,7 @@ function formatCanonData($type,$tag,$intel,$data,$exif,&$result) {
 		}
 
 	} else if($type=="USHORT" || $type=="SSHORT" || $type=="ULONG" || $type=="SLONG" || $type=="FLOAT" || $type=="DOUBLE") {
-
+		$result = array();
 		$data = bin2hex($data);
 		$result['RAWDATA'] = $data;
 
@@ -431,6 +431,3 @@ function parseCanon($block,&$result,$seek, $globalOffset) {
 		}
 	}
 }
-
-
-?>

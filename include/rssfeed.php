@@ -44,10 +44,8 @@ function MG_buildAlbumRSS($aid)
     global $_MG_CONF, $_CONF, $_TABLES;
 
     $feedpath = MG_getFeedPath();
-
     $fname = sprintf($_MG_CONF['rss_feed_name'] . "%06d.rss", $aid);
-//    $feedname = $_MG_CONF['path_html'] . "rss/" . $fname;
-    $feedname = $feedpath . '/' . $fname;
+    $feedname = $feedpath . $fname;
 
     $album_data = MG_getAlbumData($aid, array('enable_rss', 'album_title', 'album_desc',
                                               'tn_attached', 'podcast', 'rsschildren', 'owner_id'));
@@ -63,7 +61,7 @@ function MG_buildAlbumRSS($aid)
     $rss->descriptionTruncSize = 500;
     $rss->descriptionHtmlSyndicated = true;
 
-    $rss->encoding = strtoupper ($_CONF['default_charset']);
+    $rss->encoding = strtoupper($_CONF['default_charset']);
 
     $imgurl = '';
 
@@ -132,8 +130,7 @@ function MG_buildAlbumRSS($aid)
     }
 
     $rss->link = $_MG_CONF['site_url'];
-//    $rss->syndicationURL = $_MG_CONF['site_url'] . '/rss/' . $fname;
-    $rss->syndicationURL = $feedpath . '/' . $fname;
+    $rss->syndicationURL = $feedpath . $fname;
 
     MG_processAlbumFeedItems($rss, $aid, $album_data);
     if ($album_data['rsschildren']) {
@@ -308,7 +305,7 @@ function MG_buildFullRSS()
     $rss->descriptionHtmlSyndicated = true;
     $rss->encoding = strtoupper ($_CONF['default_charset']);
     $rss->link = $_CONF['site_url'];
-    $rss->syndicationURL = $_CONF['site_url'] . $_SERVER["PHP_SELF"]; // ‚ ‚â‚µ‚¢B
+    $rss->syndicationURL = $_CONF['site_url'];
     MG_parseAlbumsRSS($rss, 0);
     // valid format strings are: RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated),
     // MBOX, OPML, ATOM, ATOM0.3, HTML, JS
@@ -321,4 +318,3 @@ function MG_buildFullRSS()
 function MG_buildNewRSS() {
 
 }
-?>

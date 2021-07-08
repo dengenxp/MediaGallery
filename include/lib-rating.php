@@ -46,7 +46,7 @@ function MG_getRatedMedia()
     static $ratedIds;
     if (isset($ratedIds)) return $ratedIds;
 
-    $ip = addslashes($_SERVER['REMOTE_ADDR']);
+    $ip = DB_escapeString($_SERVER['REMOTE_ADDR']);
     $uid = isset($_USER['uid']) ? $_USER['uid'] : 1;
     $ratedIds = array();
     $sql = "SELECT media_id FROM {$_TABLES['mg_rating']} WHERE "

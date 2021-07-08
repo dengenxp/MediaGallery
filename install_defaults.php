@@ -980,4 +980,3 @@ function mediagallery_update_ConfValues_1_7_0()
 
     return true;
 }
-?>

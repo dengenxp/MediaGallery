@@ -35,8 +35,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
@@ -70,7 +69,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 $sql = "SELECT media_votes, media_rating, media_user_id "
      . "FROM {$_TABLES['mg_media']} "
-     . "WHERE media_id='" . addslashes($id_sent) . "'";
+     . "WHERE media_id='" . DB_escapeString($id_sent) . "'";
 $result = DB_query($sql);
 if (DB_numRows($result) == 0) {
     rater_sendResponse(array('error' => true,
@@ -85,12 +84,12 @@ if (!isset($owner_id) || $owner_id == '') {
 
 if ($uid == 1) {
     $sql = "SELECT id FROM {$_TABLES['mg_rating']} "
-         . "WHERE ip_address='" . addslashes($ip) . "' "
-         . "AND media_id='" . addslashes($id_sent) . "'";
+         . "WHERE ip_address='" . DB_escapeString($ip) . "' "
+         . "AND media_id='" . DB_escapeString($id_sent) . "'";
 } else {
     $sql = "SELECT id FROM {$_TABLES['mg_rating']} "
-         . "WHERE (uid=" . intval($uid) . " OR ip_address='" . addslashes($ip) . "') "
-         . "AND media_id='" . addslashes($id_sent) . "'";
+         . "WHERE (uid=" . intval($uid) . " OR ip_address='" . DB_escapeString($ip) . "') "
+         . "AND media_id='" . DB_escapeString($id_sent) . "'";
 }
 $checkResult = DB_query($sql);
 $voted = (DB_numRows($checkResult) > 0) ? 1 : 0;
@@ -131,8 +130,8 @@ if ($ip != $ip_num) { // make sure IP matches // omit the check of IP address
         'server' => 'An error occured during the request'));
 }
 */
-DB_change($_TABLES['mg_media'], 'media_votes', $added, 'media_id', addslashes($id_sent));
-DB_change($_TABLES['mg_media'], 'media_rating', $new_rating, 'media_id', addslashes($id_sent));
+DB_change($_TABLES['mg_media'], 'media_votes', $added, 'media_id', DB_escapeString($id_sent));
+DB_change($_TABLES['mg_media'], 'media_rating', $new_rating, 'media_id', DB_escapeString($id_sent));
 $sql = "SELECT MAX(id) + 1 AS newid FROM " . $_TABLES['mg_rating'];
 $result = DB_query($sql);
 list($newid) = DB_fetchArray($result);
@@ -140,8 +139,8 @@ if ($newid < 1) {
     $newid = 1;
 }
 $sql = "INSERT INTO {$_TABLES['mg_rating']} (id, ip_address, uid, media_id, ratingdate, owner_id) "
-     . "VALUES (" . $newid . ", '" . addslashes($ip) . "', " . $uid . ", '"
-     . addslashes($id_sent) . "', " . time() . ", " . $owner_id . ")";
+     . "VALUES (" . $newid . ", '" . DB_escapeString($ip) . "', " . $uid . ", '"
+     . DB_escapeString($id_sent) . "', " . time() . ", " . $owner_id . ")";
 DB_query($sql);
 COM_updateSpeedlimit('mgrate');
 
@@ -149,5 +148,3 @@ rater_sendResponse(array('error' => false,
     'server' => '<strong>Thanks for your rate.</strong><br' . XHTML . '/>'
               . '<strong>Rate received : ' . $vote_sent . '</strong>'));
 exit;
-
-?>

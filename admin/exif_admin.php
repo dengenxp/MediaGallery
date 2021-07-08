@@ -116,8 +116,7 @@ function MG_adminEXIFsave()
     for ($i=0; $i < $numItems; $i++) {
         DB_change($_TABLES['mg_exif_tags'], 'selected', 1, 'name', $exif[$i]['sel']);
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=3');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=3');
 }
 
 $T = new Template($_MG_CONF['template_path']);
@@ -145,10 +144,10 @@ if (!isset($_POST['mode'])) {
             MG_adminEXIFsave();
             break;
         case $LANG_MG01['cancel'] :
-            echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
+            COM_redirect($_MG_CONF['admin_url'] . 'index.php');
             break;
         default :
-            echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=3');
+            COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=3');
             break;
     }
 }
