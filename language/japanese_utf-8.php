@@ -1600,7 +1600,7 @@ $LANG_configselects['mediagallery'] = array(
     20 => array($LANG_MG01['always'] => 0, $LANG_MG01['members_only'] => 1, $LANG_MG01['disabled'] => 2),
     21 => array($LANG_MG01['size_500x375'] => 0, $LANG_MG01['size_600x450'] => 1, $LANG_MG01['size_620x465'] => 2, $LANG_MG01['size_720x540'] => 3, 
                 $LANG_MG01['size_800x600'] => 4, $LANG_MG01['size_912x684'] => 5, $LANG_MG01['size_1024x768'] => 6, $LANG_MG01['size_1152x864'] => 7,
-                $LANG_MG01['size_1280x1024'] => 8, ($LANG_MG01['custom'] . ' - ' . $_MG_CONF['custom_image_width'] . 'x' . $_MG_CONF['custom_image_height']) => 9),
+                $LANG_MG01['size_1280x1024'] => 8, ($LANG_MG01['size_custom'] . ' - ' . $_MG_CONF['custom_image_width'] . 'x' . $_MG_CONF['custom_image_height']) => 9),
     22 => array('10%' => 10, '20%' => 20, '30%' => 30, '40%' => 40, '50%' => 50, '60%' => 60, '70%' => 70, '80%' => 80, '90%' => 90),
     23 => array($LANG_MG01['top_left'] => 1, $LANG_MG01['top_center'] => 2, $LANG_MG01['top_right'] => 3, $LANG_MG01['middle_left'] => 4, $LANG_MG01['middle_center'] => 5,
                 $LANG_MG01['middle_right'] => 6, $LANG_MG01['bottom_left'] => 7, $LANG_MG01['bottom_center'] => 8, $LANG_MG01['bottom_right'] => 9),

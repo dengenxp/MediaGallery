@@ -38,23 +38,13 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
-/**
-* Include language file
-*/
-$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
-$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
-if (file_exists($langfile)) {
-    require_once $langfile;
-} else {
-    require_once $plugin_path . 'language/english.php';
-}
-
-//global $_MG_CONF;
 global $_TABLES, $_DB_table_prefix; // Needs to be set for when plugin enabled (if plugin already disabled)
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.2.3';
+$_MG_CONF['pi_version'] = '1.7.2.4';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
+$_MG_CONF['custom_image_width'] = 0;
+$_MG_CONF['custom_image_height'] = 0;
 
 /**
 * Add to $_TABLES array the tables mediagallery plugin uses
@@ -377,6 +367,19 @@ if ($_MG_CONF['usage_tracking']) {
 }
 
 $_MG_CONF['verbose'] = false;
+
+/**
+* Include language file
+*/
+// Have to include language files after $_MG_CONF is retrieved as some of these values are included in language files
+$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
+$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
+if (file_exists($langfile)) {
+    require_once $langfile;
+} else {
+    require_once $plugin_path . 'language/english.php';
+}
+
 
 /**
 * Check to see if this Plugin uses comments
@@ -1343,11 +1346,7 @@ function MG_clean_directories($path, $needle = '')
 function plugin_upgrade_mediagallery()
 {
     global $_CONF, $_TABLES, $_MG_CONF;
-/*
-    require_once $_CONF['path'].'plugins/mediagallery/upgrade.php';
 
-    return mediagallery_upgrade();
-*/
     require_once $_CONF['path'].'plugins/mediagallery/autoinstall.php';
 
     return MG_upgrade();

@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------
 - Media Gallery Plugin for Geeklog
-- version: 1.7.2.3
+- version: 1.7.2.4
 - author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
 - date:    2020-06-08
 - license: GPLv2
@@ -165,6 +165,30 @@ Version1.6.16について
 Version1.6.17について
 ---------------------
 * Geeklog2.1.0で正しく動作しない問題を修正しました。
+
+Change Log for Version 1.7.2.2
+------------------------
+* Misc fixes to be compatible with PHP v7.0+
+* Replaced SWFUpload with normal upload
+* Misc bug fixes on the Admin page
+* Refactored some code to work with the latest Geeklog API found in Geeklog 2.2.1sr1
+* Latest Geeklog Comment API is supported
+* Added New Media Comments to What's New Block
+* Fixed Media Comments when displayed on more than one page
+* Added Help menu item to Media Gallery Admin page for easy access
+
+Change Log for Version 1.7.2.3
+------------------------
+* Fixed Media tab in Media Gallery plugin to work with themes that use UIKit
+* Fixed remote upload of media issue
+* Now works with XML Sitemap Plugin (fixed issue with plugin_getiteminfo_mediagallery and keys)
+* Added support for XML Sitemap Plugin v2.0.3 that should eventually ship with Geeklog v2.2.2
+* Updated support for Nikon cameras
+* Other minor misc fixes
+
+Change Log for Version 1.7.2.4
+------------------------
+* Misc PHP 7.4+ support fixes
 
 注意
 ----
