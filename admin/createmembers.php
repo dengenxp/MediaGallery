@@ -81,7 +81,7 @@ function MG_selectUsers($page)
          . "ORDER BY gl.username ASC LIMIT $start,$end";
     $result = DB_query($sql);
     while ($row = DB_fetchArray($result)) {
-        if ($glversion[1] < 4) {
+        if (isset($glversion[1]) && ($glversion[1] < 4)) {
             $row['status'] = 3;
         }
         $uid = $row['uid'];

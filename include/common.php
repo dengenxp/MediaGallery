@@ -286,7 +286,7 @@ function MG_getUserDateTimeFormat($date = '')
 
     // Format the date
     $date = strftime($dateformat, $stamp);
-    if ($_SYSTEM['swedish_date_hack'] == true && function_exists('iconv')) {
+    if (isset($_SYSTEM['swedish_date_hack']) && ($_SYSTEM['swedish_date_hack'] == true) && function_exists('iconv')) {
         $date = iconv('ISO-8859-1', 'UTF-8', $date);
     }
 

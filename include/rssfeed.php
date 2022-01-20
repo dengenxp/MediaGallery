@@ -50,7 +50,8 @@ function MG_buildAlbumRSS($aid)
     $album_data = MG_getAlbumData($aid, array('enable_rss', 'album_title', 'album_desc',
                                               'tn_attached', 'podcast', 'rsschildren', 'owner_id'));
 
-    if ($album_data['enable_rss'] != 1) {
+    clearstatcache();
+    if (($album_data['enable_rss'] != 1) && file_exists($feedname)) {
         @unlink($feedname);
         return;
     }

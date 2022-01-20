@@ -60,7 +60,7 @@ function MG_invalidRequest()
     exit;
 }
 
-function MG_navbar($selected='', $album_id)
+function MG_navbar($selected, $album_id)
 {
     global $_CONF, $_MG_CONF, $LANG_MG01, $LANG_MG03;
 

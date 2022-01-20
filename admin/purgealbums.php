@@ -57,7 +57,7 @@ function MG_selectAlbums()
 
     // start by building an array of all site users (active)
 
-    if ($glversion[1] < 4) {
+    if (isset($glversion[1]) && ($glversion[1] < 4)) {
         $result = DB_query("SELECT * FROM {$_TABLES['users']} AS users LEFT JOIN {$_TABLES['userinfo']} AS userinfo ON users.uid=userinfo.uid");
     } else {
         $result = DB_query("SELECT * FROM {$_TABLES['users']} AS users LEFT JOIN {$_TABLES['userinfo']} AS userinfo ON users.uid=userinfo.uid WHERE users.status=3");

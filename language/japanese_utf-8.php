@@ -66,7 +66,7 @@ $LANG_MG00 = array (
 // administration items....
 
 $LANG_MG01 = array (
-	'help'                      => '助けて',
+	'help'                      => 'ヘルプ',
     'save'                      => '保存/実行',
     'yes'                       => 'はい',
     'no'                        => 'いいえ',
@@ -498,7 +498,7 @@ $LANG_MG01 = array (
     'size_1024x768'             => '1024x768',
     'size_1152x864'             => '1152x864',
     'size_1280x1024'            => '1280x1024',
-    'size_custom'               => 'カスタム - ',
+    'size_custom'               => 'カスタム ',
     'characters'                => 'バイト',
     'zero_unlimited'            => '0 = 無制限',
     'user_quota'                => 'あなたの利用できる容量は %d Kb です。あなたの現在利用している容量は %d Kb で、あと %d Kb 利用できます。<br' . XHTML . '><br' . XHTML . '>',
