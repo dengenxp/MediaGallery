@@ -1,11 +1,11 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
-//  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-//          also https://github.com/JamesHeinrich/getID3       //
-/////////////////////////////////////////////////////////////////
-// See readme.txt for more details                             //
+//  available at https://github.com/JamesHeinrich/getID3       //
+//            or https://www.getid3.org                        //
+//            or http://getid3.sourceforge.net                 //
+//  see readme.txt for more details                            //
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // module.audio.au.php                                         //
@@ -14,10 +14,15 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
+if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
+	exit;
+}
 
 class getid3_au extends getid3_handler
 {
-
+	/**
+	 * @return bool
+	 */
 	public function Analyze() {
 		$info = &$this->getid3->info;
 
@@ -70,6 +75,11 @@ class getid3_au extends getid3_handler
 		return true;
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return string|false
+	 */
 	public function AUdataFormatNameLookup($id) {
 		static $AUdataFormatNameLookup = array(
 			0  => 'unspecified format',
@@ -104,6 +114,11 @@ class getid3_au extends getid3_handler
 		return (isset($AUdataFormatNameLookup[$id]) ? $AUdataFormatNameLookup[$id] : false);
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return int|false
+	 */
 	public function AUdataFormatBitsPerSampleLookup($id) {
 		static $AUdataFormatBitsPerSampleLookup = array(
 			1  => 8,
@@ -132,6 +147,11 @@ class getid3_au extends getid3_handler
 		return (isset($AUdataFormatBitsPerSampleLookup[$id]) ? $AUdataFormatBitsPerSampleLookup[$id] : false);
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return int|false
+	 */
 	public function AUdataFormatUsedBitsPerSampleLookup($id) {
 		static $AUdataFormatUsedBitsPerSampleLookup = array(
 			1  => 8,
