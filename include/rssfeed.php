@@ -186,7 +186,12 @@ function MG_processAlbumFeedItems(&$rss, $aid, &$album_data)
             $item->podcast->enclosure_type = $row['mime_type'];
         }
 
-        $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $row['media_time']);
+        if (is_callable('COM_strftime')) {
+	        $item->date = COM_strftime("%a, %d %b %Y %H:%M:%S %z", $row['media_time']);
+		} else {
+    	    $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $row['media_time']);
+		}
+
         $item->source = $_CONF['site_url'];
         if ($row['artist'] != '') {
             $item->author = $row['artist'];
@@ -272,7 +277,12 @@ function MG_parseAlbumsRSS(&$rss, $aid)
                 $item->descriptionTruncSize = 500;
                 $item->descriptionHtmlSyndicated = true;
 
-                $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $album_data['last_update']);
+                if (is_callable('COM_strftime')) {
+                    $item->date = COM_strftime("%a, %d %b %Y %H:%M:%S %z", $album_data['last_update']);
+                } else {
+                    $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $album_data['last_update']);
+                }
+
                 $item->source = $_CONF['site_url'];
                 if ($album_data['owner_id'] != '') {
                     $username = DB_getItem($_TABLES['users'], 'username', "uid={$album_data['owner_id']}");

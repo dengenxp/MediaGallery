@@ -242,7 +242,12 @@ function postProcessValue($property, $value)
                     $time -= $offset;
                 }
             }
-            $value = strftime('%x %X', $time);
+
+            if (is_callable('COM_strftime')) {
+                $value = COM_strftime('%x %X', $time);
+            } else {
+                $value = strftime('%x %X', $time);
+            }
         }
         break;
     }
