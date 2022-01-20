@@ -292,8 +292,8 @@ function MG_saveStaticSortMedia($album_id, $actionURL='')
     // -- get the sort options
     //
 
-    $sortby = COM_applyFilter($_POST['sortyby'], true);
-    $sorder = COM_applyFilter($_POST['sortorder'], true);
+    $sortby = (int) Geeklog\Input::fPost('sortyby', 0);
+    $sorder = (int) Geeklog\Input::fPost('sortorder', 0);
 
     switch ($sortby) {
         case '0' :  // media_time

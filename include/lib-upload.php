@@ -269,8 +269,15 @@ function MG_convertImage($srcImage, $imageThumb, $imageDisplay, $mimeExt, $mimeT
         return array(false, $msg);
     }
 
-    @chmod($imageThumb, 0644);
-    @chmod($imageDisplay, 0644);
+    clearstatcache();
+    if (file_exists($imageThumb)) {
+        @chmod($imageThumb, 0644);
+    }
+
+    if (file_exists($imageDisplay)) {
+        @chmod($imageDisplay, 0644);
+    }
+
     return array(true, '');
 }
 

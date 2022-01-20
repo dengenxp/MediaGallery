@@ -182,7 +182,7 @@ function MG_watermarkSave($actionURL = '')
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $numItems = count($_POST['wid']);
+    $numItems = empty($_POST['wid']) ? 0 : count($_POST['wid']);
 
     for ($i=0; $i < $numItems; $i++) {
         $media[$i]['wid'] = COM_applyFilter($_POST['wid'][$i]);

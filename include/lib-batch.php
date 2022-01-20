@@ -251,7 +251,7 @@ function MG_continueSession($session_id, $item_limit, $refresh_rate)
         'TOTAL_ITEMS'          => $session_items_processing,
         'ITEMS_PROCESSED'      => $session_items_processed,
         'ITEMS_REMAINING'      => $session_items_processing - $session_items_processed,
-        'ITEM_RATE'            => sprintf($LANG_MG01['seconds_per_item'],round(@($last_cycle_time / $num_rows))),
+        'ITEM_RATE'            => sprintf($LANG_MG01['seconds_per_item'],round(($last_cycle_time / max($num_rows, 1)))),
         'PROCESSING_MESSAGES'  => $processing_messages,
         'SESSION_PERCENT'      => round($session_percent, 2) . ' %',
         'POST_LIMIT'           => $num_rows,

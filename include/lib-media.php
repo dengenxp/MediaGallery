@@ -801,9 +801,9 @@ function MG_displayJPG($I, $opt=array())
     global $_CONF, $_MG_CONF, $_USER;
 
     $full      = !empty($opt['full']) ? $opt['full'] : 0;
-    $media_id  = $opt['media_id'];
-    $sortOrder = $opt['sortOrder'];
-    $spage     = $opt['spage'];
+    $media_id  = isset($opt['media_id']) ? $opt['media_id'] : -1;
+    $sortOrder = isset($opt['sortOrder']) ? $opt['sortOrder'] : 0;
+    $spage     = isset($opt['spage']) ? $opt['spage'] : 0;
 
     $media_size_disp = false;
     if ($full == 1) {
