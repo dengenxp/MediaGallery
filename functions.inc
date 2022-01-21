@@ -293,7 +293,12 @@ $_MG_CONF['up_mp3_player_enabled'] = 0;
 
 if ($_MG_CONF['installed_version']) {
     $_MG_CONF['dfid'] = '19';
-    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	if (COM_versionCompare(VSERSION, '2.2.2', '>=') {
+        $_MG_CONF['dateformat'] = Locale::dateFormatIdToString($_MG_CONF['dfid']);
+	} else {
+        $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	}
+
     // safety checks....
     if ($_MG_CONF['album_display_columns'] < 1) {
         $_MG_CONF['album_display_columns'] = 1;
@@ -304,7 +309,11 @@ if ($_MG_CONF['installed_version']) {
 }
 */
 if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
-    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        $_MG_CONF['dateformat'] = \Geeklog\Locale::dateFormatIdToString($_MG_CONF['dfid']);
+	} else {
+        $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	}
 }
 
 $_MG_CONF['path_to_imagemagick'] = '';
@@ -1771,7 +1780,11 @@ function plugin_getconfigtooltip_mediagallery($id)
 
 function plugin_configmanager_select_dfid_mediagallery()
 {
-    global $_TABLES, $LANG_MG00, $LANG_dateformats;
+    global $_TABLES, $LANG_MG00, $LANG_dateformats, $_LOCALES;
+
+	if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        return array_flip($_LOCALE->getDateFormatOptions($A['dfid'], true));
+	}
 
     $retval = array();
     $retval[$LANG_MG00['no_date']] = 99;
