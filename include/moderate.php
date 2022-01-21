@@ -88,8 +88,8 @@ function MG_approveSubmission($media_id)
             $to   = array();
             $from = array();
             $to   = COM_formatEmailAddress($username, $email);
-            $from = COM_formatEmailAddress($_CONF['site_name'], $_CONF['site_mail']);
-            if (!COM_mail($to, $subject, $body, $from, true)) {
+
+            if (!COM_mail($to, $subject, $body, '', true)) {
                 COM_errorLog("Media Gallery Error - Unable to send queue notification email");
             }
             COM_updateSpeedlimit('mgapprove');
