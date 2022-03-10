@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------
 - Media Gallery Plugin for Geeklog 
-- version: 1.7.2.4
+- version: 1.7.2.5
 - author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
-- date:    2020-06-08
+- date:    2022-03-10
 - license: GPLv2
 -----------------------------------------------------------------------
 
@@ -185,6 +185,10 @@ Change Log for Version 1.7.2.3
 Change Log for Version 1.7.2.4
 ------------------------
 * Misc PHP 7.4+ support fixes
+
+Change Log for Version 1.7.2.5
+------------------------
+* Now works with Geeklog 2.2.2 and PHP 8.1
 
 Caution
 -------
