@@ -379,7 +379,9 @@ function MG_saveMedia($album_id, $actionURL = '')
         $result = DB_query($sql);
         $nrows = DB_numRows($result);
         if ($nrows > 0) {
+            $coverFilename = '';
             $row = DB_fetchArray($result);
+
             switch ($row['media_type']) {
                 case 0 :  // image
                     if ($row['media_tn_attached'] == 1) {
@@ -396,7 +398,7 @@ function MG_saveMedia($album_id, $actionURL = '')
                     }
             }
         }
-        if ($coverFilename != '') {
+        if (!empty($coverFilename)) {
             DB_change($_TABLES['mg_albums'], 'album_cover', DB_escapeString($cover), 'album_id', intval($album_id));
             DB_change($_TABLES['mg_albums'], 'album_cover_filename', $coverFilename, 'album_id', intval($album_id));
         }

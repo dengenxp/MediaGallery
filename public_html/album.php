@@ -187,7 +187,7 @@ function MG_buildSortbox($album_id, $sortOrder, $page)
 */
 
 $album_id  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'],  true) : 0;
-$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 0;
+$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 1;
 $sortOrder = isset($_GET['sort']) ? COM_applyFilter($_GET['sort'], true) : 0;
 $media_id  = isset($_GET['s'])    ? COM_applyFilter($_GET['s'])          : '';
 

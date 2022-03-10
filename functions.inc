@@ -1780,11 +1780,11 @@ function plugin_getconfigtooltip_mediagallery($id)
 
 function plugin_configmanager_select_dfid_mediagallery()
 {
-    global $_TABLES, $LANG_MG00, $LANG_dateformats, $_LOCALES;
+    global $_TABLES, $LANG_MG00, $LANG_dateformats, $_LOCALE;
 
-	if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
-        return array_flip($_LOCALE->getDateFormatOptions($A['dfid'], true));
-	}
+    if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        return array_flip($_LOCALE->getDateFormatOptions(0, true));
+    }
 
     $retval = array();
     $retval[$LANG_MG00['no_date']] = 99;

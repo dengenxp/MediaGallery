@@ -1053,7 +1053,11 @@ function MG_albumThumbnail($album_id)
         $lang_updated = ($_MG_CONF['dfid']=='99' ? '' : $LANG_MG03['updated_prompt']);
 
         if (isset($_USER['uid']) && $_USER['uid'] > 1) {
-            $lastlogin = DB_getItem($_TABLES['userinfo'], 'lastlogin', "uid = '" . $_USER['uid'] . "'");
+            if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+                $lastlogin = DB_getItem($_TABLES['user_attributes'], 'lastlogin', "uid = '" . $_USER['uid'] . "'");
+            } else {
+                $lastlogin = DB_getItem($_TABLES['userinfo'], 'lastlogin', "uid = '" . $_USER['uid'] . "'");
+            }
             if ($album_data['last_update'] > $lastlogin) {
                 $album_last_update[0] = '<span class="mgUpdated">' . $album_last_update[0] . '</span>';
             }

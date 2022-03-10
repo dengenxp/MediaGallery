@@ -57,11 +57,20 @@ function MG_selectAlbums()
 
     // start by building an array of all site users (active)
 
-    if (isset($glversion[1]) && ($glversion[1] < 4)) {
-        $result = DB_query("SELECT * FROM {$_TABLES['users']} AS users LEFT JOIN {$_TABLES['userinfo']} AS userinfo ON users.uid=userinfo.uid");
+    if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        $result = DB_query(
+            "SELECT u.uid, ua.lastlogin, u.username, u.fullname FROM $_TABLES['users'] AS u "
+            . "LEFT JOIN $_TABLES['user_attributes] AS ua "
+            . "ON u.uid = ua.uid"
+        );
     } else {
-        $result = DB_query("SELECT * FROM {$_TABLES['users']} AS users LEFT JOIN {$_TABLES['userinfo']} AS userinfo ON users.uid=userinfo.uid WHERE users.status=3");
+        if (isset($glversion[1]) && ($glversion[1] < 4)) {
+            $result = DB_query("SELECT * FROM {$_TABLES['users']} AS users LEFT JOIN {$_TABLES['userinfo']} AS userinfo ON users.uid=userinfo.uid");
+        } else {
+            $result = DB_query("SELECT * FROM {$_TABLES['users']} AS users LEFT JOIN {$_TABLES['userinfo']} AS userinfo ON users.uid=userinfo.uid WHERE users.status=3");
+        }
     }
+
     while ($U = DB_fetchArray($result)) {
         $siteUsers[$U['uid']]['lastlogin'] = $U['lastlogin'];
         $siteUsers[$U['uid']]['username']  = $U['username'];
