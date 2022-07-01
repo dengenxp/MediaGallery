@@ -520,7 +520,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
         return array(false, $LANG_MG00['access_denied_msg']);
     }
 
-    sleep(0.1);                       // We do this to make sure we don't get dupe sid's
+    usleep(100000);                       // We do this to make sure we don't get dupe sid's
 
     /*
      * The following section of code will generate a unique name for a temporary

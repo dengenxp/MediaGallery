@@ -69,7 +69,7 @@ $_TABLES['mg_rating']           = $_DB_table_prefix . 'mg_rating';
 //$_TABLES['mg_mediasubmission']  = $_DB_table_prefix . 'mg_media_queue';
 
 $_TABLES['mg_old_mediaqueue']   = $_DB_table_prefix . 'mg_media_queue';
-$_TABLES['mg_config']           = $_DB_table_prefix . 'mg_config';
+//$_TABLES['mg_config']           = $_DB_table_prefix . 'mg_config';
 
 /**
  * Media Gallery Global Configuration Options
