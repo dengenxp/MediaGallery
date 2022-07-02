@@ -33,6 +33,7 @@
 // +--------------------------------------------------------------------------+
 
 require_once '../lib-common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
     COM_redirect($_CONF['site_url'] . '/index.php');
@@ -45,7 +46,6 @@ if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     exit;
 }
 
-require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/classAlbum.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
 
