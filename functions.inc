@@ -69,7 +69,7 @@ $_TABLES['mg_rating']           = $_DB_table_prefix . 'mg_rating';
 //$_TABLES['mg_mediasubmission']  = $_DB_table_prefix . 'mg_media_queue';
 
 $_TABLES['mg_old_mediaqueue']   = $_DB_table_prefix . 'mg_media_queue';
-//$_TABLES['mg_config']           = $_DB_table_prefix . 'mg_config';
+$_TABLES['mg_config']           = $_DB_table_prefix . 'mg_config';
 
 /**
  * Media Gallery Global Configuration Options
@@ -312,7 +312,9 @@ if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
 	if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
         $_MG_CONF['dateformat'] = \Geeklog\Locale::dateFormatIdToString($_MG_CONF['dfid']);
 	} else {
-        $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+        $_MG_CONF['dateformat'] = empty($_MG_CONF['dfid'])
+					? ''
+					: DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
 	}
 }
 
