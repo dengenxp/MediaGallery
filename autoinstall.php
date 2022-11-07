@@ -56,7 +56,7 @@ function plugin_autoinstall_mediagallery($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.7.2.5',
+        'pi_version'      => '1.7.3',
         'pi_gl_version'   => '2.0.0',
         'pi_homepage'     => 'https://github.com/Geeklog-Plugins/MediaGallery'
     );
@@ -249,7 +249,8 @@ function MG_upgrade()
         case "1.7.2.2" :
         case "1.7.2.3" :
         case "1.7.2.4" :
-            $current_version = "1.7.2.5";
+		case "1.7.2.5" :
+            $current_version = "1.7.3";
             break;
 
         default :

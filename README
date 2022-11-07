@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------
 - Media Gallery Plugin for Geeklog 
-- version: 1.7.2.5
+- version: 1.7.3
 - author:  Yoshinori Tahara - dengen <taharaxp AT gmail DOT com>
-- date:    2022-03-10
+- date:    2022-11-07
 - license: GPLv2
 -----------------------------------------------------------------------
 
@@ -51,6 +51,12 @@ public_html/mediagallery/mediaobjects/covers and the following directories
 public_html/mediagallery/mediaobjects/disp   and the following directories
 public_html/mediagallery/mediaobjects/orig   and the following directories
 public_html/mediagallery/mediaobjects/tn     and the following directories
+
+Change Log for Version 1.7.3
+------------------------
+* Fixed remote upload of media issue
+* Fixes for PHP 7 and 8.1
+* Fix for comments not taking into account user permissions on item
 
 Change Log for Version 1.6.10
 ------------------------

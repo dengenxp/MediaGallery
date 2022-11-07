@@ -40,7 +40,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
 
 global $_TABLES, $_DB_table_prefix; // Needs to be set for when plugin enabled (if plugin already disabled)
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.2.5';
+$_MG_CONF['pi_version'] = '1.7.3';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
 $_MG_CONF['custom_image_width'] = 0;
@@ -537,14 +537,15 @@ function plugin_getcommenturlid_mediagallery($id)
 function plugin_commentenabled_mediagallery($id, $uid = 0)
 {
     global $_CONF, $_TABLES;
-
+	
     // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
     $commentCode = COMMENT_CODE_DISABLED;
 	
+	// Albums have permissions, the actual media does not have individual permissions (it inherits the permissions from the album)
     $sql = "SELECT a.enable_comments, a.owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon "
          . "FROM {$_TABLES['mg_albums']} AS a "
          . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
-         . "WHERE ma.media_id = '$id'" . COM_getPermSQL('AND', $uid, 2, 'a') . COM_getPermSQL('AND', $uid, 2, 'ma');
+         . "WHERE ma.media_id = '$id'" . COM_getPermSQL('AND', $uid, 2, 'a');
     $result = DB_query($sql);	
     $A = DB_fetchArray($result);
     if (DB_numRows($result) == 1) {
