@@ -457,7 +457,7 @@ function MG_return_bytes($val)
 {
    $val  = trim($val);
    $last = strtolower(substr($val, -1));
-   $num = (int) substr($val, 1);
+   $num = (int) substr($val, 0, -1);
    
    switch($last) {
        // The 'G' modifier is available since PHP 5.1.0
