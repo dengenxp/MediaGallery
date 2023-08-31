@@ -342,7 +342,10 @@ class Media {
             case '13':
                 $postfix = '_cropcustom.';
         }
-
+		
+		// Fix for Issue #9 https://github.com/Geeklog-Plugins/mediagallery/issues/9
+		return $path . $postfix;
+		/*
         $p = pathinfo($path);
         $retval = $p['dirname'] . '/' . $p['filename'] . $postfix;
         if (isset($p['extension'])) {
@@ -350,6 +353,7 @@ class Media {
         }
 
         return $retval;
+		*/
     }
 
     static public function getFilePath($type, $filename, $ext = '', $atttn = 0)
