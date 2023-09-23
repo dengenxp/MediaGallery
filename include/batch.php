@@ -87,8 +87,7 @@ function MG_batchProcess($album_id, $media_id_array, $action, $actionURL = '')
             break;
 
     }
-    echo COM_refresh($actionURL  . '&t=' . time());
-    exit;
+    COM_redirect($actionURL  . '&t=' . time());
 }
 
 
@@ -101,8 +100,7 @@ function MG_albumResizeConfirm($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
     }
 
     if ($_MG_CONF['discard_original'] == 1) {
@@ -136,13 +134,11 @@ function MG_albumResizeDisplay($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     if ($_MG_CONF['discard_original'] == 1) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     require_once $_CONF['path'].'plugins/mediagallery/include/lib-upload.php';
@@ -201,8 +197,7 @@ function MG_albumRebuildConfirm($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/album.php?aid=' . $aid);
     }
 
     $title = sprintf($LANG_MG01['batch_rebuild_thumbs'], $album_data['album_title']);
@@ -232,8 +227,7 @@ function MG_albumRebuildThumbs($aid, $actionURL)
     $album_data = MG_getAlbumData($aid, array('album_title'), true);
 
     if ($album_data['access'] != 3) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-upload.php';
@@ -246,8 +240,7 @@ function MG_albumRebuildThumbs($aid, $actionURL)
     $result = DB_query($sql);
     $nRows = DB_numRows($result);
     if ($nRows <= 0) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     $session_description = sprintf($LANG_MG01['batch_rebuild_thumbs'], $album_data['album_title']);
@@ -339,8 +332,7 @@ function MG_batchDeleteMedia($album_id, $media_id_array, $actionURL = '')
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildFullRSS();
     MG_buildAlbumRSS($album_id);
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL = '')
@@ -364,8 +356,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
 
     // make sure they are not the same...
     if ($album_id == $destination) {
-        echo COM_refresh($actionURL);
-        exit;
+        COM_redirect($actionURL);
     }
 
     // check permissions...
@@ -407,7 +398,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
         $media_id = $media_id_array[$i];
         $sql = "UPDATE {$_TABLES['mg_media_albums']} "
              . "SET album_id=" . intval($destination) . ", media_order=" . intval($media_seq)
-             . " WHERE album_id=" . intval($album_id) . " AND media_id='" . addslashes($media_id) . "'";
+             . " WHERE album_id=" . intval($album_id) . " AND media_id='" . DB_escapeString($media_id) . "'";
         DB_query($sql);
         $media_seq += 10;
 
@@ -434,8 +425,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
     MG_buildAlbumRSS($album_id);
     MG_buildAlbumRSS($destination);
 
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 
@@ -568,8 +558,7 @@ function MG_deleteAlbum($album_id, $target_id, $actionURL='')
     MG_buildFullRSS();
     if ($target_id != 0) MG_buildAlbumRSS($target_id);
 
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 
@@ -606,7 +595,10 @@ function MG_deleteChildAlbums($album_id) {
 
     $feedname = sprintf($_MG_CONF['rss_feed_name'] . "%06d", $album_id);
     $feedpath = MG_getFeedPath();
-    @unlink($feedpath . '/' . $feedname . '.rss');
+    clearstatcache();
+    if (file_exists($feedpath . $feedname . '.rss')) {
+        @unlink($feedpath . $feedname . '.rss');
+    }
 }
 
 
@@ -625,25 +617,25 @@ function MG_batchCaptionSave($album_id, $actionURL)
     $total_media = count($media_id);
 
     $table = $_TABLES['mg_media'];
-    $id = DB_getItem($table, 'media_id', 'media_id="' . addslashes($media_id[0]) . '"');
+    $id = DB_getItem($table, 'media_id', 'media_id="' . DB_escapeString($media_id[0]) . '"');
     if (empty($id)) {
         $table = $_TABLES['mg_mediaqueue'];
     }
 
     for ($i=0; $i < $total_media; $i++) {
         if ($_MG_CONF['htmlallowed']) {
-            $title = addslashes(COM_checkWords(COM_stripslashes($media_title[$i])));
-            $desc  = addslashes(COM_checkWords(COM_stripslashes($media_desc[$i])));
+            $title = DB_escapeString(COM_checkWords(COM_stripslashes($media_title[$i])));
+            $desc  = DB_escapeString(COM_checkWords(COM_stripslashes($media_desc[$i])));
         } else {
-            $title = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_title[$i])))));
-            $desc  = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_desc[$i])))));
+            $title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_title[$i])))));
+            $desc  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($media_desc[$i])))));
         }
 
         $media_time = time();
         $sql = "UPDATE " . $table
             . " SET media_title='" . $title . "', media_time='" . $media_time
             . "', media_upload_time='" . $media_time  . "', media_desc='" . $desc
-            . "' WHERE media_id='" . addslashes(COM_applyFilter($media_id[$i])) . "'";
+            . "' WHERE media_id='" . DB_escapeString(COM_applyFilter($media_id[$i])) . "'";
 
         DB_query($sql);
         PLG_itemSaved($media_id[$i], 'mediagallery');
@@ -652,7 +644,5 @@ function MG_batchCaptionSave($album_id, $actionURL)
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildAlbumRSS($album_id);
 
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
-?>

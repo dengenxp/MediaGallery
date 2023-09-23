@@ -112,7 +112,7 @@ function MG_usageReport()
         }
 
         $sql = "SELECT * FROM {$_TABLES['mg_media']} "
-             . "WHERE media_id='" . addslashes($row['media_id']) . "'";
+             . "WHERE media_id='" . DB_escapeString($row['media_id']) . "'";
         $result2 = DB_query($sql);
         $A = DB_fetchArray($result2);
         $opt['media_id'] = $A['media_id'];
@@ -245,8 +245,7 @@ if ($mode == $LANG_MG01['submit'] && !empty ($LANG_MG01['submit'])) {
         'title'      => $LANG_MG01['usage_reports'],
     ));
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_usageReportMenu(),

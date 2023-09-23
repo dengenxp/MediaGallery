@@ -32,7 +32,7 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -139,15 +139,15 @@ function MG_saveGlobalAlbumPerm()
     global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00;
 
     if (!SEC_hasRights('mediagallery.admin')) {
-        COM_errorLog("Media Gallery user attempted to edit global album attributes without proper accss.");
+        COM_errorLog("Media Gallery user attempted to edit global album attributes without proper access.");
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $A['group_id']       = COM_applyFilter($_POST['group_id'],true);
-    $A['member_uploads'] = COM_applyFilter($_POST['member_upload'],true);
-    $A['moderate']       = COM_applyFilter($_POST['moderation'],true);
-    $A['mod_group_id']   = COM_applyFilter($_POST['mod_id'],true);
-    $A['email_mod']      = COM_applyFilter($_POST['email_mod'],true);
+    $A['group_id']       = COM_applyFilter($_POST['group_id'], true);
+    $A['member_uploads'] = isset($_POST['member_upload']) ? COM_applyFilter($_POST['member_upload'], true) : 0;
+    $A['moderate']       = isset($_POST['moderation']) ? COM_applyFilter($_POST['moderation'], true) : 0;
+    $A['mod_group_id']   = COM_applyFilter($_POST['mod_id'], true);
+    $A['email_mod']      = isset($_POST['email_mod']) ? COM_applyFilter($_POST['email_mod'], true) : 0;
     $adminMenu           = COM_applyFilter($_POST['admin_menu'],true);
 
     $perm_owner   = $_POST['perm_owner'];
@@ -160,12 +160,12 @@ function MG_saveGlobalAlbumPerm()
     list($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon'])
         = SEC_getPermissionValues($perm_owner,$perm_group,$perm_members,$perm_anon);
 
-    $group_active     = COM_applyFilter($_POST['group_active'],true);
-    $perm_active      = COM_applyFilter($_POST['perm_active'],true);
-    $upload_active    = COM_applyFilter($_POST['upload_active'],true);
-    $moderate_active  = COM_applyFilter($_POST['moderate_active'],true);
-    $mod_group_active = COM_applyFilter($_POST['mod_group_active'],true);
-    $email_mod_active = COM_applyFilter($_POST['email_mod_active'],true);
+    $group_active     = isset($_POST['group_active']) ? COM_applyFilter($_POST['group_active'], true) : 0;
+    $perm_active      = isset($_POST['perm_active']) ? COM_applyFilter($_POST['perm_active'], true) : 0;
+    $upload_active    = isset($_POST['upload_active']) ? COM_applyFilter($_POST['upload_active'], true) : 0;
+    $moderate_active  = isset($_POST['moderate_active']) ? COM_applyFilter($_POST['moderate_active'], true) : 0;
+    $mod_group_active = isset($_POST['mod_group_active']) ? COM_applyFilter($_POST['mod_group_active'], true) : 0;
+    $email_mod_active = isset($_POST['email_mod_active']) ? COM_applyFilter($_POST['email_mod_active'], true) : 0;
 
     $updateSQL = '';
     $updateSQL .= ($group_active     ? "group_id=$group_id" : '');
@@ -184,11 +184,10 @@ function MG_saveGlobalAlbumPerm()
     }
 
     if ($adminMenu == 1 ) {
-        echo COM_refresh($_MG_CONF['admin_url'] . '/index.php?msg=10');
+        COM_redirect($_MG_CONF['admin_url'] . '/index.php?msg=10');
     } else {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
-    exit;
 }
 
 
@@ -303,8 +302,8 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $max_image_width_input  = '<input type="text" size="4" name="max_image_width" value="0"' . XHTML . '>';
     $max_filesize_input     = '<input type="text" size="10" name="max_filesize" value="0"' . XHTML . '>';
 
-    $rows_input      = '<input type="text" size="3" name="display_rows" value="' . $_MG_CONF['display_rows'] . '"' . XHTML . '>';
-    $columns_input   = '<input type="text" size="3" name="display_columns" value="' . $_MG_CONF['display_columns'] . '"' . XHTML . '>';
+    $rows_input      = '<input type="text" size="3" name="display_rows" value="' . $_MG_CONF['album_display_rows'] . '"' . XHTML . '>';
+    $columns_input   = '<input type="text" size="3" name="display_columns" value="' . $_MG_CONF['album_display_columns'] . '"' . XHTML . '>';
 
     $playback_type  = '<select name="playback_type">';
     $playback_type .= '<option value="0">' . $LANG_MG01['play_in_popup'] . '</option>';
@@ -488,7 +487,7 @@ function MG_saveGlobalAlbumAttr()
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01;
 
     if (!SEC_hasRights('mediagallery.admin')) {
-        COM_errorLog("Media Gallery user attempted to edit global album attributes without proper accss.");
+        COM_errorLog("Media Gallery user attempted to edit global album attributes without proper access.");
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
@@ -648,11 +647,10 @@ function MG_saveGlobalAlbumAttr()
     }
 
     if ($admin_menu == 1) {
-        echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=11');
+        COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=11');
     } else {
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
-    exit;
 }
 
 function MG_GlobalrebuildAllAlbumsRSS($aid)
@@ -665,5 +663,3 @@ function MG_GlobalrebuildAllAlbumsRSS($aid)
         MG_GlobalrebuildAllAlbumsRSS($child);
     }
 }
-
-?>

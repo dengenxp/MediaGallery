@@ -692,7 +692,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
         'rsschildren_select'      => $rsschildren_select,
         'full_select'             => $full_select,
         'ss_select'               => $ss_select,
-        'sf_select'               => $sf_select,
+        'sf_select'               => isset($sf_select) ? $sf_select : 0,
         'views_select'            => $views_select,
         'keywords_select'         => $keywords_select,
         'album_views_select'      => $album_views_select,
@@ -1130,7 +1130,7 @@ function MG_saveAlbum($album_id)
 
     $wm_id = 0;
     if ($album->wm_id != 'blank.png') {
-        $wm_id = DB_getItem($_TABLES['mg_watermarks'], 'wm_id', 'filename="' . addslashes($album->wm_id) . '"');
+        $wm_id = DB_getItem($_TABLES['mg_watermarks'], 'wm_id', 'filename="' . DB_escapeString($album->wm_id) . '"');
     }
     if ($wm_id == '') $wm_id = 0;
 
@@ -1144,7 +1144,7 @@ function MG_saveAlbum($album_id)
     if (SEC_hasRights('mediagallery.admin')) {
         if ($album->featured) {
             // check for other featured albums, we can only have one
-            $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} WHERE featured=1 AND cbpage='" . addslashes($album->cbpage) . "'";
+            $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} WHERE featured=1 AND cbpage='" . DB_escapeString($album->cbpage) . "'";
             $result = DB_query($sql);
             while ($row = DB_fetchArray($result)) {
                 DB_change($_TABLES['mg_albums'], 'featured', 0, 'album_id', $row['album_id']);
@@ -1292,8 +1292,7 @@ function MG_saveAlbum($album_id)
     MG_buildAlbumRSS($album->id);
 
     $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $album->id;
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_staticSortAlbum($startaid, $sortfield, $sortorder, $process_subs)

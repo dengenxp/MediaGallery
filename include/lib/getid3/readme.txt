@@ -1,25 +1,37 @@
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
 //  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-/////////////////////////////////////////////////////////////////
-//                                                             //
-// changelog.txt - part of getID3()                            //
-// See readme.txt for more details                             //
-//                                                            ///
+//            or https://www.getid3.org                        //
+//          also https://github.com/JamesHeinrich/getID3       //
 /////////////////////////////////////////////////////////////////
 
-        This code is released under the GNU GPL:
-          http://www.gnu.org/copyleft/gpl.html
+*****************************************************************
+*****************************************************************
 
-     +---------------------------------------------+
-     | If you do use this code somewhere, send me  |
-     | an email and tell me how/where you used it. |
-     |                                             |
-     | If you want to donate, there is a link on   |
-     | http://www.getid3.org for PayPal donations. |
-     +---------------------------------------------+
+   getID3() is released under multiple licenses. You may choose
+   from the following licenses, and use getID3 according to the
+   terms of the license most suitable to your project.
 
+GNU GPL: https://gnu.org/licenses/gpl.html                   (v3)
+         https://gnu.org/licenses/old-licenses/gpl-2.0.html  (v2)
+         https://gnu.org/licenses/old-licenses/gpl-1.0.html  (v1)
+
+GNU LGPL: https://gnu.org/licenses/lgpl.html                 (v3)
+
+Mozilla MPL: https://www.mozilla.org/MPL/2.0/                (v2)
+
+getID3 Commercial License: https://www.getid3.org/#gCL (payment required)
+
+*****************************************************************
+*****************************************************************
+Copies of each of the above licenses are included in the 'licenses'
+directory of the getID3 distribution.
+
+
+       +----------------------------------------------+
+       | If you want to donate, there is a link on    |
+       | https://www.getid3.org for PayPal donations. |
+       +----------------------------------------------+
 
 
 Quick Start
@@ -27,6 +39,15 @@ Quick Start
 
 Q: How can I check that getID3() works on my server/files?
 A: Unzip getID3() to a directory, then access /demos/demo.browse.php
+
+
+
+Support
+===========================================================================
+
+Q: I have a question, or I found a bug. What do I do?
+A: The preferred method of support requests and/or bug reports is the
+   forum at http://support.getid3.org/
 
 
 
@@ -47,55 +68,68 @@ What does getID3() do?
 ===========================================================================
 
 Reads & parses (to varying degrees):
- ¤ tags:
+ Â¤ tags:
   * APE (v1 and v2)
   * ID3v1 (& ID3v1.1)
   * ID3v2 (v2.4, v2.3, v2.2)
   * Lyrics3 (v1 & v2)
 
- ¤ audio-lossy:
+ Â¤ audio-lossy:
   * MP3/MP2/MP1
   * MPC / Musepack
-  * Ogg (Vorbis, OggFLAC, Speex)
+  * Ogg (Vorbis, OggFLAC, Speex, Opus)
+  * AAC / MP4
+  * AC3
+  * DTS
   * RealAudio
   * Speex
+  * DSS
   * VQF
 
- ¤ audio-lossless:
+ Â¤ audio-lossless:
   * AIFF
   * AU
   * Bonk
   * CD-audio (*.cda)
   * FLAC
   * LA (Lossless Audio)
+  * LiteWave
   * LPAC
   * MIDI
   * Monkey's Audio
   * OptimFROG
   * RKAU
+  * Shorten
+  * TTA
   * VOC
   * WAV (RIFF)
   * WavPack
 
- ¤ audio-video:
+ Â¤ audio-video:
   * ASF: ASF, Windows Media Audio (WMA), Windows Media Video (WMV)
   * AVI (RIFF)
   * Flash
+  * Matroska (MKV)
   * MPEG-1 / MPEG-2
   * NSV (Nullsoft Streaming Video)
-  * Quicktime
+  * Quicktime (including MP4)
   * RealVideo
 
- ¤ still image:
+ Â¤ still image:
   * BMP
   * GIF
   * JPEG
   * PNG
+  * TIFF
+  * SWF (Flash)
+  * PhotoCD
 
- ¤ data:
+ Â¤ data:
   * ISO-9660 CD-ROM image (directory structure)
   * SZIP (limited support)
   * ZIP (directory structure)
+  * TAR
+  * CUE
 
 
 Writes:
@@ -111,9 +145,11 @@ Writes:
 Requirements
 ===========================================================================
 
-* PHP 4.2.0 (or higher) for getID3() 1.7.8 (and up).
-* PHP 5.0.0 (or higher) for getID3() 2.0.0 (and up).
-* at least 4MB memory for PHP. 8MB is highly recommended.
+* PHP 4.2.0 up to 5.2.x for getID3() 1.7.x  (and earlier)
+* PHP 5.0.5 (or higher) for getID3() 1.8.x  (and up)
+* PHP 5.3.0 (or higher) for getID3() 1.9.17 (and up)
+* PHP 5.3.0 (or higher) for getID3() 2.0.x  (and up)
+* at least 4MB memory for PHP. 8MB or more is highly recommended.
   12MB is required with all modules loaded.
 
 
@@ -142,24 +178,32 @@ like this:
 // Copy remote file locally to scan with getID3()
 $remotefilename = 'http://www.example.com/filename.mp3';
 if ($fp_remote = fopen($remotefilename, 'rb')) {
-    $localtempfilename = tempnam('/tmp', 'getID3');
-    if ($fp_local = fopen($localtempfilename, 'wb')) {
-        while ($buffer = fread($fp_remote, 8192)) {
-            fwrite($fp_local, $buffer);
-        }
-        fclose($fp_local);
+	$localtempfilename = tempnam('/tmp', 'getID3');
+	if ($fp_local = fopen($localtempfilename, 'wb')) {
+		while ($buffer = fread($fp_remote, 32768)) {
+			fwrite($fp_local, $buffer);
+		}
+		fclose($fp_local);
+
+		$remote_headers = array_change_key_case(get_headers($remotefilename, 1), CASE_LOWER);
+		$remote_filesize = (isset($remote_headers['content-length']) ? (is_array($remote_headers['content-length']) ? $remote_headers['content-length'][count($remote_headers['content-length']) - 1] : $remote_headers['content-length']) : null);
 
 		// Initialize getID3 engine
 		$getID3 = new getID3;
 
-		$ThisFileInfo = $getID3->analyze($filename);
+		$ThisFileInfo = $getID3->analyze($localtempfilename, $remote_filesize, basename($remotefilename));
 
-        // Delete temporary file
-        unlink($localtempfilename);
-    }
-    fclose($fp_remote);
+		// Delete temporary file
+		unlink($localtempfilename);
+	}
+	fclose($fp_remote);
 }
 
+Note: since v1.9.9-20150212 it is possible a second and third parameter
+to $getID3->analyze(), for original filesize and original filename
+respectively. This permits you to download only a portion of a large remote
+file but get accurate playtime estimates, assuming the format only requires
+the beginning of the file for correct format analysis.
 
 See /demos/demo.write.php for how to write tags.
 
@@ -182,7 +226,7 @@ the file itself.
 Notes
 ===========================================================================
 
-getID3() 1.7:
+getID3() 1.x:
 If the format parser encounters a critical problem, it will return
 something in $fileinfo['error'], describing the encountered error. If
 a less critical error or notice is generated it will appear in
@@ -196,7 +240,7 @@ other programs. Some warnings may indicate that the data that is
 returned is OK but that some data could not be extracted due to
 errors in the file.
 
-getID3() 2.0:
+getID3() 2.x:
 See above except errors are thrown (so you will only get one error).
 
 
@@ -247,13 +291,19 @@ A: You're generally free to use getID3 however you see fit. The only
 
 
 
-Future Plans
+Why is it called "getID3()" if it does so much more than just that?
 ===========================================================================
 
-* Writing support for Real
+v0.1 did in fact just do that. I don't have a copy of code that old, but I
+could essentially write it today with a one-line function:
+  function getID3($filename) { return unpack('a3TAG/a30title/a30artist/a30album/a4year/a28comment/c1track/c1genreid', substr(file_get_contents($filename), -128)); }
+
+
+Future Plans
+===========================================================================
+https://www.getid3.org/phpBB3/viewforum.php?f=7
+
 * Better support for MP4 container format
-* Support for Matroska (www.matroska.org)
-  http://corecodec.com/modules.php?op=modload&name=PNphpBB2&file=viewtopic&t=227
 * Scan for appended ID3v2 tag at end of file per ID3v2.4 specs (Section 5.0)
 * Support for JPEG-2000 (http://www.morgan-multimedia.com/jpeg2000_overview.htm)
 * Support for MOD (mod/stm/s3m/it/xm/mtm/ult/669)
@@ -269,7 +319,7 @@ Future Plans
   (http://web.inter.nl.net/users/hvdh/lossless/lossless.htm)
 * Support for RIFF-INFO chunks
   * http://lotto.st-andrews.ac.uk/~njh/tag_interchange.html
-    (thanks Nick Humfrey <njhØsurgeradio*co*uk>)
+    (thanks Nick Humfrey <njhÃ˜surgeradio*co*uk>)
   * http://abcavi.narod.ru/sof/abcavi/infotags.htm
     (thanks Kibi)
 * Better support for Bink video
@@ -284,23 +334,23 @@ Future Plans
 * Support for IFF
 * Support for ICO
 * Support for ANI
-* Support for EXE (comments, author, etc) (thanks p*quaedackersØplanet*nl)
+* Support for EXE (comments, author, etc) (thanks p*quaedackersÃ˜planet*nl)
 * Support for DVD-IFO (region, subtitles, aspect ratio, etc)
-  (thanks p*quaedackersØplanet*nl)
+  (thanks p*quaedackersÃ˜planet*nl)
 * More complete support for SWF - parsing encapsulated MP3 and/or JPEG content
-    (thanks n8n8Øyahoo*com)
+    (thanks n8n8Ã˜yahoo*com)
 * Support for a2b
 * Optional scan-through-frames for AVI verification
-  (thanks rockcohenØmassive-interactive*nl)
-* Support for TTF (thanks infoØbutterflyx*com)
-* Support for DSS (http://www.getid3.org/phpBB2/viewtopic.php?t=171)
+  (thanks rockcohenÃ˜massive-interactive*nl)
+* Support for TTF (thanks infoÃ˜butterflyx*com)
+* Support for DSS (https://www.getid3.org/phpBB3/viewtopic.php?t=171)
 * Support for SMAF (http://smaf-yamaha.com/what/demo.html)
-  http://www.getid3.org/phpBB2/viewtopic.php?t=182
-* Support for AMR (http://www.getid3.org/phpBB2/viewtopic.php?t=195)
-* Support for 3gpp (http://www.getid3.org/phpBB2/viewtopic.php?t=195)
-* Support for ID4 (http://www.wackysoft.cjb.net grizlyY2KØhotmail*com)
+  https://www.getid3.org/phpBB3/viewtopic.php?t=182
+* Support for AMR (https://www.getid3.org/phpBB3/viewtopic.php?t=195)
+* Support for 3gpp (https://www.getid3.org/phpBB3/viewtopic.php?t=195)
+* Support for ID4 (http://www.wackysoft.cjb.net grizlyY2KÃ˜hotmail*com)
 * Parse XML data returned in Ogg comments
-* Parse XML data from Quicktime SMIL metafiles (klausrathØmac*com)
+* Parse XML data from Quicktime SMIL metafiles (klausrathÃ˜mac*com)
 * ID3v2 genre string creator function
 * More complete parsing of JPG
 * Support for all old-style ASF packets
@@ -333,6 +383,7 @@ Future Plans
 
 Known Bugs/Issues in getID3() that may be fixed eventually
 ===========================================================================
+https://www.getid3.org/phpBB3/viewtopic.php?t=25
 
 * Cannot determine bitrate for MPEG video with VBR video data
   (need documentation)
@@ -358,13 +409,16 @@ Known Bugs/Issues in getID3() that may be fixed eventually
 
 Known Bugs/Issues in getID3() that cannot be fixed
 --------------------------------------------------
+https://www.getid3.org/phpBB3/viewtopic.php?t=25
 
-* Files larger than 2GB cannot always be parsed fully by getID3()
-  due to limitations in the PHP filesystem functions.
+* 32-bit PHP installations only:
+  Files larger than 2GB cannot always be parsed fully by getID3()
+  due to limitations in the 32-bit PHP filesystem functions.
   NOTE: Since v1.7.8b3 there is partial support for larger-than-
   2GB files, most of which will parse OK, as long as no critical
   data is located beyond the 2GB offset.
   Known will-work:
+  * all file formats on 64-bit PHP
   * ZIP  (format doesn't support files >2GB)
   * FLAC (current encoders don't support files >2GB)
   Known will-not-work:
@@ -380,12 +434,24 @@ Known Bugs/Issues in getID3() that cannot be fixed
     "movi" chunk that fits in the first 2GB, should issue error
     to show that playtime is incorrect. Other data should be mostly
     correct, assuming that data is constant throughout the file)
-
+* PHP <= v5 on Windows cannot read UTF-8 filenames
 
 
 Known Bugs/Issues in other programs
 -----------------------------------
+https://www.getid3.org/phpBB3/viewtopic.php?t=25
 
+* MusicBrainz Picard (at least up to v1.3.2) writes multiple
+  ID3v2.3 genres in non-standard forward-slash separated text
+  rather than parenthesis-numeric+refinement style per the ID3v2.3
+  specs. Tags written in ID3v2.4 mode are written correctly.
+  (detected and worked around by getID3())
+* PZ TagEditor v4.53.408 has been known to insert ID3v2.3 frames
+  into an existing ID3v2.2 tag which, of course, breaks things
+* Windows Media Player (up to v11) and iTunes (up to v10+) do
+    not correctly handle ID3v2.3 tags with UTF-16BE+BOM
+    encoding (they assume the data is UTF-16LE+BOM and either
+    crash (WMP) or output Asian character set (iTunes)
 * Winamp (up to v2.80 at least) does not support ID3v2.4 tags,
     only ID3v2.3
     see: http://forums.winamp.com/showthread.php?postid=387524
@@ -401,6 +467,11 @@ Known Bugs/Issues in other programs
     written just "value"  (detected by getID3())
 * Oggenc 0.9-rc3 flags the encoded file as ABR whether it's
     actually ABR or VBR.
+* iTunes (versions "v7.0.0.70" is known-guilty, probably
+    other versions are too) writes ID3v2.3 comment tags using an
+    ID3v2.2 frame name (3-bytes) null-padded to 4 bytes which is
+    not valid for ID3v2.3+
+    (detected by getID3() since 1.9.12-201603221746)
 * iTunes (versions "X v2.0.3", "v3.0.1" are known-guilty, probably
     other versions are too) writes ID3v2.3 comment tags using a
     frame name 'COM ' which is not valid for ID3v2.3+ (it's an
@@ -450,6 +521,9 @@ Known Bugs/Issues in other programs
 * iTunes has been known to append a new ID3v1 tag on the end of an
   existing ID3v1 tag when ID3v2 tag is also present
   (detected by getID3())
+* MediaMonkey may write a blank RGAD ID3v2 frame but put actual
+  replay gain adjustments in a series of user-defined TXXX frames
+  (detected and handled by getID3() since v1.9.2)
 
 
 
@@ -491,9 +565,9 @@ Reference material:
 * http://www.lossless-audio.com/
 * http://download.microsoft.com/download/winmediatech40/Doc/1.0/WIN98MeXP/EN-US/ASF_Specification_v.1.0.exe
 * http://mediaxw.sourceforge.net/files/doc/Active%20Streaming%20Format%20(ASF)%201.0%20Specification.pdf
-* http://www.uni-jena.de/~pfk/mpp/sv8/
+* http://www.uni-jena.de/~pfk/mpp/sv8/ (archived at http://www.hydrogenaudio.org/musepack/klemm/www.personal.uni-jena.de/~pfk/mpp/sv8/)
 * http://jfaul.de/atl/
-* http://www.uni-jena.de/~pfk/mpp/
+* http://www.uni-jena.de/~pfk/mpp/ (archived at http://www.hydrogenaudio.org/musepack/klemm/www.personal.uni-jena.de/~pfk/mpp/)
 * http://www.libpng.org/pub/png/spec/png-1.2-pdg.html
 * http://www.real.com/devzone/library/creating/rmsdk/doc/rmff.htm
 * http://www.fastgraph.com/help/bmp_os2_header_format.html
@@ -547,3 +621,8 @@ Reference material:
 * http://pda.etsi.org/pda/queryform.asp
 * http://cpansearch.perl.org/src/RGIBSON/Audio-DSS-0.02/lib/Audio/DSS.pm
 * http://trac.musepack.net/trac/wiki/SV8Specification
+* http://wyday.com/cuesharp/specification.php
+* http://www.sno.phy.queensu.ca/~phil/exiftool/TagNames/Nikon.html
+* http://www.codeproject.com/Articles/8295/MPEG-Audio-Frame-Header
+* http://dsd-guide.com/sites/default/files/white-papers/DSFFileFormatSpec_E.pdf
+* https://fileformats.fandom.com/wiki/Torrent_file

@@ -53,10 +53,10 @@ function MG_getUserPrefs()
 {
     global $_TABLES, $_USER;
 
-    static $prefs = '';
+    static $prefs = array();
 
     if (isset($_USER['uid'])) {
-        if ($prefs == '') {
+        if (empty($prefs)) {
             $result = DB_query("SELECT * FROM " . $_TABLES['mg_userprefs']
                              . " WHERE uid='" . intval($_USER['uid']) . "'");
             if (DB_numRows($result) == 1) {
@@ -250,12 +250,12 @@ function MG_updateUsage($application, $album_title, $media_title, $media_id)
 
     $log_time    = $now;
     $user_id     = intval($_USER['uid']);
-    $user_ip     = addslashes($REMOTE_ADDR);
-    $user_name   = addslashes($_USER['username']);
-    $application = addslashes($application);
-    $title       = addslashes($album_title);
-    $ititle      = addslashes($media_title);
-    $media_id    = addslashes($media_id);
+    $user_ip     = DB_escapeString($REMOTE_ADDR);
+    $user_name   = DB_escapeString($_USER['username']);
+    $application = DB_escapeString($application);
+    $title       = DB_escapeString($album_title);
+    $ititle      = DB_escapeString($media_title);
+    $media_id    = DB_escapeString($media_id);
 
     $sql = "INSERT INTO {$_TABLES['mg_usage_tracking']} "
          . "(time, user_id, user_ip, user_name, application, album_title, media_title, media_id) "
@@ -285,8 +285,13 @@ function MG_getUserDateTimeFormat($date = '')
     }
 
     // Format the date
-    $date = strftime($dateformat, $stamp);
-    if ($_SYSTEM['swedish_date_hack'] == true && function_exists('iconv')) {
+    if (is_callable('COM_strftime')) {
+        $date = COM_strftime($dateformat, $stamp);
+    } else {
+        $date = strftime($dateformat, $stamp);
+    }
+
+    if (isset($_SYSTEM['swedish_date_hack']) && ($_SYSTEM['swedish_date_hack'] == true) && function_exists('iconv')) {
         $date = iconv('ISO-8859-1', 'UTF-8', $date);
     }
 
@@ -413,20 +418,13 @@ function MG_getSize($size)
 /**
 * Get the path of the feed directory or a specific feed file
 *
-* @param    string  $feedfile   (option) feed file name
+* @param    string  $feedFile   (option) feed file name
 * @return   string              path of feed directory or file
 *
 */
-function MG_getFeedPath($feedfile = '')
+function MG_getFeedPath($feedFile = '')
 {
-    global $_CONF;
-
-    $feedpath = $_CONF['rdf_file'];
-    $pos = strrpos($feedpath, '/');
-    $feed = substr($feedpath, 0, $pos + 1);
-    $feed .= $feedfile;
-
-    return $feed;
+    return SYND_getFeedPath($feedFile);
 }
 
 /**
@@ -458,17 +456,29 @@ function MG_getFeedUrl($feedfile = '')
 function MG_return_bytes($val)
 {
    $val  = trim($val);
-   $last = strtolower($val{strlen($val) - 1});
+   $last = strtolower(substr($val, -1));
+   $num = (int) substr($val, 0, -1);
+   
    switch($last) {
        // The 'G' modifier is available since PHP 5.1.0
        case 'g':
-           $val *= 1024;
+           $retval = $num * 1024 * 1024 * 1024;
+           break;
+           
        case 'm':
-           $val *= 1024;
+           $retval = $num * 1024 * 1024;
+           break;
+           
        case 'k':
-           $val *= 1024;
+           $retval = $num * 1024;
+           break;
+           
+       default:
+           $retval = $num;
+           break;
    }
-   return $val;
+   
+   return $retval;
 }
 
 /**
@@ -513,7 +523,11 @@ function MG_getValidFileTypes($album_id)
 
     if ($album_id > 0) {
         $valid_formats = DB_getItem($_TABLES['mg_albums'], 'valid_formats', 'album_id = ' . intval($album_id));
+    } else {
+        $valid_formats = MG_JPG || MG_PNG || MG_GIF || MG_MP3 || MG_OGG || MG_MOV ||
+            MG_MP4 || MG_MPG || MG_FLV || MG_ZIP || MG_PDF;
     }
+    
     if ($valid_formats & MG_OTHER) {
         $valid_types = '*.*';
     } else {
@@ -721,14 +735,18 @@ function MG_getFrames()
 
 function MG_sortFrames($array, $key)
 {
-    for ($i=0; $i<sizeof($array); $i++) {
+    $sort_values = array();
+    
+    for ($i = 0; $i < count($array); $i++) {
         $sort_values[$i] = $array[$i][$key];
     }
+
     asort($sort_values);
-    reset($sort_values);
-    while (list($arr_key, $arr_val) = each($sort_values)) {
+
+    foreach ($sort_values as $arr_key => $arr_val) {
         $sorted_arr[] = $array[$arr_key];
     }
+
     return $sorted_arr;
 }
 
@@ -912,7 +930,7 @@ function MG_resetAlbumCover($album_id)
     $result = DB_query($sql);
     $filename = '';
     while ($row = DB_fetchArray($result)) {
-        $filename = addslashes($row['media_filename']);
+        $filename = DB_escapeString($row['media_filename']);
     }
     DB_change($_TABLES['mg_albums'], 'album_cover', -1, 'album_id', intval($album_id));
     DB_change($_TABLES['mg_albums'], 'album_cover_filename', $filename, 'album_id', intval($album_id));
@@ -1035,7 +1053,11 @@ function MG_albumThumbnail($album_id)
         $lang_updated = ($_MG_CONF['dfid']=='99' ? '' : $LANG_MG03['updated_prompt']);
 
         if (isset($_USER['uid']) && $_USER['uid'] > 1) {
-            $lastlogin = DB_getItem($_TABLES['userinfo'], 'lastlogin', "uid = '" . $_USER['uid'] . "'");
+            if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+                $lastlogin = DB_getItem($_TABLES['user_attributes'], 'lastlogin', "uid = '" . $_USER['uid'] . "'");
+            } else {
+                $lastlogin = DB_getItem($_TABLES['userinfo'], 'lastlogin', "uid = '" . $_USER['uid'] . "'");
+            }
             if ($album_data['last_update'] > $lastlogin) {
                 $album_last_update[0] = '<span class="mgUpdated">' . $album_last_update[0] . '</span>';
             }
@@ -1434,4 +1456,3 @@ function MG_input($info)
 
     return $retval;
 }
-?>

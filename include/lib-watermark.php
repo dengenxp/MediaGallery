@@ -182,7 +182,7 @@ function MG_watermarkSave($actionURL = '')
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $numItems = count($_POST['wid']);
+    $numItems = empty($_POST['wid']) ? 0 : count($_POST['wid']);
 
     for ($i=0; $i < $numItems; $i++) {
         $media[$i]['wid'] = COM_applyFilter($_POST['wid'][$i]);
@@ -193,15 +193,14 @@ function MG_watermarkSave($actionURL = '')
         $media_title_safe = substr($media[$i]['title'], 0, 254);
 
         if ($_MG_CONF['htmlallowed'] != 1) {
-            $media_title = addslashes(htmlspecialchars(strip_tags(COM_checkWords($media_title_safe))));
+            $media_title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_title_safe))));
         } else {
-            $media_title = addslashes(COM_checkHTML($media_title_safe));
+            $media_title = DB_escapeString(COM_checkHTML($media_title_safe));
         }
         $wid = $media[$i]['wid'];
-        DB_change($_TABLES['mg_watermarks'], 'description', $media_title, 'wm_id', addslashes($media[$i]['wid']));
+        DB_change($_TABLES['mg_watermarks'], 'description', $media_title, 'wm_id', DB_escapeString($media[$i]['wid']));
     }
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_watermarkDelete($actionURL = '')
@@ -240,8 +239,7 @@ function MG_watermarkDelete($actionURL = '')
             }
         }
     }
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 function MG_watermarkUpload($actionURL = '')
@@ -388,7 +386,7 @@ function MG_watermarkUploadSave()
                 break;
             default :
                 $statusMsg .= $filename . $LANG_MG02['unsupported_wm_type'];
-                continue;
+                continue 2;
                 break;
         }
 
@@ -418,12 +416,12 @@ function MG_watermarkUploadSave()
                 chmod($wm_filename, 0644);
                 $media_title_safe = substr($description,0,254);
                 if ($_MG_CONF['htmlallowed'] != 1) {
-                    $media_title = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($media_title_safe)))));
+                    $media_title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($media_title_safe)))));
                 } else {
-                    $media_title = addslashes(htmlspecialchars(COM_checkHTML(COM_checkWords(COM_killJS($media_title_safe)))));
+                    $media_title = DB_escapeString(htmlspecialchars(COM_checkHTML(COM_checkWords(COM_killJS($media_title_safe)))));
                 }
 
-                $saveFileName = addslashes($uid . '_' .$filename);
+                $saveFileName = DB_escapeString($uid . '_' .$filename);
                 $sql = "INSERT INTO {$_TABLES['mg_watermarks']} (wm_id,owner_id,filename,description)
                         VALUES ($wm_id,'$uid','$saveFileName','$media_title')";
                 DB_query($sql);
@@ -505,7 +503,7 @@ function MG_watermarkBatchProcess($album_id, $mid)
     global $_CONF, $_MG_CONF, $_TABLES;
 
     $sql = "SELECT media_id,media_watermarked,media_type,media_filename,media_mime_ext "
-         . "FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($mid) . "'";
+         . "FROM {$_TABLES['mg_media']} WHERE media_id='" . DB_escapeString($mid) . "'";
     $result = DB_query($sql);
     $nRows  = DB_numRows($result);
     if ($nRows > 0) {
@@ -534,9 +532,8 @@ function MG_watermarkBatchProcess($album_id, $mid)
         }
         // update the database to show they have been watermarked...
         if ($rc == true) {
-            DB_change($_TABLES['mg_media'], 'media_watermarked', 1, 'media_id', addslashes($mid));
+            DB_change($_TABLES['mg_media'], 'media_watermarked', 1, 'media_id', DB_escapeString($mid));
         }
     }
     return;
 }
-?>

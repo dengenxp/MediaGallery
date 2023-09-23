@@ -44,15 +44,14 @@ function MG_buildAlbumRSS($aid)
     global $_MG_CONF, $_CONF, $_TABLES;
 
     $feedpath = MG_getFeedPath();
-
     $fname = sprintf($_MG_CONF['rss_feed_name'] . "%06d.rss", $aid);
-//    $feedname = $_MG_CONF['path_html'] . "rss/" . $fname;
-    $feedname = $feedpath . '/' . $fname;
+    $feedname = $feedpath . $fname;
 
     $album_data = MG_getAlbumData($aid, array('enable_rss', 'album_title', 'album_desc',
                                               'tn_attached', 'podcast', 'rsschildren', 'owner_id'));
 
-    if ($album_data['enable_rss'] != 1) {
+    clearstatcache();
+    if (($album_data['enable_rss'] != 1) && file_exists($feedname)) {
         @unlink($feedname);
         return;
     }
@@ -63,7 +62,7 @@ function MG_buildAlbumRSS($aid)
     $rss->descriptionTruncSize = 500;
     $rss->descriptionHtmlSyndicated = true;
 
-    $rss->encoding = strtoupper ($_CONF['default_charset']);
+    $rss->encoding = strtoupper($_CONF['default_charset']);
 
     $imgurl = '';
 
@@ -132,8 +131,7 @@ function MG_buildAlbumRSS($aid)
     }
 
     $rss->link = $_MG_CONF['site_url'];
-//    $rss->syndicationURL = $_MG_CONF['site_url'] . '/rss/' . $fname;
-    $rss->syndicationURL = $feedpath . '/' . $fname;
+    $rss->syndicationURL = $feedpath . $fname;
 
     MG_processAlbumFeedItems($rss, $aid, $album_data);
     if ($album_data['rsschildren']) {
@@ -188,7 +186,12 @@ function MG_processAlbumFeedItems(&$rss, $aid, &$album_data)
             $item->podcast->enclosure_type = $row['mime_type'];
         }
 
-        $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $row['media_time']);
+        if (is_callable('COM_strftime')) {
+	        $item->date = COM_strftime("%a, %d %b %Y %H:%M:%S %z", $row['media_time']);
+		} else {
+    	    $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $row['media_time']);
+		}
+
         $item->source = $_CONF['site_url'];
         if ($row['artist'] != '') {
             $item->author = $row['artist'];
@@ -274,7 +277,12 @@ function MG_parseAlbumsRSS(&$rss, $aid)
                 $item->descriptionTruncSize = 500;
                 $item->descriptionHtmlSyndicated = true;
 
-                $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $album_data['last_update']);
+                if (is_callable('COM_strftime')) {
+                    $item->date = COM_strftime("%a, %d %b %Y %H:%M:%S %z", $album_data['last_update']);
+                } else {
+                    $item->date = strftime("%a, %d %b %Y %H:%M:%S %z", $album_data['last_update']);
+                }
+
                 $item->source = $_CONF['site_url'];
                 if ($album_data['owner_id'] != '') {
                     $username = DB_getItem($_TABLES['users'], 'username', "uid={$album_data['owner_id']}");
@@ -308,7 +316,7 @@ function MG_buildFullRSS()
     $rss->descriptionHtmlSyndicated = true;
     $rss->encoding = strtoupper ($_CONF['default_charset']);
     $rss->link = $_CONF['site_url'];
-    $rss->syndicationURL = $_CONF['site_url'] . $_SERVER["PHP_SELF"]; // ‚ ‚â‚µ‚¢B
+    $rss->syndicationURL = $_CONF['site_url'];
     MG_parseAlbumsRSS($rss, 0);
     // valid format strings are: RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated),
     // MBOX, OPML, ATOM, ATOM0.3, HTML, JS
@@ -321,4 +329,3 @@ function MG_buildFullRSS()
 function MG_buildNewRSS() {
 
 }
-?>

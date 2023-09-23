@@ -114,8 +114,7 @@ function MG_saveUser()
     } else {
         DB_query("INSERT INTO {$_TABLES['mg_userprefs']} SET uid=" . $uid . ", quota=" . $quota . ",active=" . $active,1);
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . 'quotareport.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'quotareport.php');
 }
 
 /**
@@ -142,8 +141,7 @@ if ($mode == $LANG_MG01['save'] && !empty ($LANG_MG01['save'])) {
     MG_saveUser();
     exit;
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $uid = COM_applyFilter($_GET['uid'],true);
     $T->set_var(array(

@@ -35,8 +35,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
@@ -67,7 +66,7 @@ if ($mediaQueue == 'q') {
     $sql = "SELECT * FROM {$_TABLES['mg_media']} AS m "
          . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ";
 }
-$sql .= "ON m.media_id=ma.media_id WHERE m.media_id='" . addslashes($media_id) . "'";
+$sql .= "ON m.media_id=ma.media_id WHERE m.media_id='" . DB_escapeString($media_id) . "'";
 $result = DB_query($sql);
 $nRows = DB_numRows($result);
 if ($nRows <= 0) exit;
@@ -122,10 +121,8 @@ $T->set_var(array(
 if (!SEC_hasRights('mediagallery.admin')) {
     $media_views = $row['media_views'] + 1;
     DB_change($_TABLES['mg_media'], 'media_views', $media_views,
-        'media_id', addslashes($row['media_id']));
+        'media_id', DB_escapeString($row['media_id']));
 }
 
 $display = $T->finish($T->parse('output', 'video'));
-
 COM_output($display);
-?>

@@ -81,7 +81,7 @@ function MG_selectUsers($page)
          . "ORDER BY gl.username ASC LIMIT $start,$end";
     $result = DB_query($sql);
     while ($row = DB_fetchArray($result)) {
-        if ($glversion[1] < 4) {
+        if (isset($glversion[1]) && ($glversion[1] < 4)) {
             $row['status'] = 3;
         }
         $uid = $row['uid'];
@@ -123,8 +123,7 @@ function MG_createUsers()
             plugin_user_create_mediagallery($_POST['user'][$i], 1);
         }
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . 'createmembers.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'createmembers.php');
 }
 
 /**
@@ -151,8 +150,7 @@ if ($mode == $LANG_MG01['save'] && !empty ($LANG_MG01['save'])) {
     MG_createUsers();
     exit;
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh ($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     if ( isset($_REQUEST['page']) ) {
         $page = COM_applyFilter($_REQUEST['page'],true) - 1;

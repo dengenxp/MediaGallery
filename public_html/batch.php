@@ -35,8 +35,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
@@ -57,19 +56,16 @@ $mode       = isset($_REQUEST['mode']) ? COM_applyFilter($_REQUEST['mode']) : ''
 $session_id = isset($_GET['sid'])      ? COM_applyFilter($_GET['sid'])      : '';
 
 if (isset($_POST['cancel_button'])) {
-    $session_origin = DB_getItem($_TABLES['mg_sessions'], 'session_origin', 'session_id = ' . addslashes($session_id));
+    $session_origin = DB_getItem($_TABLES['mg_sessions'], 'session_origin', 'session_id = ' . DB_escapeString($session_id));
     if (empty($session_origin)) { // no session found
         COM_errorLog("Media Gallery Error - Unable to retrieve batch session data");
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-        exit;
+        COM_redirect($_MG_CONF['site_url'] . '/index.php');
     }
-    echo COM_refresh($session_origin);
-    exit;
+    COM_redirect($session_origin);
 }
 
 if ($mode != 'continue' || empty($session_id)) {
-    echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/index.php');
 }
 
 $refresh_rate = $_MG_CONF['def_refresh_rate'];

@@ -38,22 +38,13 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
-/**
-* Include language file
-*/
-$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
-$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
-if (file_exists($langfile)) {
-    require_once $langfile;
-} else {
-    require_once $plugin_path . 'language/english.php';
-}
-
-//global $_MG_CONF;
+global $_TABLES, $_DB_table_prefix; // Needs to be set for when plugin enabled (if plugin already disabled)
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.0';
+$_MG_CONF['pi_version'] = '1.7.3';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
+$_MG_CONF['custom_image_width'] = 0;
+$_MG_CONF['custom_image_height'] = 0;
 
 /**
 * Add to $_TABLES array the tables mediagallery plugin uses
@@ -302,7 +293,12 @@ $_MG_CONF['up_mp3_player_enabled'] = 0;
 
 if ($_MG_CONF['installed_version']) {
     $_MG_CONF['dfid'] = '19';
-    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	if (COM_versionCompare(VSERSION, '2.2.2', '>=') {
+        $_MG_CONF['dateformat'] = Locale::dateFormatIdToString($_MG_CONF['dfid']);
+	} else {
+        $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	}
+
     // safety checks....
     if ($_MG_CONF['album_display_columns'] < 1) {
         $_MG_CONF['album_display_columns'] = 1;
@@ -313,7 +309,13 @@ if ($_MG_CONF['installed_version']) {
 }
 */
 if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
-    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        $_MG_CONF['dateformat'] = \Geeklog\Locale::dateFormatIdToString($_MG_CONF['dfid']);
+	} else {
+        $_MG_CONF['dateformat'] = empty($_MG_CONF['dfid'])
+					? ''
+					: DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	}
 }
 
 $_MG_CONF['path_to_imagemagick'] = '';
@@ -378,6 +380,19 @@ if ($_MG_CONF['usage_tracking']) {
 $_MG_CONF['verbose'] = false;
 
 /**
+* Include language file
+*/
+// Have to include language files after $_MG_CONF is retrieved as some of these values are included in language files
+$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
+$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
+if (file_exists($langfile)) {
+    require_once $langfile;
+} else {
+    require_once $plugin_path . 'language/english.php';
+}
+
+
+/**
 * Check to see if this Plugin uses comments
 *
 * @return   boolean true or false
@@ -404,6 +419,7 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
 
     $retval = '';
 
+	/*
     $sql = "SELECT a.enable_comments "
          . "FROM {$_TABLES['mg_albums']} AS a "
          . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
@@ -412,8 +428,15 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
     $A = DB_fetchArray($result);
 
     if ($A['enable_comments'] != 1) {
-        return COM_refresh($_CONF['site_url'] . '/index.php');
+        COM_redirect($_CONF['site_url'] . '/index.php');
     }
+	*/
+    
+	// Use plugin_commentenabled_foo permission check to determine if user has permissions to save a comment for this item
+    // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
+    if (plugin_commentenabled_mediagallery($id) != COMMENT_CODE_ENABLED) {
+        COM_handle404($_CONF['site_url'] . '/index.php');
+    }	
 
     $ret = CMT_saveComment($title, $comment, $id, $pid, 'mediagallery', $postmode);
 
@@ -425,27 +448,43 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
         }
         return $retval;
     } else { // success
-        $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
-        DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
-        return COM_refresh($_MG_CONF['site_url'] . "/media.php?s=$id");
+        $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(DB_escapeString($id), 'mediagallery'));
+        DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', DB_escapeString($id));
+        COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
     }
 
     return false;
 }
 
 /**
+ * Comment Submission approved
+ *
+ * @param   string $id       Item id to which $cid belongs
+ * @param   int     $cid    Approved Comment id
+ */
+function plugin_moderationcommentapprove_mediagallery($id, $cid)
+{
+    // Nothing needed to do on approval of comment to plugin item
+    
+    return true;
+}
+
+/**
  * Plugin function to delete a comment
  *
- * @param   int     $cid    Comment to be deleted
- * @param   string  $id     Item id to which $cid belongs
- * @return  mixed   false for failure, HTML string (redirect?) for success
+ * @param   int    	$cid 			Comment to be deleted
+ * @param   string 	$id  			Item id to which $cid belongs
+ * @param   boolean $returnOption  	Either return a boolean on success or not, or redirect
+ * @return  mixed        			Based on $returnOption. False for failure or true for success, else a redirect for success or failure 
  */
-function plugin_deletecomment_mediagallery($cid, $id)
+function plugin_deletecomment_mediagallery($cid, $id, $returnBoolean)
 {
     global $_CONF, $_MG_CONF, $_TABLES;
+	
+	$retval = false;
 
     // find the album that holds this peice of media
-    $sql = "SELECT album_id FROM {$_TABLES['mg_media_albums']} WHERE media_id='" . addslashes($id) . "'";
+    $sql = "SELECT album_id FROM {$_TABLES['mg_media_albums']} WHERE media_id='" . DB_escapeString($id) . "'";
     $result = DB_query($sql);
     $nRows  = DB_numRows($result);
     $access = 0;
@@ -462,23 +501,77 @@ function plugin_deletecomment_mediagallery($cid, $id)
 
     if ($access == 3 && SEC_hasRights('mediagallery.admin')) {
         if (CMT_deleteComment($cid, $id, 'mediagallery') == 0) {
-            $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
-            DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
-            return COM_refresh($_MG_CONF['site_url'] . "/media.php?s=$id");
+            $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(DB_escapeString($id), 'mediagallery'));
+            DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', DB_escapeString($id));
+			
+			if ($returnBoolean) {
+				$retval = true;
+			} else {		
+				COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
+			}			
+        }
+    }
+	
+	// So failed to delete for some reason and if not returnBoolean then...
+	if (!$returnBoolean && !$retval) {
+		COM_redirect($_CONF['site_url'] . '/index.php');
+	}	
+
+    return $retval;
+}
+
+function plugin_getcommenturlid_mediagallery($id)
+{
+    global $_CONF, $_MG_CONF;
+	
+	return $_MG_CONF['site_url'] . "/media.php?s=$id";
+}
+
+/**
+ * Return the comment code to this plugin item. This is based not only the code of the actual plugin item but the access the user has to the item
+ *
+ * @param   string $id   Item id to which $cid belongs
+ * @param   int    $uid  user id or 0 = current user
+ * @return  int    Return a CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
+ */
+function plugin_commentenabled_mediagallery($id, $uid = 0)
+{
+    global $_CONF, $_TABLES;
+	
+    // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
+    $commentCode = COMMENT_CODE_DISABLED;
+	
+	// Albums have permissions, the actual media does not have individual permissions (it inherits the permissions from the album)
+    $sql = "SELECT a.enable_comments, a.owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon "
+         . "FROM {$_TABLES['mg_albums']} AS a "
+         . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
+         . "WHERE ma.media_id = '$id'" . COM_getPermSQL('AND', $uid, 2, 'a');
+    $result = DB_query($sql);	
+    $A = DB_fetchArray($result);
+    if (DB_numRows($result) == 1) {
+		
+		// Media Gallery uses only comment enabled or disabled so update to use correct code
+		if ($A['enable_comments'] == 1) {
+			$A['commentcode'] = COMMENT_CODE_ENABLED;
+		} else {
+			$A['commentcode'] = COMMENT_CODE_DISABLED;
+		}
+		
+        if ($A['commentcode'] == COMMENT_CODE_ENABLED) {
+            $commentCode = COMMENT_CODE_ENABLED;
+        } elseif ($A['commentcode'] == COMMENT_CODE_CLOSED) { // Closed but still visible so give admins access
+            if (SEC_hasRights('mediagallery.admin', 'AND', $uid) &&
+                (SEC_hasAccess($A['owner_id'], $A['group_id'],
+                        $A['perm_owner'], $A['perm_group'], $A['perm_members'],
+                        $A['perm_anon'], $uid) == 3)) {
+                $commentCode = COMMENT_CODE_ENABLED; // If Admin then treat comment like enabled
+            } else {
+                $commentCode = COMMENT_CODE_CLOSED;
+            }
         }
     }
 
-    return false;
-}
-
-function plugin_getcommenturlid_mediagallery()
-{
-    global $_CONF, $_MG_CONF;
-    $retval = array();
-    $retval[] = $_MG_CONF['site_url'] . '/media.php';
-    $retval[] = 's';
-    $retval[] = 'page=';
-    return $retval;
+    return $commentCode;
 }
 
 /**
@@ -675,6 +768,47 @@ function plugin_getwhatsnew_mediagallery()
         return $retval;
     } else {
         return $items;
+    }
+}
+
+/**
+* Return new Media comments for the What's New block
+*
+* @param    string  $numreturn  If 0 will return results for What's New Block. 
+*                               If > 0 will return last X new comments for User Profile.
+* @param    string  $uid        ID of the user to return results for. 0 = all users.
+* @return   array list of new comments (dups, type, title, sid, lastdate) or (sid, title, cid, unixdate)
+*
+*/
+function plugin_getwhatsnewcomment_mediagallery($numreturn = 0, $uid = 0)
+{
+    global $_CONF, $_TABLES, $_DLM_CONF;
+
+    $stwhere = ($uid > 0) ? "AND (c.uid = $uid) " : ' ';
+
+    if ($numreturn == 0) {
+        $select = "SELECT DISTINCT COUNT(*) AS dups, type, c.title, sid, max(c.date) AS lastdate ";
+        $order  = "GROUP BY c.sid, type, m.media_title ORDER BY 5 DESC LIMIT 15";
+    } else {
+        $select = "SELECT c.sid, c.title, c.cid, UNIX_TIMESTAMP(c.date) AS unixdate ";
+        $order  = "ORDER BY unixdate DESC LIMIT $numreturn";
+    }
+
+    $sql = $select . "FROM {$_TABLES['comments']} c, {$_TABLES['mg_media_albums']} d, {$_TABLES['mg_albums']} b, {$_TABLES['mg_media']} m "
+		 . "WHERE d.media_id = c.sid AND d.album_id = b.album_id AND d.media_id = m.media_id "
+         . "AND (b.enable_comments = 1) "
+         . COM_getPermSQL('AND', 0, 2, 'b')
+         . " AND (c.date >= (DATE_SUB(NOW(), INTERVAL {$_CONF['newcommentsinterval']} SECOND))) "
+         . $stwhere . $order;
+
+    $result = DB_query($sql);
+    $nrows = DB_numRows($result);
+    if ($nrows > 0) {
+        for ($x = 0; $x < $nrows; $x++) {
+            $A[] = DB_fetchArray($result);
+        }
+        
+        return $A;
     }
 }
 
@@ -887,10 +1021,15 @@ function plugin_submissioncount_mediagallery()
 
     $retval = 0;
 
-    $table = $_TABLES['mg_old_mediaqueue'];
-    if (version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version']) >= 0) {
-        $table = $_TABLES['mg_mediaqueue'];
-    }
+	// If 1.7.0 or higher always use new table name
+	if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
+		$table = $_TABLES['mg_mediaqueue'];
+	} else {
+		$table = $_TABLES['mg_old_mediaqueue'];
+		if (version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version']) >= 0) {
+			$table = $_TABLES['mg_mediaqueue'];
+		}
+	}
 
     if (plugin_ismoderator_mediagallery()) {
         $retval = DB_count($table);
@@ -986,7 +1125,7 @@ function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic
 
     if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
-    $query = trim(addslashes(htmlspecialchars($query)));
+    $query = trim(DB_escapeString(htmlspecialchars($query)));
 
     $sql = "SELECT DISTINCT "
          . "m.media_id AS id, "
@@ -1219,11 +1358,7 @@ function MG_clean_directories($path, $needle = '')
 function plugin_upgrade_mediagallery()
 {
     global $_CONF, $_TABLES, $_MG_CONF;
-/*
-    require_once $_CONF['path'].'plugins/mediagallery/upgrade.php';
 
-    return mediagallery_upgrade();
-*/
     require_once $_CONF['path'].'plugins/mediagallery/autoinstall.php';
 
     return MG_upgrade();
@@ -1377,15 +1512,15 @@ function MG_deleteMemberAlbums($album_id)
     ));
     $result = DB_query($sql);
     while ($A = DB_fetchArray($result)) {
-        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', addslashes($A['media_id']));
+        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', DB_escapeString($A['media_id']));
         if ($count <= 1) {
             $fn = $A['media_filename'];
             @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'orig/' . $fn[0] . '/' . $fn . '.' . $A['media_mime_ext']);
-            DB_delete($_TABLES['mg_media'], 'media_id', addslashes($A['media_id']));
-            DB_delete($_TABLES['comments'], 'sid', addslashes($A['media_id']));
-            DB_delete($_TABLES['mg_playback_options'], 'media_id', addslashes($A['media_id']));
+            DB_delete($_TABLES['mg_media'], 'media_id', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['comments'], 'sid', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['mg_playback_options'], 'media_id', DB_escapeString($A['media_id']));
         }
     }
     DB_delete($_TABLES['mg_media_albums'], 'album_id', intval($album_id));
@@ -1498,7 +1633,7 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
          . "LEFT JOIN {$_TABLES['mg_albums']} AS c ON b.album_id=c.album_id";
 
     if ($id != '*') {
-        $sql .= " WHERE a.media_id = '" . addslashes($id) . "' LIMIT 1";
+        $sql .= " WHERE a.media_id = '" . DB_escapeString($id) . "' LIMIT 1";
     }
 
     $result = DB_query($sql);
@@ -1560,7 +1695,7 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
                     $mapped[$key] = $value;
                 }
             } else {
-                $mapped[$key] = $value;
+                $mapped[] = $value;
             }
         }
 
@@ -1573,10 +1708,25 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
     }
 
     if (($id != '*') && (count($retval) == 1)) {
-        $retval = $retval[0];
+        $retval = array_shift($retval);
     }
 
     return $retval;
+}
+
+/**
+ * Return URL of item even if the item doesn't exist, e.g., after it has been deleted
+ *
+ * @param  string  $sub_type  (unused) sub type of plugin
+ * @param  string  $item_id   the id of the item
+ * @return string
+ * @since  Geeklog 2.2.2
+ */
+function plugin_idToURL_mediagallery($sub_type, $item_id)
+{
+    global $_MG_CONF;
+
+    return $_MG_CONF['site_url'].'/media.php?f=0&amp;sort=0&amp;s='.$item_id;
 }
 
 /**
@@ -1633,7 +1783,11 @@ function plugin_getconfigtooltip_mediagallery($id)
 
 function plugin_configmanager_select_dfid_mediagallery()
 {
-    global $_TABLES, $LANG_MG00, $LANG_dateformats;
+    global $_TABLES, $LANG_MG00, $LANG_dateformats, $_LOCALE;
+
+    if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        return array_flip($_LOCALE->getDateFormatOptions(0, true));
+    }
 
     $retval = array();
     $retval[$LANG_MG00['no_date']] = 99;

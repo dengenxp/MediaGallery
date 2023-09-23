@@ -148,7 +148,7 @@ function MG_MassdeleteAlbum($album_id)
     }
     require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
     MG_buildFullRSS();
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=15');
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=15');
 }
 
 
@@ -177,15 +177,15 @@ function MG_MassdeleteChildAlbums($album_id)
     ));
     $result = DB_query($sql);
     while ($A = DB_fetchArray($result)) {
-        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', addslashes($A['media_id']));
+        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', DB_escapeString($A['media_id']));
         if ($count <= 1) {
             $fn = $A['media_filename'];
             @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $fn[0] . '/' . $fn . '.*');
             @unlink($_MG_CONF['path_mediaobjects'] . 'orig/' . $fn[0] . '/' . $fn . '.' . $A['media_mime_ext']);
-            DB_delete($_TABLES['mg_media'], 'media_id', addslashes($A['media_id']));
-            DB_delete($_TABLES['comments'], 'sid', addslashes($A['media_id']));
-            DB_delete($_TABLES['mg_playback_options'], 'media_id', addslashes($A['media_id']));
+            DB_delete($_TABLES['mg_media'], 'media_id', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['comments'], 'sid', DB_escapeString($A['media_id']));
+            DB_delete($_TABLES['mg_playback_options'], 'media_id', DB_escapeString($A['media_id']));
         }
     }
     DB_delete($_TABLES['mg_media_albums'], 'album_id', intval($album_id));
@@ -201,15 +201,15 @@ function MG_massDeleteAlbums($aid)
 
     $children = MG_getAlbumChildren($aid);
     $numItems = count($children);
-    for ($x=0; $x < $numItems; $x++) {
+    for ($x = 0; $x < $numItems; $x++) {
         $i = $children[$x];
-        if ($_POST['album'][$i] == 1) {
+        if (isset($_POST['album'][$i]) && ($_POST['album'][$i] == 1)) {
             MG_MassdeleteAlbum($children[$x]);
         } else {
             MG_massDeleteAlbums($children[$x]);
         }
     }
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=15');
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php?msg=15');
 }
 
 /**
@@ -236,8 +236,7 @@ $T->set_var(array(
 if ($mode == $LANG_MG01['delete'] && !empty($LANG_MG01['delete'])) {
     $T->set_var('admin_body', MG_massDeleteAlbums(0));
 } elseif ($mode == $LANG_MG01['cancel']) {
-    echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
-    exit;
+    COM_redirect($_MG_CONF['admin_url'] . 'index.php');
 } else {
     $T->set_var(array(
         'admin_body' => MG_massDelete(),

@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
     die('This file can not be used on its own!');
 }
@@ -70,7 +72,7 @@ function MG_reorderAlbum($parent = 0)
 * @return   string  HTML for list of albums
 *
 */
-function MG_sortAlbums($parent=0, $actionURL)
+function MG_sortAlbums($parent=0, $actionURL = '')
 {
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG01;
 
@@ -196,16 +198,15 @@ function MG_saveAlbumSort($album_id)
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $parent = COM_applyFilter($_POST['parent_id'], true);
+    $parent = (int) Input::fPost('parent_id', 0);
+    $numItems = isset($_POST['aid']) ? count($_POST['aid']) : 0;
 
-    $numItems = count($_POST['aid']);
-
-    for ($i=0; $i < $numItems; $i++) {
-        $album[$i]['aid'] = $_POST['aid'][$i];
-        $album[$i]['seq'] = $_POST['seq'][$i];
+    for ($i = 0; $i < $numItems; $i++) {
+        $album[$i]['aid'] = (int) $_POST['aid'][$i];
+        $album[$i]['seq'] = (int) $_POST['seq'][$i];
     }
 
-    for ($i=0; $i < $numItems; $i++) {
+    for ($i = 0; $i < $numItems; $i++) {
         DB_change($_TABLES['mg_albums'], 'album_order', intval($album[$i]['seq']),
                                          'album_id',    intval($album[$i]['aid']));
         if (DB_error()) {
@@ -215,8 +216,7 @@ function MG_saveAlbumSort($album_id)
 
     MG_reorderAlbum($parent);
 
-    echo COM_refresh($_MG_CONF['site_url'] . '/admin.php?album_id=0&mode=albumsort');
-    exit;
+    COM_redirect($_MG_CONF['site_url'] . '/admin.php?album_id=0&mode=albumsort');
 }
 
 function MG_staticSortMedia($album_id, $actionURL='')
@@ -292,8 +292,8 @@ function MG_saveStaticSortMedia($album_id, $actionURL='')
     // -- get the sort options
     //
 
-    $sortby = COM_applyFilter($_POST['sortyby'], true);
-    $sorder = COM_applyFilter($_POST['sortorder'], true);
+    $sortby = (int) Geeklog\Input::fPost('sortyby', 0);
+    $sorder = (int) Geeklog\Input::fPost('sortorder', 0);
 
     switch ($sortby) {
         case '0' :  // media_time
@@ -337,8 +337,7 @@ function MG_saveStaticSortMedia($album_id, $actionURL='')
         DB_change($_TABLES['mg_media_albums'], 'media_order', $order, 'media_id', $row['media_id']);
         $order += 10;
     }
-    echo COM_refresh($actionURL);
-    exit;
+    COM_redirect($actionURL);
 }
 
 

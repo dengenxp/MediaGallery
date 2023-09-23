@@ -33,10 +33,10 @@
 // +--------------------------------------------------------------------------+
 
 require_once '../lib-common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
@@ -46,7 +46,6 @@ if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     exit;
 }
 
-require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/classAlbum.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
 
@@ -57,31 +56,32 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
 
     $_MG_USERPREFS = MG_getUserPrefs();
 
-    $uploadMenu = 0;
-    $adminMenu  = 0;
+    $isShowUploadMenu = false;
+    $isShowAdminMenu  = false;
+
     if ($root_album->owner_id) {
-        $uploadMenu = 1;
-        $adminMenu  = 1;
-    } else if ($album->access == 3) {
-        $uploadMenu = 1;
-        $adminMenu  = 1;
+        $isShowUploadMenu = true;
+        $isShowAdminMenu  = true;
+    } elseif ($album->access == 3) {
+        $isShowUploadMenu = true;
+        $isShowAdminMenu  = true;
         if ($_MG_CONF['member_albums']) {
             if ($_MG_USERPREFS['active'] != 1) {
-                $uploadMenu = 0;
-                $adminMenu  = 0;
+                $isShowUploadMenu = false;
+                $isShowAdminMenu  = false;
             } else {
-                $uploadMenu = 1;
-                $adminMenu  = 1;
+                $isShowUploadMenu = true;
+                $isShowAdminMenu  = true;
             }
         }
-    } else if ($album->member_uploads == 1 &&
+    } elseif ($album->member_uploads == 1 &&
                isset($_USER['uid']) && $_USER['uid'] >= 2) {
-        $uploadMenu = 1;
-        $adminMenu  = 0;
+        $isShowUploadMenu = true;
+        $isShowAdminMenu  = false;
     }
 
     $admin_box_option = '';
-    if ($uploadMenu == 1) {
+    if ($isShowUploadMenu) {
         $admin_box_option .= MG_options(array(
             'current' => '',
             'values'  => array(
@@ -89,7 +89,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
             )
         ));
     }
-    if ($adminMenu == 1) {
+    if ($isShowAdminMenu) {
         $admin_box_option .= MG_options(array(
             'current' => '',
             'values'  => array(
@@ -101,7 +101,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
                 'rebuild'    => $LANG_MG01['rebuild_thumb'],
             )
         ));
-    } else if ($_MG_CONF['member_albums'] == 1 &&
+    } elseif ($_MG_CONF['member_albums'] == 1 &&
                !empty($_USER['username']) &&
                $_MG_CONF['member_create_new'] == 1 &&
                $_MG_USERPREFS['active'] == 1 &&
@@ -113,11 +113,11 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
             )
         ));
 
-        $adminMenu = 1;
+        $isShowAdminMenu = true;
     }
 
     $admin_box = '';
-    if ($uploadMenu == 1 || $adminMenu == 1) {
+    if ($isShowUploadMenu || $isShowAdminMenu) {
         $action = $_MG_CONF['site_url'] . '/admin.php';
         $admin_box = '<form name="adminbox" id="adminbox" action="' . $action . '" method="get" class="uk-form"><div>' . LB;
         $admin_box .= '<input type="hidden" name="album_id" value="' . $album->id . '"' . XHTML . '>' . LB;
@@ -130,11 +130,14 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
     }
 
     $edit_album = '';
-    if ($adminMenu == 1) {
+    if ($isShowAdminMenu) {
         $url_edit = $_MG_CONF['site_url'] . '/admin.php?album_id=' . $album->id . '&amp;mode=edit';
         $lang_edit = $LANG_MG01['edit'];
         $edit_album = '<a href="' . $url_edit . '"' . '>' . $lang_edit . '</a>';
-    }
+    } else {
+		$url_edit = '';
+		$lang_edit = '';
+	}
 
     $T->set_var(array(
         'select_adminbox' => $admin_box,
@@ -184,7 +187,7 @@ function MG_buildSortbox($album_id, $sortOrder, $page)
 */
 
 $album_id  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'],  true) : 0;
-$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 0;
+$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 1;
 $sortOrder = isset($_GET['sort']) ? COM_applyFilter($_GET['sort'], true) : 0;
 $media_id  = isset($_GET['s'])    ? COM_applyFilter($_GET['s'])          : '';
 
@@ -211,7 +214,7 @@ $media_per_page = $columns_per_page * $rows_per_page;
 
 if ($page != 0) {
     $page = $page - 1;
-} else if ($media_id != 0) {
+} elseif ($media_id != 0) {
     $sql = MG_buildMediaSql(array(
         'album_id'  => $album_id,
         'fields'    => array('media_id'),
@@ -234,7 +237,7 @@ if ($page != 0) {
 $errorMessage = '';
 if (!isset($album->id)) {
     $errorMessage = $LANG_MG02['albumaccessdeny'];
-} else if ($album->access == 0 || ($album->hidden == 1 && $album->access != 3)) {
+} elseif ($album->access == 0 || ($album->hidden == 1 && $album->access != 3)) {
     $errorMessage = $LANG_MG02['albumaccessdeny'];
 } else {
     $aOffset = $album->getOffset();
@@ -453,4 +456,3 @@ $display = $T->finish($T->parse('output', 'page'));
 $display = MG_createHTMLDocument($display);
 
 COM_output($display);
-?>

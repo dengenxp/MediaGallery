@@ -202,7 +202,6 @@
     <li><a href="#mozTocId27867">Requirements</a>
       <ul>
         <li><a href="#mozTocId190332">Geeklog Version</a></li>
-        <li><a href="#mozTocId101151">Caching Template Library v2.0</a></li>
         <li><a href="#mozTocId592268">PHP Version / Configuration</a></li>
         <li><a href="#mozTocId518716">Graphics Package</a></li>
         <li><a href="#mozTocId92633">Database</a></li>
@@ -461,20 +460,9 @@ The following requirements must be met to ensure Media Gallery will function pro
 the latest production release at this time is <a href="http://www.geeklog.net/article.php/geeklog-1.4.1" title="http://www.geeklog.net/filemgmt/index.php?id=747">Geeklog v1.4.1</a>.
 Media Gallery will work with Geeklog v1.4.0 or later, but it is always recommended that you run the latest release.</p>
 
-<h2><a name="mozTocId101151"></a>Caching Template Library v2.0</h2>
-
-<p>Media Gallery v1.6 requires that you have the <a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">Caching Template Library</a>
-by <a href="http://www.gllabs.org/wiki/doku.php?id=people#joe_mucchiello">Joe Mucchiello</a> installed on your Geeklog site.</p>
-
-<p>The Caching Template Library pre-compiles the Geeklog templates directly into executable PHP code, which provides a significant speed increase to your site.
-The library also allows for logic processing inside the template files. This is the feature that Media Gallery needs.</p>
-
-<p>Installation is very quick and simple.
-See this <a href="http://www.gllabs.org/wiki/doku.php?id=geeklog:templatecache">wiki page</a> for full details.</p>
-
 <h2><a name="mozTocId592268"></a>PHP Version / Configuration</h2>
 
-<p>Media Gallery requires that you have PHP v4.3.0 or later.</p>
+<p>Media Gallery requires that you have PHP v5.6.4 or later.</p>
 
 <p>Media Gallery requires a reasonable amount of memory to run, calling the external graphics packages to work with large image files takes a lot of memory.
 You should configure PHP to allow for at least 48 M of memory per process. Check your <strong>memory_limit</strong> variable in php.ini and ensure it is set to at least 48M.</p>

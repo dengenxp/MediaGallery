@@ -1,5 +1,11 @@
 Media Gallery ChangeLog (excerpted from glFusion ChangeLog)
 
+v1.7.3
+------
+- Fixed remote upload of media issue
+- Fixes for PHP 7 and 8.1
+- Fix for comments not taking into account user permissions on item
+
 v1.6.8
 ------
 - Media Gallery: Remove jUpload and replace with Flash-based uploader (Mark H.)

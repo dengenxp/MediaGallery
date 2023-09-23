@@ -40,7 +40,7 @@ function MG_approveSubmission($media_id)
 {
     global $_CONF, $_TABLES, $LANG_MG01;
 
-    $mid = addslashes($media_id);
+    $mid = DB_escapeString($media_id);
 
     $owner_uid = DB_getItem($_TABLES['mg_mediaqueue'], 'media_user_id', "media_id='" . $mid . "'");
 
@@ -88,8 +88,8 @@ function MG_approveSubmission($media_id)
             $to   = array();
             $from = array();
             $to   = COM_formatEmailAddress($username, $email);
-            $from = COM_formatEmailAddress($_CONF['site_name'], $_CONF['site_mail']);
-            if (!COM_mail($to, $subject, $body, $from, true)) {
+
+            if (!COM_mail($to, $subject, $body, '', true)) {
                 COM_errorLog("Media Gallery Error - Unable to send queue notification email");
             }
             COM_updateSpeedlimit('mgapprove');
@@ -108,7 +108,7 @@ function MG_deleteSubmission($media_id)
 {
     global $_TABLES, $_MG_CONF;
 
-    $mid = addslashes($media_id);
+    $mid = DB_escapeString($media_id);
 
     $result = DB_query("SELECT media_filename, media_mime_ext FROM {$_TABLES['mg_mediaqueue']} WHERE media_id='" . $mid . "'");
     $row = DB_fetchArray($result);

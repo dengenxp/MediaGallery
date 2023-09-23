@@ -139,13 +139,13 @@ function MG_quotaReport($page, $quotaquery, $usedquery)
     return $retval;
 }
 
-if (isset($_POST['mode'])) {
+if (isset($_POST['mode']) && isset($_POST['uid'])) {
     $mode = COM_applyFilter($_POST['mode']);
     $bquota = COM_applyFilter($_POST['bquota'], true);
     $bquota = $bquota * 1048576;
     $numItems = count($_POST['uid']);
 
-    for ($i=0; $i < $numItems; $i++) {
+    for ($i = 0; $i < $numItems; $i++) {
         DB_change($_TABLES['mg_userprefs'], 'quota', $bquota, 'uid', $_POST['uid'][$i]);
         if (DB_error()) {
             $sql = "INSERT INTO {$_TABLES['mg_userprefs']} (uid, active, display_rows, display_columns, mp3_player, playback_mode, tn_size, quota, member_gallery) "
